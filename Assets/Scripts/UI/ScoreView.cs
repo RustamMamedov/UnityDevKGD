@@ -10,6 +10,8 @@ namespace UI {
 
         private int _currentScore;
 
+        private bool isScoreChanging = false;
+
         public EventListener eventListener;
 
         private void Start() {
@@ -17,19 +19,19 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if(currentScore.score > _currentScore) {
+            if (currentScore.score > _currentScore && !isScoreChanging) {
                 StartCoroutine(SetScoreCoroutine(currentScore.score));
             }
         }
         
         private IEnumerator SetScoreCoroutine(int newScore) {
-
+            isScoreChanging = true;
             while(_currentScore < newScore) {
                 _currentScore++;
                 Debug.Log(_currentScore);
                 yield return new WaitForSeconds(0.1f);
             }
-
+            isScoreChanging = false;
         }
     }
 
