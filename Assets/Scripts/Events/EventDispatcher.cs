@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Events {
-<<<<<<< HEAD
-    public class EventDispatcher : MonoBehaviour {
-=======
 
     public class EventDispatcher : MonoBehaviour {
 
->>>>>>> master
+
         [SerializeField]
         private ScriptableEvent _someEvent;
 
@@ -17,8 +14,4 @@ namespace Events {
             _someEvent.Dispatch();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
