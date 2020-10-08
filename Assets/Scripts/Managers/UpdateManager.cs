@@ -1,25 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Events;
 using UnityEngine;
-using Events;
-
 
 namespace Game {
-    public class UpDateManager : MonoBehaviour
-    {
+
+    public class UpdateManager : MonoBehaviour {
+
         [SerializeField]
         private ScriptableEvent _updateEvent;
 
         [SerializeField]
         private ScriptableEvent _fixedEvent;
 
-        private void Update()
-        {
+        private void Update() {
             _updateEvent.Dispatch();
         }
 
-        private void FixedUpdate()
-        {
+        private void FixedUpdate() {
             _fixedEvent.Dispatch();
         }
     }
