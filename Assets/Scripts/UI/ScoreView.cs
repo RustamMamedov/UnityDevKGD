@@ -33,7 +33,7 @@ namespace UI {
         private IEnumerator SetScoreCoroutine(int score) { 
              Debug.Log(_currentScore);  
            
-            while (_currentScore < score) {      
+            while (_currentScore != score) {      
                 _currentScore++; 
                 yield return new WaitForSeconds(0.1f); 
             } 
