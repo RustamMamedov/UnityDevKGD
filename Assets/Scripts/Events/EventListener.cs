@@ -21,16 +21,6 @@ namespace Events {
             onEventHappened.Invoke();
         }
 
-        // void Start() {
-        //     _someEvent.AddListener(SomeMethod);
-        // }
-
-        // private void SomeMethod() {
-        //     //logic
-        //         Debug.Log("!!!!");
-        // }
-
-        // Update is called once per frame
         void Update() { }
     }
 }
