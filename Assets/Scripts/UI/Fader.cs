@@ -20,17 +20,16 @@ namespace UI {
         }
 
         public void FadeOut() {
-
             StartCoroutine(FadeOutCoroutine());
         }
 
         private IEnumerator FadeInCoroutine() {
-            yield return FadeCoroutine(1f, 0f);
-            OnFadeIn();
+            yield return StartCoroutine(FadeCoroutine(1f, 0f));
+            OnFadeIn.Invoke();
         }
 
         private IEnumerator FadeOutCoroutine() {
-            yield return FadeCoroutine(0f,1f);
+            yield return StartCoroutine(FadeCoroutine(0f, 1f));
             OnFadeOut();
         }
 
@@ -45,6 +44,5 @@ namespace UI {
                 yield return null;
             }
         }
-
     }
 }

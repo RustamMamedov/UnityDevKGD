@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +14,6 @@ namespace UI {
         private string _currentSceneName = "Gameplay";
 
         private void Awake() {
-
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
@@ -26,7 +24,7 @@ namespace UI {
         }
 
         private void Start() {
-            _fader.OnFadeIn += LoadGameplayScene;
+            _fader.OnFadeIn += OnSceneFadeIn;
             _fader.FadeIn();
         }
 
@@ -42,13 +40,12 @@ namespace UI {
         }
 
         private void LoadGameplayScene() {
-            _fader.OnFadeIn -= LoadGameplayScene;
+            _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Manu" : "Gameplay";
+            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
-
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOperation.isDone) {
                 yield return null;
@@ -58,6 +55,6 @@ namespace UI {
 
             _fader.FadeIn();
         }
-       
+
     }
 }
