@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Events {
 
-    [CreateAssetMenu(fileName = "Event", menuName = "Events/Event")]
+    [CreateAssetMenu(fileName = "Event", menuName = "Event")]
+
     public class ScriptableEvent : ScriptableObject {
 
         private List<Action> _listeners;
@@ -14,35 +15,27 @@ namespace Events {
                 _listeners = new List<Action>();
             }
 
-            if (!_listeners.Contains(action)) {
+
+            if (_listeners.IndexOf(action) == -1) {
                 _listeners.Add(action);
             }
-
         }
 
         public void RemoveListener(Action action) {
-            if (_listeners == null) {
+            if (_listeners == null || _listeners.IndexOf(action) == -1) {
                 return;
             }
 
-            if (_listeners.Contains(action)) {
-                _listeners.Remove(action);
-            }
-
+            _listeners.Remove(action);
         }
 
         public void Dispatch() {
             if (_listeners == null) {
                 return;
             }
-
-            foreach (var listener in _listeners) {
-                listener.Invoke();
+            for (int i = 0; i < _listeners.Count; i++) {
+                _listeners[i]();
             }
-
         }
-
-
     }
-
 }

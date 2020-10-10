@@ -1,6 +1,4 @@
 ﻿using Events;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game {
@@ -12,18 +10,10 @@ namespace Game {
 
         private void Awake() {
             _updateEventListener.OnEventHappened += Move;
-            _updateEventListener.OnEventHappened += Die;
         }
 
         private void Move() {
             Debug.Log("Move");
         }
-
-        private void Die() {
-            Debug.Log("Die");
-        }
-
-
     }
-
 }

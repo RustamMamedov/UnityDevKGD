@@ -1,6 +1,4 @@
 ﻿using Events;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game {
@@ -11,20 +9,14 @@ namespace Game {
         private ScriptableEvent _updateEvent;
 
         [SerializeField]
-        private ScriptableEvent _fixedUpdateEvent;
+        private ScriptableEvent _fixedEvent;
 
         private void Update() {
             _updateEvent.Dispatch();
         }
 
         private void FixedUpdate() {
-            _fixedUpdateEvent.Dispatch();
+            _fixedEvent.Dispatch();
         }
-
-
     }
-
 }
-
-
-

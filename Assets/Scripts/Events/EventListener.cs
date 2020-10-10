@@ -1,31 +1,26 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Events {
-    
+
     public class EventListener : MonoBehaviour {
 
         [SerializeField]
-        private ScriptableEvent _sampleEvent;
+        private ScriptableEvent _someEvent;
 
-        public event Action OnEventHappened = delegate {};
+        public event Action OnEventHappened = delegate { };
 
         private void OnEnable() {
-            _sampleEvent.AddListener(EventHandler);
+            _someEvent.AddListener(EventHappened);
         }
 
         private void OnDisable() {
-            _sampleEvent.RemoveListener(EventHandler);
+            _someEvent.RemoveListener(EventHappened);
         }
 
-        private void EventHandler() {
+        private void EventHappened() {
             OnEventHappened.Invoke();
         }
-
-
     }
-
 }
 

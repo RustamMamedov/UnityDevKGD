@@ -7,14 +7,10 @@ namespace Events {
     public class EventDispatcher : MonoBehaviour {
 
         [SerializeField]
-        private ScriptableEvent _sampleEvent;
+        private ScriptableEvent _someEvent;
 
         public void Dispatch() {
-            _sampleEvent.Dispatch();
+            _someEvent.Dispatch();
         }
-
-
     }
-
 }
-
