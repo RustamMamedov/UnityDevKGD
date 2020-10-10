@@ -23,19 +23,24 @@ namespace UI {
         // Displayed score.
         private int _currentScore;
 
-        // True if score is currently updated.
-        private bool _isBeingUpdated;
+        // Number of the current SetScoreCoroutine.
+        private int _currentSetScoreCoroutine = 0;
+
+        // To what value is current score being changed at the moment.
+        private int _currentTargetScore;
 
 
         // Life cycle.
 
         private void Start() {
+            _currentScore = _currentScoreSource.score;
+            _currentTargetScore = _currentScore;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
             var targetScore = _currentScoreSource.score;
-            if (_currentScore != targetScore) {
+            if (_currentTargetScore != targetScore) {
                 StartCoroutine(SetScoreCoroutine(targetScore));
             }
             Debug.Log(_currentScore);
@@ -46,14 +51,25 @@ namespace UI {
 
         // Update score by one toward target every _currentScoreIncrementDelay seconds.
         private IEnumerator SetScoreCoroutine(int targetScore) {
-            while (_currentScore != targetScore) {
-                if (_currentScore < targetScore) {
-                    _currentScore--;
-                } else {
-                    _currentScore++;
+
+            // Make number and set it as current coroutine number.
+            // If current coroutine number is changed, this coroutine must stop.
+            // As a result, no more than one coroutine will change _currentScore
+            // at any given frame (unless several are called simultaneously).
+            int coroutineNumber = _currentSetScoreCoroutine + 1;
+            _currentSetScoreCoroutine = coroutineNumber;
+            _currentTargetScore = targetScore;
+
+            // Update current score.
+            int scoreChange = _currentScore < targetScore ? 1 : -1;
+            while (true) {
+                if (_currentSetScoreCoroutine != coroutineNumber || _currentScore == targetScore) {
+                    break;
                 }
+                _currentScore += scoreChange;
                 yield return new WaitForSeconds(_currentScoreIncrementDelay);
             }
+
         }
 
 
