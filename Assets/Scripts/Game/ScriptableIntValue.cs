@@ -7,7 +7,7 @@ namespace Game {
     public class ScriptableIntValue : ScriptableObject{
 
         [SerializeField]
-        private int _score;
+        public int _score;
 
     }
 }
