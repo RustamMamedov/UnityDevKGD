@@ -1,18 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
+using Game;
 
-public class ScoreView : MonoBehaviour
+namespace UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ScoreView : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            _update.OnEventHappened += UpdateBehaviour;
+        }
+        [SerializeField]
+        private ScriptableIntValue CurrentScore;
+        [SerializeField]
+        private int _currentScore;
+        [SerializeField]
+        private EventListener _update;
+        public void UpdateBehaviour()
+        {
+            if (_currentScore != CurrentScore.value)
+            {
+                StartCoroutine(SetScoreCoroutine());
+            }
+        }
+        public IEnumerator SetScoreCoroutine()
+        {
+            while (_currentScore < CurrentScore.value)
+            {
+                _currentScore++;
+                Debug.Log(_currentScore);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
     }
 }
