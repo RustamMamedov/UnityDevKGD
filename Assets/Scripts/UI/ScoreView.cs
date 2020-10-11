@@ -11,7 +11,6 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue CurrentScore;
 
-        [SerializeField]
         private int _currentScore;
 
         [SerializeField]
