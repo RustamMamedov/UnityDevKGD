@@ -14,6 +14,7 @@ namespace UI {
         private string _currentSceneName = "Gameplay";
 
         private void Awake() {
+
             if (Instansce != null) {
                 Destroy(gameObject);
                 return;

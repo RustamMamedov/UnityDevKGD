@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Events { 
 
@@ -9,6 +8,7 @@ namespace Events {
         private ScriptableEvent _someEvent;
 
         public void Dispatch() {
+
             _someEvent.Dispatch();
         }
     }

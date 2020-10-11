@@ -13,10 +13,12 @@ namespace Game {
         private ScriptableEvent _fixedEvent;
 
         private void Update() {
+
             _updateEvent.Dispatch();
         }
 
         private void FixedUpdate() {
+
             _fixedEvent.Dispatch();
         }
     }

@@ -10,6 +10,7 @@ namespace Events {
         private List<Action> _listeners;
 
         public void AddListener(Action action) {
+
             if (_listeners == null) { 
                 _listeners = new List<Action>();
             }
@@ -20,6 +21,7 @@ namespace Events {
         }
 
         public void RemoveListener(Action action) {
+
             if (_listeners == null || _listeners.IndexOf(action) == -1) {
                 return;
             }
@@ -28,6 +30,7 @@ namespace Events {
         }
 
         public void Dispatch() {
+
             if (_listeners == null) {
                 return;
             }
