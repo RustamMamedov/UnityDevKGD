@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "ScriptableIntValue", menuName = "ScriptableIntValue")]
-public class ScriptableIntValue : ScriptableObject {
+namespace Game {
     
-    [SerializeField]
-    private int value = 0;
+    [CreateAssetMenu(fileName = "ScriptableIntValue", menuName = "ScriptableIntValue")]
+    public class ScriptableIntValue : ScriptableObject {
+    
+        public int value = 0;
+    }
 }
