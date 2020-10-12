@@ -4,12 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Events;
 using Game;
+using UnityEngine.UI;
 
 namespace UI {
     public class ScoreView : MonoBehaviour {
-        
+
         [SerializeField]
+        private float _currentDelay;
+
+        [SerializeField]
+        private Text _scoreLabel;
+
+
         private int _currentScore;
+        private bool isBusy;
         
         [SerializeField]
         private ScriptableIntValue _scores;
@@ -32,10 +40,12 @@ namespace UI {
 
         }
         private IEnumerator SetScoreCoroutine() {
-            yield return new WaitForSeconds(0.1f);
+    
+            yield return new WaitForSeconds(_currentDelay);
             if (_currentScore < _scores.value) {
                 _currentScore += 1;
-                Debug.Log(_currentScore);
+                _scoreLabel.text = $"{_currentScore}";
+                
             }
         }
     }
