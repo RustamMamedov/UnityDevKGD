@@ -8,10 +8,13 @@ namespace UI {
     public sealed class ScoreView : MonoBehaviour {
 
         [SerializeField]
-        private EventListener _eventListener;
+        private float _scoreCountDelay;
 
         [SerializeField]
-        private ScriptableIntValue _score;
+        private EventListener _updateEventListener;
+
+        [SerializeField]
+        private ScriptableIntValue _currentScoreValue;
 
         private int _currentScore = 0;
 
@@ -19,13 +22,13 @@ namespace UI {
         private bool _scoreIsChanging = false;
 
         private void Awake() {
-            _eventListener.OnEventHappened += UpdateBehavior;
+            _updateEventListener.OnEventHappened += UpdateBehavior;
         }
 
         private void UpdateBehavior() {
-            if (_currentScore != _score.value && !_scoreIsChanging) {
+            if (_currentScore != _currentScoreValue.value && !_scoreIsChanging) {
                 _scoreIsChanging = true;
-                StartCoroutine(SetScoreCoroutine(_score.value));
+                StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
         }
 
@@ -37,7 +40,7 @@ namespace UI {
                     --_currentScore;
                 }
                 Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
 
             _scoreIsChanging = false;
