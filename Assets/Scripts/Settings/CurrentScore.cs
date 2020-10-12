@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game;
 
-public class CurrentScore : ScriptableIntValue {
+public class CurrentScores : ScriptableIntValue {
     public int save_score;
 }
