@@ -21,7 +21,9 @@ namespace UI {
                 _sceneLoadingValue.value = asyncOperation.progress;
                 yield return null;
             }
+
             _sceneLoadingValue.value = 1f;
+
             yield return new WaitForSeconds(2f);
             asyncOperation.allowSceneActivation = true;
         }
