@@ -29,8 +29,10 @@ namespace Events{
         }
 
         public void Dispatch() {
-            for (int i = 0; i < _listeners.Count; i++) {
-                _listeners[i]();
+            if (_listeners != null) {
+                for (int i = 0; i < _listeners.Count; i++) {
+                    _listeners[i]();
+                }
             }
         }
     }
