@@ -18,20 +18,22 @@ namespace UI {
         private EventListener _eventListener;
 
         private void Awake() {
-            _eventListener.OnEventHappened += UpdateBehaviour;
+            _eventListener.OnEventHappened += Update;
+            
         }
 
 
-        public void UpdateBehaviour() {
-            if (_currentScore > _scores.value) {
+        public void Update() {
+            if (_currentScore < _scores.value) {
                 StartCoroutine(SetScoreCoroutine());
             }
             
-            
+
+
         }
         private IEnumerator SetScoreCoroutine() {
             yield return new WaitForSeconds(0.1f);
-            if (_currentScore > _scores.value) {
+            if (_currentScore < _scores.value) {
                 _currentScore += 1;
                 Debug.Log(_currentScore);
             }
