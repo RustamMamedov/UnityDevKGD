@@ -22,8 +22,8 @@ namespace UI {
         }
 
         public void UpdateBehaviour() {
-            if (_score.score > _currentScore && !scoreIsChanging) {
-                StartCoroutine(SetScoreCoroutine(_score.score));
+            if (_score.value > _currentScore && !scoreIsChanging) {
+                StartCoroutine(SetScoreCoroutine(_score.value));
             }
         }
 

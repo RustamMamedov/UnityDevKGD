@@ -2,8 +2,8 @@
 
 namespace Game {
 
-    [CreateAssetMenu (fileName = "ScriptableIntValue", menuName = "Car/ScriptableIntValue")]
+    [CreateAssetMenu(fileName = "ScriptableIntValue", menuName = "Values/ScriptableIntValue")]
     public class ScriptableIntValue : ScriptableObject {
-        public int score;
+        public int value;
     }
 }
