@@ -2,6 +2,7 @@
 using Events;
 using Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
 
@@ -15,6 +16,9 @@ namespace UI {
 
         [SerializeField]
         private ScriptableIntValue _currentScoreValue;
+
+        [SerializeField]
+        private Text _scoreLabel;
 
         private int _currentScore;
         private bool isBusy;
@@ -33,7 +37,7 @@ namespace UI {
             isBusy = true;
             while (_currentScore < score) {
                 _currentScore++;
-                Debug.Log(_currentScore);
+                _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
             isBusy = false;
