@@ -11,6 +11,9 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
+        [SerializeField]        
+        private ScoreView _scoreView;
+
         private string _currentSceneName = "Gameplay";
 
         private void Awake() {
