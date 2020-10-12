@@ -2,18 +2,23 @@
 using Game;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace UI
 {
     public class ScoreView : MonoBehaviour
     {
         [SerializeField]
         private ScriptableIntValue currentScore;//Не уверен что приватное, протребуется ли нам менять его во время игры?!
-        [SerializeField]
         private int _currentScore;
+        private bool isBusy;
         [SerializeField]
         private EventListener _update;
+        [SerializeField][Range(0f,3f)]
+        private float _scoreCountDelay; 
+        [SerializeField]
+        private Text _scoreLabel;
 
         private void Awake()
         {
@@ -29,11 +34,14 @@ namespace UI
 
         private IEnumerator SetScoreCoroutine(int score)
         {
+            isBusy = true;
             while(_currentScore<score)
             {
                 _currentScore++;
-                yield return new WaitForSeconds(0.1f);
+                _scoreLabel.text = $"{_currentScore}";
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
+            isBusy = false;
         }
     }
 }
