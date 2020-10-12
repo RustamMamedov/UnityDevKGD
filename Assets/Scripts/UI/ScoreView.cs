@@ -23,8 +23,8 @@ namespace UI {
         }
 
         public void UpdateBehavior() {
-            if (_currentScore < _assetScore.score) {
-               StartCoroutine(SetScoreCoroutine(_assetScore.score));
+            if (_currentScore < _assetScore.value) {
+               StartCoroutine(SetScoreCoroutine(_assetScore.value));
             }
         }
 

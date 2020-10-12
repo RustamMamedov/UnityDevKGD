@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Game {
 
-    [CreateAssetMenu(fileName = "Score", menuName = "Score")]
+    [CreateAssetMenu(fileName = "ScriptableInt", menuName = "ScriptableInt")]
     public class ScriptableIntValue : ScriptableObject {
-        public int score;
+        public int value;
     }
 }
