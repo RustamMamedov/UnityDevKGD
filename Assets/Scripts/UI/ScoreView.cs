@@ -2,6 +2,7 @@
 using Events;
 using Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
 
@@ -15,6 +16,9 @@ namespace UI {
 
         [SerializeField]
         private EventListener _eventListener;
+
+        [SerializeField]
+        private Text _scoreLabel;
 
         private int _currentScore = 0;
 
@@ -34,7 +38,7 @@ namespace UI {
             scoreIsChanging = true;
             while (_currentScore != newScore) {
                 _currentScore += 1;
-                Debug.Log(_currentScore);
+                _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
             scoreIsChanging = false;
