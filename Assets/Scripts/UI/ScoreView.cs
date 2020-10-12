@@ -5,15 +5,14 @@ using UnityEngine.SceneManagement;
 using Events;
 using Game;
 
-
 namespace UI {
     public class ScoreView : MonoBehaviour {
         [SerializeField]
-        private int _currentScore;
+        int _currentScore;
         [SerializeField]
-        private SciptableIntValue _Scores;
+        ScriptableIntValue _scores;
         [SerializeField]
-        private EventListener _eventListener;
+        EventListener _eventListener;
 
         private void Awake() {
             _eventListener.OnEventHappened += UpdateBehaviour;
@@ -21,15 +20,15 @@ namespace UI {
 
 
         public void UpdateBehaviour() {
-            if (_currentScore > _Scores.save_score) {
-                StartCoroutine(UpdateScore());
+            if (_currentScore > _scores.value) {
+                StartCoroutine(SetScoreCoroutine());
             }
             
             
         }
-        private IEnumerator UpdateScore() {
+        private IEnumerator SetScoreCoroutine() {
             yield return new WaitForSeconds(0.1f);
-            if (_currentScore > _Scores.save_score) {
+            if (_currentScore > _scores.value) {
                 _currentScore += 1;
                 Debug.Log(_currentScore);
             }
