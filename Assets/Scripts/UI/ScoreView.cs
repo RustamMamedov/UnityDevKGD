@@ -18,8 +18,8 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if(currentScoreAsset.score > _currentScore && !isScoreChanging) {
-                StartCoroutine(SetScoreCoroutine(currentScoreAsset.score));
+            if(currentScoreAsset.value > _currentScore && !isScoreChanging) {
+                StartCoroutine(SetScoreCoroutine(currentScoreAsset.value));
             }
         }
 
