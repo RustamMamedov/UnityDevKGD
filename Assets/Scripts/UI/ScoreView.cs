@@ -8,6 +8,9 @@ namespace UI {
     public class ScoreView : MonoBehaviour {
 
         [SerializeField]
+        private float _scoreCountDelay;
+
+        [SerializeField]
         private ScriptableIntValue _score;
 
         [SerializeField]
@@ -32,7 +35,7 @@ namespace UI {
             while (_currentScore != newScore) {
                 _currentScore += 1;
                 Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
             scoreIsChanging = false;
         }
