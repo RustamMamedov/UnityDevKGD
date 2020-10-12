@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 ﻿using System;
 using UnityEngine;
 
@@ -25,7 +25,7 @@ namespace Events
             OnEventHappened.Invoke();
         }
     }
-=======
+=======*/
 ﻿using System;
 using UnityEngine;
 
@@ -50,5 +50,5 @@ namespace Events {
             OnEventHappened.Invoke();
         }
     }
->>>>>>> master
+//>>>>>>> master
 }

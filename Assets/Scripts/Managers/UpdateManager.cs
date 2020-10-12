@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +25,7 @@ namespace Game
         }
     }
 }
-=======
+=======*/
 ﻿using Events;
 using UnityEngine;
 
@@ -48,4 +48,4 @@ namespace Game {
         }
     }
 }
->>>>>>> master
+//>>>>>>> master

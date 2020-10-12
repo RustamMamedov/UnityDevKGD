@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 ﻿using Events;
 using UnityEngine;
 
@@ -20,7 +20,7 @@ namespace Game
             Debug.Log("Move");
         }
     }
-=======
+=======*/
 ﻿using Events;
 using UnityEngine;
 
@@ -39,5 +39,5 @@ namespace Game {
             Debug.Log("Move");
         }
     }
->>>>>>> master
+//>>>>>>> master
 }

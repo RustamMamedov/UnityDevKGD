@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.WebSockets;
@@ -46,7 +46,7 @@ namespace Events
             }
         }
     }
-=======
+=======*/
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -85,5 +85,5 @@ namespace Events {
             }
         }
     }
->>>>>>> master
+//>>>>>>> master
 }
