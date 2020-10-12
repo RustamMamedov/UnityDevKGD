@@ -1,36 +1,46 @@
-﻿using Events;
-using Game;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using UnityEngine;
-
+using Game;
+using Events;
 namespace UI {
+
     public class ScoreView : MonoBehaviour {
 
-        public ScriptableIntValue currentScoreAsset;
-        public EventListener eventListener;
+        [SerializeField]
+        private float _scoreCountDelay;
 
         [SerializeField]
-        private int _currentScore = 0;
+        private Text _scoreLabel;
+
+        public ScriptableIntValue currentScore;
+
+        private int _currentScore;
+
         private bool isScoreChanging = false;
+
+        public EventListener eventListener;
 
         private void Start() {
             eventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
-            if(currentScoreAsset.value > _currentScore && !isScoreChanging) {
-                StartCoroutine(SetScoreCoroutine(currentScoreAsset.value));
+            if (currentScore.value > _currentScore && !isScoreChanging) {
+                StartCoroutine(SetScoreCoroutine(currentScore.value));
             }
         }
 
-        private IEnumerator SetScoreCoroutine(int score) {
+        private IEnumerator SetScoreCoroutine(int newScore) {
             isScoreChanging = true;
-            while (_currentScore < score) {
+            while (_currentScore < newScore) {
                 _currentScore++;
+                _scoreLabel.text = $"{_currentScore}";
                 Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
             isScoreChanging = false;
         }
     }
+
 }
