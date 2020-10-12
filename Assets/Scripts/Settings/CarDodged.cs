@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 namespace Settings {
-    public class ScriptableIntValue : ScriptableObject {
+    public class CarDodged : ScriptableObject {
         public int score;
     }
 }

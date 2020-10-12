@@ -7,12 +7,15 @@ using Game;
 
 namespace UI {
     public class ScoreView : MonoBehaviour {
+        
         [SerializeField]
-        int _currentScore;
+        private int _currentScore;
+        
         [SerializeField]
-        ScriptableIntValue _scores;
+        private ScriptableIntValue _scores;
+        
         [SerializeField]
-        EventListener _eventListener;
+        private EventListener _eventListener;
 
         private void Awake() {
             _eventListener.OnEventHappened += UpdateBehaviour;
