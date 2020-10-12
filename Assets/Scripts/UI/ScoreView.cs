@@ -33,13 +33,13 @@ namespace UI {
         // Life cycle.
 
         private void Start() {
-            _currentScore = _currentScoreSource.score;
+            _currentScore = _currentScoreSource.value;
             _currentTargetScore = _currentScore;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
-            var targetScore = _currentScoreSource.score;
+            var targetScore = _currentScoreSource.value;
             if (_currentTargetScore != targetScore) {
                 StartCoroutine(SetScoreCoroutine(targetScore));
             }
