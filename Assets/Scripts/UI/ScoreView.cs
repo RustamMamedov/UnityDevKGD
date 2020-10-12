@@ -7,10 +7,8 @@ using Events;
 namespace UI {
     public class ScoreView : MonoBehaviour {
 
-        public event Action OnBehaviour = delegate {};
-
         [SerializeField]
-        private ScriptableEvent _someEvent;
+        private EventListeners _EventListeners;
 
         [SerializeField]
         private ScriptableIntValue _CurrentScore;
@@ -18,7 +16,7 @@ namespace UI {
         private int _currentScore=0;
 
         public void Awake() {
-           _someEvent.AddListener(UpdateBehaviour); 
+           _EventListeners.OnEventHappened+=UpdateBehaviour; 
         }
 
         public void UpdateBehaviour() {
