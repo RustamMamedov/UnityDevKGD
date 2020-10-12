@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using Game;
 using Events;
 namespace UI {
 
     public class ScoreView : MonoBehaviour {
+        
+        [SerializeField]
+        private float _scoreCountDelay;
+
+        [SerializeField]
+        private Text _scoreLabel;
 
         public ScriptableIntValue currentScore;
 
@@ -28,8 +35,9 @@ namespace UI {
             isScoreChanging = true;
             while(_currentScore < newScore) {
                 _currentScore++;
+                _scoreLabel.text = $"{_currentScore}";
                 Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
             isScoreChanging = false;
         }
