@@ -22,11 +22,6 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Start() {
-            _fader.OnFadeIn += OnSceneFadeIn;
-            _fader.FadeIn();
-        }
-
         private void OnSceneFadeIn() {
             StartCoroutine(FadeOutAndLoadGameplay());
         }
