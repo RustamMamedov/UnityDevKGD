@@ -17,7 +17,7 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_assetScore.score > _currentScore) {
+            if (_currentScore < _assetScore.score) {
                 StartCoroutine(SetScoreCoroutine(_assetScore.score));
             }
         }
