@@ -20,10 +20,6 @@ namespace UI {
             }
         }
 
-        public void Update() {
-            
-        }
-
         private IEnumerator SetScoreCoroutine(int score) {
             while (_currentScore != score){
                 _currentScore += 1;
