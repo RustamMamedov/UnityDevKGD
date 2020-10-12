@@ -40,7 +40,7 @@ namespace UI {
         private void LoadGameplayScene() {
             _fader.OnFadeOut-=LoadGameplayScene;
             StartCoroutine(LoadGameplaySceneCoroutine(_CurrentSceneName));
-            _CurrentSceneName=_CurrentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            _CurrentSceneName = "Gameplay";// _CurrentSceneName == "Gameplay" ? "Menu" : "Gameplay";
         }
 
         private IEnumerator LoadGameplaySceneCoroutine(string SceneName) {
