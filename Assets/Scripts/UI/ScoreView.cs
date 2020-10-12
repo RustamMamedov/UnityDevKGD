@@ -1,7 +1,8 @@
-﻿using Events;
+﻿using System.Collections;
+using Events;
 using Game;
-using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
 
@@ -16,8 +17,10 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _currentScoreValue;
 
-        private int _currentScore = 0;
+        [SerializeField]
+        private Text _scoreLabel;
 
+        private int _currentScore = 0;
         // blocks the start of several coroutines so that changes do not overlap each other
         private bool _scoreIsChanging = false;
 
@@ -39,7 +42,7 @@ namespace UI {
                 } else {
                     --_currentScore;
                 }
-                Debug.Log(_currentScore);
+                _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
 
