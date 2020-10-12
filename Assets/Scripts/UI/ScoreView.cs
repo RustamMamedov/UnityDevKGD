@@ -17,10 +17,10 @@ namespace UI {
         }
         public void UpdateBehaviour() {
             if(_currentScore > _Scores.save_score) {
-                StartCoroutine(UpdateScore());
+                StartCoroutine(SetScoreCoroutine());
             }
         }
-        private IEnumerator UpdateScore() {
+        private IEnumerator SetScoreCoroutine() {
             yield return new WaitForSeconds(0.1f);
             if(_currentScore > _Scores.save_score) {
                 _currentScore += 1;
