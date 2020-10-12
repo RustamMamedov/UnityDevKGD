@@ -19,8 +19,8 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_scoreLink.score > _currentScore) {
-                StartCoroutine(SetScoreCoroutine(_scoreLink.score));
+            if (_scoreLink.value > _currentScore) {
+                StartCoroutine(SetScoreCoroutine(_scoreLink.value));
             }
         }
 

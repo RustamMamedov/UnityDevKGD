@@ -5,6 +5,6 @@ namespace Game {
     
     [CreateAssetMenu(fileName = "Score", menuName = "Score")]
     public class ScriptableIntValue : ScriptableObject {
-        public int score;
+        public int value;
     }
 }
