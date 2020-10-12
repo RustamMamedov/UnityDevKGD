@@ -24,8 +24,7 @@ namespace UI {
         }
 
         private void Start() {
-            _fader.OnFadeIn += OnSceneFadeIn;
-            _fader.FadeIn();
+          
         }
 
         private void OnSceneFadeIn() {
