@@ -19,6 +19,7 @@ namespace UI {
 
         private void Awake() {
             _eventListener.OnEventHappened += Update;
+
         }
 
 
