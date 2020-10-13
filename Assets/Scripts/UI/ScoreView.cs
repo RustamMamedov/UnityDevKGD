@@ -36,6 +36,11 @@ namespace UI {
             // Subscribing on Update event
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
+
+        private void OnDestroy() {
+            _eventListener.OnEventHappened -= UpdateBehaviour;
+        }
+
         #endregion
 
         #region Methods
