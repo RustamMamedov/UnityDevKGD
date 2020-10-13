@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Values;
 
 namespace UI {
@@ -20,6 +21,10 @@ namespace UI {
         [SerializeField]
         private float _currentScoreIncrementDelay = 0.1f;
 
+        [Tooltip("Text view for current score.")]
+        [SerializeField]
+        private Text _scoreText;
+
         // Displayed score.
         private int _currentScore;
 
@@ -34,6 +39,7 @@ namespace UI {
 
         private void Start() {
             _currentScore = _currentScoreSource.value;
+            _scoreText.text = $"{_currentScore}";
             _currentTargetScore = _currentScore;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
@@ -43,7 +49,6 @@ namespace UI {
             if (_currentTargetScore != targetScore) {
                 StartCoroutine(SetScoreCoroutine(targetScore));
             }
-            Debug.Log(_currentScore);
         }
 
 
@@ -67,6 +72,7 @@ namespace UI {
                     break;
                 }
                 _currentScore += scoreChange;
+                _scoreText.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_currentScoreIncrementDelay);
             }
 
