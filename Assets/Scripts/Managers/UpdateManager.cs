@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game {
+namespace Managers {
 
     public class UpdateManager : MonoBehaviour {
 
