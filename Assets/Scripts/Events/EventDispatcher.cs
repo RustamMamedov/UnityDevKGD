@@ -6,7 +6,6 @@ namespace Events {
 
     public class EventDispatcher : MonoBehaviour {
 
-
         [SerializeField]
         private ScriptableEvent _someEvent;
 
