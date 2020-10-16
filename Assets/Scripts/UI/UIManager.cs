@@ -8,8 +8,18 @@ namespace UI {
     public class UIManager : MonoBehaviour {
 
         public static UIManager Instance;
+
         [SerializeField]
         private Fader _fader;
+
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderBoardScreen;
 
         private string _currentSceneName = "Gameplay";
 
@@ -42,6 +52,24 @@ namespace UI {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadGameplaySceneCoroutine(_currentSceneName));
             _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+        }
+
+        public void ShowMenuScreen() {
+            _menuScreen.SetActive(true);
+        }
+
+        public void ShowGameScreen() {
+            _gameScreen.SetActive(true);
+        }
+
+        public void ShowLeaderboardScreen() {
+            _leaderBoardScreen.SetActive(true);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderBoardScreen.SetActive(false);
         }
 
         private IEnumerator LoadGameplaySceneCoroutine(string sceneName) {
