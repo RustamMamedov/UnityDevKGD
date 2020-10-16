@@ -11,6 +11,15 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardScreen;
+
         private string _currentSceneName = "Gameplay";
 
         private void Awake() {
@@ -26,6 +35,10 @@ namespace UI {
         private void Start() {
             _fader.OnFadeIn += OnSceneFadeIn;
             _fader.FadeIn();
+        }
+
+        private void Update() {
+            Debug.Log("Update");
         }
 
         private void OnSceneFadeIn() {
@@ -54,6 +67,24 @@ namespace UI {
             yield return new WaitForSeconds(3f);
 
             _fader.FadeIn();
+        }
+
+        private void ShowMenuScreen() {
+            _menuScreen.SetActive(true);
+        }
+
+        private void ShowGameScreen() {
+            _gameScreen.SetActive(true);
+        }
+
+        private void ShowLeaderboardScreen() {
+            _leaderboardScreen.SetActive(true);
+        }
+
+        private void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardScreen.SetActive(false);
         }
 
     }
