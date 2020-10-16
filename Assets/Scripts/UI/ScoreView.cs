@@ -14,26 +14,35 @@ namespace UI {
         private Text _scoreLabel;
 
         [SerializeField]
-        ScriptableIntValue _currentScoreValue;
+        private ScriptableIntValue _currentScoreValue;
 
         [SerializeField]
-        EventListener _eventListener;
+        private EventListener _eventListener;
 
         private int _currentScore;
+        private bool isBusy;
 
-        public void UpdateBehaviour() {
-            if (_currentScoreValue.value > _currentScore){
+        private void Awake() {
+            _eventListener.OnEventHappened += UpdateBehaviour;
+        }
+
+        private void UpdateBehaviour() {
+                Debug.Log(_currentScore);
+                Debug.Log(_currentScoreValue.value);
+            if (_currentScoreValue.value > _currentScore && !isBusy) {
                 StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
         }
 
         private IEnumerator SetScoreCoroutine(int score) {
+            isBusy = true;
             while (_currentScore != score){
                 _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
                 Debug.Log(_currentScore);
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
+            isBusy = false;
         }
     }
 }
