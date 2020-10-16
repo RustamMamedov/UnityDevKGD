@@ -7,6 +7,12 @@ namespace UI {
 
         public static UIManager instance;
         [SerializeField]
+        GameObject MenuScreen;
+        [SerializeField]
+        GameObject GameScreen;
+        [SerializeField]
+        GameObject LeaderboardScreen;
+        [SerializeField]
         private Fader _fader;
         private string _currentSceneName = "GamePlay";
 
@@ -47,7 +53,23 @@ namespace UI {
             _fader.FadeIn();
         }
 
+        private void ShowMenuScreen() {
+            MenuScreen.SetActive(true); 
+        }
 
+        private void ShowGameScreen() {
+            GameScreen.SetActive(true);
+        }
+
+        private void ShowLeaderboardScreen() {
+            LeaderboardScreen.SetActive(true);
+        }
+
+        private void HideAllScreens() {
+            MenuScreen.SetActive(false);
+            GameScreen.SetActive(false);
+            LeaderboardScreen.SetActive(false);
+        }
     }
 }
 
