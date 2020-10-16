@@ -2,7 +2,7 @@
 
 namespace Game {
 
-    [CreateAssetMenu(fileName = "ScriptableInt", menuName = "ScriptableInt")]
+    [CreateAssetMenu(fileName = "ScriptableIntValue", menuName = "ScriptableIntValue")]
     public class ScriptableIntValue : ScriptableObject {
         [SerializeField]
         public int value;
