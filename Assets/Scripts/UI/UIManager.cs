@@ -6,14 +6,19 @@ namespace UI {
     public class UIManager : MonoBehaviour {
 
         public static UIManager instance;
+
         [SerializeField]
-        GameObject MenuScreen;
+        GameObject _menuScreen;
+
         [SerializeField]
-        GameObject GameScreen;
+        GameObject _gameScreen;
+
         [SerializeField]
-        GameObject LeaderboardScreen;
+        GameObject _leaderboardScreen;
+
         [SerializeField]
         private Fader _fader;
+
         private string _currentSceneName = "GamePlay";
 
         private void Awake() {
@@ -54,21 +59,21 @@ namespace UI {
         }
 
         private void ShowMenuScreen() {
-            MenuScreen.SetActive(true); 
+            _menuScreen.SetActive(true); 
         }
 
         private void ShowGameScreen() {
-            GameScreen.SetActive(true);
+            _gameScreen.SetActive(true);
         }
 
         private void ShowLeaderboardScreen() {
-            LeaderboardScreen.SetActive(true);
+            _leaderboardScreen.SetActive(true);
         }
 
         private void HideAllScreens() {
-            MenuScreen.SetActive(false);
-            GameScreen.SetActive(false);
-            LeaderboardScreen.SetActive(false);
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardScreen.SetActive(false);
         }
     }
 }
