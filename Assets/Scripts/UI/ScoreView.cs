@@ -20,8 +20,8 @@ namespace UI {
         }
 
         public void UpdateBehaviour() {
-            if (_CurrentScore.Score > _currentScore) {
-                StartCoroutine(SetScoreCoroutine(_CurrentScore.Score));
+            if (_CurrentScore.Value > _currentScore) {
+                StartCoroutine(SetScoreCoroutine(_CurrentScore.Value));
             }
         }
 
