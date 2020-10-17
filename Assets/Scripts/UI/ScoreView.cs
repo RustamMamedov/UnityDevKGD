@@ -13,30 +13,32 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
-        public ScriptableIntValue currentScore;
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
 
-        private int _currentScore;
+        private int _currentScoreView;
 
         private bool isScoreChanging = false;
 
-        public EventListener eventListener;
+        [SerializeField]
+        private EventListener _eventListener;
 
         private void Start() {
-            eventListener.OnEventHappened += UpdateBehaviour;
+            _eventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
-            if (currentScore.value > _currentScore && !isScoreChanging) {
-                StartCoroutine(SetScoreCoroutine(currentScore.value));
+            if (_currentScore.value > _currentScoreView && !isScoreChanging) {
+                StartCoroutine(SetScoreCoroutine(_currentScore.value));
             }
         }
         
         private IEnumerator SetScoreCoroutine(int newScore) {
             isScoreChanging = true;
-            while(_currentScore < newScore) {
-                _currentScore++;
-                _scoreLabel.text = $"{_currentScore}";
-                Debug.Log(_currentScore);
+            while(_currentScoreView < newScore) {
+                _currentScoreView++;
+                _scoreLabel.text = $"{_currentScoreView}";
+                Debug.Log(_currentScoreView);
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
             isScoreChanging = false;
