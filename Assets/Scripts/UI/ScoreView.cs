@@ -1,42 +1,46 @@
 ﻿using System.Collections;
-using UnityEngine;
-using Game;
 using Events;
+using Game;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
+
     public class ScoreView : MonoBehaviour {
+
         [SerializeField]
+        private float _scoreCountDelay;
+
+        [SerializeField]
+        private EventListener _updateEventListener;
+
+        [SerializeField]
+        private ScriptableIntValue _currentScoreValue;
+
+        [SerializeField]
+        private Text _scoreLabel;
+
         private int _currentScore;
-
-        [SerializeField]
-        private ScriptableIntValue _scriptableIntValue;
-
-        [SerializeField]
-        private EventListener _updateListener;
-
-        [SerializeField]
-        private bool _isActiveSetScoreCoroutine = false;
+        private bool isBusy;
 
         private void Awake() {
-            _updateListener.OnEventHappened += UpdateBehaviour;
-        }
-
-        private IEnumerator SetScoreCoroutine(int value) {
-            while (value > _currentScore) {
-                _currentScore++;
-                yield return new WaitForSeconds(0.1f);
-            }
-            _isActiveSetScoreCoroutine = false;
-
-            yield return null;
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
-            if (_scriptableIntValue.value > _currentScore && !_isActiveSetScoreCoroutine) {
-                _isActiveSetScoreCoroutine = true;
-                StartCoroutine(SetScoreCoroutine(_scriptableIntValue.value));
+            if (_currentScoreValue.value > _currentScore && !isBusy) {
+                StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
-            Debug.Log(_currentScore);
+        }
+
+        public IEnumerator SetScoreCoroutine(int score) {
+            isBusy = true;
+            while (_currentScore < score) {
+                _currentScore++;
+                _scoreLabel.text = $"{_currentScore}";
+                yield return new WaitForSeconds(_scoreCountDelay);
+            }
+            isBusy = false;
         }
     }
 }
