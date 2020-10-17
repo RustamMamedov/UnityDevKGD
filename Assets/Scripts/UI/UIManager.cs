@@ -49,5 +49,20 @@ namespace UI {
             _fader.FadeIn();
         }
 
+        public void ShowMenuScreen() {
+            //показывает интерфейс онка меню
+        }
+        
+        public void ShowGameScreen() {
+            //показывает интерфейс окна игрового процесса
+        }
+        
+        public void ShowLeaderboardsScreen() {
+            //показывает таблицу лучших результатов
+        }
+        
+        public void HideAllScreens() {
+            //скрывает все экраны
+        }
     }
 }
