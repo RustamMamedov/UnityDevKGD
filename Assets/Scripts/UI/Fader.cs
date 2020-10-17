@@ -9,6 +9,7 @@ namespace UI {
         private float _fadeTime;
         public event Action OnFadeIn = delegate { };
         public event Action OnFadeOut = delegate { };
+        
         public void FadeIn() {
             StartCoroutine(FadeInCoroutine());
         }
@@ -21,7 +22,7 @@ namespace UI {
         }
         private IEnumerator FadeOutCoroutine() {
             yield return StartCoroutine(FadeCoroutine(0f, 1f));
-            OnFadeOut();
+            OnFadeOut.Invoke();
         }
         private IEnumerator FadeCoroutine(float fromAlpha, float targetAlpha) {
             var timer = 0f;
