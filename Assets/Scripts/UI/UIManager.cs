@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 namespace UI {
 
     public class UIManager : MonoBehaviour {
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardsScreen;
 
         public static UIManager Instance;
 
@@ -52,5 +60,26 @@ namespace UI {
             _fader.FadeIn();
         }
 
+        public void ShowMenuScreen()
+        {
+            _menuScreen.SetActive(!(_menuScreen.activeSelf));
+        }
+
+        public void ShowGameScreen()
+        {
+            _gameScreen.SetActive(!(_gameScreen.activeSelf));
+        }
+
+        public void ShowLeaderboardsScreen()
+        {
+            _leaderboardsScreen.SetActive(!(_leaderboardsScreen.activeSelf));
+        }
+
+        public void HideAllScreens()
+        {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardsScreen.SetActive(false);
+        }
     }
 }
