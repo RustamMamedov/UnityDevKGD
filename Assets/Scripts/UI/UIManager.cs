@@ -1,6 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace UI {
 
@@ -10,6 +13,14 @@ namespace UI {
 
         [SerializeField]
         private Fader _fader;
+
+        [SerializeField]
+        private GameObject _menuScreen;
+        [SerializeField]
+        private GameObject _gameScreen;
+        [SerializeField]
+        private GameObject _leaderboardScreen;
+
 
         private string _currentSceneName = "Gameplay";
 
@@ -54,6 +65,72 @@ namespace UI {
             yield return new WaitForSeconds(3f);
 
             _fader.FadeIn();
+        }
+
+        public void ShowMenuScreen() {
+            HideAllScreens();
+            _menuScreen.setActive(true);
+        }
+
+        public void ShowGameScreen() {
+            HideAllScreens();
+            _gameScreen.setActive(true);
+        }
+
+        public void ShowLeaderboardsScreen() {
+            HideAllScreens();
+            _leaderboardScreen.setActive(true);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.setActive(false);
+            _gameScreen.setActive(false);
+            _leaderboardScreen.setActive(false);
+        }
+
+        public void ShowMenuScreen(GameObject gameObject) {
+            HideAllScreens(gameObject);
+
+            var selectables = gameObject.GetComponentsInChildren<Selectable>(false);
+            foreach (var selectable in selectables) {
+                if (!selectable.IsActive() && selectable.IsInteractable()) {
+                    selectable.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        public void ShowGameScreen(GameObject gameObject) {
+            HideAllScreens(gameObject);
+
+            var selectables = gameObject.GetComponentsInChildren<Selectable>(false);
+            foreach (var selectable in selectables) {
+                if (!selectable.IsActive() && selectable.IsInteractable()) {
+                    selectable.gameObject.SetActive(true);
+                }
+            }
+
+        }
+
+        public void ShowLeaderboardsScreen(GameObject gameObject) {
+            HideAllScreens(gameObject);
+
+            var selectables = gameObject.GetComponentsInChildren<Selectable>(false);
+            foreach (var selectable in selectables) {
+                if (!selectable.IsActive() && selectable.IsInteractable()) {
+                    selectable.gameObject.SetActive(true);
+                }
+            }
+
+        }
+
+        public void HideAllScreens(GameObject gameObject) {
+
+            var selectables = gameObject.GetComponentInParent.GetComponentsInChildren<Selectable>(true);
+            foreach (var selectable in selectables) {
+                if (selectable.IsActive() && selectable.IsInteractable()) {
+                    selectable.gameObject.SetActive(false);
+                }
+            }
         }
 
     }
