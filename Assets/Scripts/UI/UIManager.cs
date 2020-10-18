@@ -50,6 +50,24 @@ namespace UI {
 
             _fader.FadeIn();
         }
+        public void ShowMenuScreen()
+        {
 
+        }
+
+        public void ShowGameScreen()
+        {
+
+        }
+
+        public void ShowLeaderboardsScreen()
+        {
+
+        }
+
+        public void HideAllScreens()
+        {
+
+        }
     }
 }
