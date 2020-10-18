@@ -8,7 +8,7 @@ namespace UI {
     public class Preloader : MonoBehaviour {
 
         [SerializeField]
-        private ScriptableFloatValue _SceneLoadValue;
+        private ScriptableFloatValue _sceneLoadValue;
 
         private void Start() {
             StartCoroutine(LoadMenuScene());
@@ -18,11 +18,11 @@ namespace UI {
             var acyncOperation=SceneManager.LoadSceneAsync("Menu");
             acyncOperation.allowSceneActivation = false;
             while (acyncOperation.progress<.9f) {
-                _SceneLoadValue.Value = acyncOperation.progress;
+                _sceneLoadValue.Value = acyncOperation.progress;
                 yield return null;// yield -
                 //если напишем new waitforfixedupdate - 
             }
-            _SceneLoadValue.Value = 1f;
+            _sceneLoadValue.Value = 1f;
             yield return new WaitForSeconds(2f);
             acyncOperation.allowSceneActivation = true;
         }

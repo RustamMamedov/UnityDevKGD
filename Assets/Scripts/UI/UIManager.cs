@@ -10,7 +10,7 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _CurrentSceneName = "Gameplay";
+        private string _сurrentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance) {
@@ -22,8 +22,8 @@ namespace UI {
         }
 
         private void Start() {
-            _fader.OnFadeIn += OnSceneFadeIn;
-            _fader.FedeIn();
+            //_fader.OnFadeIn += OnSceneFadeIn;
+            //_fader.FedeIn();
         }
 
         private void OnSceneFadeIn() {
@@ -39,8 +39,8 @@ namespace UI {
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut-=LoadGameplayScene;
-            StartCoroutine(LoadGameplaySceneCoroutine(_CurrentSceneName));
-            _CurrentSceneName = "Gameplay";// _CurrentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadGameplaySceneCoroutine(_сurrentSceneName));
+            _сurrentSceneName = "Gameplay";// _CurrentSceneName == "Gameplay" ? "Menu" : "Gameplay";
         }
 
         private IEnumerator LoadGameplaySceneCoroutine(string SceneName) {

@@ -3,34 +3,48 @@ using System.Collections;
 using UnityEngine;
 using Game;
 using Events;
+using UnityEngine.UI;
 
 namespace UI {
     public class ScoreView : MonoBehaviour {
 
         [SerializeField]
-        private EventListeners _EventListeners;
+        private float _scoreCountDelay;
 
         [SerializeField]
-        private ScriptableIntValue _CurrentScore;
+        private EventListeners _eventListeners;
+
+        [SerializeField]
+        private ScriptableIntValue _сurrentScoreValue;
+
+        [SerializeField]
+        private Text _scoreLabel;
 
         private int _currentScore=0;
+        private bool _isBusy=false;
 
         public void Awake() {
-           _EventListeners.OnEventHappened+=UpdateBehaviour; 
+           _eventListeners.OnEventHappened+=UpdateBehaviour; 
+        }
+
+        public void OnDestroy() {
+            _eventListeners.OnEventHappened -= UpdateBehaviour;
         }
 
         public void UpdateBehaviour() {
-            if (_CurrentScore.Value > _currentScore) {
-                StartCoroutine(SetScoreCoroutine(_CurrentScore.Value));
+            if (_сurrentScoreValue.Value > _currentScore&&!_isBusy) {
+                StartCoroutine(SetScoreCoroutine(_сurrentScoreValue.Value));
             }
         }
 
         public IEnumerator SetScoreCoroutine(int score) {
+            _isBusy = true;
             while (score>_currentScore) {
                 _currentScore++;
-                Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                _scoreLabel.text = $"{ _currentScore}";
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
+            _isBusy = false;
         }
     }
 }
