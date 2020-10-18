@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 namespace UI {
+    
     public class UIManager : MonoBehaviour {
+        
         public static UIManager Instance;
+        
         [SerializeField]
         private Fader _fader;
-        private string _currentSceneName = "Gameplay";
-
         
+        private string _currentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance != null) {
@@ -45,7 +48,6 @@ namespace UI {
 
         public void ShowMenuScreen() {
             //показывает интерфейс онка меню
-            
         }
         
         public void ShowGameScreen() {
