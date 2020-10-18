@@ -10,6 +10,6 @@ public class CarDodged : ScriptableObject
     private ScriptableIntValue totalScore;
     public void Dodge(int dodgescore)
     {
-        totalScore.score +=  dodgescore;
+        totalScore.value +=  dodgescore;
     }
 }

@@ -28,8 +28,8 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_currentScoreValue.score > _currentScore && !isBusy) {
-                StartCoroutine(SetScoreCoroutine(_currentScoreValue.score));
+            if (_currentScoreValue.value > _currentScore && !isBusy) {
+                StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
         }
 

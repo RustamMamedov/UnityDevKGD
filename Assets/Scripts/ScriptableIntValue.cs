@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Score", menuName="New Score")]
 public class ScriptableIntValue : ScriptableObject
 {
-    public int score;
+    public int value;
 }
