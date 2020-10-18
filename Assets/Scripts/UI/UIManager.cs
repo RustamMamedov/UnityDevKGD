@@ -69,69 +69,35 @@ namespace UI {
 
         public void ShowMenuScreen() {
             HideAllScreens();
-            _menuScreen.setActive(true);
+            if (!_menuScreen.IsActive) {
+                _menuScreen.SetActive(true);
+            }
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
-            _gameScreen.setActive(true);
+            if (!_gameScreen.IsActive) {
+                _gameScreen.SetActive(true);
+            }
         }
 
         public void ShowLeaderboardsScreen() {
             HideAllScreens();
-            _leaderboardScreen.setActive(true);
+            if (!_leaderboardScreen.IsActive) {
+                _leaderboardScreen.SetActive(true);
+            }
         }
 
         public void HideAllScreens() {
-            _menuScreen.setActive(false);
-            _gameScreen.setActive(false);
-            _leaderboardScreen.setActive(false);
-        }
 
-        public void ShowMenuScreen(GameObject gameObject) {
-            HideAllScreens(gameObject);
-
-            var selectables = gameObject.GetComponentsInChildren<Selectable>(false);
-            foreach (var selectable in selectables) {
-                if (!selectable.IsActive() && selectable.IsInteractable()) {
-                    selectable.gameObject.SetActive(true);
-                }
+            if (_menuScreen.IsActive) {
+                _menuScreen.SetActive(false);
+            }
+            if (_gameScreen.IsActive) {
+                _gameScreen.SetActive(false);
+            }
+            if (_leaderboardScreen.IsActive) {
+                _leaderboardScreen.SetActive(false);
             }
         }
-
-        public void ShowGameScreen(GameObject gameObject) {
-            HideAllScreens(gameObject);
-
-            var selectables = gameObject.GetComponentsInChildren<Selectable>(false);
-            foreach (var selectable in selectables) {
-                if (!selectable.IsActive() && selectable.IsInteractable()) {
-                    selectable.gameObject.SetActive(true);
-                }
-            }
-
-        }
-
-        public void ShowLeaderboardsScreen(GameObject gameObject) {
-            HideAllScreens(gameObject);
-
-            var selectables = gameObject.GetComponentsInChildren<Selectable>(false);
-            foreach (var selectable in selectables) {
-                if (!selectable.IsActive() && selectable.IsInteractable()) {
-                    selectable.gameObject.SetActive(true);
-                }
-            }
-
-        }
-
-        public void HideAllScreens(GameObject gameObject) {
-
-            var selectables = gameObject.GetComponentInParent.GetComponentsInChildren<Selectable>(true);
-            foreach (var selectable in selectables) {
-                if (selectable.IsActive() && selectable.IsInteractable()) {
-                    selectable.gameObject.SetActive(false);
-                }
-            }
-        }
-
-    }
 }
