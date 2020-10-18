@@ -11,7 +11,7 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "S_Gameplay";
+        private string _currentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance != null) {
@@ -21,11 +21,6 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-
-        private void Start() {
-            _fader.OnFadeIn += OnSceneFadeIn;
-            _fader.FadeIn();
         }
 
         private void OnSceneFadeIn() {
@@ -42,7 +37,7 @@ namespace UI {
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "S_Gameplay" ? "S_Menu" : "S_Gameplay";
+            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
