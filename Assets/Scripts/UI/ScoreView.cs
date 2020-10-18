@@ -12,7 +12,6 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _currentScoreAsset;
 
-        [SerializeField]
         private int _currentScore;
 
         [SerializeField]
@@ -24,8 +23,8 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_currentScoreAsset.score > _currentScore)
-                StartCoroutine(SetScoreCoroutine(_currentScoreAsset.score));
+            if (_currentScoreAsset.value > _currentScore)
+                StartCoroutine(SetScoreCoroutine(_currentScoreAsset.value));
             
         }
 
