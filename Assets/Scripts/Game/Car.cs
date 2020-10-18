@@ -8,7 +8,7 @@ namespace Game {
         [SerializeField] private EventListener _updateEventListener;
 
         private void Awake() {
-            _updateEventListener.onEventHappened += Move;
+            _updateEventListener.OnEventHappened += Move;
         }
 
         private void Move() {
