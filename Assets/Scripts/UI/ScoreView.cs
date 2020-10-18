@@ -47,7 +47,7 @@ namespace UI {
 
             if (_isStartCoroutine) {
                 _isStartCoroutine = false;
-                Debug.Log(_currentScore + " -> " + target);
+
                 StartCoroutine(SetScoreCoroutine(target));
 
             }
