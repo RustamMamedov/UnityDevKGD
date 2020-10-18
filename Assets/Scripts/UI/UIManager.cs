@@ -13,6 +13,32 @@ namespace UI {
 
         private string _currentSceneName = "Gameplay";
 
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardsScreen;
+        public void ShowMenuScreen(){
+            _menuScreen.SetActive(!(_menuScreen.activeSelf));
+        }
+
+        public void ShowGameScreen(){
+            _gameScreen.SetActive(!(_gameScreen.activeSelf));
+        }
+
+        public void ShowLeaderboardsScreen(){
+            _leaderboardsScreen.SetActive(!(_leaderboardsScreen.activeSelf));
+        }
+
+        public void HideAllScreens(){
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardsScreen.SetActive(false);
+        }
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
