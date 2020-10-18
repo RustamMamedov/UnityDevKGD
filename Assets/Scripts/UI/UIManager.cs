@@ -8,13 +8,13 @@ namespace UI {
         public static UIManager instance;
 
         [SerializeField]
-        GameObject _menuScreen;
+        private GameObject _menuScreen;
 
         [SerializeField]
-        GameObject _gameScreen;
+        private GameObject _gameScreen;
 
         [SerializeField]
-        GameObject _leaderboardScreen;
+        private GameObject _leaderboardScreen;
 
         [SerializeField]
         private Fader _fader;
