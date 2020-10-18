@@ -7,6 +7,9 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
         private string _currentSceneName = "Gameplay";
+
+        
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -38,6 +41,23 @@ namespace UI {
             }
             yield return new WaitForSeconds(3f);
             _fader.FadeIn();
+        }
+
+        public void ShowMenuScreen() {
+            //показывает интерфейс онка меню
+            
+        }
+        
+        public void ShowGameScreen() {
+            //показывает интерфейс окна игрового процесса
+        }
+        
+        public void ShowLeaderboardsScreen() {
+            //показывает таблицу лучших результатов
+        }
+        
+        public void HideAllScreens() {
+            //скрывает все экраны
         }
     }
 }
