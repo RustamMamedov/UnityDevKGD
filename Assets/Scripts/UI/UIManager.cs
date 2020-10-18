@@ -21,19 +21,19 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardsScreen;
-        public void ShowMenuScreen(){
+        public void ShowMenuScreen() {
             _menuScreen.SetActive(!(_menuScreen.activeSelf));
         }
 
-        public void ShowGameScreen(){
+        public void ShowGameScreen() {
             _gameScreen.SetActive(!(_gameScreen.activeSelf));
         }
 
-        public void ShowLeaderboardsScreen(){
+        public void ShowLeaderboardsScreen() {
             _leaderboardsScreen.SetActive(!(_leaderboardsScreen.activeSelf));
         }
 
-        public void HideAllScreens(){
+        public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardsScreen.SetActive(false);
