@@ -2,6 +2,7 @@
 using UnityEngine;
 using Game;
 using Events;
+using UnityEngine.UI;
 
 namespace UI {
     public class ScoreView : MonoBehaviour {
@@ -9,8 +10,6 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _currentScoreAsset;
 
-        [SerializeField]
-        private int _currentScore;
 
         [SerializeField]
         private EventListener _eventListener;
@@ -18,7 +17,11 @@ namespace UI {
         [SerializeField]
         private float _currentScoreDelay = 0.1f;
 
+        [SerializeField]
+        private Text _scoreLabel;
+
         private int _scoreChanged;
+        private int _currentScore;
 
         private bool _isStartCoroutine = false;
         private bool _isCurrentScoreChanged = true;
@@ -55,7 +58,7 @@ namespace UI {
             
             while (_currentScore < target) {
                 _currentScore++;
-                Debug.Log(_currentScore + " -> " + target);
+                _scoreLabel.text = $"{_currentScore}";
                 if (target!= _currentScoreAsset._score) {
                     target = _currentScoreAsset._score;
                 }
