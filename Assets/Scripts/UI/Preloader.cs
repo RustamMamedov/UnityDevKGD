@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Game;
 
 namespace UI {
 
 
     public class Preloader : MonoBehaviour {
-        
+
+        [SerializeField]
+        private ScriptableFloatValue _sceneLoadingValue;
+
         void Start() {
 
             StartCoroutine(LoadMenuScene());
@@ -15,11 +19,15 @@ namespace UI {
         private IEnumerator LoadMenuScene() {
 
             var asyncOperation = SceneManager.LoadSceneAsync("Menu");
-            while (!asyncOperation.isDone) {
-                Debug.Log(asyncOperation.progress);
+            asyncOperation.allowSceneActivation = false;
+            while (asyncOperation.progress < 0.9f) {
+                _sceneLoadingValue.value += asyncOperation.progress;
                 yield return null;
             }
-            
+            _sceneLoadingValue.value = 1f;
+
+            yield return new WaitForSeconds(2f);
+            asyncOperation.allowSceneActivation = true;
         }
     }
 }
