@@ -27,8 +27,6 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-                Debug.Log(_currentScore);
-                Debug.Log(_currentScoreValue.value);
             if (_currentScoreValue.value > _currentScore && !isBusy) {
                 StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
