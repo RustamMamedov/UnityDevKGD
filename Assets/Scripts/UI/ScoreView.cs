@@ -3,6 +3,7 @@ using System.Collections;
 using Events;
 using Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
     
@@ -21,6 +22,10 @@ namespace UI {
         // Event UpdateBehaviour will be subscribed on
         [SerializeField] 
         private EventListener _eventListener;
+        
+        //Reference to UI element where score will be displayd
+        [SerializeField] 
+        private Text _scoreLabel;
     
         [SerializeField] 
         private float _scoreUpdatingDelay = 0.1f;
@@ -65,8 +70,8 @@ namespace UI {
                 } else {
                     --_currentScore;
                 }
-                
-                Debug.Log("Score: " + _currentScore);
+
+                _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreUpdatingDelay);
             }
 
