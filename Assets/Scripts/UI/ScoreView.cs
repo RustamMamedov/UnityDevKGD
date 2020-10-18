@@ -1,42 +1,46 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Game;
 using Events;
-using UnityEditor;
+using Game;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace UI
-{
-    public class ScoreView : MonoBehaviour
-    {
+namespace UI {
+
+    public class ScoreView : MonoBehaviour {
+
+        [SerializeField]
+        private float _scoreCountDelay;
+
+        [SerializeField]
+        private EventListener _updateEventListener;
+
+        [SerializeField]
+        private ScriptableIntValue _currentScoreValue;
+
+        [SerializeField]
+        private Text _scoreLabel;
+
         private int _currentScore;
+        private bool isBusy;
 
-        [SerializeField]
+        private void Awake() {
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
+        }
 
-        ScriptableIntValue CurrentScore;
-
-        [SerializeField]
-
-        EventListener _eventListener;
-
-        public void UpdateBehavior()
-        {
-            if (CurrentScore.score > _currentScore)
-            {
-                StartCoroutine(SetScoreCoroutine(CurrentScore.score));
+        private void UpdateBehaviour() {
+            if (_currentScoreValue.score > _currentScore && !isBusy) {
+                StartCoroutine(SetScoreCoroutine(_currentScoreValue.score));
             }
         }
 
-        private IEnumerator SetScoreCoroutine (int score)
-        {
-            while (_currentScore != score)
-            {
+        public IEnumerator SetScoreCoroutine(int score) {
+            isBusy = true;
+            while (_currentScore < score) {
                 _currentScore++;
-                Debug.Log(_currentScore);
-                yield return new WaitForSeconds(1f);
+                _scoreLabel.text = $"{_currentScore}";
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
+            isBusy = false;
         }
-
     }
-
 }
