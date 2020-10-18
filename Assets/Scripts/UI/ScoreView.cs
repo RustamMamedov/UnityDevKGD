@@ -1,14 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
+
     public class ScoreView : MonoBehaviour {
 
         [SerializeField]
+        private float _scoreCountDelay;
+
         private int _currentScore = 0; 
 
-        public Game.ScriptableIntValue currentScoreAsset;
-        public Events.EventListener eventListener;
+        [SerializeField]
+        private Text _scoreLabel;
+
+        [SerializeField]
+        private Game.ScriptableIntValue currentScoreAsset;
+
+        [SerializeField]
+        private Events.EventListener eventListener;
 
         private void Awake() {
 
@@ -17,8 +27,8 @@ namespace UI {
 
         private void UpdateBehaviour() {
         
-            if (_currentScore < currentScoreAsset.score) {
-                StartCoroutine(SetScoreCoroutine(currentScoreAsset.score));
+            if (_currentScore < currentScoreAsset.value) {
+                StartCoroutine(SetScoreCoroutine(currentScoreAsset.value));
             }
                 
         }
@@ -27,8 +37,8 @@ namespace UI {
 
             while (_currentScore < gameScore) {
                 _currentScore++;
-                Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                _scoreLabel.text =  $"{_currentScore}"; //format from int to string
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
         }
 
