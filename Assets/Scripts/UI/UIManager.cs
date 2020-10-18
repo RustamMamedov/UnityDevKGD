@@ -11,8 +11,17 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        [SerializeField]        
+        [SerializeField]
         private ScoreView _scoreView;
+
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardsScreen;
 
         private string _currentSceneName = "Gameplay";
 
@@ -24,9 +33,14 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            //ShowMenuScreen(); // проверка на работоспособность
+            //ShowLeaderboardsScreen();
+            //ShowGameScreen();
+            //HideAllScreens();
         }
 
-        private void Start() {}
+        private void Start() { }
 
         private void OnSceneFadeIn() {
             StartCoroutine(FadeOutAndLoadGameplay());
@@ -55,6 +69,23 @@ namespace UI {
 
             _fader.FadeIn();
         }
+
+        public void ShowMenuScreen() {
+            _menuScreen.SetActive(!_menuScreen.activeSelf);
+        }
+        public void ShowGameScreen() {
+            _gameScreen.SetActive(!_gameScreen.activeSelf);
+        }
+        public void ShowLeaderboardsScreen() {
+            _leaderboardsScreen.SetActive(!_leaderboardsScreen.activeSelf);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardsScreen.SetActive(false);
+        }
+
 
     }
 }
