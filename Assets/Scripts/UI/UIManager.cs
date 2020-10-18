@@ -10,6 +10,15 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
+        [SerializeField] 
+        private GameObject _menuScreen;
+        
+        [SerializeField] 
+        private GameObject _gameScreen;
+        
+        [SerializeField] 
+        private GameObject _leaderboardsScreen;
+        
         private string _currentSceneName = "GamePlay";
 
         private void Awake() {
@@ -50,19 +59,24 @@ namespace UI {
         }
 
         public void ShowMenuScreen() {
-            //показывает интерфейс онка меню
+            HideAllScreens();
+            _menuScreen.SetActive(true);
         }
         
         public void ShowGameScreen() {
-            //показывает интерфейс окна игрового процесса
+            HideAllScreens();
+            _gameScreen.SetActive(true);
         }
         
         public void ShowLeaderboardsScreen() {
-            //показывает таблицу лучших результатов
+            HideAllScreens();
+            _leaderboardsScreen.SetActive(true);
         }
         
         public void HideAllScreens() {
-            //скрывает все экраны
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardsScreen.SetActive(false);
         }
     }
 }
