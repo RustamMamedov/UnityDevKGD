@@ -13,13 +13,17 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
-        public ScriptableIntValue currentScore;
+        [SerializeField]
+        private ScriptableIntValue currentScore;
+
+        [SerializeField]
+        private EventListener eventListener;
 
         private int _currentScore;
 
         private bool isScoreChanging = false;
 
-        public EventListener eventListener;
+        
 
         private void Start() {
             eventListener.OnEventHappened += UpdateBehaviour;
