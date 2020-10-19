@@ -6,5 +6,7 @@ namespace Game {
     public class CarSettings : ScriptableObject {
 
         public int dodgeScore;
+        public int maxSpeed;
+        public int acceleration;
     }
 }
