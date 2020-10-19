@@ -35,8 +35,8 @@ namespace UI {
         }
 
         private void Start() {
-           // _fader.OnFadeIn += OnSceneFadeIn;
-          //  _fader.FadeIn();
+            // _fader.OnFadeIn += OnSceneFadeIn;
+            //  _fader.FadeIn();
         }
 
         private void OnSceneFadeIn() {
@@ -66,38 +66,40 @@ namespace UI {
 
             _fader.FadeIn();
         }
+        /*
+                public void ShowMenuScreen() {
+                    HideAllScreens();
+                    if (!_menuScreen.IsActive) {
+                        _menuScreen.SetActive(true);
+                    }
+                }
 
-        public void ShowMenuScreen() {
-            HideAllScreens();
-            if (!_menuScreen.IsActive) {
-                _menuScreen.SetActive(true);
-            }
-        }
+                public void ShowGameScreen() {
+                    HideAllScreens();
+                    if (!_gameScreen.IsActive) {
+                        _gameScreen.SetActive(true);
+                    }
+                }
 
-        public void ShowGameScreen() {
-            HideAllScreens();
-            if (!_gameScreen.IsActive) {
-                _gameScreen.SetActive(true);
-            }
-        }
+                public void ShowLeaderboardsScreen() {
+                    HideAllScreens();
+                    if (!_leaderboardScreen.IsActive) {
+                        _leaderboardScreen.SetActive(true);
+                    }
+                }
 
-        public void ShowLeaderboardsScreen() {
-            HideAllScreens();
-            if (!_leaderboardScreen.IsActive) {
-                _leaderboardScreen.SetActive(true);
-            }
-        }
+                public void HideAllScreens() {
 
-        public void HideAllScreens() {
-
-            if (_menuScreen.IsActive) {
-                _menuScreen.SetActive(false);
-            }
-            if (_gameScreen.IsActive) {
-                _gameScreen.SetActive(false);
-            }
-            if (_leaderboardScreen.IsActive) {
-                _leaderboardScreen.SetActive(false);
-            }
-        }
+                    if (_menuScreen.IsActive) {
+                        _menuScreen.SetActive(false);
+                    }
+                    if (_gameScreen.IsActive) {
+                        _gameScreen.SetActive(false);
+                    }
+                    if (_leaderboardScreen.IsActive) {
+                        _leaderboardScreen.SetActive(false);
+                    }
+                }
+        */
+    }
 }
