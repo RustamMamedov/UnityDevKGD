@@ -15,7 +15,6 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderBoardScreen;
 
-
         public static UIManager instance;
 
         [SerializeField]
@@ -28,7 +27,6 @@ namespace UI {
                 Destroy(gameObject);
                 return;
             }
-
 
             instance = this;
             DontDestroyOnLoad(gameObject);
