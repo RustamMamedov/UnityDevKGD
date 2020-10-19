@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 19472994}
   - component: {fileID: 19472996}
   - component: {fileID: 19472995}
+  - component: {fileID: 19472998}
+  - component: {fileID: 19472997}
   m_Layer: 5
   m_Name: ProgressBarView
   m_TagString: Untagged
@@ -178,11 +180,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: f559ee3896b268a4aa4316856438cb0d, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -195,6 +197,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19472993}
   m_CullTransparentMesh: 0
+--- !u!114 &19472997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19472993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37b27347a8844dc4aba84ca0ba8fce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 7ad4a0ee9fd714e26b4aa8a8fe81014c, type: 2}
+--- !u!114 &19472998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19472993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e3dff9ddbc04226bf306668af78c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneLoadingValue: {fileID: 11400000, guid: a37bb92bd01d14adea75deadd62f4ce8, type: 2}
+  _updateListener: {fileID: 19472997}
+  _progressImage: {fileID: 19472995}
 --- !u!1 &431473689
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +390,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &671271774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671271776}
+  - component: {fileID: 671271775}
+  m_Layer: 0
+  m_Name: UpdateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &671271775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671271774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5683fcc37fc6f4352a74366f5209b0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateEvent: {fileID: 11400000, guid: 7ad4a0ee9fd714e26b4aa8a8fe81014c, type: 2}
+  _fixedUpdate: {fileID: 11400000, guid: 604bb35fb51084958ad75ee0b1b83215, type: 2}
+--- !u!4 &671271776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671271774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341372579
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424799586a238409b9c957cded7e6b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sceneLoadingValue: {fileID: 11400000, guid: a37bb92bd01d14adea75deadd62f4ce8, type: 2}
 --- !u!4 &1755043920
 Transform:
   m_ObjectHideFlags: 0
