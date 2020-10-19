@@ -52,22 +52,22 @@ namespace UI {
         }
         public void ShowMenuScreen()
         {
-
+            Debug.Log("ShowMenuScreen");
         }
 
         public void ShowGameScreen()
         {
-
+            Debug.Log("ShowGameScreen");
         }
 
         public void ShowLeaderboardsScreen()
         {
-
+            Debug.Log("ShowLeaderboardsScreen");
         }
 
         public void HideAllScreens()
         {
-
+            Debug.Log("HideAllScreens");
         }
     }
 }
