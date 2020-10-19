@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events; 
-using Game; 
+using Game;
+using UnityEngine.UI;
 
  
 namespace UI { 
@@ -16,6 +17,12 @@ namespace UI {
 
         [SerializeField]
         private EventListener _eventListener;
+
+        [SerializeField]
+        private float _scoreCountDelay;
+
+        [SerializeField]
+        private Text _scoreLabel;
 
 
         private void Awake() {
@@ -31,8 +38,8 @@ namespace UI {
         private IEnumerator SetScoreCoroutine(int score) {
             while (_currentScore < score) {
                 _currentScore++;
-                Debug.Log(_currentScore);
-                yield return new WaitForSeconds(0.1f);
+                _scoreLabel.text = $"{_currentScore}";
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
         }
     }
