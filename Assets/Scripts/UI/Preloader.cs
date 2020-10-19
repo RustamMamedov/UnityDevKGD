@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using UnityEngine;
 using Game;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI {
@@ -9,7 +9,6 @@ namespace UI {
 
         [SerializeField]
         private ScriptableFloatValue _sceneLoadingValue;
-
 
         private void Start() {
             StartCoroutine(LoadMenuScene());
@@ -22,6 +21,7 @@ namespace UI {
                 _sceneLoadingValue.value = asyncOperation.progress;
                 yield return null;
             }
+
             _sceneLoadingValue.value = 1f;
 
             yield return new WaitForSeconds(2f);

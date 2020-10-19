@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Events;
 using Game;
-using Events;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace UI {
 
-
-    public class PreloaderView:MonoBehaviour {
+    public class PreloaderView : MonoBehaviour {
 
         [SerializeField]
         private ScriptableFloatValue _sceneLoadingValue;
@@ -27,7 +23,6 @@ namespace UI {
         private void OnDestroy() {
             _updateListener.OnEventHappened -= UpdateBehaviour;
         }
-
 
         private void UpdateBehaviour() {
             _progressImage.fillAmount = _sceneLoadingValue.value;
