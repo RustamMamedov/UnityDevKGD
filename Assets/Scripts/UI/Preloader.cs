@@ -1,14 +1,14 @@
 ﻿using System.Collections;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Game;
 
 namespace UI {
 
     public class Preloader : MonoBehaviour {
 
         [SerializeField]
-        private ScriptableFoatValue _sceneLoadingValue;
+        private ScriptableFloatValue _sceneLoadingValue;
 
         private void Start() {
             StartCoroutine(LoadMenuScene());
@@ -20,8 +20,8 @@ namespace UI {
             while (asyncOperation.progress < .9f) {
                 _sceneLoadingValue.value = asyncOperation.progress;
                 yield return null;
-
             }
+
             _sceneLoadingValue.value = 1f;
 
             yield return new WaitForSeconds(2f);
