@@ -51,5 +51,26 @@ namespace UI {
             _fader.FadeIn();
         }
 
+        public void ShowMenuScreen() {
+            GameObject.Find("MenuScreen").SetActive(true);
+        
+        }
+        public void ShowGameScreen() {
+            GameObject.Find("GameScreen").SetActive(true);
+
+        }
+        public void ShowLeaderBoardScreen() {
+            GameObject.Find("LeaderBoard").SetActive(true);
+
+        }
+        public void HideAllScreens() {
+            GameObject.Find("LeaderBoard").SetActive(false);
+            GameObject.Find("GameScreen").SetActive(false);
+            GameObject.Find("MenuScreen").SetActive(false);
+
+        }
+
+
+
     }
 }
