@@ -1,6 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace UI {
 
@@ -10,6 +13,14 @@ namespace UI {
 
         [SerializeField]
         private Fader _fader;
+
+        [SerializeField]
+        private GameObject _menuScreen;
+        [SerializeField]
+        private GameObject _gameScreen;
+        [SerializeField]
+        private GameObject _leaderboardScreen;
+
 
         private string _currentSceneName = "Gameplay";
 
@@ -56,5 +67,37 @@ namespace UI {
             _fader.FadeIn();
         }
 
-    }
+        public void ShowMenuScreen() {
+            HideAllScreens();
+            if (!_menuScreen.IsActive) {
+                _menuScreen.SetActive(true);
+            }
+        }
+
+        public void ShowGameScreen() {
+            HideAllScreens();
+            if (!_gameScreen.IsActive) {
+                _gameScreen.SetActive(true);
+            }
+        }
+
+        public void ShowLeaderboardsScreen() {
+            HideAllScreens();
+            if (!_leaderboardScreen.IsActive) {
+                _leaderboardScreen.SetActive(true);
+            }
+        }
+
+        public void HideAllScreens() {
+
+            if (_menuScreen.IsActive) {
+                _menuScreen.SetActive(false);
+            }
+            if (_gameScreen.IsActive) {
+                _gameScreen.SetActive(false);
+            }
+            if (_leaderboardScreen.IsActive) {
+                _leaderboardScreen.SetActive(false);
+            }
+        }
 }
