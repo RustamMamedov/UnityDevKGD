@@ -6,6 +6,16 @@ namespace UI {
 
     public class UIManager : MonoBehaviour {
 
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderBoardScreen;
+
+
         public static UIManager instance;
 
         [SerializeField]
@@ -19,8 +29,28 @@ namespace UI {
                 return;
             }
 
+
             instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        public void ShowMenuScreen() {
+
+            _menuScreen.SetActive(true);
+        }
+
+        public void ShowGameScreen() {
+            _gameScreen.SetActive(true);
+        }
+
+        public void ShowLeaderBoardScreen() {
+            _leaderBoardScreen.SetActive(true);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderBoardScreen.SetActive(false);
         }
 
         private void OnSceneFadeIn() {
