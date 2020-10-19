@@ -21,9 +21,9 @@ namespace UI {
         }
 
         public void UpdateBehaviour() {
-            if (_currentScoreAsset.score > _currentScore && !_isScoreChanging) {
+            if (_currentScoreAsset.value > _currentScore && !_isScoreChanging) {
                 _isScoreChanging = true;
-                StartCoroutine(SetScoreCoroutine(_currentScoreAsset.score));
+                StartCoroutine(SetScoreCoroutine(_currentScoreAsset.value));
             }
         }
 
