@@ -5,7 +5,10 @@ using UnityEngine;
 namespace Game {
     [CreateAssetMenu(fileName = "Car setting", menuName = "Car setting")]
     public class CarSettings : ScriptableObject {
-        [SerializeField]
-        public int _dodgeScore;
+        
+        public int dodgeScore;
+        public int maxSpeed;
+        public float acceleration;
+
     }
 }
