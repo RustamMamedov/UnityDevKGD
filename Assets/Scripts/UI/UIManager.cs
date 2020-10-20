@@ -10,6 +10,12 @@ namespace UI {
 
         [SerializeField]
         private Fader _fader;
+        [SerializeField]
+        private GameObject _menuScreen;
+        [SerializeField]
+        private GameObject _gameScreen;
+        [SerializeField]
+        private GameObject _leaderboardScreen;
 
         private string _currentSceneName = "Gameplay";
 
@@ -52,6 +58,39 @@ namespace UI {
             yield return new WaitForSeconds(3f);
 
             _fader.FadeIn();
+        }
+        public void ShowMenuScreen() {
+            HideAllScreens();
+            if (_menuScreen.activeSelf == false) {
+                _menuScreen.SetActive(true);
+            }
+        }
+
+        public void ShowGameScreen() {
+            HideAllScreens();
+            if (_gameScreen.activeSelf == false) {
+                _gameScreen.SetActive(true);
+            }
+        }
+
+        public void ShowLeaderboardsScreen() {
+            HideAllScreens();
+            if (_leaderboardScreen.activeSelf == false) {
+                _leaderboardScreen.SetActive(true);
+            }
+        }
+
+        public void HideAllScreens() {
+
+            if (_menuScreen.activeSelf == true) {
+                _menuScreen.SetActive(false);
+            }
+            if (_gameScreen.activeSelf == true) {
+                _gameScreen.SetActive(false);
+            }
+            if (_leaderboardScreen.activeSelf == true) {
+                _leaderboardScreen.SetActive(false);
+            }
         }
 
     }
