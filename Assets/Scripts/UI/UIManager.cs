@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -66,40 +68,40 @@ namespace UI {
 
             _fader.FadeIn();
         }
-        /*
+        
                 public void ShowMenuScreen() {
                     HideAllScreens();
-                    if (!_menuScreen.IsActive) {
+                    if (_menuScreen.activeSelf==false) {
                         _menuScreen.SetActive(true);
                     }
                 }
 
                 public void ShowGameScreen() {
                     HideAllScreens();
-                    if (!_gameScreen.IsActive) {
+                    if (_gameScreen.activeSelf==false) {
                         _gameScreen.SetActive(true);
                     }
                 }
 
                 public void ShowLeaderboardsScreen() {
                     HideAllScreens();
-                    if (!_leaderboardScreen.IsActive) {
+                    if (_leaderboardScreen.activeSelf==false) {
                         _leaderboardScreen.SetActive(true);
                     }
                 }
 
                 public void HideAllScreens() {
 
-                    if (_menuScreen.IsActive) {
+                    if (_menuScreen.activeSelf==true) {
                         _menuScreen.SetActive(false);
                     }
-                    if (_gameScreen.IsActive) {
+                    if (_gameScreen.activeSelf == true) {
                         _gameScreen.SetActive(false);
                     }
-                    if (_leaderboardScreen.IsActive) {
+                    if (_leaderboardScreen.activeSelf == true) {
                         _leaderboardScreen.SetActive(false);
                     }
                 }
-        */
+        
     }
 }
