@@ -19,5 +19,20 @@ namespace Game {
         private int _roadLength = 12;
 
         private List<Transform> _roadTransforms;
+
+        private void Start() {
+            GenerateRoad();
+        }
+
+        private void GenerateRoad() {
+            _roadTransforms = new List<Transform>();
+            for (int i = 0; i < _initialRoadNumber + 1; ++i) {
+                var position = new Vector3(0f, 0f, (i - 1) * _roadLength);
+                var road = Instantiate(_roadPrefab, position, Quaternion.identity);
+                _roadTransforms.Add(road.transform);
+            }
+
+            _roadPrefab.SetActive(false);
+        }
     }
 }
