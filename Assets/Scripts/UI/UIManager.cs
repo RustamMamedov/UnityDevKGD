@@ -11,8 +11,6 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "Gameplay";
-
         [SerializeField]
         private GameObject _menuScreen;
 
@@ -22,6 +20,7 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardsScreen;
 
+        private string _currentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance != null) {
