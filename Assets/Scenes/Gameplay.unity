@@ -130,6 +130,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 307055527}
+  - component: {fileID: 307055529}
+  - component: {fileID: 307055528}
   m_Layer: 0
   m_Name: Enviroment
   m_TagString: Untagged
@@ -152,6 +154,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &307055528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307055526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 6c39a9df93887fe44a047d17ac20271d, type: 2}
+--- !u!114 &307055529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307055526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d467eae39429fe4ea785e932f9af617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadCollisionEventListener: {fileID: 307055528}
+  _roadPrefab: {fileID: 981109325}
+  _initialRoadNumber: 10
+  _roadLenght: 12
 --- !u!1001 &519001190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,6 +265,12 @@ PrefabInstance:
 --- !u!4 &519001191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 834242005380108154, guid: 4fa7824a621d72c419d77f7c478045eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 519001190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &981109325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 489200510171849154, guid: 4fa7824a621d72c419d77f7c478045eb,
     type: 3}
   m_PrefabInstance: {fileID: 519001190}
   m_PrefabAsset: {fileID: 0}
