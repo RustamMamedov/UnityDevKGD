@@ -43,7 +43,8 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            UnsubscribeToEvents();
+            //UnsubscribeToEvents();
+            Debug.Log("Enemy crash");
         }
         private void UpdateBehaviour() {
             Move();
