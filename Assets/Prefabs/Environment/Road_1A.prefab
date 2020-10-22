@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6489400666833745076}
   - component: {fileID: 4205620193158859430}
   - component: {fileID: 2634186618918775220}
+  - component: {fileID: 8969019870461164092}
+  - component: {fileID: 8611707528942088544}
   - component: {fileID: 2146679857950107986}
   m_Layer: 0
   m_Name: Road_1A
@@ -95,6 +97,32 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 29c7f47fb08169041bd3c7b63b87c4c5, type: 3}
+--- !u!114 &8969019870461164092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489200510171849154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335b9e615f783ab43b00b2828a67c8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadTriggerEventDispatcher: {fileID: 8611707528942088544}
+--- !u!114 &8611707528942088544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489200510171849154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: c3cd40cd3e18c13468de864e6804ffcf, type: 2}
 --- !u!65 &2146679857950107986
 BoxCollider:
   m_ObjectHideFlags: 0

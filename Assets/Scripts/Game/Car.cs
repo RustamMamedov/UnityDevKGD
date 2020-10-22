@@ -55,7 +55,6 @@ namespace Game {
             if (_currentSpeed < _carSettings.maxSpeed) {
                 _currentSpeed += _carSettings.acceleration;
             }
-            Debug.Log(1);
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
         #endregion Move
