@@ -11,6 +11,15 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardScreen;
+
         private string _currentSceneName = "Gameplay";
 
         private void Awake() {
@@ -57,19 +66,21 @@ namespace UI {
         }
 
         public void ShowMenuScreen() {
-            Debug.Log("ShowMenuScreen");
+            _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
-            Debug.Log("ShowGameScreen");
+            _gameScreen.SetActive(true);
         }
 
         public void ShowLeaderboardsScreen() {
-            Debug.Log("ShowLeaderboardsScreen");
+            _leaderboardScreen.SetActive(true);
         }
 
         public void HideAllScreens() {
-            Debug.Log("HideAllScreens");
+            _menuScreen.SetActive(false);
+            _menuScreen.SetActive(false);
+            _menuScreen.SetActive(false);
         }
     }
 }
