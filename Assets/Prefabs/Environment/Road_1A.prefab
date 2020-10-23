@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6489400666833745076}
   - component: {fileID: 4205620193158859430}
   - component: {fileID: 8088466668282228882}
+  - component: {fileID: 1381182312263651956}
+  - component: {fileID: 5207375451017733897}
   m_Layer: 0
   m_Name: Road_1A
   m_TagString: Untagged
@@ -93,3 +95,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12, y: 2, z: 1.13}
   m_Center: {x: 0, y: 1, z: -5.4}
+--- !u!114 &1381182312263651956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489200510171849154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d490ddf5db5e744bd199620e383495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadTriggerEventDispatcher: {fileID: 5207375451017733897}
+--- !u!114 &5207375451017733897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489200510171849154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 3235bbd1cccf5bb448991fc03f365380, type: 2}
