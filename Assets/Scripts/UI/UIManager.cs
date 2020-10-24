@@ -71,13 +71,13 @@ namespace UI {
         }
 
         public void ShowMenuScreen() {
-            _menuScreen.SetActive(!_menuScreen.activeSelf);
+            _menuScreen.SetActive(true);
         }
         public void ShowGameScreen() {
-            _gameScreen.SetActive(!_gameScreen.activeSelf);
+            _gameScreen.SetActive(true);
         }
         public void ShowLeaderboardsScreen() {
-            _leaderboardsScreen.SetActive(!_leaderboardsScreen.activeSelf);
+            _leaderboardsScreen.SetActive(true);
         }
 
         public void HideAllScreens() {
