@@ -7,20 +7,54 @@ namespace Game {
 
     public class Car : MonoBehaviour {
 
+        // Fields.
+
         [SerializeField]
         private EventListener _updateEventListener;
 
+        [SerializeField]
+        private EventListener _carCollisionListener;
+
+        [SerializeField]
+        private CarSettings _carSettings;
+
+        private float _currentSpeed;
+
+
+        // Life cycle.
+
         private void Awake() {
-            _updateEventListener.OnEventHappened += Move;
-            _updateEventListener.OnEventHappened += Die;
+            SubscribeToEvents();
         }
+
+
+        // Event handling.
+
+        private void SubscribeToEvents() {
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
+            _carCollisionListener.OnEventHappened += OnCarCollision;
+        }
+
+        private void UnsubscribeFromEvents() {
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _carCollisionListener.OnEventHappened -= OnCarCollision;
+        }
+
+        private void UpdateBehaviour() {
+            Move();
+        }
+
+        private void OnCarCollision() {
+            UnsubscribeFromEvents();
+        }
+
+
+        // Supportive methods.
 
         private void Move() {
-            Debug.Log("Move");
-        }
-
-        private void Die() {
-            Debug.Log("Die");
+            _currentSpeed += _carSettings.acceleration * Time.deltaTime;
+            _currentSpeed = Mathf.Min(_currentSpeed, _carSettings.maxSpeed);
+            transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
 
 

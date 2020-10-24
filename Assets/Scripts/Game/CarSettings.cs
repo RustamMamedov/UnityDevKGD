@@ -10,7 +10,12 @@ namespace Game {
 
         [SerializeField]
         private int _dodgeScore;
+
+        public float maxSpeed;
+
+        public float acceleration;
         
+
     }
 
 }
