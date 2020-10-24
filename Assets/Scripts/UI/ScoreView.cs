@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Values;
 using Events;
+using UnityEngine.UI;
 
 namespace UI {
     public class ScoreView : MonoBehaviour
@@ -11,7 +12,13 @@ namespace UI {
         private int _currentScore;
 
         [SerializeField]
+        private float _scoreCountDelay;
+
+        [SerializeField]
         private ScriptableIntValue _valueScore;
+
+        [SerializeField]
+        private Text _scoreLabel;
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -22,14 +29,14 @@ namespace UI {
             if(_valueScore.score >= _currentScore) {
             StartCoroutine(SetScoreCoroutine(_valueScore.score));    
             }
-            Debug.Log(_currentScore);
         
         }
 
         private IEnumerator SetScoreCoroutine(int valueScore) {
             while(valueScore > _currentScore) {
                 _currentScore++;
-                yield return new WaitForSeconds(0.1f);
+                _scoreLabel.text = $"{_currentScore}";
+                yield return new WaitForSeconds(_scoreCountDelay);
             }
         } 
     }
