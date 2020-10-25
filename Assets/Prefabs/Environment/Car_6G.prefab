@@ -328,6 +328,9 @@ GameObject:
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
   - component: {fileID: 4285034260518307781}
+  - component: {fileID: 8893081534466099127}
+  - component: {fileID: 5182966229135578311}
+  - component: {fileID: 7051482136002085753}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Untagged
@@ -413,3 +416,44 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
+--- !u!114 &8893081534466099127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d762d12d83cc4442baddc09f48dffcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateEventListener: {fileID: 5182966229135578311}
+  _carSettings: {fileID: 11400000, guid: 58d3a4729d95d1d49a583a48a7176a42, type: 2}
+  _carCollisionEventListener: {fileID: 7051482136002085753}
+--- !u!114 &5182966229135578311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df6b2e41396cca4881bed2213c496bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 2e1f9c20a2417eb44a9ea05c8f2fe911, type: 2}
+--- !u!114 &7051482136002085753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df6b2e41396cca4881bed2213c496bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: d2544d59f99e431428664aa3c938d2b1, type: 2}
