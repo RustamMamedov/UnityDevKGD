@@ -50,7 +50,7 @@ namespace Game {
 
         #region 4
         protected virtual void Move() {
-            if (_currentSpeed <= _carSettings.maxSpeed) {
+            if (_currentSpeed < _carSettings.maxSpeed) {
                 _currentSpeed += _carSettings.maxSpeed;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
