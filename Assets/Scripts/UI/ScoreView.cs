@@ -10,7 +10,7 @@ namespace UI {
         [SerializeField]
         private EventListeners _eventListeners;
         [SerializeField]
-        private ScriptTableIntValue _CurrentScore;
+        private ScriptTableIntValue _currentScore;
         private int _currentscore;
         [SerializeField]
         private Text _lableValue;
@@ -19,8 +19,8 @@ namespace UI {
             _eventListeners.OnEventHappened += UpdateBehaviour;
         }
         public void UpdateBehaviour() { 
-          if(_CurrentScore.Score > _currentscore) {
-                StartCoroutine(SetScoreCoroutine(_CurrentScore.Score));
+          if(_currentScore.Score > _currentscore) {
+                StartCoroutine(SetScoreCoroutine(_currentScore.Score));
             }
         }
         public IEnumerator SetScoreCoroutine(int score) {

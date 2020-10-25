@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace CarsSettings {
+
+namespace Game {
     [CreateAssetMenu(fileName = "CarsSettings", menuName = "CarsSettings")]
     public class CarsSettings : ScriptableObject {
-        [SerializeField]
-        private int _dodgedScore;
+        public int dodgedScore;
+        public float maxSpeed;
+        public float acceleration;
     }
 }
