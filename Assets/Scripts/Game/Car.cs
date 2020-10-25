@@ -37,7 +37,8 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            UnsubscribeToEvents();
+            //UnsubscribeToEvents();
+            Debug.Log("CarCollision");
         }
         #endregion region2
 
