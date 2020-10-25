@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using Game;
 using UnityEngine;
 
-public class EnemyCar : Car
-{
-	
+namespace Game {
+
+	public class EnemyCar : Car {
+
+		
+
+	}
 }
