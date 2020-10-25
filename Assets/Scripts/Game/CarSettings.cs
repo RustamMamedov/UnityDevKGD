@@ -6,7 +6,11 @@ namespace Game {
 
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
-        [SerializeField]
-        private UInt64 _dodgeScore;
+        public int dodgeScore;
+        public float maxSpeed;
+        public float acceleration;
+
+
+
     }
 }
