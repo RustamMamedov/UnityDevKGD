@@ -249,6 +249,9 @@ GameObject:
   - component: {fileID: 5707480551175485036}
   - component: {fileID: 5707480551176451244}
   - component: {fileID: 4526250932465751619}
+  - component: {fileID: 9050943199167496294}
+  - component: {fileID: 4539954432980723767}
+  - component: {fileID: 2954568026746282780}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -334,6 +337,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8072972, y: 2.0763528, z: 7.0108266}
   m_Center: {x: 0, y: 1.534154, z: 0.46119332}
+--- !u!114 &9050943199167496294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707480551178381932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f8e2177aa618b41b2935a31e992531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: 9e69b158063a6430b9aef314e0c9ce2e, type: 2}
+  _carCollisionEventListener: {fileID: 2954568026746282780}
+  _updateEventListener: {fileID: 4539954432980723767}
+--- !u!114 &4539954432980723767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707480551178381932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
+--- !u!114 &2954568026746282780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707480551178381932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
 --- !u!1 &5707480551178381934
 GameObject:
   m_ObjectHideFlags: 0

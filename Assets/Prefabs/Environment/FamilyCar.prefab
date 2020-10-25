@@ -91,6 +91,9 @@ GameObject:
   - component: {fileID: 5034951560097542770}
   - component: {fileID: 5034951560098541746}
   - component: {fileID: 1848342024847515662}
+  - component: {fileID: 7082303806999253321}
+  - component: {fileID: 4046360315563912181}
+  - component: {fileID: 6653632638533673487}
   m_Layer: 0
   m_Name: FamilyCar
   m_TagString: Untagged
@@ -176,6 +179,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.647857, y: 1.517171, z: 5.7786293}
   m_Center: {x: 0, y: 0.93918604, z: 0.007325053}
+--- !u!114 &7082303806999253321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034951560096542322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f8e2177aa618b41b2935a31e992531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: a49132fe8bc044f9698b1f57231689b2, type: 2}
+  _carCollisionEventListener: {fileID: 6653632638533673487}
+  _updateEventListener: {fileID: 4046360315563912181}
+--- !u!114 &4046360315563912181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034951560096542322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
+--- !u!114 &6653632638533673487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034951560096542322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
 --- !u!1 &5034951560096542324
 GameObject:
   m_ObjectHideFlags: 0
