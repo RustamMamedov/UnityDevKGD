@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 3241008496193505639}
   - component: {fileID: 4488762628363604532}
   - component: {fileID: 2834212447865360375}
+  - component: {fileID: 7891134089993000118}
   m_Layer: 0
   m_Name: Car_18C
   m_TagString: Untagged
@@ -260,6 +261,7 @@ MonoBehaviour:
   _carSettings: {fileID: 11400000, guid: 9e69b158063a6430b9aef314e0c9ce2e, type: 2}
   _updateEventListener: {fileID: 3241008496193505639}
   _carCollisionEventListener: {fileID: 4488762628363604532}
+  _carTriggerEventDispatcher: {fileID: 7891134089993000118}
 --- !u!114 &3241008496193505639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +301,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8072972, y: 2.0763528, z: 7.0108266}
   m_Center: {x: 0, y: 1.534154, z: 0.46119332}
+--- !u!114 &7891134089993000118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
