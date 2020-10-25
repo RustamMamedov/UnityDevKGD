@@ -170,6 +170,9 @@ GameObject:
   - component: {fileID: 33763178186631926}
   - component: {fileID: 23223122420387580}
   - component: {fileID: 64282175704073122}
+  - component: {fileID: 5591291704649564762}
+  - component: {fileID: 2539112107688988811}
+  - component: {fileID: 3433944483742494733}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -256,6 +259,47 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 577bfc99767cb1b489b74d381e1a0e5d, type: 3}
+--- !u!114 &5591291704649564762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33b0eafe02fcbe4ba1fcbd686cd7f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: 41f9ec42b4cbd6b41857b341903df957, type: 2}
+  _updateEventListener: {fileID: 2539112107688988811}
+  _carCollisionEventListener: {fileID: 3433944483742494733}
+--- !u!114 &2539112107688988811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dd6c8d7213508489552fc15ed6f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: fdaf82255ca7bb747bd0957df4315e65, type: 2}
+--- !u!114 &3433944483742494733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dd6c8d7213508489552fc15ed6f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 0a768a2b03f53034ab7ac630ca1e8424, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
