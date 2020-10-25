@@ -90,10 +90,10 @@ GameObject:
   - component: {fileID: 4309172695357830}
   - component: {fileID: 33887974793922140}
   - component: {fileID: 23194435166505700}
-  - component: {fileID: 64934544590337554}
   - component: {fileID: 7357932519020111889}
   - component: {fileID: 3524985611621596788}
   - component: {fileID: 8824525399152129749}
+  - component: {fileID: 474129742647941123}
   m_Layer: 0
   m_Name: FamilyCar
   m_TagString: Untagged
@@ -166,20 +166,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64934544590337554
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106068356828452}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 3e536b21e16197d4c88495c3949a1a9f, type: 3}
 --- !u!114 &7357932519020111889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +207,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 0a768a2b03f53034ab7ac630ca1e8424, type: 2}
+--- !u!65 &474129742647941123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106068356828452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.647857, y: 1.517171, z: 5.7786293}
+  m_Center: {x: 0, y: 0.93918604, z: 0.007325053}
 --- !u!1 &1659635745859552
 GameObject:
   m_ObjectHideFlags: 0
