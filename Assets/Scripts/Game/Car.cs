@@ -39,6 +39,7 @@ namespace Game {
 
         private void OnCarCollision(){
             UnsubscribeToEvents();
+            //Debug.Log("Car collision");
         }
 
         /*private void Awake() {
