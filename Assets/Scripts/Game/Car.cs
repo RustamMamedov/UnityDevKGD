@@ -34,16 +34,16 @@ namespace Game {
         }
 
         private void UpdateBehaviour(){
-            UnsubscribeToEvents();
-        }
-
-        private void OnCarCollision(){
             Move();
         }
 
-        private void Awake() {
-            _updateEventListener.OnEventHappened += Move;
+        private void OnCarCollision(){
+            UnsubscribeToEvents();
         }
+
+        /*private void Awake() {
+            _updateEventListener.OnEventHappened += Move;
+        }*/
 
         private void Move() {
             if (_currentSpeed < _carSettings.maxSpeed){
