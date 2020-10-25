@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3528387745191859344
+--- !u!1 &5163310815715622804
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3528387745191859351}
-  - component: {fileID: 3528387745191859349}
-  - component: {fileID: 3528387745191859350}
-  - component: {fileID: 3528387745191859339}
-  - component: {fileID: 3528387745191859348}
-  - component: {fileID: 3528387745191859338}
-  m_Layer: 0
+  - component: {fileID: 5163310815715622810}
+  - component: {fileID: 5163310815715622809}
+  - component: {fileID: 5163310815715622808}
+  - component: {fileID: 5163310815715622806}
+  - component: {fileID: 5163310815715622807}
+  - component: {fileID: 5163310815715622805}
+  m_Layer: 5
   m_Name: Fader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3528387745191859351
+--- !u!224 &5163310815715622810
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528387745191859344}
+  m_GameObject: {fileID: 5163310815715622804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,21 +40,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3528387745191859349
+--- !u!222 &5163310815715622809
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528387745191859344}
+  m_GameObject: {fileID: 5163310815715622804}
   m_CullTransparentMesh: 0
---- !u!114 &3528387745191859350
+--- !u!114 &5163310815715622808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528387745191859344}
+  m_GameObject: {fileID: 5163310815715622804}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -77,25 +77,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &3528387745191859339
+--- !u!225 &5163310815715622806
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528387745191859344}
+  m_GameObject: {fileID: 5163310815715622804}
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!223 &3528387745191859348
+--- !u!223 &5163310815715622807
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528387745191859344}
+  m_GameObject: {fileID: 5163310815715622804}
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
@@ -110,17 +110,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 999
   m_TargetDisplay: 0
---- !u!114 &3528387745191859338
+--- !u!114 &5163310815715622805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528387745191859344}
+  m_GameObject: {fileID: 5163310815715622804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b378e5acc47932408bd9210a0d36c1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bfadf29008f7da4a96f4f45cc326d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 3528387745191859339}
+  _canvasGroup: {fileID: 5163310815715622806}
   _fadeTime: 2
