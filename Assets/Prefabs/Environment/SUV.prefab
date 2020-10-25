@@ -171,6 +171,8 @@ GameObject:
   - component: {fileID: 23223122420387580}
   - component: {fileID: 64282175704073122}
   - component: {fileID: 7317269881571295878}
+  - component: {fileID: 2820983662715028446}
+  - component: {fileID: 6069558382231509740}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -269,9 +271,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e38c9fce5d70042aadcdc8a463de94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carSettings: {fileID: 0}
-  _updateEventListener: {fileID: 0}
-  _carCollisionEventListener: {fileID: 0}
+  _carSettings: {fileID: 11400000, guid: 763e7857ac51dcd4188f51c3fc59e88b, type: 2}
+  _updateEventListener: {fileID: 2820983662715028446}
+  _carCollisionEventListener: {fileID: 6069558382231509740}
+--- !u!114 &2820983662715028446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 08b36a2ef2303c44e93cb271d1b26a37, type: 2}
+--- !u!114 &6069558382231509740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
