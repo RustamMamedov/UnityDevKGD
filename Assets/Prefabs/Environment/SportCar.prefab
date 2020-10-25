@@ -327,13 +327,13 @@ GameObject:
   - component: {fileID: 4526053454235962}
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
-  - component: {fileID: 64739092858258102}
   - component: {fileID: 3022579621427955313}
   - component: {fileID: 4415066344668981132}
+  - component: {fileID: 3569286801724338390}
   - component: {fileID: 117931452871172329}
   - component: {fileID: 6970182269253842615}
   m_Layer: 0
-  m_Name: Car_6G
+  m_Name: SportCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,20 +404,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64739092858258102
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590206702830092}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: e29524f3e15f50f40a84ba6ae5a5de10, type: 3}
 --- !u!65 &3022579621427955313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -444,6 +430,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 9d3d37848f0d8fec89c15180d7e22c35, type: 2}
+--- !u!114 &3569286801724338390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 8f3e6e278d1678a8b8295d8aa6f99de0, type: 2}
 --- !u!114 &117931452871172329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: 86822ef60941c44798a251eb57e3e96b, type: 2}
   _updateEventListener: {fileID: 4415066344668981132}
-  _carCollisionEventListener: {fileID: 4415066344668981132}
+  _carCollisionEventListener: {fileID: 3569286801724338390}
 --- !u!54 &6970182269253842615
 Rigidbody:
   m_ObjectHideFlags: 0
