@@ -14,12 +14,6 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         protected float _currentSpeed;
- 
-
-        private void Awake() {
-            _updateEventListener.OnEventHappened += Move;
-            _updateEventListener.OnEventHappened += Die;
-        }
 
         protected virtual void OnEnable() {
             SubScribeToEvents();
@@ -55,9 +49,7 @@ namespace Game {
             
         }
 
-        private void Die() {
-            
-        }
+      
 
     }
 }
