@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace UI {
 
     public class ScoreView : MonoBehaviour {
-    //Fields//
+   
         [SerializeField] 
         private float _scoreCountDelay;
         
@@ -21,7 +21,7 @@ namespace UI {
         [SerializeField] 
         private Text _scoreLabel;
         
-    //Methods//
+   
         private void Awake() {
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
@@ -29,7 +29,7 @@ namespace UI {
         private void UpdateBehaviour() {
             if (_currentScoreAsset.score > _currentScore) StartCoroutine(SetScoreCoroutine(_currentScoreAsset.score));
         }
-    //Coroutine//
+    
         private IEnumerator SetScoreCoroutine(int score) {
             while (_currentScore < score) {
                 _currentScore++;
