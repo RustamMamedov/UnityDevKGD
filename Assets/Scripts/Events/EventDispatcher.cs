@@ -10,7 +10,7 @@ namespace Events
         [SerializeField]
         private ScriptableEvent _someEvent;
 
-        private void Dispatch()
+        public void Dispatch()
         {
             _someEvent.Dispatch();
         }
