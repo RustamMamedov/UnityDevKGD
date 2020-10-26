@@ -1,18 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 namespace Game {
 
     public class EnemyCar : Car {
-        // Start is called before the first frame update
-        void Start() {
+        [SerializeField]
+        private EventDispatcher _carTriggerEventDispatcher;
 
-        }
-
-        // Update is called once per frame
-        void Update() {
-
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Player")) {
+                Debug.Log("CarCollision");
+                //_carTriggerEventDispatcher.Dispatch();
+            }
         }
     }
 }
