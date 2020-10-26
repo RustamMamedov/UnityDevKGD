@@ -34,7 +34,7 @@ namespace Game {
 
         protected virtual void UnsubscribeToEvents() {
 
-            //_updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
