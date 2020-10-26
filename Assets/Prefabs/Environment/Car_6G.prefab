@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 936460279257496160}
   - component: {fileID: 8807250561044081756}
   - component: {fileID: 878597432638878513}
-  - component: {fileID: 235162025053197399}
+  - component: {fileID: 2061715510653340813}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Player
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d762d12d83cc4442baddc09f48dffcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carSettings: {fileID: 0}
+  _carSettings: {fileID: 11400000, guid: 9359d9016175c1e45a0f2d6de9f33f6f, type: 2}
   _updateEventListener: {fileID: 8807250561044081756}
   _carCollisionEventListener: {fileID: 878597432638878513}
 --- !u!114 &8807250561044081756
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 2e4a0dee8d417b64f9d862c3ec1bcc91, type: 2}
---- !u!54 &235162025053197399
+--- !u!54 &2061715510653340813
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,7 +469,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
