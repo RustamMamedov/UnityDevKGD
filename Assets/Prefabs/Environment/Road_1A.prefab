@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 834242005380108154}
   - component: {fileID: 6489400666833745076}
   - component: {fileID: 4205620193158859430}
-  - component: {fileID: 2634186618918775220}
+  - component: {fileID: 2682908902910677067}
+  - component: {fileID: 2090093520421760553}
+  - component: {fileID: 1755727608006666816}
   m_Layer: 0
   m_Name: Road_1A
   m_TagString: Untagged
@@ -85,8 +87,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &2634186618918775220
-MeshCollider:
+--- !u!65 &2682908902910677067
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,10 +97,35 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 29c7f47fb08169041bd3c7b63b87c4c5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 12, y: 0.3565008, z: 12}
+  m_Center: {x: 0, y: 0.1782504, z: 0.0000021457672}
+--- !u!114 &2090093520421760553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489200510171849154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e43f450eddd74529a0ac27ab92555aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadTriggerEventDispatcher: {fileID: 1755727608006666816}
+--- !u!114 &1755727608006666816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489200510171849154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 2c47826988e0c4112a516dbc36c306bd, type: 2}
 --- !u!1001 &1935571317803939600
 PrefabInstance:
   m_ObjectHideFlags: 0
