@@ -46,7 +46,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            UnsubscribeToEvents();
+            //UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {
