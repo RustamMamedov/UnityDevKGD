@@ -31,8 +31,7 @@ namespace Events {
             if(_listeners == null) {
                 return;
             }
-            for (int i = 0; i < _listeners.Count; i++) {
-                //_listeners[i]?.Invoke();
+            for (int i = _listeners.Count - 1; i > -1; i--) {
                 _listeners[i]();
             }
         }
