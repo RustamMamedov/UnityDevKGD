@@ -547,8 +547,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1655781650}
+  - component: {fileID: 1655781653}
+  - component: {fileID: 1655781652}
+  - component: {fileID: 1655781651}
   m_Layer: 0
-  m_Name: EnemySpowner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,6 +571,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1655781651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655781649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
+--- !u!114 &1655781652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655781649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 08b36a2ef2303c44e93cb271d1b26a37, type: 2}
+--- !u!114 &1655781653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655781649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c7b71dd17e71e48bf1ae6ea348e391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateEventListener: {fileID: 1655781652}
+  _carCollisionListener: {fileID: 1655781651}
+  _carPrefab: {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
+  _spawnCooldown: 5
+  _distanceToPlayerToSpawn: 100
+  _distanceToPlayerToDestroy: 10
+  _playerPositionZ: {fileID: 11400000, guid: 9d8416f389e0084439003424c660788d, type: 2}
+  _roadWidth: {fileID: 11400000, guid: c46fff33945f2674baaa0e591a96ab69, type: 2}
 --- !u!1 &1871408268
 GameObject:
   m_ObjectHideFlags: 0
