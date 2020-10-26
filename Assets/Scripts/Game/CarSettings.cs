@@ -10,7 +10,5 @@ namespace Game {
         public float maxSpeed;
         public float acceleration;
 
-
-
     }
 }
