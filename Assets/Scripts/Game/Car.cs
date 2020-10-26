@@ -41,7 +41,6 @@ namespace Game {
             Move();
         }
 
-
         protected virtual void Move() {
             if (_currentSpeed < _carSettings.maxSpeed) {
                 _currentSpeed += _carSettings.acceleration;
@@ -49,7 +48,6 @@ namespace Game {
 
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
-
 
     }
 }

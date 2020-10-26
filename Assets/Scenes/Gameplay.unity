@@ -213,6 +213,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1037429084}
+  - component: {fileID: 1037429086}
+  - component: {fileID: 1037429085}
   m_Layer: 0
   m_Name: Enviroment
   m_TagString: Untagged
@@ -235,6 +237,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1037429085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037429083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19095aa7c9fb5fc4da5671c2f5966762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: f6a7fcb6e95814f4b871b009107afeb4, type: 2}
+--- !u!114 &1037429086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037429083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0579446cae4f40ea8128d459a916f831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadCollissionEventListener: {fileID: 1037429085}
+  _roadPrefab: {fileID: 1037721052}
+  _initialRoadNumber: 10
+  _roadLength: 12
 --- !u!1001 &1037721050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,19 +352,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1037721050}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1037721053
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037721052}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12, y: 2.5, z: 1}
-  m_Center: {x: 0, y: 1.25, z: -5.5}
 --- !u!1 &1289472394
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 1590206702830092, guid: 8952388f882d347438563c4e45e6ce50, type: 3}
       propertyPath: m_Name
       value: PlayerCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590206702830092, guid: 8952388f882d347438563c4e45e6ce50, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4526053454235962, guid: 8952388f882d347438563c4e45e6ce50, type: 3}
       propertyPath: m_LocalPosition.x
