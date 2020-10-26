@@ -15,26 +15,26 @@ namespace Game {
 
         protected float _currentSpeed;
 
-        protected virtual void OnEnable() {
+        private void OnEnable() {
             SubScribeToEvents();
         }
 
-        protected virtual void OnDisable() {
-            UnSubscribeToEvents();
+        private void OnDisable() {
+            UnSubScribeToEvents();
         }
 
-        private void SubScribeToEvents() {
+        protected virtual void SubScribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
 
-        private void UnSubscribeToEvents() {
+        protected virtual void UnSubScribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
         private void OnCarCollision() {
-            UnSubscribeToEvents();
+            UnSubScribeToEvents();
         }
 
         private void UpdateBehaviour() {
