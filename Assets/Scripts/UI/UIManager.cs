@@ -19,8 +19,6 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "GamePlay";
-
         private void Awake() {
             if(instance != null) {
                 Destroy(gameObject);
@@ -30,22 +28,25 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGamePlay());
-
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGamePlay() {
-            yield return new WaitForSeconds(3f);
+        public void LoadGamePlay() {
             _fader.OnFadeOut += LoadGamePlayScene;
             _fader.FadeOut();
         }
 
         private void LoadGamePlayScene() {
             _fader.OnFadeOut -= LoadGamePlayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "GamePlay" ? "Menu" : "GamePlay";
-            
+            StartCoroutine(LoadSceneCoroutine("GamePlay"));
+            ShowGameScreen();
+        }
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadGamePlayScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string scenename) {
@@ -53,20 +54,21 @@ namespace UI {
             while (!asyncOp.isDone) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3f);
             _fader.FadeIn();
         }
 
         private void ShowMenuScreen() {
+            HideAllScreens();
             _menuScreen.SetActive(true); 
         }
 
         private void ShowGameScreen() {
+            HideAllScreens();
             _gameScreen.SetActive(true);
         }
 
         private void ShowLeaderboardScreen() {
+            HideAllScreens();
             _leaderboardScreen.SetActive(true);
         }
 
