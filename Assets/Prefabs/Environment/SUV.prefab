@@ -170,9 +170,10 @@ GameObject:
   - component: {fileID: 33763178186631926}
   - component: {fileID: 23223122420387580}
   - component: {fileID: 3297975289460015265}
+  - component: {fileID: 8733617421626320367}
   - component: {fileID: 2443691381686060572}
   - component: {fileID: 4083097603878878359}
-  - component: {fileID: 8733617421626320367}
+  - component: {fileID: 844776822151712879}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -258,6 +259,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8072972, y: 2.0763528, z: 7.0108266}
   m_Center: {x: 0, y: 1.534154, z: 0.46119332}
+--- !u!114 &8733617421626320367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae5095cc515a4b2aa7440f47ea90276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: 2d39999618a524d71b4da2d6ecea1669, type: 2}
+  _updateEventListener: {fileID: 4083097603878878359}
+  _carCollisionEventListener: {fileID: 2443691381686060572}
+  _carTriggerEventDispatcher: {fileID: 844776822151712879}
 --- !u!114 &2443691381686060572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 7ad4a0ee9fd714e26b4aa8a8fe81014c, type: 2}
---- !u!114 &8733617421626320367
+--- !u!114 &844776822151712879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,12 +310,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307635527795650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae5095cc515a4b2aa7440f47ea90276, type: 3}
+  m_Script: {fileID: 11500000, guid: 76f33b0bd93f04d2390dd9fc9fc30fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: 2d39999618a524d71b4da2d6ecea1669, type: 2}
-  _updateEventListener: {fileID: 4083097603878878359}
-  _carCollisionEventListener: {fileID: 2443691381686060572}
+  _someEvent: {fileID: 11400000, guid: c9bb81aa9057c47bf8b6518905abac77, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
