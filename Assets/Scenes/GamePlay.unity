@@ -307,6 +307,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1427816729381480962, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 64739092858258102, guid: 8952388f882d347438563c4e45e6ce50, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8952388f882d347438563c4e45e6ce50, type: 3}
@@ -557,6 +562,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5463094657591240713, guid: dec6e1dfe0585314386ba9c3b833424a,
+        type: 3}
+      propertyPath: _carCollisionEventListener
+      value: 
+      objectReference: {fileID: 1580303313}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
 --- !u!1 &1518893982
@@ -621,6 +631,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: aaf1d738be6ec4a469cfdf69a3cd865d, type: 2}
+--- !u!114 &1580303313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1372173952942274818, guid: dec6e1dfe0585314386ba9c3b833424a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1451875864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ef945120abd4f8b8d48007b12d5a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1828097247
 GameObject:
   m_ObjectHideFlags: 0
