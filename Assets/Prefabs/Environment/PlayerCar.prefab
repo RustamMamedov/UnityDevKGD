@@ -328,10 +328,11 @@ GameObject:
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
   - component: {fileID: 1573442875047811314}
-  - component: {fileID: 4596695069263924453}
+  - component: {fileID: 3668874707910805063}
   - component: {fileID: 1358843249330462064}
   - component: {fileID: 8354596287416258263}
   - component: {fileID: 4624070065792483565}
+  - component: {fileID: 2117746644108783501}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -417,7 +418,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
---- !u!114 &4596695069263924453
+--- !u!114 &3668874707910805063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,12 +427,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b3f9a44e8ab214b987326611478fdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c4c585e5feaca84c94c6ef6c21a81d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: 48bc80d49cc54a244b44b28dc8d1b6c7, type: 2}
   _updateEventListener: {fileID: 1358843249330462064}
   _carCollisionEventListener: {fileID: 8354596287416258263}
+  _touchEventListener: {fileID: 2117746644108783501}
+  _touchSide: {fileID: 11400000, guid: f22cc3af6db5dde4a9424ab84ff317f9, type: 2}
+  _dodgeDuration: 0.1
+  _roadWidth: {fileID: 11400000, guid: a30967cc0e960c5408018f6290990fec, type: 2}
 --- !u!114 &1358843249330462064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +479,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2117746644108783501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dd6c8d7213508489552fc15ed6f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 0286aee5005cd654c8555614b5262970, type: 2}
