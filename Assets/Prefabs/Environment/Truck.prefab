@@ -420,16 +420,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515673386302742}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4085910117293632}
   - {fileID: 4238721181132254}
   - {fileID: 4509803624587862}
   - {fileID: 4848202468025318}
-  m_Father: {fileID: 4485059992272672}
-  m_RootOrder: 1
+  m_Father: {fileID: 4294558538493172}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33998016010299942
 MeshFilter:
@@ -491,6 +491,9 @@ GameObject:
   - component: {fileID: 23031736005143114}
   - component: {fileID: 7214977866445078990}
   - component: {fileID: 5229254731757246260}
+  - component: {fileID: 4437150879574504895}
+  - component: {fileID: 5523687270921016654}
+  - component: {fileID: 4288298217569182889}
   m_Layer: 0
   m_Name: Car_21A
   m_TagString: Untagged
@@ -515,6 +518,7 @@ Transform:
   - {fileID: 4055226430314952}
   - {fileID: 4655786407278708}
   - {fileID: 4310612916711108}
+  - {fileID: 4382084664553452}
   m_Father: {fileID: 4485059992272672}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -591,8 +595,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: df687f6a2a71249db95cd3a1b71d83c6, type: 2}
-  _updateEventListener: {fileID: 0}
-  _carCollisionEventListener: {fileID: 0}
+  _updateEventListener: {fileID: 5523687270921016654}
+  _carCollisionEventListener: {fileID: 4288298217569182889}
+  _carTriggerEventDispatcher: {fileID: 4437150879574504895}
+--- !u!114 &4437150879574504895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524740451817992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 9a8da3c342c9e8b4d888021e85543f1e, type: 2}
+--- !u!114 &5523687270921016654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524740451817992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
+--- !u!114 &4288298217569182889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524740451817992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 9a8da3c342c9e8b4d888021e85543f1e, type: 2}
 --- !u!1 &1528675860601466
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +823,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4294558538493172}
-  - {fileID: 4382084664553452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
