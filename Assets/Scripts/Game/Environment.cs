@@ -38,8 +38,7 @@ namespace Game {
 
             for (int i = 0; i < _initialRoadNumber + 1; i++) {
                 var positon = new Vector3(0f, 0f, (i - 1) * _roadLength);
-                var road = Instantiate(_roadPrefab, positon, Quaternion.identity);
-                Debug.Log(road.transform.position);
+                var road = Instantiate(_roadPrefab, positon, Quaternion.identity);             
                 _roadTransforms.Add(road.transform);
             }
             _roadPrefab.SetActive(false);

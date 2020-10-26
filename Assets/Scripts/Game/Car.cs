@@ -6,7 +6,7 @@ namespace Game {
     public class Car : MonoBehaviour {
 
         [SerializeField]
-        private CarSettings _carSettings;
+        protected CarSettings _carSettings;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
@@ -17,11 +17,11 @@ namespace Game {
         protected float _currentSpeed;
 
 
-        protected virtual void OnEnable() {
+        private void OnEnable() {
             SubscribeToEvents();
         }
 
-        protected virtual void OnDisable() {
+        private void OnDisable() {
             UnsubscribeToEvents();
         }
 
@@ -29,12 +29,12 @@ namespace Game {
             Move();
         }
 
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
 
-        private void UnsubscribeToEvents() {
+        protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }

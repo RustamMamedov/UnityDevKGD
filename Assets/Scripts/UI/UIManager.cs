@@ -11,7 +11,7 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "Gameplay";
+       // private string _currentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance != null) {
@@ -22,36 +22,39 @@ namespace UI {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+  
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
-
+        public void LoadGamePlay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
 
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+  
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOperation.isDone) {
                 yield return null;
-            }
-
-            yield return new WaitForSeconds(3f);
-
+            }   
             _fader.FadeIn();
         }
         public void ShowMenuScreen()
         {
+            HideAllScreens();
             Debug.Log("ShowMenuScreen");
         }
 
@@ -62,6 +65,7 @@ namespace UI {
 
         public void ShowLeaderboardsScreen()
         {
+            HideAllScreens();
             Debug.Log("ShowLeaderboardsScreen");
         }
 
