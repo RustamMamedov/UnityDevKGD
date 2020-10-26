@@ -92,8 +92,9 @@ GameObject:
   - component: {fileID: 23194435166505700}
   - component: {fileID: 3532764444394792859}
   - component: {fileID: 5168408470888069688}
-  - component: {fileID: 2743538278189920122}
-  - component: {fileID: 1833653659}
+  - component: {fileID: 2655760459475744297}
+  - component: {fileID: 3015193453397397747}
+  - component: {fileID: 3999433457999791795}
   m_Layer: 0
   m_Name: FamilyCar
   m_TagString: Untagged
@@ -179,8 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: bd37f80fb5731bb48977ff326d2139f7, type: 2}
-  _updateEventListener: {fileID: 1833653659}
-  _carCollisionEventListener: {fileID: 0}
+  _updateEventListener: {fileID: 2655760459475744297}
+  _carCollisionEventListener: {fileID: 3999433457999791795}
+  _carTriggerEventDispatcher: {fileID: 3015193453397397747}
 --- !u!65 &5168408470888069688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -194,23 +196,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.647857, y: 1.517171, z: 5.7786293}
   m_Center: {x: 0, y: 0.93918604, z: 0.007325053}
---- !u!54 &2743538278189920122
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106068356828452}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1833653659
+--- !u!114 &2655760459475744297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,6 +209,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 9d3d37848f0d8fec89c15180d7e22c35, type: 2}
+--- !u!114 &3015193453397397747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106068356828452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65be3fa1aa2996899e47a474049826a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: fc8d57c0006471b12b035e89317ba08d, type: 2}
+--- !u!114 &3999433457999791795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106068356828452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: fc8d57c0006471b12b035e89317ba08d, type: 2}
 --- !u!1 &1659635745859552
 GameObject:
   m_ObjectHideFlags: 0

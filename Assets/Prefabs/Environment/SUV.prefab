@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 70232052686890771}
   - component: {fileID: 4047270622190899009}
   - component: {fileID: 1596242656460315530}
+  - component: {fileID: 5815581829494513099}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -274,6 +275,7 @@ MonoBehaviour:
   _carSettings: {fileID: 11400000, guid: 4fcf991bd9c1fa6a08aa07fa66ba961e, type: 2}
   _updateEventListener: {fileID: 70232052686890771}
   _carCollisionEventListener: {fileID: 4047270622190899009}
+  _carTriggerEventDispatcher: {fileID: 5815581829494513099}
 --- !u!114 &70232052686890771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +318,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5815581829494513099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65be3fa1aa2996899e47a474049826a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: fc8d57c0006471b12b035e89317ba08d, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
