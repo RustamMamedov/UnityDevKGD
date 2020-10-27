@@ -59,7 +59,7 @@ namespace Game {
                 transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime);
             }
 
-                _inDodge = false;
+            _inDodge = false;
             _currentRoad = nextRoad;
         }
 
