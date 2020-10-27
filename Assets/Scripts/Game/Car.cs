@@ -13,28 +13,28 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
-        private float _currentSpeed;
+        protected float _currentSpeed;
 
-        protected virtual void OnEnable() {
+        private void OnEnable() {
             SubcribeToEvents();
         }
 
-        protected virtual void OnDisable() {
-            UnsubcribeToEvents();
+        private void OnDisable() {
+            UnsubscribeToEvents();
         }
 
-        private void SubcribeToEvents() {
+        protected virtual void SubcribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehavior;
             _carCollisionEventListener.OnEventHappened += UpdateBehavior;
         }
 
-        private void UnsubcribeToEvents() {
+        protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehavior;
             _carCollisionEventListener.OnEventHappened -= UpdateBehavior;
         }
 
         private void OnCarCollision() {
-            UnsubcribeToEvents();
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehavior() {
