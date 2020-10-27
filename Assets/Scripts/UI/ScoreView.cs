@@ -27,7 +27,7 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_currentScoreAsset.score > _currentScore) StartCoroutine(SetScoreCoroutine(_currentScoreAsset.score));
+            if (_currentScoreAsset.value > _currentScore) StartCoroutine(SetScoreCoroutine(_currentScoreAsset.value));
         }
     
         private IEnumerator SetScoreCoroutine(int score) {
