@@ -328,9 +328,10 @@ GameObject:
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
   - component: {fileID: 392127977180710847}
+  - component: {fileID: 5626163783527439490}
   - component: {fileID: 2361997462574890286}
   - component: {fileID: 6550409247136681478}
-  - component: {fileID: 1651976915210933942}
+  - component: {fileID: 6252593135899000130}
   - component: {fileID: 1427816729381480962}
   m_Layer: 0
   m_Name: PlayerCar
@@ -417,6 +418,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
+--- !u!114 &5626163783527439490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af081bc054f2f40a29319b3805a756c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: 9c0a6099f60194d2eb32778ae2007b5d, type: 2}
+  _updateEventListener: {fileID: 6550409247136681478}
+  _carCollisionEventListener: {fileID: 2361997462574890286}
+  _touchEventListener: {fileID: 6252593135899000130}
+  _touchSide: {fileID: 11400000, guid: 250c40ffb9dfc429eaf9cc08de279da8, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: 3451a91852e4e4a7ea55b68d6c7a78d5, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: f4597bdf44c4d4d529a773966e596a27, type: 2}
 --- !u!114 &2361997462574890286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: ac77475b8635d4545968c90e530ad456, type: 2}
---- !u!114 &1651976915210933942
+--- !u!114 &6252593135899000130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,12 +473,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe323ab9bc531463b898d55c52465266, type: 3}
+  m_Script: {fileID: 11500000, guid: f0ef945120abd4f8b8d48007b12d5a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: 9c0a6099f60194d2eb32778ae2007b5d, type: 2}
-  _updateEventListener: {fileID: 6550409247136681478}
-  _carCollisionEventListener: {fileID: 2361997462574890286}
+  _someEvent: {fileID: 11400000, guid: ce1bda70cb9824aa09006621d3503ab5, type: 2}
 --- !u!54 &1427816729381480962
 Rigidbody:
   m_ObjectHideFlags: 0
