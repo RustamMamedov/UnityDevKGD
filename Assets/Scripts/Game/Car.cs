@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game {
 
-    public class Car : MonoBehaviour {
+    public class Car : MonoBehaviour{
         [SerializeField]
         protected CarSettings _carSettings;
 
@@ -23,7 +23,7 @@ namespace Game {
             UnsubscribeToEvents();
         }
 
-        private void SubscribeToEvents(){
+        protected virtual void SubscribeToEvents(){
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -42,11 +42,7 @@ namespace Game {
             //Debug.Log("Car collision");
         }
 
-        /*private void Awake() {
-            _updateEventListener.OnEventHappened += Move;
-        }*/
-
-        private void Move() {
+        protected virtual void Move() {
             if (_currentSpeed < _carSettings.maxSpeed){
                 _currentSpeed += _carSettings.acceleration;
             }
