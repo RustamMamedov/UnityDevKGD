@@ -330,7 +330,8 @@ GameObject:
   - component: {fileID: 3022579621427955313}
   - component: {fileID: 4415066344668981132}
   - component: {fileID: 3569286801724338390}
-  - component: {fileID: 117931452871172329}
+  - component: {fileID: 8341988816777081500}
+  - component: {fileID: 7560813356573955030}
   - component: {fileID: 6970182269253842615}
   m_Layer: 0
   m_Name: SportCar
@@ -442,8 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 8f3e6e278d1678a8b8295d8aa6f99de0, type: 2}
---- !u!114 &117931452871172329
+  _someEvent: {fileID: 11400000, guid: fc8d57c0006471b12b035e89317ba08d, type: 2}
+--- !u!114 &8341988816777081500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,12 +453,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87a72b2e90e6cafafa428a1de5d130ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 8763ebb3e3e8bbba0bdb850b844b8e69, type: 2}
+--- !u!114 &7560813356573955030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a408128c8155392b0a20d0ad849acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: 86822ef60941c44798a251eb57e3e96b, type: 2}
   _updateEventListener: {fileID: 4415066344668981132}
   _carCollisionEventListener: {fileID: 3569286801724338390}
+  _touchEventListener: {fileID: 8341988816777081500}
+  _touchSide: {fileID: 11400000, guid: 4ddd7fbaaea1e1a8199152802042b8cc, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: aa28acca2a2f708dba354ca86fbd113d, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: ff92c07c7a1b39651a3faed0a43255b4, type: 2}
 --- !u!54 &6970182269253842615
 Rigidbody:
   m_ObjectHideFlags: 0

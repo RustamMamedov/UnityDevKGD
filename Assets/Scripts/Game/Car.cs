@@ -8,38 +8,42 @@ namespace Game {
 
     public class Car : MonoBehaviour {
 
-        [SerializeField] 
-        protected CarSettings _carSettings;
-        
-        [SerializeField] 
-        private EventListener _updateEventListener;
+        [SerializeField] protected CarSettings _carSettings;
 
-        [SerializeField] 
-        private EventListener _carCollisionEventListener;
+        [SerializeField] private EventListener _updateEventListener;
+
+        [SerializeField] private EventListener _carCollisionEventListener;
 
         protected float _currentSpeed;
-        private void Awake() {
-            _updateEventListener.OnEventHappened += Move;
+
+        private void OnEnable() {
+            SubscribeToEvents();
         }
+
+        private void OnDisable() {
+            UnsubscribeToEvents();
+        }
+
         protected virtual void Move() {
             if (_currentSpeed < _carSettings.maxSpeed) {
                 _currentSpeed += _carSettings.acceleration;
             }
+
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
 
-        private void SubscribeToEvent() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
-        
-        private void UnSubscribeToEvent() {
+
+        protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
         private void OnCarCollision() {
-            UnSubscribeToEvent();
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {
