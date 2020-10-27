@@ -1,6 +1,7 @@
 ﻿using Events;
 using Game;
 using UnityEngine;
+using System.Collections;
 
 namespace UI {
     public class InputController : MonoBehaviour {
@@ -38,8 +39,8 @@ namespace UI {
             touchPosition = InputController.touches[0].position;
 #endif
 
+
             _touchSide.value = touchPosition.x > Screen.width * .5 ? 1 : -1;
-            Debug.Log(_touchSide.value);
             _touchEventDispatcher.Dispatch();
             _touchSide.value = 0;
 
