@@ -53,10 +53,26 @@ namespace UI {
             _fader.FadeOut();
         }
 
+        public void LoadMenu(){
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
+        }
+
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+
+        public void LoadGameplay(){
+            _fader.OnFadeOut += LoadGameplayScene;
+            _fader.FadeOut();
+            ShowGameScreen();
+        }
+
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
@@ -65,18 +81,19 @@ namespace UI {
                 yield return null;
             }
 
-            yield return new WaitForSeconds(3f);
-
             _fader.FadeIn();
         }
 
         public void ShowMenuScreen() {
+            HideAllScreens();
             _menuScreen.SetActive(true);
         }
         public void ShowGameScreen() {
+            HideAllScreens();
             _gameScreen.SetActive(true);
         }
         public void ShowLeaderboardsScreen() {
+            HideAllScreens();
             _leaderboardsScreen.SetActive(true);
         }
 
@@ -85,7 +102,5 @@ namespace UI {
             _gameScreen.SetActive(false);
             _leaderboardsScreen.SetActive(false);
         }
-
-
     }
 }
