@@ -130,6 +130,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355064936}
+  - component: {fileID: 355064939}
+  - component: {fileID: 355064938}
+  - component: {fileID: 355064937}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -151,6 +154,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &355064937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355064935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: fc8d57c0006471b12b035e89317ba08d, type: 2}
+--- !u!114 &355064938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355064935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 9d3d37848f0d8fec89c15180d7e22c35, type: 2}
+--- !u!114 &355064939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355064935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b0eec1399bbf9589932bafcbdbeb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateEventListener: {fileID: 355064938}
+  _carCollisionListener: {fileID: 355064937}
+  _carPrefab: {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
+  _spawnCooldown: 5
+  _distanceToPlayerToSpawn: 100
+  _distanceToPlayerToDestroy: 10
+  _playerPositionZ: {fileID: 11400000, guid: ff92c07c7a1b39651a3faed0a43255b4, type: 2}
+  _roadWidth: {fileID: 11400000, guid: aa28acca2a2f708dba354ca86fbd113d, type: 2}
 --- !u!1001 &510381509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,22 +279,13 @@ GameObject:
   m_Component:
   - component: {fileID: 612145892}
   - component: {fileID: 612145891}
-  - component: {fileID: 612145890}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &612145890
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612145889}
-  m_Enabled: 1
 --- !u!20 &612145891
 Camera:
   m_ObjectHideFlags: 0
@@ -255,7 +295,7 @@ Camera:
   m_GameObject: {fileID: 612145889}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -277,7 +317,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
