@@ -20,8 +20,6 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "Gameplay";
-
         private void Awake() {
             if (instance != null) {
                 Destroy(gameObject);
@@ -33,15 +31,17 @@ namespace UI {
         }
 
         public void ShowMenuScreen() {
-
+            HideAllScreens();
             _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
+            HideAllScreens();
             _gameScreen.SetActive(true);
         }
 
         public void ShowLeaderBoardScreen() {
+            HideAllScreens();
             _leaderBoardScreen.SetActive(true);
         }
 
@@ -51,8 +51,14 @@ namespace UI {
             _leaderBoardScreen.SetActive(false);
         }
 
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
+        }
+
+        public void LoadGameplay() {
+            _fader.OnFadeOut += LoadGameplayScene;
+            _fader.FadeOut();
         }
 
         private IEnumerator FadeOutAndLoadGameplay() {
@@ -62,10 +68,16 @@ namespace UI {
             _fader.FadeOut();
         }
 
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
@@ -73,8 +85,6 @@ namespace UI {
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3f);
 
             _fader.FadeIn();
         }
