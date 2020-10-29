@@ -4,35 +4,35 @@ using UnityEngine;
 
 namespace Events {
 
-    [CreateAssetMenu (fileName = "Event", menuName = "Events/Event")]
+    [CreateAssetMenu(fileName = "Event", menuName = "Events/Event")]
     public class ScriptableEvent : ScriptableObject {
 
         private List<Action> _listeners;
 
-        public void AddListener (Action action) {
+        public void AddListener(Action action) {
             if (_listeners == null) {
-                _listeners = new List<Action> ();
+                _listeners = new List<Action>();
             }
 
-            if (_listeners.IndexOf (action) == -1) {
-                _listeners.Add (action);
+            if (_listeners.IndexOf(action) == -1) {
+                _listeners.Add(action);
             }
         }
 
-        public void RemoveListener (Action action) {
-            if (_listeners == null || _listeners.IndexOf (action) == -1) {
+        public void RemoveListener(Action action) {
+            if (_listeners == null || _listeners.IndexOf(action) == -1) {
                 return;
             }
 
-            _listeners.Remove (action);
+            _listeners.Remove(action);
         }
 
-        public void Dispatch () {
+        public void Dispatch() {
             if (_listeners == null) {
                 return;
             }
-            for (int i = 0; i < _listeners.Count; i++) {
-                _listeners[i] ();
+            for (int i = _listeners.Count - 1; i > -1; i--) {
+                _listeners[i]();
             }
         }
     }
