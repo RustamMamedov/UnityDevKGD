@@ -414,7 +414,8 @@ GameObject:
   - component: {fileID: 2823531392739156344}
   - component: {fileID: 1865577104776083687}
   - component: {fileID: 3777699865633995234}
-  - component: {fileID: 332383984349841803}
+  - component: {fileID: 5279059214908726885}
+  - component: {fileID: 154794948093456167}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Player
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 212c4678cda865f4bb892d01b99b7e6a, type: 2}
---- !u!114 &332383984349841803
+--- !u!114 &5279059214908726885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -552,9 +553,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6661e845c039e441cb3750852f062a83, type: 3}
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: c097335962a69974db88816a1b2ddf09, type: 2}
+--- !u!114 &154794948093456167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1965f67fb96752848aab984e5e9e1f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: 96f80fe0c5abd934e974eb0789bebf55, type: 2}
   _updateEventListener: {fileID: 1865577104776083687}
   _carCollisionEventListener: {fileID: 3777699865633995234}
+  _touchEventListener: {fileID: 5279059214908726885}
+  _touchSide: {fileID: 11400000, guid: d5ef1d26013b11d4cbd9084884e15723, type: 2}

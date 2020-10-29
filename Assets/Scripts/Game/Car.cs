@@ -6,7 +6,7 @@ namespace Game {
     public class Car : MonoBehaviour {
 
         [SerializeField]
-        private CarSettings _carSettings;
+        protected CarSettings _carSettings;
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -36,7 +36,7 @@ namespace Game {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
