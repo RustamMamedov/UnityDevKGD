@@ -42,9 +42,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            Debug.Log("CarCollision");
-            // Commented for debug
-            //UnsubscribeToEvents();
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {
