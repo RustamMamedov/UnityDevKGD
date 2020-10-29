@@ -444,6 +444,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1707484533}
+  - component: {fileID: 1707484534}
+  - component: {fileID: 1707484536}
+  - component: {fileID: 1707484535}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -465,6 +468,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707484534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707484532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babf4064078f1714bbc2b3d4ce7444aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateEventListener: {fileID: 1707484536}
+  _carCollisionListener: {fileID: 1707484535}
+  _carPrefab: {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
+  _playerPositionZ: {fileID: 11400000, guid: 255e626d40c95d94eb3e0ba7797342a4, type: 2}
+  _roadWidth: {fileID: 11400000, guid: cf56178cdad1b904c95d7c2d0c061c7d, type: 2}
+  _spawnCooldown: 3
+  _distanceToPlayerToSpawn: 100
+  _distanceToPlayerToDestroy: 10
+--- !u!114 &1707484535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707484532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 212c4678cda865f4bb892d01b99b7e6a, type: 2}
+--- !u!114 &1707484536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707484532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
 --- !u!1001 &1762714047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -603,6 +652,12 @@ PrefabInstance:
     - target: {fileID: 154794948093456167, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
       propertyPath: _playerPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 255e626d40c95d94eb3e0ba7797342a4,
+        type: 2}
+    - target: {fileID: 154794948093456167, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: _playerPositionZ
       value: 
       objectReference: {fileID: 11400000, guid: 255e626d40c95d94eb3e0ba7797342a4,
         type: 2}
