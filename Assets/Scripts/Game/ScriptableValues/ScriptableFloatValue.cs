@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "ScriptableFloatValue")]
-public class ScriptableFloatValue : ScriptableObject
+namespace Game
 {
-    public float value;
+    [CreateAssetMenu(fileName = "ScriptableFloatValue")]
+    public class ScriptableFloatValue : ScriptableObject
+    {
+        public float value;
+    }
 }

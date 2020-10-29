@@ -6,7 +6,7 @@ namespace Game {
     public class Car : MonoBehaviour {
         #region 1
         [SerializeField]
-        private CarSettings _carSettings;
+        protected CarSettings _carSettings;
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -17,17 +17,17 @@ namespace Game {
         protected float _currentSpeed;
         #endregion 1
         #region 3
-        protected virtual void OnEnable()
+        private void OnEnable()
         {
             SubscribeToEvents();
         }
-        protected virtual void OnDisable()
+        private void OnDisable()
         {
             UnsubscribeToEvents();
         }
         #endregion 3
         #region 2
-        private void SubscribeToEvents()
+        protected virtual void SubscribeToEvents()
         {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
