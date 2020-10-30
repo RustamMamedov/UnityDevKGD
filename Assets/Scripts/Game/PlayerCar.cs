@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -47,6 +48,11 @@ namespace Game {
         {
             base.Move();
             _playerPositionZ.value = transform.position.z;
+        }
+
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            UIManager.Instance.ShowLeaderboardsScreen();
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
