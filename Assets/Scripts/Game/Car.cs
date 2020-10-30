@@ -25,12 +25,12 @@ namespace Game {
 
         protected virtual void SubcribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehavior;
-            _carCollisionEventListener.OnEventHappened += UpdateBehavior;
+            _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
 
         protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehavior;
-            _carCollisionEventListener.OnEventHappened -= UpdateBehavior;
+            _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
         private void OnCarCollision() {
