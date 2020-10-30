@@ -9,6 +9,9 @@ namespace Game
     public class PlayerCar : Car
     {
         [SerializeField]
+        private ScriptableIntValue _currentScore;
+
+        [SerializeField]
         private EventListener _touchEventListener;
 
         [SerializeField]
@@ -27,6 +30,7 @@ namespace Game
         private bool _inDodge;
         protected override void SubscribeToEvents()
         {
+            _currentScore.value = 0;
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
         }

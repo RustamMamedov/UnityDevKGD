@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Events;
 using Game;
 
@@ -8,6 +9,9 @@ namespace UI
 {
     public class ScoreView : MonoBehaviour
     {
+        [SerializeField]
+        private Text _scores;
+
         [SerializeField]
         private ScriptableIntValue CurrentScore;
         
@@ -32,7 +36,7 @@ namespace UI
             while (_currentScore < CurrentScore.value)
             {
                 _currentScore++;
-                Debug.Log(_currentScore);
+                _scores.text = _currentScore.ToString();
                 yield return new WaitForSeconds(0.1f);
             }
         }

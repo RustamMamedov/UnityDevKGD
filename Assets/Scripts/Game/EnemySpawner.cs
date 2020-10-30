@@ -31,7 +31,22 @@ namespace Game
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _playerLength;
+
+        [SerializeField]
+        private List<ScriptableFloatValue> _enemiesLength=new List<ScriptableFloatValue>();
+
+        [SerializeField]
+        private List<CarSettings> _enemiesScores=new List<CarSettings>();
+
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
+
+        private List<int> _enemiesSettings=new List<int>();
+        private int _numberOfPrefab; 
         private float _currentTimer;
+        private bool _dodged;
         private List<GameObject> _cars = new List<GameObject>();
         private void OnEnable()
         {
@@ -66,13 +81,21 @@ namespace Game
         {
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefab[Random.Range(0,3)],position,Quaternion.Euler(0f,180f,0f));
+            _numberOfPrefab = Random.Range(0, 3);
+            var car = Instantiate(_carPrefab[_numberOfPrefab],position,Quaternion.Euler(0f,180f,0f));
             _cars.Add(car);
+            _dodged = true;
+            _enemiesSettings.Add(_numberOfPrefab);
         }
         private void HandleCarsBehindPlayer()
         {
-            for(int i = _cars.Count-1; i > -1; i--)
+            for (int i = _cars.Count - 1; i > -1; i--)
             {
+                if ((Mathf.Abs(_playerPositionZ.value - _playerLength.value / 2 - _cars[i].transform.position.z + _enemiesLength[_enemiesSettings[i]].value / 2) < 1f)&&(_dodged))
+                {
+                    _currentScore.value += _enemiesScores[_enemiesSettings[i]].dodgeScore;
+                    _dodged = false;
+                }
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy)
                 {
                     Destroy(_cars[i]);
