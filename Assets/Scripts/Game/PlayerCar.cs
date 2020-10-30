@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UI;
 
 namespace Game
 {
@@ -33,6 +34,8 @@ namespace Game
         {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            UIManager.Instance.ShowLeaderboardsScreen();
+
         }
         protected override void Move()
         {

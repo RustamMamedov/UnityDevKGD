@@ -8,15 +8,17 @@ namespace UI
 {
     public class ScoreView : MonoBehaviour
     {
+        [SerializeField]
+        private ScriptableIntValue CurrentScore;
+        
+        [SerializeField]
+        private EventListener _update;
+
+        private int _currentScore;
         private void Awake()
         {
             _update.OnEventHappened += UpdateBehaviour;
         }
-        [SerializeField]
-        private ScriptableIntValue CurrentScore;
-        private int _currentScore;
-        [SerializeField]
-        private EventListener _update;
         public void UpdateBehaviour()
         {
             if (_currentScore != CurrentScore.value)
@@ -24,6 +26,7 @@ namespace UI
                 StartCoroutine(SetScoreCoroutine());
             }
         }
+        
         public IEnumerator SetScoreCoroutine()
         {
             while (_currentScore < CurrentScore.value)

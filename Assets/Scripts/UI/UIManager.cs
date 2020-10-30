@@ -34,9 +34,9 @@ namespace UI {
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
+        
         public void LoadGameplay()
         {
-
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
@@ -77,8 +77,8 @@ namespace UI {
 
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
-            _menuScreen.SetActive(false);
-            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardScreen.SetActive(false);
         }
     }
 }
