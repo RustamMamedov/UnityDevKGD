@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &359112590
+--- !u!1001 &680659255
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -330,11 +330,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Leaderboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 6960845116587917458, guid: 4c2735f0302e61b46b5e619fcbda2682,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7264819382372558533, guid: 4c2735f0302e61b46b5e619fcbda2682,
         type: 3}
@@ -563,17 +558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c2735f0302e61b46b5e619fcbda2682, type: 3}
---- !u!224 &359112591 stripped
+--- !u!224 &680659256 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445153789880750977, guid: 4c2735f0302e61b46b5e619fcbda2682,
     type: 3}
-  m_PrefabInstance: {fileID: 359112590}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &415463968 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6960845116587917458, guid: 4c2735f0302e61b46b5e619fcbda2682,
-    type: 3}
-  m_PrefabInstance: {fileID: 359112590}
+  m_PrefabInstance: {fileID: 680659255}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &870962474 stripped
 RectTransform:
@@ -635,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuScreen: {fileID: 1187660523}
   _gameScreen: {fileID: 71461558}
-  _leaderBoardScreen: {fileID: 415463968}
+  _leaderBoardScreen: {fileID: 1381028886}
   _fader: {fileID: 1498876156}
 --- !u!1 &1171797069
 GameObject:
@@ -739,6 +728,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playButton: {fileID: 346031564}
+--- !u!1 &1381028886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6960845116587917458, guid: 4c2735f0302e61b46b5e619fcbda2682,
+    type: 3}
+  m_PrefabInstance: {fileID: 680659255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1498876156 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3087506981038757322, guid: a54e65444f4e72347a8b43ab2fd875d3,
@@ -789,7 +784,7 @@ RectTransform:
   m_Children:
   - {fileID: 996013351}
   - {fileID: 870962474}
-  - {fileID: 359112591}
+  - {fileID: 680659256}
   - {fileID: 1516180812}
   m_Father: {fileID: 1034868125}
   m_RootOrder: 1
