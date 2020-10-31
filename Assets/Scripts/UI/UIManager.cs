@@ -3,55 +3,60 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI {
-    
+
     public class UIManager : MonoBehaviour {
 
-        [SerializeField] 
-        private GameObject _menuScreen;
-        
-        [SerializeField] 
-        private GameObject _gameScreen;
-        
-        [SerializeField] 
-        private GameObject _leaderboardsScreen;
-        
         public static UIManager Instance;
-        
+
         [SerializeField]
         private Fader _fader;
-        
-        private string _currentSceneName = "Gameplay";
+
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardScreen;
 
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
             }
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        private void Start() {
-           
+
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
-        }
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
+
+        public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
+
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
         }
+
         private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-            yield return new WaitForSeconds(3f);
             _fader.FadeIn();
         }
 
@@ -59,21 +64,21 @@ namespace UI {
             HideAllScreens();
             _menuScreen.SetActive(true);
         }
-        
+
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
         }
-        
-        public void ShowLeaderboardsScreen() {
+
+        public void ShowLeaderboardScreen() {
             HideAllScreens();
-            _leaderboardsScreen.SetActive(true);
+            _leaderboardScreen.SetActive(true);
         }
-        
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
-            _leaderboardsScreen.SetActive(false);
+            _leaderboardScreen.SetActive(false);
         }
     }
 }
