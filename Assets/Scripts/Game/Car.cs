@@ -21,21 +21,31 @@ namespace Game {
         private float _currentSpeed;
 
 
+        // Properties.
+
+        public CarSettings CarSettings => _carSettings;
+        public float CurrentSpeed => _currentSpeed;
+
+
         // Life cycle.
 
-        private void Awake() {
+        private void OnEnable() {
             SubscribeToEvents();
+        }
+
+        private void OnDisable() {
+            UnsubscribeFromEvents();
         }
 
 
         // Event handling.
 
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
         }
 
-        private void UnsubscribeFromEvents() {
+        protected virtual void UnsubscribeFromEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
         }
@@ -52,7 +62,7 @@ namespace Game {
 
         // Supportive methods.
 
-        private void Move() {
+        protected virtual void Move() {
             _currentSpeed += _carSettings.acceleration * Time.deltaTime;
             _currentSpeed = Mathf.Min(_currentSpeed, _carSettings.maxSpeed);
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
