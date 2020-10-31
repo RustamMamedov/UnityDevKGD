@@ -449,6 +449,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268269176}
   m_CullTransparentMesh: 0
+--- !u!114 &438635249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5714227818007191126, guid: 13764773aa435f25689e899e3b06aac5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5714227818018561228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &504847411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1593,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5714227817574665137, guid: 13764773aa435f25689e899e3b06aac5,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonText
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714227817574665139, guid: 13764773aa435f25689e899e3b06aac5,
+        type: 3}
+      propertyPath: m_Text
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 5714227817576329596, guid: 13764773aa435f25689e899e3b06aac5,
         type: 3}
       propertyPath: m_Layer
@@ -1729,6 +1751,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5714227818018561228}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5714227818018561230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5714227818018561229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdbecd57829300dfbb671f57dd1ccf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startGameButton: {fileID: 438635249}
 --- !u!1001 &6275140569192276248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1744,7 +1779,7 @@ PrefabInstance:
     - target: {fileID: 6275140570019287330, guid: d2f502cd87120e90e902dd1a92d4b23e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6275140570019287330, guid: d2f502cd87120e90e902dd1a92d4b23e,
         type: 3}
@@ -1864,12 +1899,12 @@ PrefabInstance:
     - target: {fileID: 6275140570019287335, guid: d2f502cd87120e90e902dd1a92d4b23e,
         type: 3}
       propertyPath: m_Interactable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6275140570019287335, guid: d2f502cd87120e90e902dd1a92d4b23e,
         type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6275140570019287384, guid: d2f502cd87120e90e902dd1a92d4b23e,
         type: 3}
