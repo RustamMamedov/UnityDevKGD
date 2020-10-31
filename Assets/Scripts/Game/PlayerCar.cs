@@ -19,6 +19,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _playerPositionZ;
+
         private int _currentRoad;
         private bool _inDodge;
 
@@ -32,6 +35,10 @@ namespace Game {
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
 
+        protected override void Move() {
+            base.Move();
+            _playerPositionZ.value = transform.position.z;
+        }
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
             var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
