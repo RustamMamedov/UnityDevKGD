@@ -7,13 +7,12 @@ namespace Game {
     public class Car : MonoBehaviour {
 
         [SerializeField]
-        protected CarSettings _carSettings;
-
-        [SerializeField]
         private EventListener _updateEventListener;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+        public CarSettings carSettings;
 
         protected float _currentSpeed;
 
@@ -26,8 +25,8 @@ namespace Game {
         }
 
         protected virtual void Move() {
-            if (_currentSpeed < _carSettings.maxSpeed) {
-                _currentSpeed += _carSettings.acceleration;
+            if (_currentSpeed < carSettings.maxSpeed) {
+                _currentSpeed += carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
