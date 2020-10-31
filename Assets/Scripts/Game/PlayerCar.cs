@@ -10,6 +10,9 @@ namespace Game {
         private EventListener _touchEventListener;
 
         [SerializeField]
+        private EventListener _dodgeEventListener;
+
+        [SerializeField]
         private ScriptableIntValue _touchSide;
 
         [SerializeField]
@@ -17,6 +20,12 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
+
+        [SerializeField]
+        private RewardHandle _rewardHandler;
+
+        [SerializeField]
+        private Cars _dodgedCars;
 
         [SerializeField]
         private float _dodgeDuration;
@@ -36,11 +45,13 @@ namespace Game {
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
+            _dodgeEventListener.OnEventHappened += OnCarDodged;
         }
 
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            _dodgeEventListener.OnEventHappened -= OnCarDodged;
         }
 
         protected override void Move() {
@@ -72,13 +83,17 @@ namespace Game {
 
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
-            var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
+            var canDodge = !_inDodge && _currentSpeed >= carSettings.maxSpeed && nextRoad != _currentRoad;
 
             if (!canDodge) {
                 return;
             }
 
             StartCoroutine(DodgeCoroutine(nextRoad));
+        }
+
+        private void OnCarDodged() {
+            _rewardHandler.GetPointsForCar(_dodgedCars.carsList[0]);
         }
     }
 }
