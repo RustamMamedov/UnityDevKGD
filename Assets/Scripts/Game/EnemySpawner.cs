@@ -13,7 +13,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
-        private List<GameObject> _carPrefabs;
+        private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
         private float _spawnCooldown;
