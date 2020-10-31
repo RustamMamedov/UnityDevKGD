@@ -36,7 +36,9 @@ namespace Events {
                 return;
             }
 
-            foreach (var listener in _listeners) {
+            // It should be more effective just to go through listeners using integer index,
+            // but I wanna try this, more dogmatic though costly approach.
+            foreach (var listener in _listeners.ToArray()) {
                 listener.Invoke();
             }
 
