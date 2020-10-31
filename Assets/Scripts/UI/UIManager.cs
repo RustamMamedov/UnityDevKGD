@@ -21,8 +21,6 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderBoardScreen;
 
-        private string _currentSceneName = "Gameplay";
-
         private void Awake() {
             
             if (Instance != null) {
@@ -35,11 +33,16 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        
-
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
+
+        public void LoadGameplay() {
+            _fader.OnFadeOut += LoadGameplayScene;
+            _fader.FadeOut();
+        }
+        
 
         private IEnumerator FadeOutAndLoadGameplay() {
             yield return new WaitForSeconds(3f);
@@ -50,19 +53,29 @@ namespace UI {
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadGameplaySceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
+        }
+
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+            
         }
 
         public void ShowMenuScreen() {
+            HideAllScreens();
             _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
+            HideAllScreens();
             _gameScreen.SetActive(true);
         }
 
         public void ShowLeaderboardScreen() {
+            HideAllScreens();
             _leaderBoardScreen.SetActive(true);
         }
 
@@ -72,7 +85,7 @@ namespace UI {
             _leaderBoardScreen.SetActive(false);
         }
 
-        private IEnumerator LoadGameplaySceneCoroutine(string sceneName) {
+        private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
             while (!asyncOperation.isDone) {
