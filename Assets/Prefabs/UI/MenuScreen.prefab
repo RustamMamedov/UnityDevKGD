@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5714227817574665138}
   - component: {fileID: 5714227817574665036}
   - component: {fileID: 5714227817574665139}
-  m_Layer: 0
-  m_Name: Text
+  m_Layer: 5
+  m_Name: ButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Play
 --- !u!1 &5714227817576329596
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5714227817576329597}
   - component: {fileID: 5714227817576329599}
   - component: {fileID: 5714227817576329598}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 5714227817818343631}
   - component: {fileID: 5714227817818343625}
   - component: {fileID: 5714227817818343624}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameNameLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 5714227817925716520}
   - component: {fileID: 5714227817925716522}
   - component: {fileID: 5714227817925716521}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 5714227818007191120}
   - component: {fileID: 5714227818007191127}
   - component: {fileID: 5714227818007191126}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5714227818513855282}
-  m_Layer: 0
+  - component: {fileID: 5714227818018561230}
+  m_Layer: 5
   m_Name: MenuScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,3 +463,16 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5714227818018561230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5714227818513855281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdbecd57829300dfbb671f57dd1ccf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startGameButton: {fileID: 5714227818007191126}
