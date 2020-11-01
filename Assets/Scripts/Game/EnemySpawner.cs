@@ -33,6 +33,9 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
+        private ScriptableFloatValue _playerPositionX;
+
+        [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
         private float _currentTimer = 0f;
@@ -62,6 +65,7 @@ namespace Game {
         }
 
         private void UpdateBehaviour() {
+            DodgeCheck();
             HandleCarsBehindPlayer();
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
@@ -80,10 +84,18 @@ namespace Game {
             _dodgedCar.currentCar = car.gameObject;
         }
 
+        private void DodgeCheck() {
+            if(_dodgedCar.currentCar == null) {
+                return;
+            }
+            if(Mathf.Abs(_dodgedCar.currentCar.transform.position.z - _playerPositionZ.value) < 10f && Mathf.Abs(_dodgedCar.currentCar.transform.position.x - _playerPositionX.value) < 3f) {
+                _carDodgeDispatcher.Dispatch();
+            }
+        }
+
         private void HandleCarsBehindPlayer() {
             for(int i = _cars.Count - 1; i > -1; i--) {
                 if(_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    _carDodgeDispatcher.Dispatch();
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
                 }
