@@ -3,21 +3,30 @@ using Events;
 using System.Collections.Generic;
 
 namespace Game {
+    
     public class EmenySpawner : MonoBehaviour {
+        
         [SerializeField]
         private EventListener _updateEventListener;
+        
         [SerializeField]
         private EventListener _carCollisionListener;
+        
         [SerializeField]
         private List<GameObject> _carsPrefab = new List<GameObject>();
+        
         [SerializeField]
         private float _spawnCooldown;
+        
         [SerializeField]
         private float _distanceToPlayerToSpawn;
+        
         [SerializeField]
         private float _distanceToPlayerToDestroy;
+        
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
+        
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
