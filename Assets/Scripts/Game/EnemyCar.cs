@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -13,6 +14,7 @@ namespace Game {
             if (other.CompareTag("Player")) {
                 _carTriggerEventDispatcher.Dispatch();
                 Debug.Log("Collision with " + transform.name);
+                UIManager.Instance.ShowLeaderboardScreen();
             }
         }
 		
