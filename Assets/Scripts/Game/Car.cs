@@ -30,18 +30,18 @@ namespace Game {
 
 #region 2
         protected virtual void SubscribeToEvent() {
-            _updateEventListeners.OnEventHappened += UpdateBehavior;
+            _updateEventListeners.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
         protected virtual void UnsubscribeToEvent() {
-            _updateEventListeners.OnEventHappened -= UpdateBehavior;
+            _updateEventListeners.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
         private void OnCarCollision() {
             //UnsubscribeToEvent();
             Debug.Log("CarCollision");
         }
-        private void UpdateBehavior() {
+        private void UpdateBehaviour() {
             Move();
         }
 #endregion 2

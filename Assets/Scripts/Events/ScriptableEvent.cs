@@ -14,7 +14,6 @@ namespace Events{
             }
 
             if (_listeners.IndexOf(action) == -1){
-
                 _listeners.Add(action);
             }
 
@@ -30,7 +29,7 @@ namespace Events{
 
         public void Dispatch() {
             if (_listeners != null) {
-                for (int i = 0; i < _listeners.Count; i++) {
+                for (int i = _listeners.Count - 1; i > -1; i--) {
                     _listeners[i]();
                 }
             }
