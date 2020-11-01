@@ -22,20 +22,18 @@ namespace UI {
         private void UpdateBehaviour() {
             var touchPosition = Vector2.zero;
 #if UNITY_EDITOR
-
-#else
-
-#endif
             if (!Input.GetMouseButtonDown(0)) {
                 return;
             }
             touchPosition = Input.mousePosition;
-            
+#else
             if (Input.touchCount < 1) {
                 return;
             }
             touchPosition = Input.touches[0].position;
-            
+#endif
+
+
 
             _touchSide.value = touchPosition.x > Screen.width * .5f ? 1 : -1;
             _touchEventDispatcher.Dispatch();
