@@ -9,7 +9,7 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionListener;
         [SerializeField]
-        private GameObject _carPrefab;
+        private List<GameObject> _carsPrefab = new List<GameObject>();
         [SerializeField]
         private float _spawnCooldown;
         [SerializeField]
@@ -60,9 +60,20 @@ namespace Game {
         private void SpawnCar() {
             
             var randomRoad = Random.Range(-1, 2);
-            var position = new Vector3((float)randomRoad*_roadWidth.value,0f,_playerPositionZ.value+_distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefab,position,Quaternion.Euler(0f,180f,0f));
+            var position = new Vector3((float)randomRoad*_roadWidth.value,0f,_playerPositionZ.value+_distanceToPlayerToSpawn+Random.Range(-_distanceToPlayerToSpawn*0.4f, _distanceToPlayerToSpawn * 0.4f));
+            var car = Instantiate(_carsPrefab[Random.Range(0, _carsPrefab.Count)], position,Quaternion.Euler(0f,180f,0f));
             _cars.Add(car);
+            //это не для задания но прикольно когда так)
+            /*
+            if (Random.Range(0, 2) % 2 == 0) {
+                int randomRoad2;
+                do {
+                    randomRoad2 = Random.Range(-1, 2);
+                } while (randomRoad == randomRoad2);
+                var position2 = new Vector3((float)randomRoad2 * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn + Random.Range(-_distanceToPlayerToSpawn * 0.4f, _distanceToPlayerToSpawn * 0.4f));
+                var car2 = Instantiate(_carsPrefab[Random.Range(0, _carsPrefab.Count)], position2, Quaternion.Euler(0f, 180f, 0f));
+                _cars.Add(car2);
+            }*/
         }
 
         private void HandleCarsBehindPlayer() {
