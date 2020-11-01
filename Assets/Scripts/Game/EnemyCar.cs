@@ -1,22 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Game;
+﻿using UnityEngine;
 using Events;
 
 namespace Game {
     public class EnemyCar : Car {
         [SerializeField]
-        private EventDispatcher _carTrigerEventDispatcher;
+        private EventDispatcher _carTriggerEventDispatcher;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                _carTrigerEventDispatcher.Dispatch();
+                _carTriggerEventDispatcher.Dispatch();
                 Debug.Log("CarCollision with " + transform.name);
             }
-        }
-        protected override void Move() {
-          
         }
     }
 }

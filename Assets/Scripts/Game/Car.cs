@@ -1,7 +1,5 @@
 ﻿using Events;
 using UnityEngine;
-using Game;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace Game {
 
@@ -14,7 +12,7 @@ namespace Game {
         private EventListener _updateEventListener;
 
         [SerializeField]
-        private EventListener _carCollisionEvenetListener;
+        private EventListener _carCollisionEventListener;
 
         protected float _currentSpeed;
         #endregion 1
@@ -22,12 +20,12 @@ namespace Game {
         #region 2
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
-            _carCollisionEvenetListener.OnEventHappened += OnCarCollision;
+            _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
 
         protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
-            _carCollisionEvenetListener.OnEventHappened -= OnCarCollision;
+            _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
         private void OnCarCollision() {
