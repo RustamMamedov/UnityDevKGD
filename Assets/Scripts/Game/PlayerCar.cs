@@ -4,10 +4,11 @@ using UnityEngine;
 using Events;
 
 namespace Game {
+
     public class PlayerCar : Car {
 
         [SerializeField]
-        private EventListener _touchEventListner;
+        private EventListener _touchEventListener;
 
         [SerializeField]
         private ScriptableIntValue _touchSide;
@@ -18,23 +19,26 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _playerPositionZ;
+
         private int _currentRoad;
-
         private bool _inDodge;
-
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
-            _touchEventListner.OnEventHappened += OnPlayerTouch;
+            _touchEventListener.OnEventHappened += OnPlayerTouch;
         }
-
 
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
-            _touchEventListner.OnEventHappened -= OnPlayerTouch;
-
+            _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
 
+        protected override void Move() {
+            base.Move();
+            _playerPositionZ.value = transform.position.z;
+        }
 
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
@@ -53,11 +57,9 @@ namespace Game {
                 yield return null;
                 timer += Time.deltaTime;
                 transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime);
-
             }
             _inDodge = false;
             _currentRoad = nextRoad;
         }
-
     }
 }
