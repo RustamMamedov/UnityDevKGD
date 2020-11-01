@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UI;
 
 namespace Game {
     public class Car : MonoBehaviour {
@@ -38,6 +39,7 @@ namespace Game {
 
         private void OnCarCollision() {
             UnsubscribeToEvents();
+            UIManager.Instance.LoadLeaderBoard();
             //Debug.Log("CarCollision");
         }
         #endregion region2

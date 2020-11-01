@@ -37,17 +37,14 @@ namespace UI {
             _fader.FedeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(1f);
-
-            _fader.OnFadeOut += LoadGameplayScene;
-            _fader.FedeOut();
-        }
-
         private void LoadGameplayScene() {
             _fader.OnFadeOut-=LoadGameplayScene;
             StartCoroutine(LoadGameplaySceneCoroutine("GamePlay"));
             ShowGameScreen();
+        }
+
+        public void LoadLeaderBoard() {
+            ShowLeaderboardsScreen();
         }
 
         private IEnumerator LoadGameplaySceneCoroutine(string SceneName) {
