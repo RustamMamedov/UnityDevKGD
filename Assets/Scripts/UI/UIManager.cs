@@ -47,7 +47,7 @@ namespace UI {
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine("Gamplay"));
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
         }
 
