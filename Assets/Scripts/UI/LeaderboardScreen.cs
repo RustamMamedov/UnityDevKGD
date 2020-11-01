@@ -16,7 +16,7 @@ namespace UI {
         }
 
         private void OnMenuButtonClick() {
-            _uIManager.LoadGameplay();
+            _uIManager.LoadMenu();
         }
 
 
