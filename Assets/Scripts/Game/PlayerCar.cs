@@ -26,6 +26,9 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
+        private ScriptableFloatValue _playerPositionX;
+
+        [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
         [SerializeField]
@@ -33,6 +36,7 @@ namespace Game {
 
         private int _currentRoad;
         private bool _inDodge;
+        private bool _canReward = true;
 
         protected override void SubScribeToEvents() {
             base.SubScribeToEvents();
@@ -52,7 +56,9 @@ namespace Game {
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
-            
+            _playerPositionX.value = transform.position.x;
+
+
         }
 
         protected override void OnCarCollision() {
@@ -67,13 +73,22 @@ namespace Game {
             if (!canDodge) {
                 return;
             }
-            
             StartCoroutine(DodgeCoroutine(nextRoad));
-
         }
 
         private void OnCarDodged() {
-            _dodgeRewarder.SetScorePoints(_dodgedCar);
+            if (_canReward && _inDodge) {
+                _dodgeRewarder.SetScorePoints(_dodgedCar);
+                StartCoroutine(RewardCoolDown());
+            }
+            
+
+        }
+
+        private IEnumerator RewardCoolDown() {
+            _canReward = false;
+            yield return new WaitForSeconds(1f);
+            _canReward = true;
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
@@ -85,7 +100,6 @@ namespace Game {
                 timer += Time.deltaTime;
                 transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime);
             }
-
             _inDodge = false;
             _currentRoad = nextRoad;
         }
