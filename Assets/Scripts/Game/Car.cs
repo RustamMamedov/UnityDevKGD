@@ -24,18 +24,18 @@ namespace Game {
         #endregion  1
 
         #region  3
-        protected virtual void OnEnable() {
+        private void OnEnable() {
             SubscribeToEvents();
         }
 
-        protected virtual void OnDisable() {
+        private void OnDisable() {
             UnsubscribeToEvents();
         }
 
         #endregion  3
 
         #region  2
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappend += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappend += OnCarCollision;
         }
@@ -46,7 +46,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            //UnsubscribeToEvents();
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {
