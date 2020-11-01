@@ -51,7 +51,7 @@ namespace Game {
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
-            var offsetPerFrameX = _roadWidth.value / _dodgeDuration * (_touchSide.value > 0 ? 1 : -1);
+            var offsetPerFrameX = _roadWidth.value / _dodgeDuration * (nextRoad > _currentRoad ? 1 : -1);
             while (timer < _dodgeDuration) {
                 yield return null;
                 timer += Time.deltaTime;

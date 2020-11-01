@@ -52,7 +52,7 @@ namespace Game {
             _carCollisionListener.OnEventHappened -= OnCarCollision;
         }
         private void OnCarCollision() {
-
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {

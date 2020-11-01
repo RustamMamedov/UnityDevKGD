@@ -51,13 +51,6 @@ namespace UI {
             ShowGameScreen();
         }
 
-       /* private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
-
-            _fader.OnFadeOut += LoadGameplayScene;
-            _fader.FadeOut();
-        }*/
-
         private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while(!asyncOperation.isDone) {
