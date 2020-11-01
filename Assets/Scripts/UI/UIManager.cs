@@ -32,11 +32,11 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void LoadMenu() {
+        public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
         }
 
-        private void LoadGameplay() {
+        public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
