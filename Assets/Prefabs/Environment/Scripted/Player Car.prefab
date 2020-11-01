@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 59767957}
   - component: {fileID: 59767956}
-  - component: {fileID: 59767955}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59767954}
-  m_LocalRotation: {x: 0.19389191, y: 0, z: 0, w: 0.9810229}
-  m_LocalPosition: {x: 0, y: 5.82, z: -10}
+  m_LocalRotation: {x: 0.28986716, y: 0, z: 0, w: 0.9570669}
+  m_LocalPosition: {x: 0, y: 10.21, z: -9.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 176898473953813978}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 22.36, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.7, y: 0, z: 0}
 --- !u!20 &59767956
 Camera:
   m_ObjectHideFlags: 0
@@ -41,8 +40,8 @@ Camera:
   m_GameObject: {fileID: 59767954}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -63,7 +62,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -75,14 +74,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &59767955
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59767954}
-  m_Enabled: 1
 --- !u!1 &171154743841604878
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,9 +322,10 @@ GameObject:
   - component: {fileID: 176898473953813978}
   - component: {fileID: 149401170191988580}
   - component: {fileID: 157901286312944760}
-  - component: {fileID: 8680686927150631820}
+  - component: {fileID: 7038205265773029215}
   - component: {fileID: 1157444564000218275}
   - component: {fileID: 8507447272822366527}
+  - component: {fileID: 2863075118492883088}
   - component: {fileID: 5080916760367173245}
   - component: {fileID: 2335358237928692788}
   m_Layer: 0
@@ -409,7 +401,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8680686927150631820
+--- !u!114 &7038205265773029215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,12 +410,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 171640476597284588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f54c875faf7ce04ebd016ae9b5b92c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4742feebd7875fb448dff25beb96ac3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _updateEventListener: {fileID: 1157444564000218275}
   _carCollisionListener: {fileID: 8507447272822366527}
   _carSettings: {fileID: 11400000, guid: 61576186afb141546a4e6fb9332c6119, type: 2}
+  _touchEventListener: {fileID: 2863075118492883088}
+  _touchSideValue: {fileID: 11400000, guid: 5a4b7e475bc46a944aea6340253090a1, type: 2}
+  _dodgeDuration: 0.5
+  _laneWidthValue: {fileID: 11400000, guid: 6dd616edb754d574ba78b6d26ee1a451, type: 2}
+  _playerPositionZValue: {fileID: 11400000, guid: 5a87e43d0a7d12d469b0cfd0f7853e2a,
+    type: 2}
 --- !u!114 &1157444564000218275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +448,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sampleEvent: {fileID: 11400000, guid: fc70b07189c00974489b13059566f736, type: 2}
+--- !u!114 &2863075118492883088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171640476597284588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f28e681eeb06c48891c9472e3e2844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sampleEvent: {fileID: 11400000, guid: 39f6475c955d2694b9b90d42d3dcc623, type: 2}
 --- !u!65 &5080916760367173245
 BoxCollider:
   m_ObjectHideFlags: 0
