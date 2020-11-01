@@ -327,11 +327,12 @@ GameObject:
   - component: {fileID: 7752612280413619246}
   - component: {fileID: 7752612280412849166}
   - component: {fileID: 7752612280411850446}
-  - component: {fileID: 8722424736349090652}
+  - component: {fileID: 6095859704777107224}
   - component: {fileID: 1026123044572926434}
   - component: {fileID: 5494503246680227216}
   - component: {fileID: 4006926051702236375}
   - component: {fileID: 3230350382366480444}
+  - component: {fileID: 6475733308619815592}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -404,7 +405,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8722424736349090652
+--- !u!114 &6095859704777107224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -413,12 +414,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7752612280413788174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6661e845c039e441cb3750852f062a83, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8797ffe71c4c943a54ba62a5fb3b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
   _carCollisionEventListener: {fileID: 5494503246680227216}
   _updateEventListener: {fileID: 1026123044572926434}
+  _touchEventListener: {fileID: 6475733308619815592}
+  _touchSide: {fileID: 11400000, guid: 4cc5705a498150a4ba988ea7361ca7f0, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: d7daf28bbc3810a49804ad23dccfe047, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: 486958c5d4a3dab46b780670289f590d, type: 2}
 --- !u!114 &1026123044572926434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +480,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
+--- !u!114 &6475733308619815592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752612280413788174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: f8e134e4809c8784cb4e80fea0699337, type: 2}
