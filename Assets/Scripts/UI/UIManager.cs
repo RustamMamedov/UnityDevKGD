@@ -45,12 +45,12 @@ namespace UI {
         public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
-            ShowGameScreen();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Game"));
+            ShowGameScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
