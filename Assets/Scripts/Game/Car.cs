@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Game {
+    
     public class Car : MonoBehaviour {
 
         [SerializeField]

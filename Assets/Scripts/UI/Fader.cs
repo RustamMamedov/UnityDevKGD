@@ -3,7 +3,9 @@ using System;
 using UnityEngine;
 
 namespace UI {
+    
     public class Fader : MonoBehaviour {
+    
         [SerializeField]
         private CanvasGroup _canvasGroup;
 
@@ -12,6 +14,7 @@ namespace UI {
 
         public event Action OnFadeIn = delegate { };
         public event Action OnFadeOut = delegate { };
+       
         public void FadeIn() {
             StartCoroutine(FadeInCoroutine());
             OnFadeIn();

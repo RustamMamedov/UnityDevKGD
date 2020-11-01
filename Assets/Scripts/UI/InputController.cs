@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace UI {
+    
     public class InputController : MonoBehaviour {
 
         [SerializeField]
