@@ -1,4 +1,4 @@
-﻿using Events;
+using Events;
 using UnityEngine;
 
 namespace Game { 
@@ -38,7 +38,7 @@ namespace Game {
             UnsubscribeToEvents();
         }
 
-        private void UpdateBehaviour() {
+        protected virtual void UpdateBehaviour() {
             Move();
         }
 
