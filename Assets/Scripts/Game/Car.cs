@@ -20,16 +20,16 @@ namespace Game {
         #endregion 1
 
         #region 3
-        protected virtual void OnEnable() {
+        private void OnEnable() {
             SubscribeToEvent();
         }
-        protected virtual void OnDisable() {
+        private void OnDisable() {
             UnsubscribeToEvent();
         }
         #endregion 3
 
         #region 2
-        private void SubscribeToEvent() {
+        protected virtual void SubscribeToEvent() {
             _updateEventListeners.OnEventHappened += UpdateBehavior;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }

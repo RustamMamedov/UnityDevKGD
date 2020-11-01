@@ -327,11 +327,12 @@ GameObject:
   - component: {fileID: 4526053454235962}
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
+  - component: {fileID: 8984805805955874762}
   - component: {fileID: 9174388685143145882}
-  - component: {fileID: 2247497860879142388}
   - component: {fileID: 7871030888876539874}
   - component: {fileID: 8613491876762359663}
   - component: {fileID: 2973171311620224328}
+  - component: {fileID: 4407527833903028067}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -404,6 +405,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8984805805955874762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6759737029ab73e4ca028c7b879b587d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSetting: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
+  _updateEventListeners: {fileID: 7871030888876539874}
+  _carCollisionEventListener: {fileID: 8613491876762359663}
+  _touchEventListener: {fileID: 4407527833903028067}
+  _touchSide: {fileID: 11400000, guid: 87b435b7b8f6d8b4caf0b875adc85d0e, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: b2507bf46f18f014cade96d08210eebd, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: d6f67af7443461c4dac0c4648ea5c993, type: 2}
 --- !u!65 &9174388685143145882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -417,21 +438,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
---- !u!114 &2247497860879142388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590206702830092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6661e845c039e441cb3750852f062a83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _carSetting: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
-  _updateEventListeners: {fileID: 7871030888876539874}
-  _carCollisionEventListener: {fileID: 8613491876762359663}
 --- !u!114 &7871030888876539874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +480,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4407527833903028067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 5a8fc4f3035acb846873f16bc1aa4ead, type: 2}

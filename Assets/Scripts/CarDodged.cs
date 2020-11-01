@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
+using Game;
 
 [CreateAssetMenu(fileName ="Dodge",menuName ="New Dodge")]
 public class CarDodged : ScriptableObject
