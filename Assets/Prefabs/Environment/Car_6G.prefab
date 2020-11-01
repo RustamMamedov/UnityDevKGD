@@ -328,9 +328,10 @@ GameObject:
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
   - component: {fileID: 5548997928574598011}
-  - component: {fileID: 6118258640561409111}
+  - component: {fileID: 4052534592753411951}
   - component: {fileID: 7276039685139184940}
   - component: {fileID: 8447990885298844872}
+  - component: {fileID: 3502828184165514446}
   - component: {fileID: 7591433274252996468}
   m_Layer: 0
   m_Name: Car_6G
@@ -417,7 +418,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
---- !u!114 &6118258640561409111
+--- !u!114 &4052534592753411951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,12 +427,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccb2fcaf64cf0e49a5a60e9c53a38c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b94fc62b6e6db46a7545366d30e6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: f732e8c6a83921345bb71ae097c65517, type: 2}
   _updateEventListener: {fileID: 7276039685139184940}
-  _carCollisionEventListener: {fileID: 7276039685139184940}
+  _carCollisionEventListener: {fileID: 8447990885298844872}
+  _touchEventListener: {fileID: 3502828184165514446}
+  _touchSide: {fileID: 11400000, guid: 196908adabea69c4484994b36ca61562, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: 833e3d59f960d5a41af9b24ccae3a082, type: 2}
 --- !u!114 &7276039685139184940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +463,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: a61aa61fe39ffad49b676149418eec92, type: 2}
+--- !u!114 &3502828184165514446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19095aa7c9fb5fc4da5671c2f5966762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 1be959414c7320642996de3911af6fd1, type: 2}
 --- !u!54 &7591433274252996468
 Rigidbody:
   m_ObjectHideFlags: 0
