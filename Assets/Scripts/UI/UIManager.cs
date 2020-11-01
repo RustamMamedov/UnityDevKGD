@@ -28,22 +28,13 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Start() {
-            //_fader.OnFadeIn += OnSceneFadeIn;
-            //_fader.FedeIn();
-        }
-
         public void LoadMenu() {
             
         }
 
         public void LoadGamePlay() {
-            _fader.OnFadeOut += LoadGamePlay;
+            _fader.OnFadeOut += LoadGameplayScene;
             _fader.FedeOut();
-        }
-
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
         }
 
         private IEnumerator FadeOutAndLoadGameplay() {
@@ -55,8 +46,8 @@ namespace UI {
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut-=LoadGameplayScene;
-            //StartCoroutine(LoadGameplaySceneCoroutine(_сurrentSceneName));
-            //_сurrentSceneName = "Gameplay";// _CurrentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadGameplaySceneCoroutine("GamePlay"));
+            ShowGameScreen();
         }
 
         private IEnumerator LoadGameplaySceneCoroutine(string SceneName) {
@@ -69,14 +60,17 @@ namespace UI {
             _fader.FedeIn();
         }
         public void ShowMenuScreen() {
+            HideAllScreens();
             _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
+            HideAllScreens();
             _gameScreen.SetActive(true);
         }
 
         public void ShowLeaderboardsScreen() {
+            HideAllScreens();
             _leaderBoardScreen.SetActive(true);
         }
 
