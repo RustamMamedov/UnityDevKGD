@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Game {
 
-    public class EnemyCar : Car {
+    public class EnemyCar : Car 
+    {
         [SerializeField]
         private EventDispatcher _collisionTriggerED;
 
