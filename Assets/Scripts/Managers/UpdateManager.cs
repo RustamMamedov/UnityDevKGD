@@ -2,7 +2,9 @@
 using UnityEngine;
 
 namespace Game {
+
     public class UpdateManager : MonoBehaviour {
+
         [SerializeField]
         private ScriptableEvent _updateEvent;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Game {
     public class Environment : MonoBehaviour {
+
         [SerializeField]
         private EventListener _roadCollisionEventListener;
 
