@@ -4,11 +4,11 @@ using Events;
 namespace Game {
     public class EnemyCar : Car {
         [SerializeField]
-        private EventDispatcher _carTriggerEventDispatcher;
+        private EventDispatcher _carCollisionEventDispatcher;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                _carTriggerEventDispatcher.Dispatch();
+                _carCollisionEventDispatcher.Dispatch();
                 Debug.Log("CarCollision with " + transform.name);
             }
         }
