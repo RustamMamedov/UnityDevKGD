@@ -7,8 +7,7 @@ namespace UI {
         public static UIManager Instance;
         [SerializeField]
         private Fader _fader;
-        private string _currentSceneName = "Gameplay";
-
+        
         [SerializeField]
         private GameObject _menuScreen;
 
@@ -27,40 +26,50 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
-        }
-
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
-            _fader.OnFadeOut += LoadGameplayScene;
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
+        public void LoadGamePlay() {
+            _fader.OnFadeOut += LoadGameplayScene;
+            _fader.FadeOut();
+
+        }
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("GamePlay"));
+            ShowGameScreen();
+           
         }
 
-        private IEnumerator LoadSceneCoroutine(string sceneName) {
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+
+        }       
+
+       private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-            yield return new WaitForSeconds(3f);
             _fader.FadeIn();
         }
 
         public void ShowMenuScreen() {
+            HideAllScreen();
             _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
+            HideAllScreen();
             _gameScreen.SetActive(true);
         }
 
         public void ShowLoaderboardScreen() {
+            HideAllScreen();
             _leaderboardScreen.SetActive(true);
         }
 
