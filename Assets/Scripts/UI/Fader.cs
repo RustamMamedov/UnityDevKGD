@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace UI {
-    
+
     public class Fader : MonoBehaviour {
-    
+
         [SerializeField]
         private CanvasGroup _canvasGroup;
 
@@ -14,7 +14,7 @@ namespace UI {
 
         public event Action OnFadeIn = delegate { };
         public event Action OnFadeOut = delegate { };
-       
+
         public void FadeIn() {
             StartCoroutine(FadeInCoroutine());
             OnFadeIn();
@@ -25,7 +25,7 @@ namespace UI {
         }
 
         private IEnumerator FadeInCoroutine() {
-           yield return StartCoroutine(FadeCoroutine(1f, 0f));
+            yield return StartCoroutine(FadeCoroutine(1f, 0f));
             OnFadeIn();
         }
 
@@ -37,13 +37,13 @@ namespace UI {
         private IEnumerator FadeCoroutine(float fromAlpha, float targetAlpha) {
             var timer = 0f;
             _canvasGroup.alpha = fromAlpha;
-            
+
             while (timer < _fadeTime) {
                 timer += Time.deltaTime;
-                _canvasGroup.alpha = Mathf.Lerp(_canvasGroup.alpha, targetAlpha, timer/_fadeTime);
+                _canvasGroup.alpha = Mathf.Lerp(_canvasGroup.alpha, targetAlpha, timer / _fadeTime);
                 _canvasGroup.interactable = _canvasGroup.alpha > 0;
                 yield return null;
-        }
+            }
         }
 
     }

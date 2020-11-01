@@ -1,9 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using Events;
+﻿using Events;
 using Game;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
+    
     public class PreLoaderView : MonoBehaviour {
 
         [SerializeField]
@@ -20,7 +21,7 @@ namespace UI {
         }
 
         private void OnDestroy() {
-            _updateListener.OnEventHappened -= UpdateBehavior;    
+            _updateListener.OnEventHappened -= UpdateBehavior;
         }
 
         private void UpdateBehavior() {

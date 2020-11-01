@@ -1,10 +1,10 @@
-﻿using Events;
+﻿using System.Collections;
+using Events;
 using Game;
 using UnityEngine;
-using System.Collections;
 
 namespace UI {
-    
+
     public class InputController : MonoBehaviour {
 
         [SerializeField]
@@ -39,7 +39,6 @@ namespace UI {
             }
             touchPosition = InputController.touches[0].position;
 #endif
-
 
             _touchSide.value = touchPosition.x > Screen.width * .5 ? 1 : -1;
             _touchEventDispatcher.Dispatch();

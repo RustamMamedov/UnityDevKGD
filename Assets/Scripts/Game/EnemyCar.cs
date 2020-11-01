@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Game {
 
     public class EnemyCar : Car {
-        
+
         [SerializeField]
         private EventDispatcher _carTriggerEventDispatcher;
 

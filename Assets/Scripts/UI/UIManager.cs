@@ -1,8 +1,9 @@
 ﻿using System.Collections;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI {
+
     public class UIManager : MonoBehaviour {
 
         public static UIManager Instance;
@@ -10,13 +11,13 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        [SerializeField] 
+        [SerializeField]
         private GameObject _menuScreen;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private GameObject _gameScreen;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private GameObject _leaderboardsScreen;
 
         private void Awake() {
@@ -30,7 +31,7 @@ namespace UI {
         }
 
         public void LoadMenu() {
-             _fader.OnFadeOut += LoadMenuScene;
+            _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
@@ -52,7 +53,7 @@ namespace UI {
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
-            var asincOperation  = SceneManager.LoadSceneAsync(sceneName);
+            var asincOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asincOperation.isDone) {
                 yield return null;
             }
@@ -63,17 +64,17 @@ namespace UI {
             HideAllScreens();
             _menuScreen.SetActive(true);
         }
-        
+
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
         }
-        
+
         public void ShowLeaderboardsScreen() {
             HideAllScreens();
             _leaderboardsScreen.SetActive(true);
         }
-        
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
