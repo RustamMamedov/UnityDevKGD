@@ -28,21 +28,21 @@ namespace UI {
 
         private void Awake() {
             _eventListener.OnEventHappened += UpdateBehaviour;
-            _scoreChanged = _currentScoreAsset._score;
+            _scoreChanged = _currentScoreAsset.value;
         }
 
         private void UpdateBehaviour() {
             var target =_currentScore;
 
-            if (_scoreChanged != _currentScoreAsset._score) {
+            if (_scoreChanged != _currentScoreAsset.value) {
                 _isCurrentScoreChanged = true;
-                _scoreChanged = _currentScoreAsset._score;
+                _scoreChanged = _currentScoreAsset.value;
             }
 
-            if (target < _currentScoreAsset._score && _isCurrentScoreChanged) {
+            if (target < _currentScoreAsset.value && _isCurrentScoreChanged) {
                 _isCurrentScoreChanged = false;
                 _isStartCoroutine = true;
-                target = _currentScoreAsset._score;
+                target = _currentScoreAsset.value;
             }
 
             if (_isStartCoroutine) {
@@ -59,8 +59,8 @@ namespace UI {
             while (_currentScore < target) {
                 _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
-                if (target!= _currentScoreAsset._score) {
-                    target = _currentScoreAsset._score;
+                if (target!= _currentScoreAsset.value) {
+                    target = _currentScoreAsset.value;
                 }
                 yield return new WaitForSeconds(_currentScoreDelay);
             }
