@@ -26,7 +26,6 @@ namespace UI {
         private void UpdateBehaviour() {
             if (currentScore.value > _currentScore)
                 StartCoroutine(SetScoreCoroutine(currentScore.value));
-            Debug.Log(_currentScore);
         }
 
         private IEnumerator SetScoreCoroutine(int score) {
