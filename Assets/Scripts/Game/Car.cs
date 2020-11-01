@@ -15,6 +15,10 @@ namespace Game {
 
         protected float _currentSpeed;
 
+        public CarSettings CarSettings {
+            get { return _carSettings; }
+        }
+
         private void OnEnable() {
             SubScribeToEvents();
         }
@@ -33,7 +37,7 @@ namespace Game {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
-        private void OnCarCollision() {
+        protected virtual void OnCarCollision() {
             UnSubScribeToEvents();
         }
 
