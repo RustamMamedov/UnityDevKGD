@@ -18,6 +18,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _playerPisotionZ;
+
         private int _currentRoad;
         private bool _inDodge;
         protected override void SubscribeToEvent() {   
@@ -27,6 +30,11 @@ namespace Game {
         protected override void UnsubscribeToEvent() {
             base.UnsubscribeToEvent();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+        }
+
+        protected override void Move() {
+            base.Move();
+            _playerPisotionZ.value = transform.position.z;
         }
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
