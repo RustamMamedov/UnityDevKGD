@@ -170,9 +170,10 @@ GameObject:
   - component: {fileID: 7563802773360754924}
   - component: {fileID: 7563802773360754925}
   - component: {fileID: 8438641934242332518}
-  - component: {fileID: 6212727046516506548}
+  - component: {fileID: 6846086234315000188}
   - component: {fileID: 1590196857270955535}
   - component: {fileID: 3072365071345104696}
+  - component: {fileID: 6802595881484259977}
   - component: {fileID: 9028916655976212538}
   m_Layer: 0
   m_Name: SportCar_Player
@@ -259,7 +260,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
---- !u!114 &6212727046516506548
+--- !u!114 &6846086234315000188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,12 +269,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7563802773360754927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dde5211b45eb874a9be434502fe21cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 924bb456e6adb3a42b621826ceca4b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: c92d3b6994b340d4cb3b90137e5ace44, type: 2}
   _updateEventListeners: {fileID: 1590196857270955535}
   _carCollisionEventListeners: {fileID: 3072365071345104696}
+  _touchEventListeners: {fileID: 6802595881484259977}
+  _touchSide: {fileID: 11400000, guid: e4713e633b24aa0438e4222fe6e2db59, type: 2}
+  _dodgeDurtion: 0.3
+  _roadWidth: {fileID: 11400000, guid: 966a8b68f8917684e84692261d52746f, type: 2}
+  _positionPlayeZ: {fileID: 11400000, guid: 208e864914a13f94a81922a2c0026caf, type: 2}
 --- !u!114 &1590196857270955535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +306,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 0074960c2b1a77b4a92daef69f814c91, type: 2}
+--- !u!114 &6802595881484259977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563802773360754927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb824bb7ca623cb49a6d63c5f1bb6187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: c65a20d06d663204192dae6b550faeae, type: 2}
 --- !u!54 &9028916655976212538
 Rigidbody:
   m_ObjectHideFlags: 0
