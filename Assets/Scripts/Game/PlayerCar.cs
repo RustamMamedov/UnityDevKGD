@@ -19,7 +19,7 @@ namespace Game {
         private float _dodgeDuration;
 
         [SerializeField]
-        private ScriptableFloatValue _roadWidthValue;
+        private ScriptableFloatValue _laneWidthValue;
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZValue;
@@ -71,8 +71,8 @@ namespace Game {
         }
 
         private IEnumerator MakeDodgeCoroutine(int nextRoad) {
-            float positionChangeRemained = nextRoad * _roadWidthValue.value - transform.position.x;
-            float positionChangeSpeed = _roadWidthValue.value / _dodgeDuration;
+            float positionChangeRemained = nextRoad * _laneWidthValue.value - transform.position.x;
+            float positionChangeSpeed = _laneWidthValue.value / _dodgeDuration;
             while (positionChangeRemained != 0) {
                 float positionChange = Mathf.MoveTowards(0, positionChangeRemained, positionChangeSpeed * Time.deltaTime);
                 transform.Translate(transform.right * positionChange);
