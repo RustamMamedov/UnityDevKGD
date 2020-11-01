@@ -32,12 +32,11 @@ namespace Game {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
 
-            Debug.Log("hi");
         }
 
         private void OnCarCollision() {
             Debug.Log("CarCollision");
-            // UnsubscribeToEvents();   
+            UnsubscribeToEvents();   
         }
 
         private void UpdateBehaviour() {
