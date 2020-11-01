@@ -49,6 +49,7 @@ namespace UI {
             while (_canvasGroup.alpha != targetedAlpha) {
                 _canvasGroup.alpha = Mathf.MoveTowards(_canvasGroup.alpha, targetedAlpha, alphaChangeSpeed * Time.deltaTime);
                 _canvasGroup.interactable = _canvasGroup.alpha > 0;
+                _canvasGroup.blocksRaycasts = _canvasGroup.alpha > 0;
                 yield return null;
             }
         }
