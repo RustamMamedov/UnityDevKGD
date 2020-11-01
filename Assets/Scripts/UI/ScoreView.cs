@@ -22,6 +22,7 @@ namespace UI {
         private Text _scoreLabel;
 
         private int _currentScore = 0;
+
         private bool isBusy;
 
         private void Awake() {
@@ -29,18 +30,25 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_currentScoreValue.value > _currentScore && !isBusy) {
+            if (_currentScoreValue.value != _currentScore && !isBusy) {
                 StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
         }
 
         private IEnumerator SetScoreCoroutine(int score) {
             isBusy = true;
-            while (_currentScore != score) {
-                _currentScore++;
+
+            if (_currentScore > score) {
+                _scoreLabel.text = $"{score}";
+                _currentScore = score;
+            }
+
+            while (_currentScore < score) {
+                _currentScore += PlayerCar.DodgeScore;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
+
             isBusy = false;
         }
     }

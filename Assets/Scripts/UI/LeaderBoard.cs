@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,10 @@ namespace UI {
         private Button _menuButton;
 
         private void Awake() {
-            _menuButton.onClick.AddListener(OnPlayButtonClick);
+            _menuButton.onClick.AddListener(OnMenuButtonClick);
         }
 
-        private void OnPlayButtonClick() {
+        private void OnMenuButtonClick() {
             UIManager.Instance.LoadMenu();
         }
     }

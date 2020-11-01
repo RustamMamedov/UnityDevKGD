@@ -23,6 +23,10 @@ namespace Game {
             UnsubscribeToEvents();
         }
 
+        public int GetCarDodgeScore() {
+            return _carSettings.dodgeScore;
+        }
+
         protected virtual void SubcribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehavior;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
@@ -42,7 +46,7 @@ namespace Game {
         }
 
         protected virtual void Move() {
-            if(_currentSpeed < _carSettings.maxSpeed) {
+            if (_currentSpeed < _carSettings.maxSpeed) {
                 _currentSpeed += _carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);

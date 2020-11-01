@@ -27,14 +27,14 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
-        
+
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
         private List<GameObject> _cars = new List<GameObject>();
 
         private float _currentTimer;
-        
+
         private void OnEnable() {
             SubscribeToEvents();
         }
@@ -74,6 +74,7 @@ namespace Game {
             var randomEnemy = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayer);
             var car = Instantiate(_carPrefab[randomEnemy], position, Quaternion.Euler(0f, 180f, 0f));
+            PlayerCar.DodgeScore = car.GetComponent<EnemyCar>().GetCarDodgeScore();
             _cars.Add(car);
         }
 
@@ -82,6 +83,8 @@ namespace Game {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToDestroy) {
                     Destroy(_cars[i]);
                     _cars.Remove(_cars[i]);
+                    PlayerCar.CanAddScore = true;
+                    EnemyCar.EnemyPositionZ = 0;
                 }
             }
         }

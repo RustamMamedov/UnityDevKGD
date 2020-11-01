@@ -21,9 +21,16 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
+        [SerializeField]
+        private ScriptableIntValue _score;
+
         private int _currentRoad;
 
         private bool _inDodge;
+
+        public static bool CanAddScore = true;
+
+        public static int DodgeScore;
 
         protected override void SubcribeToEvents() {
             base.SubcribeToEvents();
@@ -44,10 +51,17 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
-        protected override void Move()
-        {
+        protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
+            AddScore();
+        }
+
+        private void AddScore() {
+            if (EnemyCar.EnemyPositionZ != 0 && CanAddScore && _playerPositionZ.value > EnemyCar.EnemyPositionZ) {
+                _score.value += DodgeScore;
+                CanAddScore = false;
+            }
         }
 
         protected override void OnCarCollision() {

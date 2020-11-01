@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 262, y: 136}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8998609867293918470
@@ -543,6 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5269317438881944022}
+  - component: {fileID: 1716852669449642352}
   m_Layer: 5
   m_Name: LeaderBoard
   m_TagString: Untagged
@@ -572,6 +573,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -400, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1716852669449642352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269317438881944041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e092a244c54cf79c0019189016ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuButton: {fileID: 2177966553232625406}
+  _score: {fileID: 11400000, guid: 43a76475049f24a12938ca9168b27b27, type: 2}
 --- !u!1001 &5269317437250883678
 PrefabInstance:
   m_ObjectHideFlags: 0
