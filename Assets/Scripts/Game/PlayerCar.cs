@@ -18,6 +18,8 @@ namespace Game {
 
         [SerializeField] private ScriptableFloatValue _roadWidth;
 
+        [SerializeField] private ScriptableFloatValue _playerPositionZ;
+        
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
@@ -31,6 +33,7 @@ namespace Game {
 
         protected override void Move() {
             base.Move();
+            _playerPositionZ.value = transform.position.z;
         }
 
         private void OnPlayerTouch() {
@@ -52,10 +55,10 @@ namespace Game {
                 yield return null;
                 timer += Time.deltaTime;
                 transform.Translate(transform.right * (offsetPerFrameX * Time.deltaTime));
-
-                _inDodge = false;
-                _currentRoad = nextRoad;
             }
+
+            _inDodge = false;
+            _currentRoad = nextRoad;
         }
     }
 }
