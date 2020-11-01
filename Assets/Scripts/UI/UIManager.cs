@@ -28,8 +28,19 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
+        private void Start() {
+            ShowMenuScreen();
+        }
+
         public void LoadMenu() {
-            
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FedeOut();
+        }
+
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadGameplaySceneCoroutine("Menu"));
+            ShowMenuScreen();
         }
 
         public void LoadGamePlay() {
