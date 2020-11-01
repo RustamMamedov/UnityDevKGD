@@ -1,29 +1,30 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
-using Game;
 using Events;
+using Game;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
+
     public class ScoreView : MonoBehaviour {
+
         [SerializeField]
         private float _scoreCountDelay;
 
         [SerializeField]
-        private Text _scoreLabel;
+        private EventListener _updateEventListener;
 
         [SerializeField]
         private ScriptableIntValue _currentScoreValue;
 
         [SerializeField]
-        private EventListener _eventListener;
+        private Text _scoreLabel;
 
         private int _currentScore;
         private bool isBusy;
 
         private void Awake() {
-            _eventListener.OnEventHappened += UpdateBehaviour;
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
@@ -32,12 +33,11 @@ namespace UI {
             }
         }
 
-        private IEnumerator SetScoreCoroutine(int score) {
+        public IEnumerator SetScoreCoroutine(int score) {
             isBusy = true;
-            while (_currentScore != score){
+            while (_currentScore < score) {
                 _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
-                Debug.Log(_currentScore);
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
             isBusy = false;
