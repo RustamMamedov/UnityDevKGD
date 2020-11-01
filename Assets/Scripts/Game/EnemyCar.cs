@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UI;
 
 namespace Game {
     public class EnemyCar : Car {
@@ -13,6 +14,7 @@ namespace Game {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
                 Debug.Log("Crashed with: " + transform.name);
+                UIManager.Instance.ShowLeaderboardScreen();
             }
         }
     }
