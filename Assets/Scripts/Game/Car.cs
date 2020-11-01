@@ -22,23 +22,23 @@ namespace Game {
         
         
 #region LifeCycle
-        protected void OnEnable() {
+        private void OnEnable() {
             SubscribeToEvents();
         }
 
-        protected void OnDisable() {
+        private void OnDisable() {
             UnsubscribeToEvents();
         }
         
 #endregion
         
 #region Methods
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
         
-        private void UnsubscribeToEvents() {
+        protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }

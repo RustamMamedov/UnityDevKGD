@@ -329,9 +329,10 @@ GameObject:
   - component: {fileID: 23809032511686808}
   - component: {fileID: 1730086048720700214}
   - component: {fileID: 4239831958410109957}
-  - component: {fileID: 7485734009047770582}
+  - component: {fileID: 2758084896295435901}
   - component: {fileID: 1096855871071700472}
   - component: {fileID: 8801684445295987023}
+  - component: {fileID: -1705674908822744648}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -433,7 +434,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7485734009047770582
+--- !u!114 &2758084896295435901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -442,12 +443,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6661e845c039e441cb3750852f062a83, type: 3}
+  m_Script: {fileID: 11500000, guid: a98fd3d0750442a4d90c5f4f85d1f328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: d47bbb562bc158849ab1c2591d6fa546, type: 2}
   _updateEventListener: {fileID: 1096855871071700472}
   _carCollisionEventListener: {fileID: 8801684445295987023}
+  _touchEventListener: {fileID: -1705674908822744648}
+  _touchSide: {fileID: 11400000, guid: 178073546b30948458c026a9a4c8ee3d, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: f075e743545f731428c96a526c8c08fc, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: c129cb16965e24841a17773d1d557818, type: 2}
 --- !u!114 &1096855871071700472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +480,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 53ecb05708b887c4084c59e7bd7ec136, type: 2}
+--- !u!114 &-1705674908822744648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 6e73c6d7458b41842a799ff24aec9e77, type: 2}
