@@ -38,7 +38,7 @@ namespace Events {
                 return;
             }
 
-            for (int i = 0; i < _listeners.Count; i++) {
+            for (int i = _listeners.Count - 1; i > -1; i--) {
                 _listeners[i]();
             }
         }
