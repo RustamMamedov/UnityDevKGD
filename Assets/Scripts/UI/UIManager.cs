@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Events;
 using UnityEngine.SceneManagement;
 
 namespace UI {
@@ -20,16 +21,19 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
+        [SerializeField]
+        private EventListener _carCollisionEventListener;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
             }
 
+            _carCollisionEventListener.OnEventHappened += ShowLeaderboardScreen;
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
@@ -42,13 +46,15 @@ namespace UI {
 
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
-            StartCoroutine(LoadSceneCoroutine("Menu"));
+            StartCoroutine(LoadSceneCoroutine("S_Menu"));
+            HideAllScreens();
             ShowMenuScreen();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            StartCoroutine(LoadSceneCoroutine("S_Gameplay"));
+            HideAllScreens();
             ShowGameScreen();
         }
 
