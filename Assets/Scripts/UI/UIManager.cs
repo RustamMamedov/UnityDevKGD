@@ -19,7 +19,6 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance != null) {
@@ -31,22 +30,27 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
 
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+
+        public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
+            ShowGameScreen();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Game"));
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
@@ -54,22 +58,24 @@ namespace UI {
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3f);
-
             _fader.FadeIn();
         }
 
+#region Show\Hide
+
         public void ShowMenuScreen() {
-            _menuScreen.SetActive(!(_menuScreen.activeSelf));
+            HideAllScreens();
+            _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
-            _gameScreen.SetActive(!(_gameScreen.activeSelf));
+            HideAllScreens();
+            _gameScreen.SetActive(true);
         }
 
         public void ShowLeaderboardsScreen() {
-            _leaderboardsScreen.SetActive(!(_leaderboardsScreen.activeSelf));
+            HideAllScreens();
+            _leaderboardsScreen.SetActive(true);
         }
 
         public void HideAllScreens() {
@@ -77,5 +83,7 @@ namespace UI {
             _gameScreen.SetActive(false);
             _leaderboardsScreen.SetActive(false);
         }
+
+#endregion Show\Hide
     }
 }
