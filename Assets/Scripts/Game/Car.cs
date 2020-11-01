@@ -9,7 +9,7 @@ namespace Game {
 
         #region data
         [SerializeField]
-        private CarSettings _carSettings;
+        protected CarSettings _carSettings;
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -22,7 +22,7 @@ namespace Game {
         #endregion data
 
         #region EventMethods
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -33,8 +33,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            //UnsubscribeToEvents();
-            Debug.Log("Puck");
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {
@@ -43,10 +42,10 @@ namespace Game {
         #endregion EventMethods
 
         #region Eneble\Disable
-        protected virtual void OnEnable() {
+        private void OnEnable() {
             SubscribeToEvents();
         }
-        protected virtual void OnDisable() {
+        private void OnDisable() {
             UnsubscribeToEvents();
         }
         #endregion Eneble\Disable
