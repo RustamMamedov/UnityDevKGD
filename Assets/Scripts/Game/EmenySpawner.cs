@@ -58,6 +58,7 @@ namespace Game {
         }
 
         private void SpawnCar() {
+            
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3((float)randomRoad*_roadWidth.value,0f,_playerPositionZ.value+_distanceToPlayerToSpawn);
             var car = Instantiate(_carPrefab,position,Quaternion.Euler(0f,180f,0f));
@@ -66,9 +67,10 @@ namespace Game {
 
         private void HandleCarsBehindPlayer() {
             for (int i= _cars.Count-1; i >-1;i--) {
-                if (_playerPositionZ.value - _cars[i].transform.position.x > _distanceToPlayerToDestroy) {
+                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
+                    
                 }
             }
         }
