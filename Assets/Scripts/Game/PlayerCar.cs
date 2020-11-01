@@ -13,6 +13,8 @@ namespace Game {
         private float _dodgeDuration;
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
+        [SerializeField]
+        private ScriptableFloatValue _playerPositionZ;
         private int _currentRoad;
         private bool _inDodge;
 
@@ -32,6 +34,11 @@ namespace Game {
                 return;
             }
             StartCoroutine(DodgeCoroutine(nextRoad));
+        }
+
+        protected override void Move() {
+            base.Move();
+            _playerPositionZ.value = transform.position.z;
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
