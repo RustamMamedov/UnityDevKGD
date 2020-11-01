@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Events;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,6 +28,22 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardScreen;
+
+        [SerializeField]
+        private EventListener _carCollisionEventListener;
+
+
+        // Life cycle.
+
+        protected override void Awake() {
+            base.Awake();
+            _carCollisionEventListener.OnEventHappened += ShowLeaderboardScreen;
+        }
+
+        protected override void OnDestroy() {
+            _carCollisionEventListener.OnEventHappened -= ShowLeaderboardScreen;
+            base.OnDestroy();
+        }
 
 
         // Scene loading.
