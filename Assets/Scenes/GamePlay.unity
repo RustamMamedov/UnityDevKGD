@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 1488758741}
   - component: {fileID: 1488758743}
   - component: {fileID: 1488758742}
+  - component: {fileID: 1488758745}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -544,9 +545,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c13941600fd1947b0b99e03fd15f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dodgedCar: {fileID: 11400000, guid: 6cedac24fc2bfbd4b90716d9bd8937cd, type: 2}
   _updateEventListener: {fileID: 1488758743}
   _carCollisionListener: {fileID: 1488758742}
-  _carPrefab: {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
+  _carDodgeDispatcher: {fileID: 1488758745}
+  _carPrefabs:
+  - {fileID: 1307635527795650, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
+  - {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
+  - {fileID: 1699544679643506, guid: 416db31efad293d4da73c87b615cf55a, type: 3}
   _spawnCooldown: 5
   _distanceToPlayerToSpawn: 100
   _distanceToPlayerToDestroy: 10
@@ -578,6 +584,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 7166bd7fae9c7024583e57e955d30d8b, type: 2}
+--- !u!114 &1488758745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488758739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d9cdd34a7e94c47a84e19bf7bf68be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: ff603271d51f4ea4e872fc8b89ae3ad8, type: 2}
 --- !u!1001 &2040328385
 PrefabInstance:
   m_ObjectHideFlags: 0
