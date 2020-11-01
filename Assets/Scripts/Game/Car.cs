@@ -34,7 +34,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            //UnsubscribeToEvents();
+            UnsubscribeToEvents();
         }
 
         private void UpdateBehaviour() {
@@ -50,6 +50,7 @@ namespace Game {
             UnsubscribeToEvents();
         }
         #endregion 3
+
         #region 4
         protected virtual void Move() {
             if(_currentSpeed<_carSettings.maxSpeed) {
