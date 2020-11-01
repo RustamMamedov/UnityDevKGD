@@ -38,43 +38,47 @@ namespace UI {
             Debug.Log("Update");
         }
 
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+        private void LoadMenu() {
+             _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
-
+        public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
 
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
         }
-
+        
         private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3f);
-
             _fader.FadeIn();
         }
 
         private void ShowMenuScreen() {
+            HideAllScreens();
             _menuScreen.SetActive(true);
         }
 
         private void ShowGameScreen() {
+            HideAllScreens();
             _gameScreen.SetActive(true);
         }
 
         private void ShowLeaderboardScreen() {
+            HideAllScreens();
             _leaderboardScreen.SetActive(true);
         }
 
