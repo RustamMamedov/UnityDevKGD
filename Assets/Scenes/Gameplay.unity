@@ -176,6 +176,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1468353594845511771, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4146442607976665162, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
       propertyPath: m_RootOrder
@@ -405,7 +410,7 @@ MonoBehaviour:
   - {fileID: 1699544679643506, guid: 416db31efad293d4da73c87b615cf55a, type: 3}
   _spawnCooldown: 5
   _distanceToPlayerToSpawn: 100
-  _distanceToPlayerToDestroy: 0
+  _distanceToPlayerToDestroy: 10
   _currentScore: {fileID: 11400000, guid: a9a3882530ef9984d9f7f7ed03c7ae50, type: 2}
   _playerPositionZ: {fileID: 11400000, guid: aa6c9a69e54f3cb4f8f1ad38c73edeed, type: 2}
   _roadWidth: {fileID: 11400000, guid: 5e7297eb27ba62b4caa6c2538689aab3, type: 2}
@@ -736,6 +741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8763047137287919899, guid: 4fa7824a621d72c419d77f7c478045eb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fa7824a621d72c419d77f7c478045eb, type: 3}
