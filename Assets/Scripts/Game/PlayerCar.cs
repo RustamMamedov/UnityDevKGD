@@ -1,12 +1,20 @@
 ﻿using Events;
 using System.Collections;
 using UnityEngine;
+using UI;
 
 namespace Game {
     public class PlayerCar : Car {
 
+
+        [SerializeField]
+        private EnemyCarToDodge _dodgedCar;
+
         [SerializeField]
         private EventListener _touchEventListener;
+
+        [SerializeField]
+        private EventListener _carDodgedListener;
 
         [SerializeField]
         private ScriptableIntValue _touchSide;
@@ -20,22 +28,36 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private Rewarder _dodgeRewarder;
+
         private int _currentRoad;
         private bool _inDodge;
 
         protected override void SubScribeToEvents() {
             base.SubScribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
+            _carDodgedListener.OnEventHappened += OnCarDodged;
+
+
         }
 
         protected override void UnSubScribeToEvents() {
             base.UnSubScribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            _carDodgedListener.OnEventHappened -= OnCarDodged;
+
         }
 
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
+            
+        }
+
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            UIManager.instance.ShowLeaderboardScreen();
         }
 
         private void OnPlayerTouch() {
@@ -45,9 +67,13 @@ namespace Game {
             if (!canDodge) {
                 return;
             }
-
+            
             StartCoroutine(DodgeCoroutine(nextRoad));
 
+        }
+
+        private void OnCarDodged() {
+            _dodgeRewarder.SetScorePoints(_dodgedCar);
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
