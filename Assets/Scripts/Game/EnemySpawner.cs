@@ -5,6 +5,9 @@ using UnityEngine;
 namespace Game {
     public class EnemySpawner : MonoBehaviour {
 
+        
+        public EnemyCarToDodge _dodgedCar;
+
         [SerializeField]
         private EventListener _updateEventListener;
 
@@ -12,7 +15,10 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
-        private GameObject _carPrefab;
+        private EventDispatcher _carDodgeDispatcher;
+
+        [SerializeField]
+        private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
         private float _spawnCooldown;
@@ -43,10 +49,12 @@ namespace Game {
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
+            
         }
         private void UnSubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
+            
         }
 
         private void OnCarCollision() {
@@ -63,17 +71,19 @@ namespace Game {
             SpawnCar();
             
         }
-
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
+            var enemyCarIndex = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefab, position, Quaternion.Euler(0f, 180f, 0f));
+            var car = Instantiate(_carPrefabs[enemyCarIndex], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
+            _dodgedCar.currentCar = car.gameObject;
         }
 
         private void HandleCarsBehindPlayer() {
             for(int i = _cars.Count - 1; i > -1; i--) {
                 if(_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
+                    _carDodgeDispatcher.Dispatch();
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
                 }
