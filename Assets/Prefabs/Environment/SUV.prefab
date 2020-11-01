@@ -169,11 +169,12 @@ GameObject:
   - component: {fileID: 4483306839220528}
   - component: {fileID: 33763178186631926}
   - component: {fileID: 23223122420387580}
-  - component: {fileID: 5744015670891912239}
   - component: {fileID: 65998588834971715}
+  - component: {fileID: 5744015670891912239}
   - component: {fileID: 1776853615571094528}
   - component: {fileID: 9203457796101145395}
   - component: {fileID: 7822691235618137713}
+  - component: {fileID: 8581185662132797826}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -246,19 +247,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5744015670891912239
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.7, y: 2, z: 7}
-  m_Center: {x: 0, y: 1.5, z: 0.5}
 --- !u!114 &65998588834971715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,8 +261,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: e2fec47c9f34b8b42ad81a351ba6d1fe, type: 2}
   _updateEventListener: {fileID: 1776853615571094528}
-  _carCollisionEventListener: {fileID: 1776853615571094528}
+  _carCollisionEventListener: {fileID: 9203457796101145395}
+  _carDodgedED: {fileID: 8581185662132797826}
+  _playerPositionZValue: {fileID: 11400000, guid: e2c332ba7a04a419788e653f6f7c118a,
+    type: 2}
+  _currentScoreValue: {fileID: 11400000, guid: 71379da1848c8b74188498eff378628b, type: 2}
+  _enemyCarBC: {fileID: 5744015670891912239}
   _playerCarCollisionDispatcher: {fileID: 7822691235618137713}
+--- !u!65 &5744015670891912239
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7, y: 2, z: 7}
+  m_Center: {x: 0, y: 1.5, z: 0.5}
 --- !u!114 &1776853615571094528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +320,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
+--- !u!114 &8581185662132797826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 01893b76a61db5244b424d8356af1acb, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0

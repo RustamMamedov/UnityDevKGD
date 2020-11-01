@@ -18,6 +18,15 @@ namespace UI {
         private float _currentScoreDelay = 0.1f;
 
         [SerializeField]
+        private Text _typeCarLabel1;
+
+        [SerializeField]
+        private Text _typeCarLabel2;
+
+        [SerializeField]
+        private Text _typeCarLabel3;
+
+        [SerializeField]
         private Text _scoreLabel;
 
         private int _scoreChanged;
