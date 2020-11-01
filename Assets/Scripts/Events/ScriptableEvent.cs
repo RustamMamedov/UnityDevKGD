@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Events {
-    
+
     [CreateAssetMenu(fileName = "Event", menuName = "Event")]
     public class ScriptableEvent : ScriptableObject {
-       
+
         private List<Action> _listeners;
 
         public void AddListener(Action action) {
@@ -31,7 +31,8 @@ namespace Events {
             if (_listeners == null) {
                 return;
             }
-            for (int i = 0; i < _listeners.Count; i++) {
+
+            for (int i = _listeners.Count - 1; i > -1; i--) {
                 _listeners[i]();
             }
         }
