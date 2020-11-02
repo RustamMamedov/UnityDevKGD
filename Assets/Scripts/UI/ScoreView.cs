@@ -10,21 +10,11 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _currentScoreAsset;
 
-
         [SerializeField]
         private EventListener _eventListener;
 
         [SerializeField]
         private float _currentScoreDelay = 0.1f;
-
-        [SerializeField]
-        private Text _typeCarLabel1;
-
-        [SerializeField]
-        private Text _typeCarLabel2;
-
-        [SerializeField]
-        private Text _typeCarLabel3;
 
         [SerializeField]
         private Text _scoreLabel;

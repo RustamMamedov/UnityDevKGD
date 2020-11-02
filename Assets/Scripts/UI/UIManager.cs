@@ -31,6 +31,7 @@ namespace UI {
             }
 
             _carCollisionEventListener.OnEventHappened += ShowLeaderboardScreen;
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }

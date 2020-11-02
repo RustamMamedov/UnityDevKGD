@@ -11,11 +11,9 @@ namespace UI {
         private void Awake() {
             _menuB.onClick.AddListener(OnMenuButtonClick);
         }
+
         private void OnMenuButtonClick() {
             UIManager.Instance.LoadMenu();
         }
-
-
     }
-
 }

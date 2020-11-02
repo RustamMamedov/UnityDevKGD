@@ -28,13 +28,13 @@ namespace Game {
             }
         }
 
-
-
-        // Motion methods.
-
         protected override void UpdateBehaviour() {
-            if (!_isCarDodged) {
                 base.UpdateBehaviour();
+                CarDodgedHandler();
+        }
+
+        private void CarDodgedHandler() {
+            if (!_isCarDodged) {
                 if (transform.position.z < _playerPositionZValue.value - _enemyCarBC.size.z + 1) {
                     _currentScoreValue.value += _carSettings.dodgeScore;
                     _carDodgedED.Dispatch();
