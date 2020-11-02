@@ -540,6 +540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568432302}
   - component: {fileID: 568432301}
+  - component: {fileID: 568432303}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -563,6 +564,7 @@ MonoBehaviour:
   _gameScreen: {fileID: 7969470748542917079}
   _leaderboardsScreen: {fileID: 3585949896490397456}
   _fader: {fileID: 1141976419}
+  _carCollision: {fileID: 568432303}
 --- !u!4 &568432302
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +582,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568432303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568432300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: a4faeadd346ef764798a72bf0c4ecc29, type: 2}
 --- !u!1 &699245965
 GameObject:
   m_ObjectHideFlags: 0
