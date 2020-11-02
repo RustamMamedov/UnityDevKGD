@@ -22,7 +22,6 @@ namespace Game {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
                 Debug.Log("Crashed with: " + transform.name);
-                UIManager.Instance.ShowLeaderboardScreen();
             }
         }
 
