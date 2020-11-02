@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Events;
+using UnityEngine;
 
 namespace Game {
-   
-    public class RoadPart : MonoBehaviour { 
-   
+
+    public class RoadPart : MonoBehaviour {
+
         [SerializeField]
         private EventDispatcher _roadTriggerEventDispatcher;
 
