@@ -72,7 +72,7 @@ namespace Game {
                 return;
             }
             var randomRoad = Random.Range(-1, 2);
-            var randomPrefabIndex = Random.Range(0, 3);
+            var randomPrefabIndex = Random.Range(0, _carPrefabs.Count);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = Instantiate(_carPrefabs[randomPrefabIndex], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
