@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
@@ -13,6 +13,7 @@ namespace Game {
 	[SerializeField]
 	private EventListener _carCollisionListener;
 
+	[Header ("Вражины в игре: ")]
 	[SerializeField]
 	private List<GameObject> _carPrefab = new List<GameObject>();
 
