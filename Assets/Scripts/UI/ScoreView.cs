@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Events;
 using Game;
 using UnityEngine;
@@ -23,8 +24,14 @@ namespace UI {
         private int _currentScore;
         private bool isBusy;
 
-        private void Awake() {
+        private void OnEnable() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
+        }
+
+        private void OnDisable() {
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _currentScore = 0; 
+            _scoreLabel.text = $"{_currentScore}"; 
         }
 
         private void UpdateBehaviour() {
