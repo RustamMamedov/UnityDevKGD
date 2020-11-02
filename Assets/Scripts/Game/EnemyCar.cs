@@ -10,8 +10,8 @@ namespace Game {
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                Debug.Log("CarCollision");
-                //_roadTriggerEventDispatcher.Dispatch();
+                //Debug.Log("CarCollision");
+                _carTriggerEventDispatcher.Dispatch();
             }
         }
     }
