@@ -16,17 +16,17 @@ namespace Game {
 
         protected float _carrentSpeed;
 
-        protected virtual void OnEnable() {
+        private void OnEnable() {
 
             SubscribeToEvents();
         }
 
-        protected virtual void OnDisable() {
+        private void OnDisable() {
 
             UnsubscribeToEvents();
         }
 
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
 
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
