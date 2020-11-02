@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,11 +19,15 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderBoardScreen;
 
+        [SerializeField]
+        private EventListeners _carCollision;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
             }
+            _carCollision.OnEventHappened += ShowLeaderboardsScreen;
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
