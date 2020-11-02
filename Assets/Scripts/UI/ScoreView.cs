@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events; 
@@ -27,6 +27,13 @@ namespace UI {
 
         private void Awake() {
             _eventListener.OnEventHappend += UpdateBehaviour;
+        }
+
+        private void OnEnable() {
+            _currentScoreAsset.value = 0;
+            _scoreLabel.text = "0";
+            _currentScore = 0;
+
         }
 
         private void UpdateBehaviour() {
