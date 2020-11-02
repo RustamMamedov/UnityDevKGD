@@ -804,8 +804,9 @@ GameObject:
   - component: {fileID: 6880626916707355795}
   - component: {fileID: 5173944803944258004}
   - component: {fileID: 1031635038467378309}
-  - component: {fileID: 6838058163430261056}
   - component: {fileID: 1261016218183099130}
+  - component: {fileID: -3242973035918611233}
+  - component: {fileID: 6838058163430261056}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -845,6 +846,12 @@ MonoBehaviour:
   _updateEventListener: {fileID: 5173944803944258004}
   _carCollisionEventListener: {fileID: 1031635038467378309}
   _carCollisionDispatcher: {fileID: 1261016218183099130}
+  _sizePlayerCar: 2.5
+  _sizeBoxCollider: {fileID: 6838058163430261056}
+  _playerCarPositionZ: {fileID: 11400000, guid: 9ddb4a50a87e71849966401e43350843,
+    type: 2}
+  _score: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
+  _carDodge: {fileID: -3242973035918611233}
 --- !u!114 &5173944803944258004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,19 +878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: a4faeadd346ef764798a72bf0c4ecc29, type: 2}
---- !u!65 &6838058163430261056
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.79, y: 3.9, z: 10.85}
-  m_Center: {x: 0, y: 1.95, z: 0.24}
 --- !u!114 &1261016218183099130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +891,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: a4faeadd346ef764798a72bf0c4ecc29, type: 2}
+--- !u!114 &-3242973035918611233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 56d2eff301ec144d686090ed74cea401, type: 2}
+--- !u!65 &6838058163430261056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.79, y: 3.9, z: 10.85}
+  m_Center: {x: 0, y: 1.95, z: 0.24}
 --- !u!1 &1878664431752172
 GameObject:
   m_ObjectHideFlags: 0
