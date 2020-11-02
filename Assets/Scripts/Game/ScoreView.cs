@@ -24,14 +24,17 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (currentScore.value > _currentScore)
+            if (currentScore.value != _currentScore)
                 StartCoroutine(SetScoreCoroutine(currentScore.value));
         }
 
         private IEnumerator SetScoreCoroutine(int score) {
             isBusy = true;
-            while (_currentScore < score) {
-                _currentScore++;
+            while (_currentScore != score) {
+                if(_currentScore< score) 
+                    _currentScore++;
+                else
+                    _currentScore--;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
