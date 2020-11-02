@@ -591,8 +591,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150302180}
-  - component: {fileID: 1150302181}
   - component: {fileID: 1150302182}
+  - component: {fileID: 1150302181}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -611,22 +611,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.87, z: -2.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1332615390}
-  m_RootOrder: 5
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1150302181
-BoxCollider:
+--- !u!114 &1150302181
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150302179}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 27.168364, y: 1.3267722, z: 0.6272898}
-  m_Center: {x: -0.29520512, y: 0.1633861, z: -0.3371215}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dd6c8d7213508489552fc15ed6f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: f86e969281aecf84892857c2fb537373, type: 2}
 --- !u!114 &1150302182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,17 +639,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ef470a9baca2c438b2f143d4853b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyCars:
-  - {fileID: 7357932519020111889, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
-  - {fileID: 5591291704649564762, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-  - {fileID: 2528202330483790495, guid: 416db31efad293d4da73c87b615cf55a, type: 3}
   _currentScore: {fileID: 11400000, guid: e97b3443840b2534dbbd6c3efb2b4381, type: 2}
+  _dodgeScore: {fileID: 11400000, guid: 8781b2de0f87bcd44b97e2ee908db288, type: 2}
+  _carDodgedEventListener: {fileID: 1150302181}
 --- !u!4 &1332615390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4526053454235962, guid: 8952388f882d347438563c4e45e6ce50,
     type: 3}
   m_PrefabInstance: {fileID: 631916575}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1436416172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436416173}
+  - component: {fileID: 1436416174}
+  m_Layer: 0
+  m_Name: PlayerDodged
+  m_TagString: PlayerDodge
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1436416173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436416172}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1332615390}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1436416174
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436416172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25.829346, y: 1, z: 0.4964695}
+  m_Center: {x: -0.5912051, y: 0, z: -2.0746365}
 --- !u!1 &1777686824
 GameObject:
   m_ObjectHideFlags: 0

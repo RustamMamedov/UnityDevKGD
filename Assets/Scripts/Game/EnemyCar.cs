@@ -10,16 +10,26 @@ namespace Game {
         [SerializeField]
         private EventDispatcher _carCollisionEventDispatcher;
 
+        [SerializeField]
+        private EventDispatcher _carDodgedEventDispatcher;
+
+        [SerializeField]
+        private ScriptableIntValue DodgeScore;
+
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
                 Debug.Log("Crashed with: " + transform.name);
             }
+
+            if (other.CompareTag("PlayerDodge")) {
+                DodgeScore.value = _carSettings.dodgeScore;
+                _carDodgedEventDispatcher.Dispatch();
+            }
+
         }
 
-        public int DodgeScore() {
-            return (_carSettings.dodgeScore);
-        }
+        
     }
 
 }

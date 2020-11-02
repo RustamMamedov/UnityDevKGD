@@ -23,10 +23,15 @@ namespace UI {
         [SerializeField]
         private EventListener _eventListener;
 
-        private void Start() {
+        private void OnEnable() {
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
 
+        private void OnDisable() {
+            _currentScoreView = 0;
+            _scoreLabel.text = $"{_currentScoreView}";
+            _eventListener.OnEventHappened -= UpdateBehaviour;
+        }
         private void UpdateBehaviour() {
             if (_currentScore.value > _currentScoreView && !isScoreChanging) {
                 StartCoroutine(SetScoreCoroutine(_currentScore.value));

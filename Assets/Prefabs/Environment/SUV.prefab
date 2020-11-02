@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 3433944483742494733}
   - component: {fileID: 5930194008150826089}
   - component: {fileID: 7197179754241881937}
+  - component: {fileID: 5501219127911528738}
   m_Layer: 0
   m_Name: SUV
   m_TagString: SUV
@@ -262,6 +263,8 @@ MonoBehaviour:
   _updateEventListener: {fileID: 2539112107688988811}
   _carCollisionEventListener: {fileID: 3433944483742494733}
   _carCollisionEventDispatcher: {fileID: 7197179754241881937}
+  _carDodgedEventDispatcher: {fileID: 5501219127911528738}
+  DodgeScore: {fileID: 11400000, guid: 8781b2de0f87bcd44b97e2ee908db288, type: 2}
 --- !u!114 &2539112107688988811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +317,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 0a768a2b03f53034ab7ac630ca1e8424, type: 2}
+--- !u!114 &5501219127911528738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c0d313f8feacf49b9aad3f6c8fce70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: f86e969281aecf84892857c2fb537373, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
