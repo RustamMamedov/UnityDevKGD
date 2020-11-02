@@ -11,7 +11,16 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-       // private string _currentSceneName = "Gameplay";
+        [SerializeField]
+        private GameObject _leaderboard;
+
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        public GameObject GameScreen;
+
+        // private string _currentSceneName = "Gameplay";
 
         private void Awake() {
             if (Instance != null) {
@@ -22,7 +31,7 @@ namespace UI {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-  
+
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
@@ -38,7 +47,7 @@ namespace UI {
             StartCoroutine(LoadSceneCoroutine("Menu"));
             ShowMenuScreen();
         }
-  
+
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
@@ -49,29 +58,28 @@ namespace UI {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
             while (!asyncOperation.isDone) {
                 yield return null;
-            }   
+            }
             _fader.FadeIn();
         }
-        public void ShowMenuScreen()
-        {
+        public void ShowMenuScreen() {
             HideAllScreens();
-            Debug.Log("ShowMenuScreen");
+            _menuScreen.SetActive(true);
         }
 
-        public void ShowGameScreen()
-        {
-            Debug.Log("ShowGameScreen");
-        }
-
-        public void ShowLeaderboardsScreen()
-        {
+        public void ShowGameScreen() {
             HideAllScreens();
-            Debug.Log("ShowLeaderboardsScreen");
+            GameScreen.SetActive(true);
         }
 
-        public void HideAllScreens()
-        {
-            Debug.Log("HideAllScreens");
+        public void ShowLeaderboardsScreen() {
+            HideAllScreens();
+            _leaderboard.SetActive(true);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            GameScreen.SetActive(false);
+            _leaderboard.SetActive(false);
         }
     }
 }
