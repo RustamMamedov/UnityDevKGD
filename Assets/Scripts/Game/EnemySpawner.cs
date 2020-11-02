@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Events;
 using System.Collections.Generic;
 
@@ -10,9 +10,6 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionListener;
-
-        [SerializeField]
-        private GameObject _carPrefab;
 
         [SerializeField]
         private float _spawnCooldown;
@@ -29,8 +26,13 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+
+
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
+
+        [SerializeField]
+        private List<GameObject> _carPrefab = new List<GameObject>();
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -71,7 +73,8 @@ namespace Game {
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value+_distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefab, position, Quaternion.Euler(0f, 180f, 0f));
+            var randomCar = Random.Range(0, _carPrefab.Count);
+            var car = Instantiate(_carPrefab[randomCar], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
         }
 
