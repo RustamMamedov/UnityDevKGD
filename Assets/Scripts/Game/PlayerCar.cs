@@ -21,6 +21,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
+        [SerializeField] 
+        private ScriptableFloatValue _playerPositionX;
+        
         private int _currentRoad;
         private bool _inDodge;
 
@@ -37,6 +40,7 @@ namespace Game {
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
+            _playerPositionX.value = transform.position.x;
         }
 
         private void OnPlayerTouch() {
