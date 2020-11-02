@@ -90,11 +90,11 @@ GameObject:
   - component: {fileID: 4309172695357830}
   - component: {fileID: 33887974793922140}
   - component: {fileID: 23194435166505700}
-  - component: {fileID: 8801661778216135206}
-  - component: {fileID: -2312593618749397239}
-  - component: {fileID: -9114076461472406894}
-  - component: {fileID: 6692224164540626019}
-  - component: {fileID: 515511386156629989}
+  - component: {fileID: 2759137168064641447}
+  - component: {fileID: 3905969826199254655}
+  - component: {fileID: 7161082233176271761}
+  - component: {fileID: 2795624828244034787}
+  - component: {fileID: 3036002489050090300}
   m_Layer: 0
   m_Name: FamilyCar
   m_TagString: Untagged
@@ -167,7 +167,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8801661778216135206
+--- !u!114 &2759137168064641447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,14 +176,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1106068356828452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f14a5becf7efc749adfdd57518877e5, type: 3}
+  m_Script: {fileID: 11500000, guid: c70e62706bc1ad8459d62f23919186a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: a49132fe8bc044f9698b1f57231689b2, type: 2}
-  _updateEventListener: {fileID: -2312593618749397239}
-  _carCollisionEventListener: {fileID: -9114076461472406894}
-  eventDispatcher: {fileID: 515511386156629989}
---- !u!114 &-2312593618749397239
+  _updateEventListener: {fileID: 3905969826199254655}
+  _carCollisionEventListener: {fileID: 7161082233176271761}
+  _carCollisionEventDispatcher: {fileID: 2795624828244034787}
+--- !u!114 &3905969826199254655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
---- !u!114 &-9114076461472406894
+--- !u!114 &7161082233176271761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,20 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
---- !u!65 &6692224164540626019
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106068356828452}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.647857, y: 1.517171, z: 5.7786293}
-  m_Center: {x: 0, y: 0.93918604, z: 0.007325053}
---- !u!114 &515511386156629989
+--- !u!114 &2795624828244034787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,6 +222,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
+--- !u!65 &3036002489050090300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106068356828452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.647857, y: 1.517171, z: 5.7786293}
+  m_Center: {x: 0, y: 0.93918604, z: 0.007325053}
 --- !u!1 &1659635745859552
 GameObject:
   m_ObjectHideFlags: 0
