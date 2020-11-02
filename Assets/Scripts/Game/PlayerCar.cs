@@ -52,11 +52,12 @@ namespace Game {
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
-            var offsetPerFrameX = _roadWidth.value / _dodgeDuration*(nextRoad  > _currentRoad ? 1: -1);
-            while(timer < _dodgeDuration) {
+            var targetPosX = transform.position.x + _roadWidth.value *(nextRoad  > _currentRoad ? 1: -1);
+            while(timer <= _dodgeDuration) {
                 yield return null;
                 timer += Time.deltaTime;
-                transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime, Space.World);
+                var posX = Mathf.Lerp(transform.position.x, targetPosX, timer / _dodgeDuration);
+                transform.position = new Vector3(posX, transform.position.y, transform.position.z);
             }
             _inDodge = false;
             _currentRoad = nextRoad;
