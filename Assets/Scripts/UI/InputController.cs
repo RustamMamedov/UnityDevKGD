@@ -42,7 +42,8 @@ namespace UI {
             touchPosition = Input.touches[0].position;
 #endif
 
-            _touchSide.value = touchPosition.x > Screen.width * 0.5 ? 1 : -1;          
+            _touchSide.value = touchPosition.x > Screen.width * 0.5 ? 1 : -1;
+            _touchSide.value = touchPosition.x > Screen.width * 0.5 ? 1 : -1;
             _touchEventDispatcher.Dispatch();
             _touchSide.value = 0;
 
