@@ -1,5 +1,4 @@
-﻿using UI;
-using Events;
+﻿using Events;
 using UnityEngine;
 
 namespace Game {
@@ -8,6 +7,8 @@ namespace Game {
 
         [SerializeField]
         protected CarSettings _carSettings;
+        public CarSettings CarSettings { get { return _carSettings; } }
+
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -42,7 +43,6 @@ namespace Game {
         private void OnCarCollision() {
 
             UnsubscribeToEvents();
-            UIManager.Instansce.ShowLeaderboardScreen();
         }
 
         private void UpdateBehaviour() {
