@@ -307,7 +307,7 @@ MonoBehaviour:
   _fader: {fileID: 147089726}
   _menuScreen: {fileID: 4002830534174309795}
   _gameScreen: {fileID: 7543882774944280385}
-  _leaderboardsScreen: {fileID: 0}
+  _leaderboardsScreen: {fileID: 1343561200}
 --- !u!224 &322947100 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4002830533925287358, guid: e769524c09e6eee498dd3169d3d03ec0,
@@ -952,6 +952,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1967047185}
     m_Modifications:
+    - target: {fileID: 3488536274744412963, guid: 92445e0367819d1418da678b6c540593,
+        type: 3}
+      propertyPath: m_Name
+      value: LeaderboardLabel
+      objectReference: {fileID: 0}
     - target: {fileID: 4417380700566359871, guid: 92445e0367819d1418da678b6c540593,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1128,6 +1133,12 @@ RectTransform:
 --- !u!224 &1343561199 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4417380700566359868, guid: 92445e0367819d1418da678b6c540593,
+    type: 3}
+  m_PrefabInstance: {fileID: 1343561197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1343561200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8003948555934629522, guid: 92445e0367819d1418da678b6c540593,
     type: 3}
   m_PrefabInstance: {fileID: 1343561197}
   m_PrefabAsset: {fileID: 0}
@@ -1784,7 +1795,7 @@ PrefabInstance:
     - target: {fileID: 8512534478214489875, guid: 49f1c622aecc38c44810a3b2ff0ea2fe,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -61.99
+      value: -61.98999
       objectReference: {fileID: 0}
     - target: {fileID: 8512534478214489875, guid: 49f1c622aecc38c44810a3b2ff0ea2fe,
         type: 3}
@@ -1912,7 +1923,7 @@ PrefabInstance:
     - target: {fileID: 4002830533925287353, guid: e769524c09e6eee498dd3169d3d03ec0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002830533925287358, guid: e769524c09e6eee498dd3169d3d03ec0,
         type: 3}
