@@ -22,11 +22,20 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        private enum SaveType {
+
+            PlayerPrefs,
+            File,
+        }
+
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private SaveType _saveType;
 
         private List<SaveData> _saveDatas;
         public List<SaveData> SavedDatas => _saveDatas;
@@ -37,8 +46,11 @@ namespace Game {
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            // LoadFromPlayerPrefs();
-            LoadFromFile();
+            if (_saveType == SaveType.PlayerPrefs) {
+                LoadFromPlayerPrefs();
+            } else {
+                LoadFromFile();
+            }
         }
 
         private void OnEnable() {
@@ -54,11 +66,13 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            Debug.Log($"new record: {newRecord.date} {newRecord.score}");
             _saveDatas.Add(newRecord);
 
-            // SaveToPlayerPrefs();
-            SaveToFile();
+            if (_saveType == SaveType.PlayerPrefs) {
+                SaveToPlayerPrefs();
+            } else {
+                SaveToFile();
+            }
         }
 
         private void LoadFromPlayerPrefs() {
