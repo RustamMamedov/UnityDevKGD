@@ -1,18 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
-public class MenuScreen : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace UI {
+    public class MenuScreen : MonoBehaviour {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField]
+        private Button _playButton;
+
+        [SerializeField]
+        private UIManager _uimanager;
+
+        private void OnPlayButtonClick() {
+            _uimanager.LoadGameplay();
+        }
+
+        private void Awake() {
+            _playButton.onClick.AddListener(OnPlayButtonClick);
+        }
     }
 }
