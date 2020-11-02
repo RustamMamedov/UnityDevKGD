@@ -21,6 +21,7 @@ namespace UI {
         private Text _scoreLabel;
 
         private int _currentScore = 0;
+
         // blocks the start of several coroutines so that changes do not overlap each other
         private bool _scoreIsChanging = false;
 
@@ -37,11 +38,12 @@ namespace UI {
 
         public IEnumerator SetScoreCoroutine(int target) {
             while (_currentScore != target) {
-                if (_currentScore < target) {
-                    ++_currentScore;
+                if (target == 0) {
+                    _currentScore = 0;
                 } else {
-                    --_currentScore;
+                    ++_currentScore;
                 }
+
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
