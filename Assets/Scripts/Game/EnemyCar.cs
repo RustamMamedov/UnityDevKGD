@@ -10,7 +10,9 @@ namespace Game {
 
         [SerializeField] private ScriptableIntValue _currentScore;
 
-        [SerializeField] public CarSettings _dodgeScore;
+        [SerializeField] private CarSettings _dodgeScore;
+
+        public CarSettings DodgeScore => _dodgeScore;
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _currentScore.value = 0;
