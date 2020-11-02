@@ -8,7 +8,7 @@ namespace Game {
     public class CarSettings : ScriptableObject {
 
         [SerializeField]
-        private int _dodgeScore;
+        public int dodgeScore;
         public float maxSpeed;
         public float acceleration;
     }
