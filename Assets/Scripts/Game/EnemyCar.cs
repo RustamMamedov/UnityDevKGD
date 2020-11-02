@@ -16,7 +16,6 @@ namespace Game {
                 _currentScore.value = 0;
                 _carCollisionEventDispatcher.Dispatch();
                 Debug.Log("CarCollision");
-                UIManager.Instance.ShowLeaderboardScreen();
               
 
             }
