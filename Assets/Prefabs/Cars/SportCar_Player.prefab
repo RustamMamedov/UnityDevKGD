@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 1590196857270955535}
   - component: {fileID: 3072365071345104696}
   - component: {fileID: 6802595881484259977}
+  - component: {fileID: 8293373626378577453}
   - component: {fileID: 9028916655976212538}
   m_Layer: 0
   m_Name: SportCar_Player
@@ -275,6 +276,10 @@ MonoBehaviour:
   _carSettings: {fileID: 11400000, guid: c92d3b6994b340d4cb3b90137e5ace44, type: 2}
   _updateEventListeners: {fileID: 1590196857270955535}
   _carCollisionEventListeners: {fileID: 3072365071345104696}
+  _carDodgedEventListeners: {fileID: 8293373626378577453}
+  _currentScore: {fileID: 11400000, guid: 3c01d815f3a22c94b9f735f4a81ae36f, type: 2}
+  _scoreTypeDodgedCar: {fileID: 11400000, guid: 828b34c19f8d50a42b5eee7411abbbe8,
+    type: 2}
   _touchEventListeners: {fileID: 6802595881484259977}
   _touchSide: {fileID: 11400000, guid: e4713e633b24aa0438e4222fe6e2db59, type: 2}
   _dodgeDurtion: 0.3
@@ -319,6 +324,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: c65a20d06d663204192dae6b550faeae, type: 2}
+--- !u!114 &8293373626378577453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563802773360754927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb824bb7ca623cb49a6d63c5f1bb6187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 69c9efaec40b2e04da0de0e01be87593, type: 2}
 --- !u!54 &9028916655976212538
 Rigidbody:
   m_ObjectHideFlags: 0
