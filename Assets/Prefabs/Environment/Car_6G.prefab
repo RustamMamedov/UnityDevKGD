@@ -329,9 +329,10 @@ GameObject:
   - component: {fileID: 23809032511686808}
   - component: {fileID: 6921647417995414303}
   - component: {fileID: 7440449267442969309}
-  - component: {fileID: 444163633103940673}
+  - component: {fileID: 6718992923444151597}
   - component: {fileID: 1402615507679023327}
   - component: {fileID: 7396217505316982052}
+  - component: {fileID: 8977733144921621020}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Player
@@ -433,7 +434,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &444163633103940673
+--- !u!114 &6718992923444151597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -442,12 +443,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead7d497094db0d46803a0633392f511, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c46235c78cd77d4dbafd94641b55301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 11400000, guid: 124fcccfcca6d954283cadce997d5a1d, type: 2}
   _updateEventListener: {fileID: 1402615507679023327}
   _carCollisionEventListener: {fileID: 7396217505316982052}
+  _touchEventListener: {fileID: 8977733144921621020}
+  _touchSide: {fileID: 11400000, guid: 9e2eac12b9f87604fa6afc27c75b64f2, type: 2}
+  _roadWidth: {fileID: 11400000, guid: 2047edd878a18e54994d83fc79cd2943, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: 2adcbb3178be5774dbbc0ab5be56caef, type: 2}
+  _dodgeDuration: 0.3
 --- !u!114 &1402615507679023327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +480,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 9cdd982769360c544ab11b5df40e42a0, type: 2}
+--- !u!114 &8977733144921621020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc1fa0823461324f8e245ff136e884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: cc1d6e6f912622d4897288f240b06d49, type: 2}
