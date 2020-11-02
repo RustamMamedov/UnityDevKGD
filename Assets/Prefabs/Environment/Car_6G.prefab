@@ -328,10 +328,11 @@ GameObject:
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
   - component: {fileID: 3510844833997580265}
-  - component: {fileID: 63579355561003982}
+  - component: {fileID: 5062712204539121428}
   - component: {fileID: 6501136461136592795}
   - component: {fileID: 7596924151187416791}
   - component: {fileID: 8725965577911764620}
+  - component: {fileID: 1918627908507856282}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Player
@@ -417,7 +418,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
---- !u!114 &63579355561003982
+--- !u!114 &5062712204539121428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,12 +427,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590206702830092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04055f4a5734c0f42839aa6579bc8b39, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a6229244b28ec4c861209749ea986a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
+  _carSettings: {fileID: 11400000, guid: a49132fe8bc044f9698b1f57231689b2, type: 2}
   _updateEventListener: {fileID: 6501136461136592795}
   _carCollisionEventListener: {fileID: 7596924151187416791}
+  _touchEventListener: {fileID: 1918627908507856282}
+  _touchSide: {fileID: 11400000, guid: e0df22eaa4d296349b9ae37fcbfe3e49, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: 2680efb98b4526a49a2b9f7198efd329, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: aa2e78203b8f2fa4ca236fd385166b07, type: 2}
 --- !u!114 &6501136461136592795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +480,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1918627908507856282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: eea2f7fa01492da42aaec9fe66691206, type: 2}

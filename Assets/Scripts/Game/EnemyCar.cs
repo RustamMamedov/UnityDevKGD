@@ -13,6 +13,5 @@ namespace Game {
                 _carCollisionDispatcher.Dispatch();
             }
         }
-
     }
 }
