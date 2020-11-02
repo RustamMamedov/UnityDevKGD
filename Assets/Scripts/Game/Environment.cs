@@ -33,8 +33,8 @@ namespace Game {
 
         private void GenerateRoad() {
             _roadTransforms = new List<Transform>();
-            for (int i=0;i<_initialRoadNumber+1;i++) {
-                var position = new Vector3(0f, 0f, (i - 1) * _roadLength);
+            for (int i=0;i<_initialRoadNumber+2;i++) {
+                var position = new Vector3(0f, 0f, (i - 2) * _roadLength);
                 var road = Instantiate(_roadPrefab, position, Quaternion.identity);
                 _roadTransforms.Add(road.transform);
             }
