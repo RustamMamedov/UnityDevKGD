@@ -38,7 +38,6 @@ namespace Game
         {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
-            UIManager.Instance.ShowLeaderboardsScreen();
 
         }
         protected override void Move()
