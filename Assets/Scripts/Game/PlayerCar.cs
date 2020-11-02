@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Events;
 using System.Collections;
+using UI;
 
 namespace Game {
 
@@ -57,7 +58,6 @@ namespace Game {
                 yield return null;
                 timer += Time.deltaTime;
                 transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime);
-                Debug.Log(Time.deltaTime);
             }
             _inDodge = false;
             _currentRoad = nextRoad;
