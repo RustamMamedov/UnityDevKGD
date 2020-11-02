@@ -68,7 +68,7 @@ namespace UI {
             _gameScreen.SetActive(true);
         }
 
-        public void ShowLoaderboardScreen() {
+        public void ShowLeaderboardScreen() {
             HideAllScreen();
             _leaderboardScreen.SetActive(true);
         }
