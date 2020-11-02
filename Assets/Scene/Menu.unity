@@ -402,6 +402,18 @@ Transform:
   m_Father: {fileID: 1998376962}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1682676752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5658100954604001952, guid: 55cf29a8ee1848148a4af4b3c2cc0a4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5658100954926941498}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1951022088 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5658100955266300210, guid: 55cf29a8ee1848148a4af4b3c2cc0a4e,
@@ -575,6 +587,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fader
       objectReference: {fileID: 0}
+    - target: {fileID: 572146788866395592, guid: 27d2e090b86ab884da4d4dee4a75fa59,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d2e090b86ab884da4d4dee4a75fa59, type: 3}
 --- !u!1001 &1281483190328791721
@@ -584,16 +601,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 139340170}
     m_Modifications:
-    - target: {fileID: 1281483190442726446, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_Padding.m_Left
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1281483190442726446, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_Padding.m_Right
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1281483190773855780, guid: a8de121340ebdeb4f830731ff9fe8933,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -728,66 +735,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeaderBoardScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 1281483190908265854, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853922551383390854, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853922551383390854, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426053677308627, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426053680238303, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426053747993301, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426053839832051, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426053967741346, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426054567072124, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426054867509442, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426054970174882, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212426055099422968, guid: a8de121340ebdeb4f830731ff9fe8933,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4301518575084247745, guid: a8de121340ebdeb4f830731ff9fe8933,
         type: 3}
@@ -1199,6 +1146,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 139340170}
     m_Modifications:
+    - target: {fileID: 4171160483964111781, guid: 55cf29a8ee1848148a4af4b3c2cc0a4e,
+        type: 3}
+      propertyPath: _play
+      value: 
+      objectReference: {fileID: 1682676752}
+    - target: {fileID: 4171160483964111781, guid: 55cf29a8ee1848148a4af4b3c2cc0a4e,
+        type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 1998376961}
     - target: {fileID: 5658100955266300210, guid: 55cf29a8ee1848148a4af4b3c2cc0a4e,
         type: 3}
       propertyPath: m_LocalPosition.x
