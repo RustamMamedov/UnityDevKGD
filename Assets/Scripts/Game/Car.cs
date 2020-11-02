@@ -38,7 +38,7 @@ namespace Game {
             UnsubscribeToEvents();
         }
 
-        protected virtual void UpdateBehaviour() {
+        private void UpdateBehaviour() {
             Move();
         }
 

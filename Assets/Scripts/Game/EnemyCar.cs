@@ -10,14 +10,6 @@ namespace Game {
         [SerializeField]
         private EventDispatcher _carCollisionEventDispatcher;
 
-        [SerializeField]
-        private ScriptableFloatValue _playerPositionZ;
-
-        [SerializeField]
-        private ScriptableIntValue _currentScore;
-
-        private bool _isAdded = false;
-
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
@@ -25,16 +17,8 @@ namespace Game {
             }
         }
 
-        protected override void UpdateBehaviour() {
-            base.UpdateBehaviour();
-            AddDodgeScore();
-        }
-
-        private void AddDodgeScore() {
-            if(transform.position.z < _playerPositionZ.value && !_isAdded) {
-                _currentScore.value += _carSettings.dodgeScore;
-                _isAdded = true;
-            }
+        public int DodgeScore() {
+            return (_carSettings.dodgeScore);
         }
     }
 
