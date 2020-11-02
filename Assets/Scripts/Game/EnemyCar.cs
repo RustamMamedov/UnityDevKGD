@@ -1,21 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Events;
 using UnityEngine;
-using Game;
-using TMPro;
-using Events;
 
 namespace Game {
 
-    public class EnemyCar:Car {
+    public class EnemyCar : Car {
+
         [SerializeField]
-        private EventDispatcher eventDispatcher;
+        private EventDispatcher _carCollisionEventDispatcher;
+
         private void OnTriggerEnter(Collider other) {
-            Debug.Log("CarCollision");
-            
-
-
-
+            if (other.CompareTag("Player")) {
+                _carCollisionEventDispatcher.Dispatch();
+            }
         }
     }
 }
