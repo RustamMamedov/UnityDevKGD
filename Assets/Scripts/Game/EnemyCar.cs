@@ -18,7 +18,5 @@ namespace Game {
                 UIManager.Instance.ShowLeaderboardScreen();
             }
         }
-		
-
-	}
+    }
 }

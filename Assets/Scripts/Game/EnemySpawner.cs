@@ -29,7 +29,7 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
-
+        
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 

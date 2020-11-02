@@ -20,8 +20,7 @@ namespace UI {
 
         [SerializeField] 
         private Text _scoreLabel;
-        
-   
+
         private void Awake() {
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
