@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Game;
 
 namespace UI
 {
     public class MenuScreen : MonoBehaviour
     {
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
+
         [SerializeField]
         private Button _playButton;
 
@@ -16,6 +20,7 @@ namespace UI
         }
         public void OnPlayButtonClick()
         {
+            _currentScore.value = 0;
             UIManager.Instance.LoadGameplay();
         }
     }

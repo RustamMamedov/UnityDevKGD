@@ -19,8 +19,11 @@ namespace UI
         private EventListener _update;
 
         private int _currentScore;
-        private void Awake()
+        private void OnEnable()
         {
+            CurrentScore.value = 0;
+            _currentScore = 0;
+            _scores.text = _currentScore.ToString();
             _update.OnEventHappened += UpdateBehaviour;
         }
         public void UpdateBehaviour()
