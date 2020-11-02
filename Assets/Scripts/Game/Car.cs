@@ -11,7 +11,7 @@ namespace Game {
         protected CarSettings _carSetting;
 
         [SerializeField]
-        private EventListener _updateEventListeners;
+        protected EventListener _updateEventListeners;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
