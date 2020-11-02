@@ -27,6 +27,11 @@ namespace UI {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
 
+        private void OnEnable() {
+            _currentScore = 0;
+            _currentScoreValue.value = 0;
+        }
+
         private void UpdateBehaviour() {
             if (_currentScoreValue.value > _currentScore && !isBusy) {
                 StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
