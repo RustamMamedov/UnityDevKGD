@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2913815137124374567}
   - component: {fileID: 8032345613435140188}
   - component: {fileID: 3599989224199751443}
+  - component: {fileID: 6795435000866510537}
   m_Layer: 0
   m_Name: FamilyCar
   m_TagString: Untagged
@@ -183,6 +184,11 @@ MonoBehaviour:
   _updateEventListener: {fileID: 7972626171368563200}
   _carCollisionEventListener: {fileID: 2913815137124374567}
   _carCollisionDispatcher: {fileID: 3599989224199751443}
+  _boxCollider: {fileID: 8032345613435140188}
+  _playerSize: {fileID: 11400000, guid: a1c8431d7ce9a704986b1d835a84ffb9, type: 2}
+  _score: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
+  _carDodge: {fileID: 6795435000866510537}
+  _carPositionZ: {fileID: 11400000, guid: aa2e78203b8f2fa4ca236fd385166b07, type: 2}
 --- !u!114 &7972626171368563200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +241,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 1071cd80cf33a754db44c9e94052b2ec, type: 2}
+--- !u!114 &6795435000866510537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106068356828452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 56d2eff301ec144d686090ed74cea401, type: 2}
 --- !u!1 &1659635745859552
 GameObject:
   m_ObjectHideFlags: 0
