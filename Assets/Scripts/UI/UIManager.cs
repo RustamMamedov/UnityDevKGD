@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Events;
+
 
 namespace UI {
 
@@ -19,6 +21,8 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
+        [SerializeField]
+        private EventListener _carCollision;
 
         private void Awake() {
             if (Instance != null) {
@@ -28,6 +32,7 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            _carCollision.OnEventHappened += ShowLeaderboardsScreen;
         }
 
         public void LoadMenu() {
