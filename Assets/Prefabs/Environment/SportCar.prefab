@@ -328,10 +328,11 @@ GameObject:
   - component: {fileID: 33402892188556164}
   - component: {fileID: 23809032511686808}
   - component: {fileID: -688298442539553861}
-  - component: {fileID: 936460279257496160}
   - component: {fileID: 8807250561044081756}
   - component: {fileID: 878597432638878513}
   - component: {fileID: 2061715510653340813}
+  - component: {fileID: 1921930197620881489}
+  - component: {fileID: 8619809886538553342}
   m_Layer: 0
   m_Name: SportCar
   m_TagString: Player
@@ -417,21 +418,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.460221, y: 1.7262692, z: 5.220341}
   m_Center: {x: 0, y: 1.0631347, z: -0.07910824}
---- !u!114 &936460279257496160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590206702830092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d762d12d83cc4442baddc09f48dffcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: 9359d9016175c1e45a0f2d6de9f33f6f, type: 2}
-  _updateEventListener: {fileID: 8807250561044081756}
-  _carCollisionEventListener: {fileID: 878597432638878513}
 --- !u!114 &8807250561044081756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +460,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1921930197620881489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42212ddde5deb1448bbee7d45fcaf670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: 9359d9016175c1e45a0f2d6de9f33f6f, type: 2}
+  _updateEventListener: {fileID: 8807250561044081756}
+  _carCollisionEventListener: {fileID: 878597432638878513}
+  _touchEventListener: {fileID: 8619809886538553342}
+  _touchSide: {fileID: 11400000, guid: 2b4ec6041c7fda04ba4ff26fc9064fe2, type: 2}
+  _dodgeDuration: 0.3
+  _roadWidth: {fileID: 11400000, guid: ab6265c7c304bf54ca623738dca04dbb, type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: cee06160f2bbcde48aa6be625202d6fc, type: 2}
+--- !u!114 &8619809886538553342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 2fd5ade4d46e6be47a79705f0a000cb8, type: 2}
