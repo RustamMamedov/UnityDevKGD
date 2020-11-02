@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Events;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,9 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardScreen;
+
+        [SerializeField]
+        private EventListener _carCollision;
 
         //private string _currentSceneName = "Gameplay";
 
@@ -48,7 +52,7 @@ namespace UI {
                 Destroy(gameObject);
                 return;
             }
-
+            _carCollision.OnEventHappened += ShowLeaderboardScreen;
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
