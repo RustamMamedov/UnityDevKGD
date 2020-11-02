@@ -6,6 +6,7 @@ using Events;
 using UnityEngine.UI;
 
 namespace UI {
+
     public class ScoreView : MonoBehaviour {
 
         [SerializeField]
@@ -29,6 +30,12 @@ namespace UI {
 
         public void OnDestroy() {
             _eventListeners.OnEventHappened -= UpdateBehaviour;
+        }
+
+        private void OnEnable() {
+            _сurrentScoreValue.Value = 0;
+            _currentScore = 0;
+            _scoreLabel.text = $"{ _currentScore}";
         }
 
         public void UpdateBehaviour() {
