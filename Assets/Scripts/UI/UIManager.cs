@@ -11,8 +11,6 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "Gameplay";
-
         [SerializeField]
         private GameObject _menuScreen;
 
@@ -21,23 +19,6 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardsScreen;
-        public void ShowMenuScreen() {
-            _menuScreen.SetActive(!(_menuScreen.activeSelf));
-        }
-
-        public void ShowGameScreen() {
-            _gameScreen.SetActive(!(_gameScreen.activeSelf));
-        }
-
-        public void ShowLeaderboardsScreen() {
-            _leaderboardsScreen.SetActive(!(_leaderboardsScreen.activeSelf));
-        }
-
-        public void HideAllScreens() {
-            _menuScreen.SetActive(false);
-            _gameScreen.SetActive(false);
-            _leaderboardsScreen.SetActive(false);
-        }
 
         private void Awake() {
             if (Instance != null) {
@@ -49,21 +30,26 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
-
+        public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
 
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
@@ -71,11 +57,27 @@ namespace UI {
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3f);
-
             _fader.FadeIn();
         }
+        public void ShowMenuScreen() {
+            HideAllScreens();
+            _menuScreen.SetActive(true);
+        }
 
+        public void ShowGameScreen() {
+            HideAllScreens();
+            _gameScreen.SetActive(true);
+        }
+
+        public void ShowLeaderboardsScreen() {
+            HideAllScreens();
+            _leaderboardsScreen.SetActive(true);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardsScreen.SetActive(false);
+        }
     }
 }
