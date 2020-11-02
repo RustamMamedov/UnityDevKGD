@@ -41,7 +41,8 @@ namespace Game {
 
         private List<GameObject> _cars = new List<GameObject>();
 
-        private int _dodgeScore = 0;
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
 
         [SerializeField]
         private float _distanceToCountScore;
@@ -84,9 +85,9 @@ namespace Game {
 
                     if (distanceToSpawnedCar < _distanceToCountScore && _scoreCountAllow) {
                         var scoreLabel = UIManager.Instance.GameScreen.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-                    
-                        _dodgeScore += _cars[0].GetComponent<EnemyCar>()._carSettings.dodgeScore; ;
-                        scoreLabel.text = _dodgeScore.ToString();
+
+                        _currentScore.value += _cars[0].GetComponent<EnemyCar>()._carSettings.dodgeScore; ;
+                        scoreLabel.text = _currentScore.value.ToString();
                         _scoreCountAllow = false;
                     }
 
