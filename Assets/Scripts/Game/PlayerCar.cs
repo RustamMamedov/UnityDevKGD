@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Events;
 using UnityEngine;
+using UI;
 
 namespace Game {
 
@@ -21,6 +22,7 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
+
         private int _currentRoad;
         private bool _inDodge;
 
@@ -38,6 +40,13 @@ namespace Game {
             base.Move();
             _playerPositionZ.value = transform.position.z;
         }
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            
+
+            
+        }
+
 
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
