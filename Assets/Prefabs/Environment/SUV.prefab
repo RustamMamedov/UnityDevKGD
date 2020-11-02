@@ -169,11 +169,11 @@ GameObject:
   - component: {fileID: 4483306839220528}
   - component: {fileID: 33763178186631926}
   - component: {fileID: 23223122420387580}
-  - component: {fileID: 5453633397364804500}
-  - component: {fileID: 7036631475507230355}
-  - component: {fileID: 8525077251621017510}
-  - component: {fileID: 9029016250530190519}
-  - component: {fileID: 542461171}
+  - component: {fileID: 5834312786937855713}
+  - component: {fileID: 2272124375118052900}
+  - component: {fileID: 730658900055727556}
+  - component: {fileID: 3362384018993815228}
+  - component: {fileID: 4649686896186528385}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -246,23 +246,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5453633397364804500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4426b539c758eaa40ac7847a5a7ad2bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: 9e69b158063a6430b9aef314e0c9ce2e, type: 2}
-  _updateEventListener: {fileID: 8525077251621017510}
-  _carCollisionEventListener: {fileID: 9029016250530190519}
-  _roadCollisionEventDispatcher: {fileID: 542461171}
---- !u!65 &7036631475507230355
+--- !u!65 &5834312786937855713
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,7 +259,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8072972, y: 2.0763528, z: 7.0108266}
   m_Center: {x: 0, y: 1.534154, z: 0.46119332}
---- !u!114 &8525077251621017510
+--- !u!114 &2272124375118052900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70e62706bc1ad8459d62f23919186a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: 9e69b158063a6430b9aef314e0c9ce2e, type: 2}
+  _updateEventListener: {fileID: 730658900055727556}
+  _carCollisionEventListener: {fileID: 3362384018993815228}
+  _carCollisionEventDispatcher: {fileID: 4649686896186528385}
+--- !u!114 &730658900055727556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
---- !u!114 &9029016250530190519
+--- !u!114 &3362384018993815228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
---- !u!114 &542461171
+--- !u!114 &4649686896186528385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
