@@ -13,7 +13,7 @@ namespace UI {
         private void OnTriggerEnter(Collider other) {
             for (int i = 0; i < _enemyCars.Count; i++) {
                 if (_enemyCars[i].tag.Equals(other.tag)) {
-                    _currentScore.value += _enemyCars[i]._dodgeScore.dodgeScore;
+                    _currentScore.value += _enemyCars[i].DodgeScore.dodgeScore;
                 }
             }
         }
