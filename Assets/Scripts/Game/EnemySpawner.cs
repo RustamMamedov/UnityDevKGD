@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using UI;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-using System;
 using Random = UnityEngine.Random;
 
 namespace Game {
@@ -14,6 +13,9 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionListener;
+
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
 
         [SerializeField]
         private List<GameObject> _carPrefabs;
@@ -62,6 +64,7 @@ namespace Game {
         private void OnCarCollision() {
 
             UnsubscribeToEvents();
+            UIManager.Instansce.ShowLeaderboardScreen();
         }
 
         private void UpdateBehaviour() {
@@ -90,6 +93,7 @@ namespace Game {
 
             for (int i = _cars.Count - 1; i > - 1; i--) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
+                    _currentScore.value += _cars[i].gameObject.GetComponent<EnemyCar>().CarSettings.dodgeScore;
                     Destroy(_cars[i]); 
                     _cars.RemoveAt(i);
                     
