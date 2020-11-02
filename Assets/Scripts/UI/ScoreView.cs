@@ -24,8 +24,7 @@ namespace UI {
         private void OnEnable() { 
             _currentScoreAsset.value = 0; 
             _scoreLabel.text = "0"; 
-            _currentScore = 0; 
- 
+            _currentScore = 0;
         } 
         
         private void Awake() {

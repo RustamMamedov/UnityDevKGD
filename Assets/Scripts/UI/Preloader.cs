@@ -28,6 +28,5 @@ namespace UI {
             yield return new WaitForSeconds(2f);
             asyncOperation.allowSceneActivation = true;
         }
-        
     }
 }

@@ -4,7 +4,9 @@ using Game;
 using Events; 
  
 namespace UI { 
+    
     public class PreloaderView : MonoBehaviour{ 
+        
         [SerializeField] 
         private ScriptableFloatValue _sceneLoadingValue; 
  

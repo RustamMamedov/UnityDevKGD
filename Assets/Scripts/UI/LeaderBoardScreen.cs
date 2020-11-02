@@ -6,7 +6,6 @@ namespace UI {
 
     public class LeaderBoardScreen : MonoBehaviour {
 
-        
         [SerializeField] 
         private Button _startGameButton;
 
