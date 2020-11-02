@@ -35,12 +35,18 @@ namespace UI {
 
         public IEnumerator SetScoreCoroutine(int score) {
             isBusy = true;
-            while (_currentScore < score) {
+            while (score > _currentScore) {
                 _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
             isBusy = false;
+        }
+
+        private void OnEnable() {
+            _currentScore = 0;
+            _currentScoreValue.value = 0;
+            _scoreLabel.text = $"{_currentScore}";
         }
     }
 }
