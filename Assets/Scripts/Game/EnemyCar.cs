@@ -25,7 +25,6 @@ namespace Game {
         private bool _enemyIsDodged = false;
 
         private void CheckIfDodged() {
-	        Debug.Log(Mathf.Ceil(transform.position.x) + " " + Mathf.Ceil(_playerPositionX.value));
             if (Mathf.Ceil(transform.position.x) == Mathf.Ceil(_playerPositionX.value)) {
                 if (_playerPositionZ.value - transform.position.z > _distanceToDodge) _enemyIsDodged = true;
             }
@@ -47,7 +46,6 @@ namespace Game {
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carTriggerEventDispatcher.Dispatch();
-                Debug.Log("Collision with " + transform.name);
                 UIManager.Instance.ShowLeaderboardScreen();
             }
         }
