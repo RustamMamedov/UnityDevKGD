@@ -91,7 +91,7 @@ namespace Game
         {
             for (int i = _cars.Count - 1; i > -1; i--)
             {
-                if ((Mathf.Abs(_playerPositionZ.value - _playerLength.value / 2 - _cars[i].transform.position.z + _enemiesLength[_enemiesSettings[i]].value / 2) < 1f)&&(_dodged))
+                if ((_playerPositionZ.value - _cars[i].transform.position.z >= _playerLength.value / 2+ _enemiesLength[_enemiesSettings[i]].value / 2) &&(_dodged))
                 {
                     _currentScore.value += _enemiesScores[_enemiesSettings[i]].dodgeScore;
                     _dodged = false;
