@@ -29,7 +29,7 @@ namespace UI {
         private int _currentScore;
 
         // Number of the current SetScoreCoroutine.
-        private int _currentSetScoreCoroutine = 0;
+        private int _currentSetScoreCoroutine;
 
         // To what value is current score being changed at the moment.
         private int _currentTargetScore;
@@ -37,12 +37,19 @@ namespace UI {
 
         // Life cycle.
 
-        private void Start() {
-            _currentScore = _currentScoreSource.value;
-            _scoreText.text = $"{_currentScore}";
+        private void OnEnable() {
+            SetCurrentScore(_currentScoreSource.value);
+            _currentSetScoreCoroutine = 0;
             _currentTargetScore = _currentScore;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
+
+        private void OnDisable() {
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+        }
+
+
+        // Event handling.
 
         private void UpdateBehaviour() {
             var targetScore = _currentScoreSource.value;
@@ -67,15 +74,22 @@ namespace UI {
 
             // Update current score.
             int scoreChange = _currentScore < targetScore ? 1 : -1;
-            while (true) {
-                if (_currentSetScoreCoroutine != coroutineNumber || _currentScore == targetScore) {
-                    break;
-                }
-                _currentScore += scoreChange;
-                _scoreText.text = $"{_currentScore}";
+            while (_currentScore != targetScore) {
+                SetCurrentScore(_currentScore + scoreChange);
                 yield return new WaitForSeconds(_currentScoreIncrementDelay);
+                if (_currentSetScoreCoroutine != coroutineNumber) {
+                    yield break;
+                }
             }
 
+        }
+
+
+        // Supportive methods.
+
+        private void SetCurrentScore(int newScore) {
+            _currentScore = newScore;
+            _scoreText.text = $"{_currentScore}";
         }
 
 
