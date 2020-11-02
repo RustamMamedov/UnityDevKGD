@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-
+using UI;
 
 namespace Game {
 
@@ -63,12 +63,16 @@ namespace Game {
                 timer += Time.deltaTime;
                 transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime);
             }
-            
+
             _inDodge = false;
             _currentRoad = nextRoad;
         }
 
-
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Enemy")) {
+                UIManager.Instance.ShowLeaderboardsScreen();
+            }
+        }
 
 
     }
