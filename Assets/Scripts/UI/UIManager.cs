@@ -25,7 +25,6 @@ namespace UI {
                 Destroy(gameObject);
                 return;
             }
-
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -47,9 +46,12 @@ namespace UI {
         }
 
         private void LoadGameplayScene() {
+            
             _fader.OnFadeOut -= LoadGameplayScene;
+            
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
+
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
