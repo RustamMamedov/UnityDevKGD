@@ -137,7 +137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 568432302}
   - component: {fileID: 568432301}
-  - component: {fileID: 568432303}
   - component: {fileID: 568432304}
   m_Layer: 5
   m_Name: UI
@@ -179,22 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &568432303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568432300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3aa83bb12cf940d7b977eeff80a8846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scoreCountDelay: 0.1
-  _updateEventListener: {fileID: 568432304}
-  _currentScoreValue: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
-  _scoreLabel: {fileID: 1557970596}
 --- !u!114 &568432304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,6 +1125,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4789052084600044939, guid: b06e139d76ddbdb44b0934c88d06bd02,
+        type: 3}
+      propertyPath: _scoreText
+      value: 
+      objectReference: {fileID: 1557970596}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06e139d76ddbdb44b0934c88d06bd02, type: 3}
 --- !u!1001 &3728316746745745210
