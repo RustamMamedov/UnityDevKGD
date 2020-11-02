@@ -8,16 +8,16 @@ namespace Events {
     public class EventListener : MonoBehaviour {
 
         [SerializeField]
-        private ScriptableEvent _sampleEvent;
+        private ScriptableEvent _listenedEvent;
 
         public event Action OnEventHappened = delegate {};
 
         private void OnEnable() {
-            _sampleEvent.AddListener(EventHandler);
+            _listenedEvent.AddListener(EventHandler);
         }
 
         private void OnDisable() {
-            _sampleEvent.RemoveListener(EventHandler);
+            _listenedEvent.RemoveListener(EventHandler);
         }
 
         private void EventHandler() {

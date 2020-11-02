@@ -38,6 +38,8 @@ namespace Events {
 
             // It should be more effective just to go through listeners using integer index,
             // but I wanna try this, more dogmatic though costly approach.
+            // I mean, that we can always be sure that any listener changes
+            // will be applied in the next frame only. If that makes any difference.
             foreach (var listener in _listeners.ToArray()) {
                 listener.Invoke();
             }
