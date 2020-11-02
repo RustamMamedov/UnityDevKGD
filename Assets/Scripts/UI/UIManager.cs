@@ -32,14 +32,8 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Start() { }
-
-        private void Update() {
-            Debug.Log("Update");
-        }
-
-        private void LoadMenu() {
-             _fader.OnFadeOut += LoadMenuScene;
+        public void LoadMenu() {
+            _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
@@ -57,6 +51,11 @@ namespace UI {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
+        }
+
+        public void LeaderboardScreen() { 
+            _fader.OnFadeOut -= LeaderboardScreen;
+            ShowLeaderboardScreen();
         }
         
         private IEnumerator LoadSceneCoroutine(string sceneName) {
