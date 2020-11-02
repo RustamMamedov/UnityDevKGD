@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UI;
 
 namespace Game {
 
@@ -12,6 +13,7 @@ namespace Game {
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
+                UIManager.Instance.ShowLeaderboardsScreen();
                 Debug.Log("CarCollision");
                 _carTriggerEventDispatcher.Dispatch();
             }

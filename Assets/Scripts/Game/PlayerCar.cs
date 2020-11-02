@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-using UI;
 
 namespace Game {
 
@@ -50,31 +49,23 @@ namespace Game {
             }
             StartCoroutine(DodgeCoroutine(nextRoad));
 
-
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
-            var offsetPerFrameX = _roadWidth.value / _dodgeDuration * (nextRoad > _currentRoad ? 1 : -1);
+            var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
 
-            while (timer < _dodgeDuration) {
-                yield return null;
+            while (timer <= _dodgeDuration) {
                 timer += Time.deltaTime;
-                transform.Translate(transform.right * offsetPerFrameX * Time.deltaTime);
+                var posX = Mathf.Lerp(transform.position.x, targetPosX, timer / _dodgeDuration);
+                transform.position = new Vector3(posX, transform.position.y, transform.position.z);
+                yield return null;
             }
 
             _inDodge = false;
             _currentRoad = nextRoad;
         }
-
-        private void OnTriggerEnter(Collider other) {
-            if (other.CompareTag("Enemy")) {
-                UIManager.Instance.ShowLeaderboardsScreen();
-            }
-        }
-
-
     }
 
 }
