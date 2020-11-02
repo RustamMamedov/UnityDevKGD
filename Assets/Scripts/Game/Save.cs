@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Game {
 
@@ -15,11 +17,20 @@ namespace Game {
         }
 
         //туть пропустил
-        [SerializeField]
+        [Serializable]
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
+        };
+
+        private enum SaveType {
+
+            PlayerPrefs,
+            File
         }
+
+        [SerializeField]
+        private SaveType _savedType;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
@@ -32,12 +43,8 @@ namespace Game {
 
 
         private const string RECOREDS_KEY = "records";
-
-        private void Awake() {
-            _savedDatas = new List<SaveData>();
-            LoadFromPlayerPrefs();
-        }
-
+        private string _filePath;
+        #region Enable/Disable
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -45,6 +52,17 @@ namespace Game {
         private void OnDisable() {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
+        #endregion Enable/Disable
+        private void Awake() {
+            _savedDatas = new List<SaveData>();
+            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            if (_savedType == SaveType.PlayerPrefs)
+                LoadFromPlayerPrefs();
+            else
+                LoadFromFile();
+        }
+
+
 
         private void OnCarCollision() {
             var newRecord = new SaveData {
@@ -54,7 +72,24 @@ namespace Game {
             Debug.Log($"new record {newRecord.date} {newRecord.score}");
             _savedDatas.Add(newRecord);
 
-            SaveToPlayerPrefs();
+
+            if(_savedType==SaveType.PlayerPrefs)
+                SaveToPlayerPrefs();
+            else
+                SaveToFile();
+        }
+
+        private SavedDataWrapper GetWrapper() {
+            var wrapper = new SavedDataWrapper {
+                saveDatas = _savedDatas
+            };
+            return wrapper;
+        }
+        #region PlayerPrefs
+        private void SaveToPlayerPrefs() {
+            var wrapper = GetWrapper();
+            var json = JsonUtility.ToJson(wrapper);
+            PlayerPrefs.SetString(RECOREDS_KEY, json);
         }
 
         private void LoadFromPlayerPrefs() {
@@ -64,14 +99,32 @@ namespace Game {
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECOREDS_KEY));
             _savedDatas = wrapper.saveDatas;
         }
+        #endregion PlayerPrefs
+        #region File
+        private void SaveToFile() {
+            var wrapper = GetWrapper();
 
-        private void SaveToPlayerPrefs() {
-            var wrapper = new SavedDataWrapper {
-                saveDatas = _savedDatas
-            };
-            var json = JsonUtility.ToJson(wrapper);
-            PlayerPrefs.SetString(RECOREDS_KEY, json);
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                binaryFormatter.Serialize(fileStream, wrapper);
+            }
+
         }
+
+        private void LoadFromFile() {
+            if (!File.Exists(_filePath)) {
+                return;
+            }
+            
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream=File.Open(_filePath,FileMode.Open)) {
+                var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
+                _savedDatas = wrapper.saveDatas;
+            }
+            Debug.Log(_savedDatas.Count);
+        }
+        #endregion File
+
 
     }
 }
