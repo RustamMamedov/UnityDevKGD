@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 257076561}
   - component: {fileID: 257076562}
+  - component: {fileID: 257076563}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -308,6 +309,20 @@ MonoBehaviour:
   _menuScreen: {fileID: 4002830534174309795}
   _gameScreen: {fileID: 7543882774944280385}
   _leaderboardsScreen: {fileID: 1343561200}
+  _carCollisionEventListener: {fileID: 257076563}
+--- !u!114 &257076563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257076560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
 --- !u!224 &322947100 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4002830533925287358, guid: e769524c09e6eee498dd3169d3d03ec0,
