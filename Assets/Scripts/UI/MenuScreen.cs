@@ -9,8 +9,7 @@ public class MenuScreen : MonoBehaviour {
     private Button _playButton;
 
     private void Awake() {
-        Button playButton = _playButton.GetComponent<Button>();
-        playButton.onClick.AddListener(OnPlayButtonClick);
+        _playButton.onClick.AddListener(OnPlayButtonClick);
         
     }
 

@@ -10,10 +10,13 @@ namespace UI {
 
         [SerializeField]
         private Fader _fader;
+
         [SerializeField]
         private GameObject _menuScreen;
+
         [SerializeField]
         private GameObject _gameScreen;
+
         [SerializeField]
         private GameObject _leaderboardScreen;
 
@@ -30,6 +33,11 @@ namespace UI {
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
+        }
+
+        public void LoadLeaderboardScreen() {
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowLeaderboardsScreen();
         }
 
         public void LoadGameplay() {
