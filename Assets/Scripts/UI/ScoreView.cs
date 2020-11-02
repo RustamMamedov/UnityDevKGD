@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Values;
+using Game;
 using Events;
 using UnityEngine.UI;
 
@@ -26,8 +26,8 @@ namespace UI {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
         public void UpdateBehaviour() {
-            if(_valueScore.score >= _currentScore) {
-            StartCoroutine(SetScoreCoroutine(_valueScore.score));    
+            if(_valueScore.value >= _currentScore) {
+            StartCoroutine(SetScoreCoroutine(_valueScore.value));    
             }
         
         }
