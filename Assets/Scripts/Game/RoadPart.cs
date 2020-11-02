@@ -14,6 +14,5 @@ namespace Game {
                 _roadTriggerEventDispatcher.Dispatch();
             }
         }
-
     }
 }
