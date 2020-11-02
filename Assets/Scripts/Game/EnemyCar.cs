@@ -3,15 +3,39 @@ using UnityEngine;
 
 namespace Game {
 
-    public class EnemyCar : Car 
-    {
+    public class EnemyCar : Car {
+        
         [SerializeField]
         private EventDispatcher _collisionTriggerED;
+
+        [SerializeField] 
+        private EventDispatcher _carDodgedDispatcher;
+
+        [SerializeField] 
+        private ScriptableFloatValue _playerPositionZValue;
+
+        [SerializeField] 
+        private ScriptableIntValue _currentScore;
+
+        [SerializeField] 
+        private float _dodgeDistance;
+
+        private bool _isCarDodged = false;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _collisionTriggerED.Dispatch();
                 Debug.Log("EnemyCar collision");
+            }
+        }
+
+        protected override void Move() {
+            base.Move();
+
+            if (!_isCarDodged && transform.position.z + _dodgeDistance < _playerPositionZValue.value) {
+                _isCarDodged = true;
+                _currentScore.value += _carSettings.dodgeScore;
+                _carDodgedDispatcher.Dispatch();
             }
         }
     }
