@@ -9,7 +9,7 @@ namespace Game {
         private EventDispatcher _carCollisionDispatcher;
 
         [SerializeField]
-        private float _sizePlayerCar;//TODO: переделать через scriptableFloatValue чтобы адаптивна была
+        private ScriptableFloatValue _sizePlayerCar;
         
         [SerializeField]
         private BoxCollider _sizeBoxCollider;
@@ -41,7 +41,7 @@ namespace Game {
         }
 
         private void IsDodged() {
-            if (_playerCarPositionZ.value-transform.position.z>_sizePlayerCar+_sizeBoxCollider.size.z*.5f) {
+            if (_playerCarPositionZ.value-transform.position.z>_sizePlayerCar.value+_sizeBoxCollider.size.z*.5f) {
                     _updateEventListener.OnEventHappened -= IsDodged;
                     _score.value += _carSettings.dodgeScore;
                     _carDodge.Dispatch();
