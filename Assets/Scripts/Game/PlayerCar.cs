@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -36,6 +37,12 @@ namespace Game {
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
+        }
+
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            UIManager.Instance.ShowLeaderboardScreen();
+
         }
 
         private void OnPlayerTouch() {
