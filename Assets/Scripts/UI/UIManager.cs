@@ -44,6 +44,7 @@ namespace UI {
 
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
         public void LoadGameplay() {
