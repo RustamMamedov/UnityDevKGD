@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-
+using System.Linq;
 
 namespace Game {
     public class EnemySpawner : MonoBehaviour {
@@ -14,6 +14,9 @@ namespace Game {
 
         [SerializeField]
         private List<GameObject> _carPrefabs = new List<GameObject>();
+
+        [SerializeField]
+        private List<CarSettings> _carSettingsPrefabs = new List<CarSettings>();
 
         [SerializeField]
         private float _spawnCooldown;
@@ -29,6 +32,8 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
+
+        [SerializeField] ScriptableIntValue _currentScore;
 
         private float _currentTimer;
 
@@ -72,7 +77,6 @@ namespace Game {
             
             var randomRoad = Random.Range(-1, 2);
             var randomCar = Random.Range(0, 3);
-
             var position = new Vector3(1f*randomRoad* _roadWidth.value,0f,_playerPositionZ.value + _dictanceToPlayerToSpawn );
             var car = Instantiate(_carPrefabs[randomCar], position, Quaternion.Euler(0f,180f,0f));
             _cars.Add(car);
@@ -82,16 +86,21 @@ namespace Game {
         private void HandleCarsBehindPlayer() {
 
             for(int i = _cars.Count-1; i >-1; i--) {
-                if(_playerPositionZ.value- _cars[i].transform.position.z> _distanceToPlayerDestroy) {
+                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerDestroy) {
                     Destroy(_cars[i]);
+                    if (_cars[i].name == "SUV(Clone)") {
+                        _currentScore.value += _carSettingsPrefabs[1].dodgeScore;
+                    }
+                    if (_cars[i].name == "FamilyCar(Clone)") {
+                        _currentScore.value += _carSettingsPrefabs[0].dodgeScore;
+                    }
+                    if (_cars[i].name == "Truck(Clone)") {
+                        _currentScore.value += _carSettingsPrefabs[2].dodgeScore;
+                    }
                     _cars.RemoveAt(i);
-                   
+                    
                 }
             }
-
         }
-
-       
-
     }
 }

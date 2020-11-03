@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UI;
-
+using Game;
 
 namespace UI {
     public class LeaderboardScreen : MonoBehaviour {
