@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
 
@@ -10,63 +9,70 @@ namespace Game {
 
     public class Save : MonoBehaviour {
 
-        public class  SaveData {
+        [Serializable]
+        public class SaveData {
 
             public string date;
             public string score;
         }
-        
+
+        [Serializable]
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
         }
-        
+
         private enum SaveType {
-            
+
             PlayerPrefs,
             File,
         }
-        
-        [SerializeField] 
+
+        [SerializeField]
         private EventListener _carCollisionEventListener;
 
-        [SerializeField] 
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        [SerializeField] 
+        [SerializeField]
         private SaveType _saveType;
-        private static List<SaveData> _savedDatas;
-        public static List<SaveData> SavedDatas => _savedDatas;
+
+        private static List<SaveData> _saveDatas;
+        public static List<SaveData> SavedDatas => _saveDatas;
+
         private const string RECORDS_KEY = "records";
         private string _filePath;
-        
+
         private void Awake() {
-            _savedDatas = new List<SaveData>();
+            _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
-                SaveToPlayerPrefs();
+                LoadFromPlayerPrefs();
             } else {
                 LoadFromFile();
             }
         }
-        
+
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
-        
+
         private void OnDisable() {
-            _carCollisionEventListener.OnEventHappened += OnCarCollision;
+            _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
         private void OnCarCollision() {
-            var newRecord = new SaveData() {
+            var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _savedDatas.Add(newRecord);
+            _saveDatas.Add(newRecord);
 
-            SaveToFile();
-            // SaveToPlayerPrefs();
+            if (_saveType == SaveType.PlayerPrefs) {
+                SaveToPlayerPrefs();
+            } else {
+                SaveToFile();
+            }
         }
 
         private void LoadFromPlayerPrefs() {
@@ -75,18 +81,19 @@ namespace Game {
             }
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
-            _savedDatas = wrapper.saveDatas;
+            _saveDatas = wrapper.saveDatas;
         }
 
         private SavedDataWrapper GetWrapper() {
-            var wrapper = new SavedDataWrapper() {
-                saveDatas = _savedDatas
+            var wrapper = new SavedDataWrapper {
+                saveDatas = _saveDatas
             };
             return wrapper;
         }
+
         private void SaveToPlayerPrefs() {
             var wrapper = GetWrapper();
-            var json = JsonUtility.ToJson(_savedDatas);
+            var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
         }
 
@@ -94,18 +101,19 @@ namespace Game {
             if (!File.Exists(_filePath)) {
                 return;
             }
-            
+
             var binaryFormatter = new BinaryFormatter();
-            using(FileStream fileStream = File.Open(_filePath, FileMode.Open)) { 
+            using(FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
                 var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
-                _savedDatas = wrapper.saveDatas;
+                _saveDatas = wrapper.saveDatas;
             }
+            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToFile() {
             var wrapper = GetWrapper();
             var binaryFormatter = new BinaryFormatter();
-            using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) { 
+            using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
         }
