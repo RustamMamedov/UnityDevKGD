@@ -35,11 +35,6 @@ namespace UI {
             _fader.FadeOut();
         }
 
-        public void LoadLeaderboardScreen() {
-            StartCoroutine(LoadSceneCoroutine("Menu"));
-            ShowLeaderboardsScreen();
-        }
-
         public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();

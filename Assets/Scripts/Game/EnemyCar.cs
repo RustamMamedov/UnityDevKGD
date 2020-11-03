@@ -13,7 +13,7 @@ namespace Game {
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
 
-                UIManager.Instance.LoadLeaderboardScreen();
+                UIManager.Instance.ShowLeaderboardsScreen();
                 _carTriggerEventDispatcher.Dispatch();
             }
         }
