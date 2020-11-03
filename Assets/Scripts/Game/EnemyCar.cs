@@ -21,16 +21,27 @@ namespace Game {
         private ScriptableFloatValue _playerPositionX;
 
         [SerializeField] 
-        private int _distanceToDodge = - 40;
+        private ScriptableBoolValue _crazyModeEnabled;
+
+        private int _distanceToDodge = 40;
         private bool _enemyIsDodged = false;
 
         private void CheckIfDodged() {
-            if (Mathf.Ceil(transform.position.x) == Mathf.Ceil(_playerPositionX.value)) {
-                if (_playerPositionZ.value - transform.position.z > _distanceToDodge) _enemyIsDodged = true;
+            if (_crazyModeEnabled.value) {
+                if (Mathf.Ceil(transform.position.x) == Mathf.Ceil(_playerPositionX.value)) {
+                    if (transform.position.z - _playerPositionZ.value < _distanceToDodge) _enemyIsDodged = true;
+                }
+            }
+            else {
+                if (transform.position.z - _playerPositionZ.value < _distanceToDodge) {
+                    if (Mathf.Abs(Mathf.Ceil(transform.position.x - _playerPositionX.value)) == 4 || Mathf.Abs(Mathf.Ceil(_playerPositionX.value - transform.position.x)) == 4 )
+                        _enemyIsDodged = true;
+                }
             }
         }
         private void AddScore() {
-            if(_enemyIsDodged) _currentScoreAsset.value += _carSettings.dodgeScore; 
+            if(_enemyIsDodged) _currentScoreAsset.value += _carSettings.dodgeScore;
+            _enemyIsDodged = false;
         }
         
         protected override void Move() {
