@@ -69,7 +69,7 @@ namespace Game {
 
         // Properties.
 
-        public List<Record> SavedDatas => _records;
+        public List<Record> Records => _records;
 
 
         // Event handling.
