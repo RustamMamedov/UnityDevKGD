@@ -39,6 +39,7 @@ namespace Game {
                 }
             }
         }
+        
         private void AddScore() {
             if(_enemyIsDodged) _currentScoreAsset.value += _carSettings.dodgeScore;
             _enemyIsDodged = false;
