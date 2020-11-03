@@ -8,13 +8,13 @@ namespace UI {
     public class MenuScreen : MonoBehaviour {
 
         [SerializeField] 
+        private Button _startCasualModeButton;
+        
+        [SerializeField] 
         private Button _startCrazyModeButton;
         
         [SerializeField] 
-        private Button _startCasualModeButton;
-
-        [SerializeField] 
-        private ScriptableBoolValue _crazyMode;
+        private ScriptableBoolValue _crazyModeEnabled;
 
         private void Awake() {
             _startCasualModeButton.onClick.AddListener(OnCasualModeButtonClick);
@@ -22,12 +22,12 @@ namespace UI {
         }
 
         private void OnCasualModeButtonClick() {
-            _crazyMode.value = false;
+            _crazyModeEnabled.value = false;
             UIManager.Instance.LoadGameplay();
         }
         
         private void OnCrazyModeButtonClick() {
-            _crazyMode.value = true;
+            _crazyModeEnabled.value = true;
             UIManager.Instance.LoadGameplay();
         }
     }
