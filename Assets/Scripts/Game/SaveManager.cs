@@ -1,16 +1,16 @@
 ﻿using Events;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using Utilities;
 using Values;
 
 namespace Game {
     
-    public class SaveManager : MonoBehaviour {
+    public class SaveManager : GameSingletonBase<SaveManager> {
 
         // Nested types.
 
@@ -107,7 +107,8 @@ namespace Game {
 
         // Constants.
 
-        private const string RECORDS_KEY = "records";
+        public const int invalidIndex = -1;
+        private const string _recordsKey = "records";
 
 
         // Fields.
@@ -132,15 +133,19 @@ namespace Game {
         // - to contain no more than {_recordsLimit} records.
         private List<Record> _records;
 
+        private int _newRecordIndex;
+
         private string _saveFilePath;
 
 
         // Life cycle.
 
-        private void Awake() {
+        protected override void Awake() {
+            base.Awake();
             _records = new List<Record>();
+            _newRecordIndex = invalidIndex;
             _saveFilePath = Path.Combine(Application.persistentDataPath, "records.save");
-            LoadData();
+            LoadAndSetData();
         }
 
         private void OnEnable() {
@@ -155,6 +160,8 @@ namespace Game {
         // Properties.
 
         public Record[] Records => _records.ToArray();
+
+        public int NewRecordIndex => _newRecordIndex;
 
 
         // Event handling.
@@ -173,41 +180,69 @@ namespace Game {
 
         // Add new record and maintain the records list.
         private void AddRecord(Record newRecord) {
-            if (!newRecord.IsValid) {
+            
+            _newRecordIndex = invalidIndex;
+            if (newRecord == null || !newRecord.IsValid) {
                 return;
             }
+
+            // Find insertion position.
             int index = _records.FindIndex(otherRecord => newRecord.CompareTo(otherRecord) > 0);
             if (index == -1) {
                 index = _records.Count;
             }
+
+            // Insert record.
+            if (index >= _recordsLimit) {
+                return;
+            }
             _records.Insert(index, newRecord);
+            _newRecordIndex = index;
             if (_records.Count > _recordsLimit) {
                 _records.RemoveAt(_records.Count - 1);
             }
+
         }
 
-        // Reorganize records to maintain the records list.
-        private void ProcessRecords() {
-            _records.Sort((first, second) => -first.CompareTo(second));
-            while (_records.Count > 0) {
-                var lastIndex = _records.Count - 1;
-                if (_records[lastIndex].IsValid && _records.Count <= _recordsLimit) {
-                    break;
+        // Set and process records list.
+        private void SetRecords(IEnumerable<Record> newRecords) {
+
+            var records = new List<Record>();
+            if (newRecords != null) {
+
+                // Transfer valid records to new list.
+                foreach (var record in newRecords) {
+                    if (record == null || !record.IsValid) {
+                        continue;
+                    }
+                    records.Add(record);
                 }
-                _records.RemoveAt(lastIndex);
+
+                // Sort records, remove invalid ones.
+                records.Sort((first, second) => -first.CompareTo(second));
+                while (records.Count > _recordsLimit) {
+                    records.RemoveAt(records.Count - 1);
+                }
+
             }
+          
+            // Set fields.
+            _records = records;
+            _newRecordIndex = invalidIndex;
+
         }
 
 
         // Data loading/saving.
 
-        private void LoadData() {
+        private void LoadAndSetData() {
+            List<Record> loadedRecords = null;
             if (_saveType == SaveType.PlayerPrefs) {
-                LoadDataFromPlayerPrefs();
+                LoadDataFromPlayerPrefs(out loadedRecords);
             } else if (_saveType == SaveType.File) {
-                LoadDataFromFile();
+                LoadDataFromFile(out loadedRecords);
             }
-            ProcessRecords();
+            SetRecords(loadedRecords);
         }
 
         private void SaveData() {
@@ -219,13 +254,14 @@ namespace Game {
             _progressSavedEventDispatcher.Dispatch();
         }
 
-        private void LoadDataFromPlayerPrefs() {
-            if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
+        private void LoadDataFromPlayerPrefs(out List<Record> loadedRecords) {
+            if (!PlayerPrefs.HasKey(_recordsKey)) {
+                loadedRecords = null;
                 return;
             }
-            var json = PlayerPrefs.GetString(RECORDS_KEY);
+            var json = PlayerPrefs.GetString(_recordsKey);
             var wrapper = JsonUtility.FromJson<RecordsWrapper>(json);
-            _records = wrapper.records;
+            loadedRecords = wrapper.records;
         }
 
         private void SaveDataToPlayerPrefs() {
@@ -233,17 +269,18 @@ namespace Game {
                 records = _records
             };
             var json = JsonUtility.ToJson(wrapper);
-            PlayerPrefs.SetString(RECORDS_KEY, json);
+            PlayerPrefs.SetString(_recordsKey, json);
         }
 
-        private void LoadDataFromFile() {
+        private void LoadDataFromFile(out List<Record> loadedRecords) {
             if (!File.Exists(_saveFilePath)) {
+                loadedRecords = null;
                 return;
             }
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_saveFilePath, FileMode.Open)) {
                 var wrapper = (RecordsWrapper) binaryFormatter.Deserialize(fileStream);
-                _records = wrapper.records;
+                loadedRecords = wrapper.records;
             }
         }
 
