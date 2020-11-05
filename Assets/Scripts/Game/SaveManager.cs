@@ -122,6 +122,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventDispatcher _progressSavedEventDispatcher;
+
+        [SerializeField]
         private ScriptableIntValue _currentScoreValue;
 
         // The records list is maintained:
@@ -213,6 +216,7 @@ namespace Game {
             } else if (_saveType == SaveType.File) {
                 SaveDataToFile();
             }
+            _progressSavedEventDispatcher.Dispatch();
         }
 
         private void LoadDataFromPlayerPrefs() {
