@@ -806,6 +806,8 @@ GameObject:
   - component: {fileID: 2466872592882079478}
   - component: {fileID: 4698392188656291799}
   - component: {fileID: 2460651230720074151}
+  - component: {fileID: 5577107821604017352}
+  - component: {fileID: 2987853129046964925}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -844,7 +846,13 @@ MonoBehaviour:
   _carSetting: {fileID: 11400000, guid: 03ccd77d51d81fc4091df29beb767cc3, type: 2}
   _updateEventListeners: {fileID: 8628031364522537608}
   _carCollisionEventListener: {fileID: 2466872592882079478}
+  _currentScore: {fileID: 11400000, guid: 8b3cb2636c3de9c44a05ade582c64db1, type: 2}
+  _carDodge: {fileID: 5577107821604017352}
   _enemyCarsCollisionEventDispatcher: {fileID: 4698392188656291799}
+  _carDodged: {fileID: 2987853129046964925}
+  _distanceBetweenCars: {fileID: 11400000, guid: cb7bf21f3b97de04191b9679da85d10f,
+    type: 2}
+  _playerPosition: {fileID: 11400000, guid: 4606ea24f4c3827438b4d243ccc61b5f, type: 2}
 --- !u!114 &8628031364522537608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +905,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.059347, y: 4.5462847, z: 11.020132}
   m_Center: {x: 0.008477807, y: 1.7731423, z: 0.3579445}
+--- !u!114 &5577107821604017352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb824bb7ca623cb49a6d63c5f1bb6187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 5d0dca73fe1942a44be07d4ab8cfc927, type: 2}
+--- !u!114 &2987853129046964925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa747587d01a46a4abefbd46e81c9910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 5d0dca73fe1942a44be07d4ab8cfc927, type: 2}
 --- !u!1 &1878664431752172
 GameObject:
   m_ObjectHideFlags: 0

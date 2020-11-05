@@ -174,6 +174,8 @@ GameObject:
   - component: {fileID: 6933181434701122892}
   - component: {fileID: 5727469499454844004}
   - component: {fileID: 6815995724489304589}
+  - component: {fileID: 6426298725245997084}
+  - component: {fileID: 1567861171722016847}
   m_Layer: 0
   m_Name: SUV
   m_TagString: Untagged
@@ -261,7 +263,13 @@ MonoBehaviour:
   _carSetting: {fileID: 11400000, guid: 0f3540bddea276d4891e18e57c27f870, type: 2}
   _updateEventListeners: {fileID: 4956422751980509221}
   _carCollisionEventListener: {fileID: 6933181434701122892}
+  _currentScore: {fileID: 11400000, guid: 8b3cb2636c3de9c44a05ade582c64db1, type: 2}
+  _carDodge: {fileID: 1567861171722016847}
   _enemyCarsCollisionEventDispatcher: {fileID: 5727469499454844004}
+  _carDodged: {fileID: 6426298725245997084}
+  _distanceBetweenCars: {fileID: 11400000, guid: cb7bf21f3b97de04191b9679da85d10f,
+    type: 2}
+  _playerPosition: {fileID: 11400000, guid: 4606ea24f4c3827438b4d243ccc61b5f, type: 2}
 --- !u!114 &4956422751980509221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +322,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8072972, y: 2.0763528, z: 7.0108266}
   m_Center: {x: 0, y: 1.534154, z: 0.46119332}
+--- !u!114 &6426298725245997084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa747587d01a46a4abefbd46e81c9910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 5d0dca73fe1942a44be07d4ab8cfc927, type: 2}
+--- !u!114 &1567861171722016847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307635527795650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb824bb7ca623cb49a6d63c5f1bb6187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 5d0dca73fe1942a44be07d4ab8cfc927, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
