@@ -67,16 +67,37 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
+
             Debug.Log($"new record: {newRecord.date} {newRecord.score}");
-            _saveDatas.Add(newRecord);
+
+            if (isSaveFull()) {
+                for (int i = 0; i < _saveDatas.Count; i++) {
+                    if (GetScore(_saveDatas[i].score) < GetScore(newRecord.score)) {
+                        _saveDatas[i] = newRecord;
+                        break;
+                    }
+                }
+            } else {
+                _saveDatas.Add(newRecord);
+            }
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
             }
-            
-            
+        }
+
+        private int GetScore(string score) {
+            return Int32.Parse(score);
+        }
+
+        private bool isSaveFull() {
+            if (_saveDatas.Count == 10) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         private void LoadFromPlayerPrefs() {
@@ -111,8 +132,6 @@ namespace Game {
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
-
-                Debug.Log(_saveDatas.Count);
             }
         }
 
