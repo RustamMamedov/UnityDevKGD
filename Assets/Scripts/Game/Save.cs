@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace Game {
     public class Save : MonoBehaviour {
 
         [Serializable]
-        public class SaveData {
+        public class saveDatas {
 
             public string date;
             public string score;
@@ -20,7 +19,7 @@ namespace Game {
         [Serializable]
         private class SavedDataWrapper {
 
-            public List<SaveData> saveData;
+            public List<saveDatas> saveDatas;
         }
 
         private enum SaveType { 
@@ -37,14 +36,14 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
-        private static List<SaveData> _savedData;
+        private static List<saveDatas> _saveDatas;
         private const string RECORDS_KEY = "Records";
         private string _filePath;
 
-        public static List<SaveData> SavedDatas => _savedData;
-
+        public static List<saveDatas> SavedDatas => _saveDatas;
+       
         private void Awake() {
-            _savedData = new List<SaveData>();
+            _saveDatas = new List<saveDatas>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if(_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
@@ -64,18 +63,18 @@ namespace Game {
 
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
-                saveData = _savedData
+                saveDatas = _saveDatas
             };
             return wrapper;
         }
 
         private void OnCarCollision() {
-            var newRecord = new SaveData {
+            var newRecord = new saveDatas {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
             Debug.Log($"new record: {newRecord.date} {newRecord.score}");
-            _savedData.Add(newRecord);
+            _saveDatas.Add(newRecord);
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
@@ -90,7 +89,7 @@ namespace Game {
             }
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
-            _savedData = wrapper.saveData;
+            _saveDatas = wrapper.saveDatas;
         }
 
         private void SaveToPlayerPrefs() {
@@ -106,9 +105,9 @@ namespace Game {
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
-                _savedData = wrapper.saveData;
+                _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_savedData.Count);
+            Debug.Log(_saveDatas.Count);
 
         }
 
