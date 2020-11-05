@@ -408,7 +408,6 @@ GameObject:
   - component: {fileID: 6244592783001307539}
   - component: {fileID: 3309052859374440113}
   - component: {fileID: 3429611434544695058}
-  - component: {fileID: 1866551479294545643}
   - component: {fileID: 2040328388}
   m_Layer: 0
   m_Name: PlayerCar
@@ -519,7 +518,8 @@ MonoBehaviour:
   _playerPositionZ: {fileID: 11400000, guid: 5822e763a5e0ce74883d948e325545b8, type: 2}
   _playerPositionX: {fileID: 11400000, guid: f96ea72c874f4bc4c902295a441bd3a1, type: 2}
   _roadWidth: {fileID: 11400000, guid: f260bd4c25636114eb6f4ead10057b45, type: 2}
-  _dodgeRewarder: {fileID: 1866551479294545643}
+  _dodgeRewarder: {fileID: 5823755129166867198, guid: 874fb837e237c9a49abc3523e9d5587d,
+    type: 3}
 --- !u!114 &5709713115755058432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,19 +588,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1866551479294545643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590206702830092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7438d5d2f6225e340be07b8c8ad38d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentScore: {fileID: 11400000, guid: df4120cc7ad58074a8d7789a7a7cc08e, type: 2}
 --- !u!114 &2040328388
 MonoBehaviour:
   m_ObjectHideFlags: 0
