@@ -30,18 +30,18 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
-        private EventListener _carCollisionEventListener;
+        private EventListener _progressSavedEventListener;
 
 
         // Life cycle.
 
         protected override void Awake() {
             base.Awake();
-            _carCollisionEventListener.OnEventHappened += ShowLeaderboardScreen;
+            _progressSavedEventListener.OnEventHappened += ShowLeaderboardScreen;
         }
 
         protected override void OnDestroy() {
-            _carCollisionEventListener.OnEventHappened -= ShowLeaderboardScreen;
+            _progressSavedEventListener.OnEventHappened -= ShowLeaderboardScreen;
             base.OnDestroy();
         }
 
