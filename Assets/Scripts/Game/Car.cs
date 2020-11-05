@@ -11,10 +11,18 @@ namespace Game {
         protected CarsSettings _carSetting;
 
         [SerializeField]
-        private EventListeners _updateEventListeners;
+        protected EventListeners _updateEventListeners;
 
         [SerializeField]
         private EventListeners _carCollisionEventListener;
+
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private EventListeners _carDodge;
+
+        private bool _dodged = false;
 
         protected float _currentSpeed;
 #endregion 1
@@ -32,16 +40,25 @@ namespace Game {
         protected virtual void SubscribeToEvent() {
             _updateEventListeners.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
+            _carDodge.OnEventHappened += OnCarDodged;
         }
         protected virtual void UnsubscribeToEvent() {
             _updateEventListeners.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
+            _carDodge.OnEventHappened -= OnCarDodged;
         }
         private void OnCarCollision() {
             UnsubscribeToEvent();
         }
         private void UpdateBehaviour() {
             Move();
+        }
+
+        private void OnCarDodged() {
+            if (!_dodged) {
+                _dodged = true;
+                _currentScore.value += _carSetting.dodgedScore;
+            }
         }
 #endregion 2
 
