@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 6850065040140600797}
   - component: {fileID: 7000982842850311507}
   m_Layer: 0
-  m_Name: Car_6G
+  m_Name: PlayerCar
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ Transform:
   - {fileID: 4213644545190728}
   - {fileID: 4622097374010884}
   - {fileID: 4261528576717780}
-  - {fileID: 1468353594845511771}
+  - {fileID: 2145964972593806978}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 9030c20949cf5ad4daa664def9a1f160, type: 2}
---- !u!1 &5402524494390346862
+--- !u!1 &4748551683296669975
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -502,24 +502,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1468353594845511771}
-  - component: {fileID: 2124426727019097952}
-  - component: {fileID: 3334535029207870303}
-  - component: {fileID: 8784198070718295955}
+  - component: {fileID: 2145964972593806978}
+  - component: {fileID: 1157559418171793649}
   m_Layer: 0
   m_Name: CarBackTrigger
-  m_TagString: Untagged
+  m_TagString: CarBack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1468353594845511771
+--- !u!4 &2145964972593806978
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5402524494390346862}
+  m_GameObject: {fileID: 4748551683296669975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -527,42 +525,16 @@ Transform:
   m_Father: {fileID: 4526053454235962}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2124426727019097952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5402524494390346862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a882d7d5621af224b8d80903e9e58d70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyCarsBackTriggerEventDispatch: {fileID: 3334535029207870303}
---- !u!114 &3334535029207870303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5402524494390346862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 56d2eff301ec144d686090ed74cea401, type: 2}
---- !u!65 &8784198070718295955
+--- !u!65 &1157559418171793649
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5402524494390346862}
+  m_GameObject: {fileID: 4748551683296669975}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.326053, y: 1.7262692, z: 0.1079793}
-  m_Center: {x: 0.14848089, y: 1.0631347, z: -2.7432683}
+  m_Size: {x: 16.290798, y: 1.7262692, z: 0.35104418}
+  m_Center: {x: 0.5600033, y: 1.0631347, z: -2.5137568}
