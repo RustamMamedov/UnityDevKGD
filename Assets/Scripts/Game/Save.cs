@@ -11,7 +11,6 @@ namespace Game {
 
         [Serializable]
         public class SaveData {
-
             public string date;
             public string score;
         }
@@ -25,6 +24,7 @@ namespace Game {
             PlayerPrefs,
             File
         }
+
         [SerializeField]
         private SaveType _saveType;
 
@@ -34,9 +34,9 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        private List<SaveData> _savedDatas;
+        private static List<SaveData> _savedDatas;
 
-        public List<SaveData> SavedDatas => _savedDatas;
+        public static List<SaveData> SavedDatas => _savedDatas;
 
         private const string RECORDS_KEY = "record";
         private string _filePath;

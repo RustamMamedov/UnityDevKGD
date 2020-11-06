@@ -14,7 +14,7 @@ namespace Game {
         private EventDispatcher _carDodgedEventDispatcher;
 
         [SerializeField]
-        private ScriptableIntValue DodgeScore;
+        private ScriptableIntValue _dodgeScore;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
@@ -23,7 +23,7 @@ namespace Game {
             }
 
             if (other.CompareTag("PlayerDodge")) {
-                DodgeScore.value = _carSettings.dodgeScore;
+                _dodgeScore.value = _carSettings.dodgeScore;
                 _carDodgedEventDispatcher.Dispatch();
             }
 
