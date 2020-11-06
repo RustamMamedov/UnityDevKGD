@@ -39,7 +39,6 @@ namespace Game {
         }
 
         private void OnCarCollision(){
-            UIManager.Instance.ShowLeaderboardScreen();
             UnsubscribeToEvents();
         }
 
