@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5459715494330395132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5459715494330395134}
+  - component: {fileID: 5459715494330395135}
+  - component: {fileID: 5459715494330395072}
+  - component: {fileID: 5459715494330395073}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5459715494330395134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459715494330395132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.96313465, z: -0.07910824}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5459715494330395135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459715494330395132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22195468413147540be4f03cf5ed546c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateEventListener: {fileID: 5459715494330395072}
+  _carCollisionListener: {fileID: 5459715494330395073}
+  _carPrefabs:
+  - {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e, type: 3}
+  - {fileID: 1307635527795650, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
+  - {fileID: 1699544679643506, guid: 416db31efad293d4da73c87b615cf55a, type: 3}
+  _carSettings:
+  - {fileID: 11400000, guid: b6b68d1c089c1c141bf2bd79adae4dc9, type: 2}
+  - {fileID: 11400000, guid: d9a6ee3b634287b4a9bac248701a5053, type: 2}
+  - {fileID: 11400000, guid: 9ae768745df06794ea5df1695f4a16ec, type: 2}
+  _spawnCooldown: 3
+  _distanceToPlayerToSpawn: 140
+  _distanceToPlayerToDestroy: 10
+  _playerPositionZ: {fileID: 11400000, guid: ea7462b228409e1409e1fb9e49f8f3b5, type: 2}
+  _roadWidth: {fileID: 11400000, guid: 2ffbd4c166647f54ba112b17a8d8939b, type: 2}
+  _currentScore: {fileID: 11400000, guid: e9b237ac7254c3747b549a9fc40c4dbb, type: 2}
+--- !u!114 &5459715494330395072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459715494330395132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df6b2e41396cca4881bed2213c496bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 2e1f9c20a2417eb44a9ea05c8f2fe911, type: 2}
+--- !u!114 &5459715494330395073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459715494330395132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df6b2e41396cca4881bed2213c496bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: d2544d59f99e431428664aa3c938d2b1, type: 2}
