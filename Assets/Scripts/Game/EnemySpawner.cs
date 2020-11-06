@@ -23,9 +23,6 @@ namespace Game {
 
         [SerializeField]
         private float _distanceToPlayerToDestroy;
-        
-        [SerializeField]
-        private ScriptableIntValue _currentScore;
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
@@ -86,7 +83,6 @@ namespace Game {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
-                    _currentScore.value++;
                 }
             }
         }
