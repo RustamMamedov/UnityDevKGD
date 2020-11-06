@@ -23,11 +23,20 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        private enum SaveType {
+
+            PlayerPrefs,
+            File
+        }
+
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private SaveType _saveType;
 
         private List<SaveData> _saveDatas;
         public List<SaveData> SavedDatas => _saveDatas;
@@ -37,9 +46,13 @@ namespace Game {
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            //LoadFromPlayerPrefs();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            LoadFromFile();
+
+            if (_saveType == SaveType.PlayerPrefs) {
+                LoadFromPlayerPrefs();
+            } else {
+                LoadFromFile();
+            }
         }
 
         private void OnEnable() {
@@ -57,8 +70,11 @@ namespace Game {
             };
             _saveDatas.Add(newRecord);
 
-            //SaveDataToPlayerPrefs();
-            SaveToFile();
+            if (_saveType == SaveType.PlayerPrefs) {
+                SaveDataToPlayerPrefs();
+            } else {
+                SaveToFile();
+            }
         }
 
         private void LoadFromPlayerPrefs() {
@@ -72,15 +88,12 @@ namespace Game {
 
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
-                svaeDatas = _saveDatas
+                saveDatas = _saveDatas
             };
             return wrapper;
         }
 
         private void SaveDataToPlayerPrefs() {
-            var wrapper = new SavedDataWrapper {
-                saveDatas = _saveDatas
-            };
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
