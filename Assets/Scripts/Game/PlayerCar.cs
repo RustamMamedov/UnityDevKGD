@@ -66,7 +66,6 @@ namespace Game {
 
         protected override void OnCarCollision() {
             base.OnCarCollision();
-            UIManager.Instance.ShowLeaderboardsScreen();
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {

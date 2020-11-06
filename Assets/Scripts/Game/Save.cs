@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -43,6 +44,8 @@ namespace Game {
         private const string RECORDS_KEY = "rercords";
         private string _filePath;
 
+        private bool _isSaveDone;
+
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -63,6 +66,9 @@ namespace Game {
         }
 
         private void OnCarCollision() {
+
+            _isSaveDone = false;
+
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
@@ -70,7 +76,7 @@ namespace Game {
 
             Debug.Log($"new record: {newRecord.date} {newRecord.score}");
 
-            if (isSaveFull()) {
+            if (IsSaveFull()) {
                 for (int i = 0; i < _saveDatas.Count; i++) {
                     if (GetScore(_saveDatas[i].score) < GetScore(newRecord.score)) {
                         _saveDatas[i] = newRecord;
@@ -86,13 +92,17 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+
+            if (_isSaveDone) {
+                UIManager.Instance.ShowLeaderboardsScreen();
+            }
         }
 
         private int GetScore(string score) {
             return Int32.Parse(score);
         }
 
-        private bool isSaveFull() {
+        private bool IsSaveFull() {
             if (_saveDatas.Count == 10) {
                 return true;
             } else {
@@ -120,6 +130,8 @@ namespace Game {
 
             var json = JsonUtility.ToJson(GetWrapper());
             PlayerPrefs.SetString(RECORDS_KEY, json);
+
+            _isSaveDone = true;
         }
 
         private void LoadFormFile() {
@@ -141,6 +153,8 @@ namespace Game {
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, GetWrapper());
             }
+
+            _isSaveDone = true;
         }
     }
 }
