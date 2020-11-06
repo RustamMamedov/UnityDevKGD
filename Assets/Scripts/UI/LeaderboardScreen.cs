@@ -13,20 +13,52 @@ namespace UI
 
         [SerializeField]
         private GameObject _recordPrefab;
+
         [SerializeField]
         private RecordView _recordView;
 
         [SerializeField]
+        private GameObject _newRecordPrefab;
+
+        [SerializeField]
+        private RecordView _newRecordView;
+
+        [SerializeField]
         private GameObject _records;
+
+        [SerializeField]
+        private ScriptableIntValue _indexOfNewRecord;
+
         private List<GameObject> _prefabs=new List<GameObject>();
         private void OnEnable()
         {
-            for(int i = 0; i < Save.SavedDatas.Count; i++)
+            if (_indexOfNewRecord.value < 10)
             {
-
-                _recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
-                var record = Instantiate(_recordPrefab, _records.transform);
+                GameObject record;
+                for (int i = 0; i < _indexOfNewRecord.value; i++)
+                {
+                    _recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                    record = Instantiate(_recordPrefab, _records.transform);
+                    _prefabs.Add(record);
+                }
+                _newRecordView.SetData(_indexOfNewRecord.value + 1, Save.SavedDatas[_indexOfNewRecord.value].date, Save.SavedDatas[_indexOfNewRecord.value].score);
+                record = Instantiate(_newRecordPrefab, _records.transform);
                 _prefabs.Add(record);
+                for (int i = _indexOfNewRecord.value+1; i < Save.SavedDatas.Count; i++)
+                {
+                    _recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                    record = Instantiate(_recordPrefab, _records.transform);
+                    _prefabs.Add(record);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Save.SavedDatas.Count; i++)
+                {
+                    _recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                    var record = Instantiate(_recordPrefab, _records.transform);
+                    _prefabs.Add(record);
+                }
             }
         }
         private void OnDisable()

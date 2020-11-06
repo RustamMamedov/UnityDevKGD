@@ -38,6 +38,9 @@ namespace Game
         [SerializeField]
         private ScriptableIntValue _wasSaved;
 
+        [SerializeField]
+        private ScriptableIntValue _indexOfNewRecord;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
         private const string RECORDS_KEY = "records";
@@ -45,6 +48,7 @@ namespace Game
         private void Awake()
         {
             _saveDatas = new List<SaveData>();
+            _indexOfNewRecord.value = 10;
             if (_saveType == SaveType.PlayerPrefs)
             {
                 LoadFromPlayerPrefs();
@@ -78,13 +82,29 @@ namespace Game
                 {
                     _saveDatas.RemoveAt(_saveDatas.Count - 1);
                     _saveDatas.Add(newRecord);
+                    var score = newRecord.score;
                     SortRecords();
+                    for(int i=0;i< _saveDatas.Count; i++)
+                    {
+                        if (Int32.Parse(score) <= Int32.Parse(_saveDatas[i].score))
+                        {
+                            _indexOfNewRecord.value = i;
+                        }
+                    }
                 }
             }
             else
             {
                 _saveDatas.Add(newRecord);
+                var score = newRecord.score;
                 SortRecords();
+                for (int i = 0; i < _saveDatas.Count; i++)
+                {
+                    if (Int32.Parse(score) <= Int32.Parse(_saveDatas[i].score))
+                    {
+                        _indexOfNewRecord.value = i;
+                    }
+                }
             }
             if (_saveType == SaveType.PlayerPrefs)
             {
@@ -103,6 +123,9 @@ namespace Game
                 {
                     if (Int32.Parse(_saveDatas[i].score) < Int32.Parse(_saveDatas[j].score))
                     {
+                        var tmpdate = _saveDatas[i].date;
+                        _saveDatas[i].date = _saveDatas[j].date;
+                        _saveDatas[j].date = tmpdate;
                         var tmp = _saveDatas[i].score;
                         _saveDatas[i].score = _saveDatas[j].score;
                         _saveDatas[j].score = tmp;
