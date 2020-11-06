@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using Events;
 
-namespace Game{
-    public class EnemyCar : Car
-    {
+namespace Game {
+    
+    public class EnemyCar : Car {
+
         [SerializeField]
         private EventDispatcher _enemyCarsTriggerEventDispatch;
 
@@ -13,7 +14,7 @@ namespace Game{
         [SerializeField]
         private ScriptableIntValue _dodgedScore;
 
-        private void OnTriggerEnter(Collider other){
+        private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _enemyCarsTriggerEventDispatch.Dispatch();
             }
@@ -23,7 +24,6 @@ namespace Game{
             if (other.CompareTag("CarBack")) {
                 _dodgedScore.value = _carSettings.dodgeScore;
                 _enemyCarsBackTriggerEventDispatcher.Dispatch();
-                Debug.Log("erer");
             }
         }
     }

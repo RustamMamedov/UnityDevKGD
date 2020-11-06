@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI{
+namespace UI {
 
-    public class MenuScreen : MonoBehaviour{
+    public class MenuScreen : MonoBehaviour {
+        
         [SerializeField]
         private Button _playButton;
 
@@ -11,7 +12,7 @@ namespace UI{
             _playButton.onClick.AddListener(OnPlayButtonClick);
         }
 
-        private void OnPlayButtonClick(){
+        private void OnPlayButtonClick() {
             UIManager.Instance.LoadGameplay();
         }
     }

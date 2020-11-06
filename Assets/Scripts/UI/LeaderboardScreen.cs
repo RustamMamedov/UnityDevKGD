@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI{
+namespace UI {
     
-    public class LeaderboardScreen : MonoBehaviour{
+    public class LeaderboardScreen : MonoBehaviour {
+
         [SerializeField]
         private Button _menuButton;
 
@@ -11,7 +12,7 @@ namespace UI{
             _menuButton.onClick.AddListener(OnMenuButtonClick);
         }
 
-        private void OnMenuButtonClick(){
+        private void OnMenuButtonClick() {
             UIManager.Instance.LoadMenu();
         }
     }

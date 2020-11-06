@@ -31,7 +31,7 @@ namespace UI {
             ClearScore();
         }
 
-        private void ClearScore(){
+        private void ClearScore() {
             _currentScore = 0;
             _currentScoreValue.value = 0;
             _scoreLabel.text = "0";
@@ -45,11 +45,13 @@ namespace UI {
 
         public IEnumerator SetScoreCoroutine(int score) {
             isBusy = true;
+
             while (_currentScore < score) {
                 _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
+            
             isBusy = false;
         }
     }

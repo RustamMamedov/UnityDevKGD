@@ -3,8 +3,10 @@ using Game;
 using Events;
 using System.Collections;
 
-namespace Game{
-    public class PlayerCar : Car{
+namespace Game {
+    
+    public class PlayerCar : Car {
+
         [SerializeField]
         private EventListener _touchEventListener;
 
@@ -15,38 +17,41 @@ namespace Game{
         private ScriptableFloatValue _roadWidth;
 
         [SerializeField]
-        private float _dodgeDuration;
+        private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
-        private ScriptableFloatValue _playerPositionZ;
+        private float _dodgeDuration;
 
         private int _currentRoad;
         private bool _inDodge;
 
-        protected override void SubscribeToEvents(){
+        protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
         }
 
-        protected override void UnsubscribeToEvents(){
+        protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
 
-        private void OnPlayerTouch(){
+        private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
             var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
-            if (!canDodge){
+
+            if (!canDodge) {
                 return;
             }
+
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
-        private IEnumerator DodgeCoroutine(int nextRoad){
+        private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
-            while (timer <= _dodgeDuration){
+
+            while (timer <= _dodgeDuration) {
                 yield return null;
                 timer += Time.deltaTime;
                 var posX = Mathf.Lerp(transform.position.x, targetPosX, timer / _dodgeDuration);
@@ -57,7 +62,7 @@ namespace Game{
             _currentRoad = nextRoad;
         }
 
-        protected override void Move(){
+        protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
         }

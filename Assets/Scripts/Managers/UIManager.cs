@@ -58,9 +58,11 @@ namespace UI {
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
             while (!asyncOperation.isDone) {
                 yield return null;
             }
+            
             _fader.FadeIn();
         }
 

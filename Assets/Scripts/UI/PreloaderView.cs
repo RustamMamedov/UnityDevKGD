@@ -3,8 +3,10 @@ using UnityEngine.UI;
 using Game;
 using Events;
 
-namespace UI{
-    public class PreloaderView : MonoBehaviour{
+namespace UI {
+
+    public class PreloaderView : MonoBehaviour {
+
         [SerializeField]
         private ScriptableFloatValue _sceneLoadingValue;
 
@@ -14,15 +16,15 @@ namespace UI{
         [SerializeField]
         private Image _progressImage;
 
-        private void Awake(){
+        private void Awake() {
             _updateListener.OnEventHappened += UpdateBehaviour;
         }
 
-        private void OnDestroy(){
+        private void OnDestroy() {
             _updateListener.OnEventHappened -= UpdateBehaviour;
         }
 
-        private void UpdateBehaviour(){
+        private void UpdateBehaviour() {
             _progressImage.fillAmount = _sceneLoadingValue.value;
         }
     }
