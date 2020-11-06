@@ -1,7 +1,8 @@
 ﻿using Events;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace Game {
@@ -32,10 +33,13 @@ namespace Game {
         public List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
+        private string _filePath;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            LoadFromPlayerPrefs();
+            //LoadFromPlayerPrefs();
+            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            LoadFromFile();
         }
 
         private void OnEnable() {
@@ -53,7 +57,8 @@ namespace Game {
             };
             _saveDatas.Add(newRecord);
 
-            SaveDataToPlayerPrefs();
+            //SaveDataToPlayerPrefs();
+            SaveToFile();
         }
 
         private void LoadFromPlayerPrefs() {
@@ -65,12 +70,41 @@ namespace Game {
             _saveDatas = wrapper.saveDatas;
         }
 
+        private SavedDataWrapper GetWrapper() {
+            var wrapper = new SavedDataWrapper {
+                svaeDatas = _saveDatas
+            };
+            return wrapper;
+        }
+
         private void SaveDataToPlayerPrefs() {
             var wrapper = new SavedDataWrapper {
                 saveDatas = _saveDatas
             };
+            var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
+        }
+
+        private void LoadFromFile() {
+            if (!File.Exists(_filePath)) {
+                return;
+            }
+
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
+               var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
+                _saveDatas = wrapper.saveDatas;
+            }
+        }
+
+        private void SaveToFile() {
+            var wrapper = GetWrapper();
+
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                binaryFormatter.Serialize(fileStream, wrapper);
+            }
         }
 
     }
