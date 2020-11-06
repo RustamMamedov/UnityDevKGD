@@ -32,7 +32,6 @@ namespace Game {
 
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
-        private List<int> _carLocations = new List<int>();
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -71,11 +70,10 @@ namespace Game {
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var randomCar = _carPrefabs[Random.Range(0, 3)];
+            var randomCar = _carPrefabs[Random.Range(0, _carPrefabs.Count)];
             var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
 
             _cars.Add(car);
-            _carLocations.Add(randomRoad);
         }
 
         private void HandleCarsBehindPlayer() {
