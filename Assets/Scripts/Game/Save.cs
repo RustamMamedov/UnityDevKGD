@@ -35,6 +35,9 @@ namespace Game
         [SerializeField]
         private SaveType _saveType;
 
+        [SerializeField]
+        private ScriptableIntValue _wasSaved;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
         private const string RECORDS_KEY = "records";
@@ -62,12 +65,27 @@ namespace Game
         }
         private void OnCarCollision()
         {
+            _wasSaved.value = 0;
             var newRecord = new SaveData
             {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score=_currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
+            if (_saveDatas.Count == 10)
+            {
+                SortRecords();
+                if (Int32.Parse(newRecord.score) > Int32.Parse(_saveDatas[_saveDatas.Count - 1].score))
+                {
+                    _saveDatas.RemoveAt(_saveDatas.Count - 1);
+                    _saveDatas.Add(newRecord);
+                    SortRecords();
+                }
+            }
+            else
+            {
+                _saveDatas.Add(newRecord);
+                SortRecords();
+            }
             if (_saveType == SaveType.PlayerPrefs)
             {
                 SaveToPlayerPrefs();
@@ -75,6 +93,21 @@ namespace Game
             else
             {
                 SaveToFile();
+            }
+        }
+        private void SortRecords()
+        {
+            for(int i = 0; i < _saveDatas.Count-1; i++)
+            {
+                for (int j = i + 1; j < _saveDatas.Count; j++)
+                {
+                    if (Int32.Parse(_saveDatas[i].score) < Int32.Parse(_saveDatas[j].score))
+                    {
+                        var tmp = _saveDatas[i].score;
+                        _saveDatas[i].score = _saveDatas[j].score;
+                        _saveDatas[j].score = tmp;
+                    }
+                }
             }
         }
         private void LoadFromPlayerPrefs()
@@ -99,6 +132,7 @@ namespace Game
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
+            _wasSaved.value = 1;
         }
         private void SaveToFile()
         {
@@ -108,6 +142,7 @@ namespace Game
             {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+            _wasSaved.value = 1;
         }
         private void LoadFromFile()
         {
