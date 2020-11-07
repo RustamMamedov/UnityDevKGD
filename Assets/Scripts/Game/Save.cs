@@ -87,7 +87,7 @@ namespace Game {
 
         private void InsertNewRecord(SaveData NewRecord) {
             for (int i = _savedDatas.Count - 1; i >= 0; i--) {
-                if (Int32.Parse(_savedDatas[i].score) > Int32.Parse(NewRecord.score)) {
+                if (Int32.Parse(_savedDatas[i].score) >= Int32.Parse(NewRecord.score)) {
                     _savedDatas.Insert(i + 1, NewRecord);
                     _currentRecordPos = i + 2;
                     return;
