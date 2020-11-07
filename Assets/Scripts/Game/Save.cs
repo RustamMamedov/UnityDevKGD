@@ -28,8 +28,16 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        private List<SaveData> _savedData;
-        public List<SaveData> SavedData => _savedData;
+        [SerializeField]
+        private SaveType _saveType;
+
+        private enum SaveType {
+            PlayerPrefs,
+            File,
+        }
+
+        private static List<SaveData> _savedData;
+        public static List<SaveData> SavedData => _savedData;
 
         private string _filePath;
 
@@ -38,8 +46,9 @@ namespace Game {
         private void Awake() {
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             _savedData = new List<SaveData>();
-            //LoadFromPlayerPrefs();
+
             LoadFromFile();
+
         }
 
         private void OnEnable() {
@@ -57,8 +66,12 @@ namespace Game {
             };
 
             _savedData.Add(newRecord);
-            //SaveToPlayerPrefs();
-            SaveToFile();
+
+            if (_saveType == SaveType.File) {
+                SaveToFile();
+            } else {
+                SaveToPlayerPrefs();
+            }
         }
 
         private void LoadFromPlayerPrefs() {
