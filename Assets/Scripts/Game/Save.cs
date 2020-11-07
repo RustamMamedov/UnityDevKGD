@@ -38,8 +38,8 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        private List<SaveData> _savedDatas;
-        public List<SaveData> SavedDatas => _savedDatas;
+        private static List<SaveData> _savedDatas;
+        public static List<SaveData> SavedDatas => _savedDatas;
 
 
         private const string RECOREDS_KEY = "records";
@@ -53,6 +53,8 @@ namespace Game {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
         #endregion Enable/Disable
+
+
         private void Awake() {
             _savedDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -93,7 +95,7 @@ namespace Game {
         }
 
         private void LoadFromPlayerPrefs() {
-            if (PlayerPrefs.HasKey(RECOREDS_KEY))
+            if (!PlayerPrefs.HasKey(RECOREDS_KEY))
                 return;
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECOREDS_KEY));
