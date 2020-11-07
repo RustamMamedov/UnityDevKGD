@@ -44,8 +44,7 @@ namespace Game {
         }
 
         private void SaveDataToPlayerPrefs() {
-            var json = JsonUtility.ToJson();
-            PlayerPrefs.SetString(RECORDS_KEY, json);
+            
         }
     }
 }
