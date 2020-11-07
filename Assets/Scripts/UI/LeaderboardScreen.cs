@@ -21,6 +21,9 @@ namespace UI {
             Debug.Log(_prefabsAmount);
             for (int i = 0; i < _prefabsAmount; i++) {
                 Instantiate(_resultViewPrefab, _resultsKeeper);
+                GameObject tmp = Instantiate(_resultViewPrefab, _resultsKeeper);
+                tmp.GetComponent<RecordView>().SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+
             }
         }
 
