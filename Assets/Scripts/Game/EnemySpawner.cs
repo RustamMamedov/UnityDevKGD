@@ -31,9 +31,6 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
-        [SerializeField]
-        private ScriptableIntValue _score;
-
 
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
@@ -81,7 +78,6 @@ namespace Game {
             var randomCar = Random.Range(0,_carPrefab.Count);
             var car = Instantiate(_carPrefab[randomCar], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
-            ValueScore();
         }
 
         private void HandleCarsBehindPlayer() {
@@ -91,20 +87,6 @@ namespace Game {
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
                 }
-            }
-        }
-
-        private void ValueScore() {
-                    
-            for (int i = _cars.Count - 1; i > -1; i--) {
-               
-                if (_playerPositionZ.value > _cars[i].transform.position.z) {
-                    
-                    _score.value += _cars[i].GetComponent<Car>().carSettings.dodgeScore;
-                    Debug.Log(_score.value);
-            Debug.Log(_cars[i].GetComponent<Car>().carSettings.dodgeScore);
-                }
-                
             }
         }
     }

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 375092906287938218}
+  - component: {fileID: 5395141847316982775}
+  - component: {fileID: 6304301342898990190}
   m_Layer: 0
   m_Name: ScoreCounter
   m_TagString: Untagged
@@ -30,3 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5395141847316982775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706934991956402666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071cc3fb629969043a5772eabd787141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carDodgedEventListener: {fileID: 6304301342898990190}
+  _dodgedScore: {fileID: 11400000, guid: 69d5f9d345e15c743844517079024655, type: 2}
+  _currentScore: {fileID: 11400000, guid: 64abc894ec7a5e34f88a26f7dc1fb997, type: 2}
+--- !u!114 &6304301342898990190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706934991956402666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
