@@ -18,9 +18,7 @@ namespace UI {
 
         private void OnEnable() {
             _prefabsAmount = Save.SavedDatas.Count;
-            Debug.Log(_prefabsAmount);
             for (int i = 0; i < _prefabsAmount; i++) {
-                Instantiate(_resultViewPrefab, _resultsKeeper);
                 GameObject tmp = Instantiate(_resultViewPrefab, _resultsKeeper);
                 tmp.GetComponent<RecordView>().SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
 
@@ -28,10 +26,8 @@ namespace UI {
         }
 
         private void OnDisable() {
-            _prefabsAmount = Save.SavedDatas.Count;
-            for (int i = 0; i < _prefabsAmount - 1; i++) {
+            for (int i = 0; i < _prefabsAmount; i++) {
                 Destroy(_resultsKeeper.GetChild(i).gameObject);
-                Debug.Log("Deleted!");
             }
         }
 
