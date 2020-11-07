@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
 
@@ -29,11 +31,15 @@ namespace Game {
         private List<SaveData> _savedData;
         public List<SaveData> SavedData => _savedData;
 
+        private string _filePath;
+
         private const string RECORDS_KEY = "records";
 
         private void Awake() {
+            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             _savedData = new List<SaveData>();
-            LoadFromPlayerPrefs();
+            //LoadFromPlayerPrefs();
+            LoadFromFile();
         }
 
         private void OnEnable() {
@@ -51,7 +57,8 @@ namespace Game {
             };
 
             _savedData.Add(newRecord);
-            SaveToPlayerPrefs();
+            //SaveToPlayerPrefs();
+            SaveToFile();
         }
 
         private void LoadFromPlayerPrefs() {
@@ -64,11 +71,33 @@ namespace Game {
         }
 
         private void SaveToPlayerPrefs() {
-            var wrapper = new SavedDataWrapper {
+            var json = JsonUtility.ToJson(GetWrapper());
+            PlayerPrefs.SetString(RECORDS_KEY, json);
+        }
+
+        private void LoadFromFile() {
+            if (!File.Exists(_filePath)) {
+                return;
+            }
+
+            var binaryFormatter = new BinaryFormatter();
+            using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
+                _savedData = wrapper.savedData;
+            }
+        }
+
+        private void SaveToFile() {
+            var binaryFormatter = new BinaryFormatter();
+            using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                binaryFormatter.Serialize(fileStream, GetWrapper());
+            }
+        }
+
+        private SavedDataWrapper GetWrapper() {
+            return new SavedDataWrapper {
                 savedData = _savedData
             };
-            var json = JsonUtility.ToJson(wrapper);
-            PlayerPrefs.SetString(RECORDS_KEY, json);
         }
     }
 }
