@@ -1,7 +1,6 @@
 ﻿using Events;
 using System.Collections;
 using UnityEngine;
-using UI;
 
 namespace Game {
 
@@ -60,7 +59,6 @@ namespace Game {
 
         protected override void OnCarCollision() {
             base.OnCarCollision();
-            UIManager.instance.ShowLeaderboardScreen();
         }
 
         private void OnPlayerTouch() {
