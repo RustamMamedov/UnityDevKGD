@@ -50,11 +50,7 @@ namespace Game {
                 _currentSpeed += _carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
-            
         }
-
-      
-
     }
 }
 

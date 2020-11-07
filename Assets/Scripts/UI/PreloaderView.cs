@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 namespace UI {
+
     public class PreloaderView : MonoBehaviour {
 
         [SerializeField]
@@ -24,7 +25,5 @@ namespace UI {
         private void UpdateBehaviour() {
             _progressImage.fillAmount = _sceneLoadingValue.value;
         }
-
     }
-
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using Game;
 using Events;
+
 namespace UI {
 
     public class ScoreView : MonoBehaviour {
@@ -45,5 +46,4 @@ namespace UI {
             isScoreChanging = false;
         }
     }
-
 }

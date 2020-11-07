@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Game {
+
     public class Rewarder : MonoBehaviour {
 
         [SerializeField]
@@ -13,9 +14,6 @@ namespace Game {
         public void SetScorePoints(EnemyCarToDodge enemyCar) {
             _currentScore.value += enemyCar.currentCar.GetComponent<EnemyCar>().CarSettings.dodgeScore;
         }
-
-       
-
     }
 }
 

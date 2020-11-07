@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 
 namespace UI {
+
     public class Fader : MonoBehaviour {
 
         [SerializeField]
@@ -24,13 +25,11 @@ namespace UI {
         private IEnumerator FadeInCoroutine() {
             yield return StartCoroutine(FadeCorouitne(1f, 0f));
             OnFadeIn();
-
         }
 
         private IEnumerator FadeOutCoroutine() {
             yield return StartCoroutine(FadeCorouitne(0f, 1f));
             OnFadeOut();
-
         }
 
         private IEnumerator FadeCorouitne(float fromAlpha, float targetAlpha) {
@@ -43,7 +42,6 @@ namespace UI {
                     _canvasGroup.interactable = _canvasGroup.alpha > 0f;
                     yield return null;
                 }
-
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game {
+
     public class RoadPart : MonoBehaviour {
 
         [SerializeField]
@@ -14,7 +15,6 @@ namespace Game {
                 _roadTriggerEventDispatcher.Dispatch();
             }
         }
-
     }
 }
 

@@ -8,5 +8,4 @@ namespace Game {
         public int value;
 
     }
-
 }

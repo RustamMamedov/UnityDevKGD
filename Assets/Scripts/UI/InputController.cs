@@ -3,6 +3,7 @@ using Game;
 using UnityEngine;
 
 namespace UI {
+
     public class InputController : MonoBehaviour {
 
         [SerializeField]
@@ -44,7 +45,5 @@ namespace UI {
             _touchEventDispatcher.Dispatch();
             _touchSide.value = 0;
         }
-
     }
-
 }

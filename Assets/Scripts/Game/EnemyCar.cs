@@ -2,6 +2,7 @@
 using Events;
 
 namespace Game {
+
     public class EnemyCar : Car {
 
         [SerializeField]
@@ -12,7 +13,5 @@ namespace Game {
                 _carCollisionEventDispatcher.Dispatch();
             }
         }
-
     }
-
 }

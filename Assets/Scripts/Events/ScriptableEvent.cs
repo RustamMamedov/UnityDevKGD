@@ -35,7 +35,5 @@ namespace Events {
                 _listeners[i]();
             }
         }
-
     }
-
 }

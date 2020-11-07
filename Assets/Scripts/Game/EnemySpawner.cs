@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game {
+
     public class EnemySpawner : MonoBehaviour {
 
         
@@ -52,12 +53,10 @@ namespace Game {
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
-            
         }
         private void UnSubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
-            
         }
 
         private void OnCarCollision() {
@@ -72,8 +71,7 @@ namespace Game {
                 return;
             }
             _currentTimer = 0f;
-            SpawnCar();
-            
+            SpawnCar(); 
         }
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
@@ -101,7 +99,6 @@ namespace Game {
                 }
             }
         }
-
     }
 }
 

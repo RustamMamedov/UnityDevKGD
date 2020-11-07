@@ -11,7 +11,6 @@ namespace Events {
         public void Dispatch() {
             _someEvent.Dispatch();
         }
-
     }
 }
 

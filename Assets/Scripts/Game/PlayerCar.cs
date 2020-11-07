@@ -4,6 +4,7 @@ using UnityEngine;
 using UI;
 
 namespace Game {
+
     public class PlayerCar : Car {
 
 
@@ -42,8 +43,6 @@ namespace Game {
             base.SubScribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
             _carDodgedListener.OnEventHappened += OnCarDodged;
-
-
         }
 
         protected override void UnSubScribeToEvents() {
@@ -57,8 +56,6 @@ namespace Game {
             base.Move();
             _playerPositionZ.value = transform.position.z;
             _playerPositionX.value = transform.position.x;
-
-
         }
 
         protected override void OnCarCollision() {
@@ -81,8 +78,6 @@ namespace Game {
                 _dodgeRewarder.SetScorePoints(_dodgedCar);
                 StartCoroutine(RewardCoolDown());
             }
-            
-
         }
 
         private IEnumerator RewardCoolDown() {
@@ -104,7 +99,5 @@ namespace Game {
             _inDodge = false;
             _currentRoad = nextRoad;
         }
-        
     }
-
 }

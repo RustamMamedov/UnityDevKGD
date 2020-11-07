@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 namespace UI {
+
     public class MenuScreen : MonoBehaviour {
 
         [SerializeField]
@@ -14,7 +15,6 @@ namespace UI {
         private void OnPlayButtonClick() {
             UIManager.instance.LoadGamePlay();
         }
-
     }
 }
 

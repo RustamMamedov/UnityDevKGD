@@ -22,5 +22,4 @@ namespace Events {
             OnEventHappened.Invoke();
         }
     }
-
 }
