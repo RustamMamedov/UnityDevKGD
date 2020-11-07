@@ -19,7 +19,6 @@ namespace UI {
             var asyncOperation = SceneManager.LoadSceneAsync("Menu");
             asyncOperation.allowSceneActivation = false;
             while (asyncOperation.progress < .9f) {
-                Debug.Log(asyncOperation.progress);
                 yield return null;
             }
 
