@@ -32,6 +32,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventDispatcher _saveEventDispatcher;
+
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
@@ -44,6 +47,10 @@ namespace Game {
         private const string RECORDS_KEY = "record";
     
         private string _filePath;
+
+        private static int _currentRecordPos;
+
+        public static int CurrentRecordPos => _currentRecordPos;
 
         private void Awake() {
             _savedDatas = new List<SaveData>();
@@ -70,21 +77,20 @@ namespace Game {
             
             InsertNewRecord(NewRecord);
             CheckTail();
-            for (int i = 0; i < _savedDatas.Count; i++) {
-                Debug.Log($" record: {i + 1} {_savedDatas[i].date} {_savedDatas[i].score} ");
-            }
      
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
             }
+            _saveEventDispatcher.Dispatch();
         }
 
         private void InsertNewRecord (SaveData NewRecord) {
             for(int i = _savedDatas.Count - 1; i >= 0; i--) {
-                if(Int32.Parse(_savedDatas[i].score) > Int32.Parse(NewRecord.score)) {
+                if(Int32.Parse(_savedDatas[i].score) >= Int32.Parse(NewRecord.score)) {
                     _savedDatas.Insert(i + 1, NewRecord);
+                    _currentRecordPos = i + 2;
                     return;
                 }
             }

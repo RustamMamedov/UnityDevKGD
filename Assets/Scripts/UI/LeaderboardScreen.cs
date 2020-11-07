@@ -19,9 +19,8 @@ namespace UI {
         private void OnEnable() {
             _prefabsAmount = Save.SavedDatas.Count;
             for (int i = 0; i < _prefabsAmount; i++) {
-                GameObject tmp = Instantiate(_resultViewPrefab, _resultsKeeper);
-                tmp.GetComponent<RecordView>().SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
-
+                var tmp = Instantiate(_resultViewPrefab, _resultsKeeper);
+                tmp.GetComponent<RecordView>().SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score, i + 1 == Save.CurrentRecordPos);
             }
         }
 

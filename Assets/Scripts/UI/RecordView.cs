@@ -14,11 +14,13 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
-
-        public void SetData(int place, string date, string score) {
+        [SerializeField]
+        private Image _flower;
+        public void SetData(int place, string date, string score, bool isNewRecord) {
             _placeLabel.text = $"{place}";
             _dateLabel.text = date;
             _scoreLabel.text = score;
+            _flower.enabled = isNewRecord;
         }
     }
 }
