@@ -6,15 +6,15 @@ namespace UI {
     public class EndGameShow : MonoBehaviour {
 
         [SerializeField]
-        private EventListener _collisionEventListener;
+        private EventListener _saveEventListener;
 
         private void Awake() {
-            _collisionEventListener.OnEventHappened += ShowLeaderboardScreen;
+            _saveEventListener.OnEventHappened += ShowLeaderboardScreen;
         }
 
         private void ShowLeaderboardScreen() {
             UIManager.Instance.ShowLeaderboardScreen();
         }
-
+        
     }
 }
