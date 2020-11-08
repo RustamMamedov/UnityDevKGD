@@ -37,7 +37,7 @@ namespace Game {
         private ScoreComparer comparer = new ScoreComparer();
 
         [SerializeField]
-        private int PosDel;
+        private int _countBestResults;
 
         [Serializable]
         private class SavedDataWrapper {
@@ -88,6 +88,7 @@ namespace Game {
 
         private void OnDisable() {
             _carCollisionEventListeners.OnEventHappened -= OnCarCollison;
+            _savedData.Clear();
         }
 
         private void OnCarCollison() {
@@ -113,7 +114,7 @@ namespace Game {
         private void Sort10BestResult() {
             _savedData.Sort(comparer);
             var count = _savedData.Count;
-            for (int i = count-1; i >= PosDel; i--) {
+            for (int i = count-1; i >= _countBestResults; i--) {
                 _savedData.RemoveAt(i);
             }
         }
