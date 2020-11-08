@@ -59,6 +59,9 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+        [SerializeField] 
+        private EventDispatcher _dataSavedEventDispatcher;
         
         [SerializeField]
         private ScriptableIntValue _currentScore;
@@ -118,6 +121,7 @@ namespace Game {
                 SaveToFile();
             }
             
+            _dataSavedEventDispatcher.Dispatch();
             Debug.Log(_saveDatas.Count + " count");
         }
 #endregion
