@@ -48,7 +48,7 @@ namespace Game {
 
         private void OnCarCollision() {
             UnsubscribeToEvents();
-            UIManager.Instance.LoadLeaderBoard();
+            if (UIManager.Instance!=null) UIManager.Instance.LoadLeaderBoard();
             //Debug.Log("CarCollision");
         }
 
