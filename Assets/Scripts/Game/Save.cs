@@ -74,6 +74,9 @@ namespace Game {
             };
             _saveDatas.Add(newRecord);
 
+            SortandRemoveRecords();
+            
+
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             }
@@ -87,6 +90,19 @@ namespace Game {
                 saveDatas = _saveDatas
             };
             return wrapper;
+        }
+
+        private void SortandRemoveRecords() {
+            for(int i=0;i<_saveDatas.Count-1;i++)
+                for (int j = i+1; j < _saveDatas.Count; j++) {
+                    if(int.Parse(_saveDatas[i].score)< int.Parse(_saveDatas[j].score)) {//int32 почему-то не робит, вроде в System но не робит поэтому просто int.Parse
+                        var tmp = _saveDatas[i];
+                        _saveDatas[i] = _saveDatas[j];
+                        _saveDatas[j] = tmp;
+                    }
+                }
+            while (_saveDatas.Count > 10)
+                _saveDatas.RemoveAt(_saveDatas.Count - 1);
         }
 
         #region PlayerPrefs
