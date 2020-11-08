@@ -1,36 +1,32 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Events;
-using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 
 namespace Game {
 
     public class Save : MonoBehaviour {
 
+        [Serializable]
         public class SaveData {
 
             public string date;
             public string score;
         }
 
-        //туть пропустил
         [Serializable]
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
-        };
+        }
 
         private enum SaveType {
 
             PlayerPrefs,
-            File
+            File,
         }
-
-        [SerializeField]
-        private SaveType _savedType;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
@@ -38,13 +34,26 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        private static List<SaveData> _savedDatas;
-        public static List<SaveData> SavedDatas => _savedDatas;
+        [SerializeField]
+        private SaveType _saveType;
 
+        private static List<SaveData> _saveDatas;
+        public static List<SaveData> SavedDatas => _saveDatas;
 
-        private const string RECOREDS_KEY = "records";
+        private const string RECORDS_KEY = "records";
         private string _filePath;
-        #region Enable/Disable
+
+        private void Awake() {
+            _saveDatas = new List<SaveData>();
+            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            if (_saveType == SaveType.PlayerPrefs) {
+                LoadFromPlayerPrefs();
+            }
+            else {
+                LoadFromFile();
+            }
+        }
+
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -52,81 +61,63 @@ namespace Game {
         private void OnDisable() {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
-        #endregion Enable/Disable
-
-
-        private void Awake() {
-            _savedDatas = new List<SaveData>();
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            if (_savedType == SaveType.PlayerPrefs)
-                LoadFromPlayerPrefs();
-            else
-                LoadFromFile();
-        }
-
-
 
         private void OnCarCollision() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            Debug.Log($"new record {newRecord.date} {newRecord.score}");
-            _savedDatas.Add(newRecord);
+            _saveDatas.Add(newRecord);
 
-
-            if(_savedType==SaveType.PlayerPrefs)
+            if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
-            else
+            }
+            else {
                 SaveToFile();
+            }
+        }
+
+        private void LoadFromPlayerPrefs() {
+            if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
+                return;
+            }
+
+            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
+            _saveDatas = wrapper.saveDatas;
         }
 
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
-                saveDatas = _savedDatas
+                saveDatas = _saveDatas
             };
             return wrapper;
         }
-        #region PlayerPrefs
+
         private void SaveToPlayerPrefs() {
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
-            PlayerPrefs.SetString(RECOREDS_KEY, json);
-        }
-
-        private void LoadFromPlayerPrefs() {
-            if (!PlayerPrefs.HasKey(RECOREDS_KEY))
-                return;
-
-            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECOREDS_KEY));
-            _savedDatas = wrapper.saveDatas;
-        }
-        #endregion PlayerPrefs
-        #region File
-        private void SaveToFile() {
-            var wrapper = GetWrapper();
-
-            var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
-                binaryFormatter.Serialize(fileStream, wrapper);
-            }
-
+            PlayerPrefs.SetString(RECORDS_KEY, json);
         }
 
         private void LoadFromFile() {
             if (!File.Exists(_filePath)) {
                 return;
             }
-            
+
             var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream=File.Open(_filePath,FileMode.Open)) {
+            using (FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
-                _savedDatas = wrapper.saveDatas;
+                _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_savedDatas.Count);
+            Debug.Log(_saveDatas.Count);
         }
-        #endregion File
 
-
+        private void SaveToFile() {
+            var wrapper = GetWrapper();
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                binaryFormatter.Serialize(fileStream, wrapper);
+            }
+        }
     }
 }
