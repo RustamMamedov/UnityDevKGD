@@ -17,11 +17,35 @@ namespace Game {
             public string score;
         }
 
+        //for Sort
+        private class ScoreComparer : IComparer<SaveData> {
+
+            public int Compare(SaveData a1, SaveData a2) {
+                var value1 = Int32.Parse(a1.score);
+                var value2 = Int32.Parse(a2.score);
+                if (value1 > value2) {
+                    return -1;
+                }
+                else if (value1 < value2) {
+                    return 1;
+                }
+
+                return 0;
+            }
+        }
+
+        private ScoreComparer comparer = new ScoreComparer();
+
+        [SerializeField]
+        private int PosDel;
+
         [Serializable]
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
         }
+
+        //public static bool finishSAve=false;
 
         [SerializeField]
         private EventListeners _carCollisionEventListeners;
@@ -29,9 +53,9 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        private List<SaveData> _savedData;
+        private static List<SaveData> _savedData;
 
-        public List<SaveData> SavedDatas => _savedData;
+        public static List<SaveData> SavedDatas => _savedData;
 
         private const string Records_Key = "records";
 
@@ -59,6 +83,7 @@ namespace Game {
 
         private void OnEnable() {
             _carCollisionEventListeners.OnEventHappened += OnCarCollison;
+            //finishSAve = false;
         }
 
         private void OnDisable() {
@@ -66,6 +91,7 @@ namespace Game {
         }
 
         private void OnCarCollison() {
+            //Debug.Log("SaveData");
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.Value.ToString()
@@ -77,7 +103,19 @@ namespace Game {
             }
             else {
                 SaveFromFile();
-            } 
+            }
+            //finishSAve = true;
+            Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
+            Sort10BestResult();
+            Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
+        }
+
+        private void Sort10BestResult() {
+            _savedData.Sort(comparer);
+            var count = _savedData.Count;
+            for (int i = count-1; i >= PosDel; i--) {
+                _savedData.RemoveAt(i);
+            }
         }
 
         private void LoadFromPlayerPrefs() {
@@ -122,7 +160,7 @@ namespace Game {
                 var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
                 _savedData = wrapper.saveDatas;
             }
-            Debug.Log(_savedData.Count);
+            //Debug.Log(_savedData.Count);
         }
     }
 }
