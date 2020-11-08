@@ -44,7 +44,9 @@ namespace Game {
         private const string RECORDS_KEY = "rercords";
         private string _filePath;
 
-        private bool _isSaveDone;
+        private bool _isSaveDone;   
+
+        public static int NewPlace;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -68,6 +70,8 @@ namespace Game {
         private void OnCarCollision() {
 
             _isSaveDone = false;
+            SortSave();
+            NewPlace = -1;
 
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
@@ -79,7 +83,9 @@ namespace Game {
             if (IsSaveFull()) {
                 for (int i = 0; i < _saveDatas.Count; i++) {
                     if (GetScore(_saveDatas[i].score) < GetScore(newRecord.score)) {
-                        _saveDatas[i] = newRecord;
+                        _saveDatas.RemoveAt(_saveDatas.Count - 1);
+                        _saveDatas.Insert(i, newRecord);
+                        NewPlace = i;
                         break;
                     }
                 }
@@ -100,6 +106,18 @@ namespace Game {
 
         private int GetScore(string score) {
             return Int32.Parse(score);
+        }
+
+        private void SortSave() {
+            for (int i = 0; i < _saveDatas.Count - 1; i++) {
+                for (int j = i + 1; j < _saveDatas.Count; j++) {
+                    if (GetScore(_saveDatas[j].score) > GetScore(_saveDatas[i].score)) {
+                        string t = _saveDatas[j].score;
+                        _saveDatas[j].score = _saveDatas[i].score;
+                        _saveDatas[i].score = t;
+                    }
+                }
+            }
         }
 
         private bool IsSaveFull() {
