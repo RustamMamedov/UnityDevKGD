@@ -15,7 +15,7 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZValue;
 
         [SerializeField] 
-        private ScriptableIntValue _currentScore;
+        private ScriptableIntValue _dodgedScore;
 
         [SerializeField] 
         private float _dodgeDistance;
@@ -34,7 +34,7 @@ namespace Game {
 
             if (!_isCarDodged && transform.position.z + _dodgeDistance < _playerPositionZValue.value) {
                 _isCarDodged = true;
-                _currentScore.value += _carSettings.dodgeScore;
+                _dodgedScore.value += _carSettings.dodgeScore;
                 _carDodgedDispatcher.Dispatch();
             }
         }
