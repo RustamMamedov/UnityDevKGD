@@ -14,10 +14,15 @@ namespace UI {
         [SerializeField]
         private Text _scoreText;
 
-        public void SetData(int position, string date, int score) {
+        [SerializeField] 
+        private GameObject _currentRideShow;
+
+        public void SetData(int position, string date, int score, bool currentRide = false) {
             _placeText.text = position.ToString();
             _dateText.text = date;
             _scoreText.text = score.ToString();
+            
+            _currentRideShow.SetActive(currentRide);
         }
     }
 }
