@@ -22,7 +22,7 @@ namespace UI {
         private Fader _fader;
 
         [SerializeField]
-        private EventListener _carCollision;
+        private EventListener _saveData;
 
         private void Awake() {
             if (Instance != null) {
@@ -32,7 +32,7 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            _carCollision.OnEventHappened += ShowLeaderboardsScreen;
+            _saveData.OnEventHappened += ShowLeaderboardsScreen;
         }
 
         public void LoadMenu() {
