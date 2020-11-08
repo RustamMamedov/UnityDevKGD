@@ -20,35 +20,27 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
-        private int _currentScore = 0;
-
-        // blocks the start of several coroutines so that changes do not overlap each other
-        private bool _scoreIsChanging = false;
+        private int _currentScore;
+        private bool isBusy;
 
         private void Awake() {
             _updateEventListener.OnEventHappened += UpdateBehavior;
         }
 
         private void UpdateBehavior() {
-            if (_currentScore != _currentScoreValue.value && !_scoreIsChanging) {
-                _scoreIsChanging = true;
+            if (_currentScore != _currentScoreValue.value && !isBusy) {
                 StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
         }
 
-        public IEnumerator SetScoreCoroutine(int target) {
-            while (_currentScore != target) {
-                if (target == 0) {
-                    _currentScore = 0;
-                } else {
-                    ++_currentScore;
-                }
-
+        public IEnumerator SetScoreCoroutine(int score) {
+            isBusy = true;
+            while (_currentScore < score) {
+                _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
-
-            _scoreIsChanging = false;
+            isBusy = false;
         }
     }
 }

@@ -31,12 +31,7 @@ namespace UI {
             }
 
             Instance = this;
-            SubscribeToEvents();
             DontDestroyOnLoad(gameObject);
-        }
-
-        private void SubscribeToEvents() {
-            _carCollisionEventListener.OnEventHappened += ShowLeaderboardsScreen;
         }
 
         public void LoadMenu() {
