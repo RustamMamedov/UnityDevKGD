@@ -2,11 +2,14 @@
 using Events;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Game {
 
-       public class Save : MonoBehaviour {
+    public class Save : MonoBehaviour {
 
         [Serializable]
         public class SaveData {
@@ -30,10 +33,13 @@ namespace Game {
         public List<SaveData> savedDatas => _saveDatas;
 
         private const string RECORDS_KAY = "records";
+        private string _filePath;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            LoadFromPlayerPrefs();
+            _filePath = Path.Combine(Application.persistentDataPath, "date.txt");
+            //LoadFromPlayerPrefs();
+            LoadFromFile();
         }
 
         private void OnEnable() {
@@ -49,12 +55,12 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            Debug.Log($"new record: {newRecord.date} {newRecord.score}");
+            //Debug.Log($"new record: {newRecord.date} {newRecord.score}");
             _saveDatas.Add(newRecord);
-
-            SaveDateToPlayerPrefs();
+            //SaveToPlayerPrefs();
+            SaveToFile();
         }
-        
+
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KAY)) {
                 return;
@@ -65,15 +71,40 @@ namespace Game {
             //Debug.Log(_saveDatas.Count);
         }
 
-        private void SaveDateToPlayerPrefs() {
+        private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
                 saveDatas = _saveDatas
             };
+            return wrapper;
+        }
+
+        private void SaveToPlayerPrefs() {
+            var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KAY, json);
         }
-    }
 
-    
+        private void LoadFromFile() {
+            if (!File.Exists(_filePath)) {
+                return;
+            }
+
+            var binaryFormatter = new BinaryFormatter();
+            using(FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
+                var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
+                _saveDatas = wrapper.saveDatas;
+            }
+            Debug.Log(_saveDatas.Count);
+        }
+
+        private void SaveToFile() {
+            var wrapper = GetWrapper();
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                binaryFormatter.Serialize(fileStream, wrapper);
+            }
+
+        }
+    }
 }
 
