@@ -33,6 +33,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventDispatcher _dataSaved;
+
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
@@ -83,6 +86,8 @@ namespace Game {
             else {
                 SaveToFile();
             }
+
+            _dataSaved.Dispatch();
         }
 
         private SavedDataWrapper GetWrapper() {
