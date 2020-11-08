@@ -37,6 +37,9 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
+        [SerializeField]
+        private EventDispatcher _dataSaved;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
@@ -68,6 +71,7 @@ namespace Game {
                 score = _currentScore.value.ToString()
             };
             _saveDatas.Add(newRecord);
+            СonversionResolt();
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
@@ -75,6 +79,8 @@ namespace Game {
             else {
                 SaveToFile();
             }
+
+            _dataSaved.Dispatch();
         }
 
         private SavedDataWrapper GetWrapper() {
@@ -122,6 +128,24 @@ namespace Game {
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
+            }
+        }
+
+        private void СonversionResolt(){
+            //сортировка
+            for (var i = 0; _saveDatas.Count-1 > i; i++) {
+                for (var j = i+1; _saveDatas.Count > j; j++) {
+                    if (int.Parse (_saveDatas[i].score) < int.Parse (_saveDatas[j].score)) {
+                        var temp = _saveDatas[i];
+                        _saveDatas[i] = _saveDatas[j];
+                        _saveDatas[j] = temp;
+                    }
+                }
+            }
+
+            //удаление
+            for (var i = 10; _saveDatas.Count > i; i++) {
+                _saveDatas.RemoveAt(i);
             }
         }
     }
