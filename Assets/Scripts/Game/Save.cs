@@ -14,15 +14,23 @@ namespace Game {
             public string score;
         }
 
+        [Serializable]
+        private class SavedDataWrapper {
+
+            public List<SaveData> saveDatas;
+        }
+
         [SerializeField] private EventListener _carCollisionEventListener;
 
         [SerializeField] private ScriptableIntValue _currentScore;
 
         private List<SaveData> _saveData;
+        public List<SaveData> SaveDatas => _saveData;
         private const string RECORDS_KEY = "records";
 
         private void Awake() {
             _saveData = new List<SaveData>();
+            LoadFromPlayerPrefs();
         }
 
         private void OnEnable() {
@@ -40,11 +48,25 @@ namespace Game {
             };
             Debug.Log($"new record {newRecord.date} {newRecord.score} ");
             _saveData.Add(newRecord);
-            SaveDataToPlayerPrefs();
+            SaveToPlayerPrefs();
         }
 
-        private void SaveDataToPlayerPrefs() {
-            
+        private void LoadFromPlayerPrefs() {
+            if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
+                return;
+            }
+
+            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
+            _saveData = wrapper.saveDatas;
+            Debug.Log(_saveData.Count);
+        }
+
+        private void SaveToPlayerPrefs() {
+            var wrapper = new SavedDataWrapper {
+                saveDatas = _saveData
+            };
+            var json = JsonUtility.ToJson(wrapper);
+            PlayerPrefs.SetString(RECORDS_KEY, json);
         }
     }
 }
