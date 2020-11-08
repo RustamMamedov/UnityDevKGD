@@ -119,7 +119,6 @@ namespace Game {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToFile() {
@@ -131,11 +130,11 @@ namespace Game {
             }
         }
 
-        private void СonversionResolt(){
+        private void СonversionResolt() {
             //сортировка
-            for (var i = 0; _saveDatas.Count-1 > i; i++) {
-                for (var j = i+1; _saveDatas.Count > j; j++) {
-                    if (int.Parse (_saveDatas[i].score) < int.Parse (_saveDatas[j].score)) {
+            for (var i = 0; _saveDatas.Count - 1 > i; i++) {
+                for (var j = i + 1; _saveDatas.Count > j; j++) {
+                    if (int.Parse(_saveDatas[i].score) < int.Parse(_saveDatas[j].score)) {
                         var temp = _saveDatas[i];
                         _saveDatas[i] = _saveDatas[j];
                         _saveDatas[j] = temp;

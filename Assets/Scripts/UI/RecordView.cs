@@ -14,7 +14,7 @@ namespace UI {
         private Text _date;
 
         [SerializeField]
-        private  Text _score;
+        private Text _score;
 
         public void SetData(int place, string date, string score) {
             _position.text = place.ToString();
