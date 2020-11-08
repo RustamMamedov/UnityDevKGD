@@ -59,7 +59,8 @@ namespace UI {
             recordViewObject.transform.SetParent(_recordsHolder.transform);
             
             var recordView = recordViewObject.GetComponent<RecordView>();
-            recordView.SetData(position, record.date, record.Score);
+            recordView.SetData(position, record.date, record.Score, 
+                    position == Save.IndexOfCurrentRideInLeaderboard);
             
             _recordsViewList.Add(recordViewObject);
         }

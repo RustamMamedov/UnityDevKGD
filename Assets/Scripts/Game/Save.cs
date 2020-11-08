@@ -77,6 +77,10 @@ namespace Game {
         
         public static List<Record> SaveDatas => _saveDatas;
 
+        private static int _indexOfCurrentRideInLeaderboard;
+
+        public static int IndexOfCurrentRideInLeaderboard => _indexOfCurrentRideInLeaderboard;
+
         private const string RECORDS_KEY = "records";
         private string _filePath;
 #endregion
@@ -147,6 +151,8 @@ namespace Game {
             if (_saveDatas.Count > _maxRecordsCountToSave) {
                 _saveDatas.RemoveAt(_saveDatas.Count - 1);
             }
+
+            _indexOfCurrentRideInLeaderboard = index + 1;
         }
         
         private void CheckRecords() {
