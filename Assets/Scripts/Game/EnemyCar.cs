@@ -8,20 +8,10 @@ namespace Game {
         private EventDispatcher _carCollisionEventDispatcher;
 
         [SerializeField]
-        private ScriptableIntValue _currentScoreValue;
+        private EventDispatcher _carDodgedEventDispatcher;
 
         [SerializeField]
-        private ScriptableFloatValue _playerPositionZ;
-
-        protected override void SubscribeToEvents() {
-            base.SubscribeToEvents();
-            _updateEventListener.OnEventHappened += CheckAndHandlePlayerDodge;
-        }
-
-        protected override void UnsubscribeToEvents() {
-            base.UnsubscribeToEvents();
-            _updateEventListener.OnEventHappened -= CheckAndHandlePlayerDodge;
-        }
+        private ScriptableIntValue _dodgedScore;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
@@ -29,10 +19,10 @@ namespace Game {
             }
         }
 
-        private void CheckAndHandlePlayerDodge() {
-            if (_playerPositionZ.value > transform.position.z) {
-                _updateEventListener.OnEventHappened -= CheckAndHandlePlayerDodge;
-                _currentScoreValue.value += _carSettings.dodgeScore;
+        private void OnTriggerExit(Collider other) {
+            if (other.CompareTag("PlayerDodge")) {
+                _dodgedScore.value = _carSettings.dodgeScore;
+                _carDodgedEventDispatcher.Dispatch();
             }
         }
     }
