@@ -27,7 +27,7 @@ namespace Game {
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 //Debug.Log("CarCollision");
-                _scoreValue.value = 0;
+                //_scoreValue.value = 0;
                 _enemyCarTriggerEventDispatcher.Dispatch();
             }
         }
