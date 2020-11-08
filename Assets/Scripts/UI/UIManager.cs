@@ -24,7 +24,7 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField] 
-        private EventListener _carCollisionListener;
+        private EventListener _dataSavedListener;
 
         private void Awake() {
             if (Instance != null) {
@@ -35,11 +35,11 @@ namespace UI {
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            _carCollisionListener.OnEventHappened += ShowLeaderboardScreen;
+            _dataSavedListener.OnEventHappened += ShowLeaderboardScreen;
         }
 
         private void OnDestroy() {
-            _carCollisionListener.OnEventHappened -= ShowLeaderboardScreen;
+            _dataSavedListener.OnEventHappened -= ShowLeaderboardScreen;
         }
 
         public void LoadMenu() {
