@@ -44,6 +44,7 @@ namespace UI {
 
         private void OnEnable() {
             _currentScore = 0;
+            _scoreLabel.text = "0";
         }
 
         private void OnDestroy() {
