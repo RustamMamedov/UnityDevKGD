@@ -17,6 +17,8 @@ namespace Game {
             public string score;
         }
 
+        public static SaveData currentResult;
+
         //for Sort
         private class ScoreComparer : IComparer<SaveData> {
 
@@ -84,6 +86,7 @@ namespace Game {
         private void OnEnable() {
             _carCollisionEventListeners.OnEventHappened += OnCarCollison;
             finishSAve = false;
+            currentResult = null;
         }
 
         private void OnDisable() {
@@ -96,8 +99,10 @@ namespace Game {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.Value.ToString()
+
             };
             //Debug.Log($"new record:{newRecord.date} {newRecord.score}");
+            currentResult = newRecord;
             _savedData.Add(newRecord);
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveFromPlayerPrefs();

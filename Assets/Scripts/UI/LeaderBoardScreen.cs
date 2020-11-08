@@ -38,6 +38,9 @@ namespace UI {
                 _listResult.Add(result);
                 result.GetComponent<RecordView>().SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
                 result.SetActive(true);
+                if (Save.currentResult == Save.SavedDatas[i]) {
+                    result.GetComponent<RecordView>().BG.enabled=true;
+                }
             }
         }
 
