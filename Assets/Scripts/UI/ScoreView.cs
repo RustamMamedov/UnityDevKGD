@@ -42,6 +42,10 @@ namespace UI {
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
 
+        private void OnEnable() {
+            _currentScore = 0;
+        }
+
         private void OnDestroy() {
             _eventListener.OnEventHappened -= UpdateBehaviour;
         }
