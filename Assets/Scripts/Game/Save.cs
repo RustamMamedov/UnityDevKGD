@@ -134,6 +134,7 @@ namespace Game {
         
         private void AddRecord(Record record) {
             if (_saveDatas.Count == 0) {
+                _indexOfCurrentRideInLeaderboard = 1;
                 _saveDatas.Add(record);
                 return;
             }
