@@ -45,6 +45,7 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+        public static int savePosition;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -71,7 +72,7 @@ namespace Game {
                 score = _currentScore.value.ToString()
             };
             _saveDatas.Add(newRecord);
-            СonversionResolt();
+            СonversionResolt(newRecord);
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
@@ -130,7 +131,7 @@ namespace Game {
             }
         }
 
-        private void СonversionResolt() {
+        private void СonversionResolt(SaveData currentResult) {
             //сортировка
             for (var i = 0; _saveDatas.Count - 1 > i; i++) {
                 for (var j = i + 1; _saveDatas.Count > j; j++) {
@@ -139,6 +140,13 @@ namespace Game {
                         _saveDatas[i] = _saveDatas[j];
                         _saveDatas[j] = temp;
                     }
+                }
+            }
+
+            for (var i = 0; _saveDatas.Count > i; i++) {
+                if (_saveDatas[i] == currentResult) {
+                    savePosition = i;
+                    break;
                 }
             }
 

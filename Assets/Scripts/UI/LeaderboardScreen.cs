@@ -4,6 +4,7 @@ using Game;
 using System.Collections.Generic;
 
 namespace UI {
+
     public class LeaderboardScreen : MonoBehaviour {
 
         [SerializeField]
@@ -34,6 +35,9 @@ namespace UI {
                 var Record = Instantiate(_recordView, _table.transform);
                 Record.SetData(i+1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
                 _saveRecord.Add(Record.gameObject);
+                if (Save.savePosition == i) {
+                    Record.CurrentResult();
+                }
             }
         }
 
