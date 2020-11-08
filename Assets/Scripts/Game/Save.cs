@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -19,7 +21,12 @@ namespace Game {
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
+        }
+
+        private enum SaveType {
             
+            PlayerPrefs,
+            File
         }
         
         [SerializeField]
@@ -27,15 +34,27 @@ namespace Game {
         
         [SerializeField]
         private ScriptableIntValue _currentScore;
+        
+        [SerializeField]
+        private SaveType _saveType;
 
         private static List<SaveData> _saveDatas;
+        
         public static List<SaveData> SaveDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
+        private string _filePath;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            LoadFromPlayerPrefs();
+            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+
+            if (_saveType == SaveType.PlayerPrefs) {
+                LoadFromPlayerPrefs();
+            } else {
+                LoadFromFile();
+            }
+            
         }
 
         private void OnEnable() {
@@ -53,7 +72,19 @@ namespace Game {
             };
             
             _saveDatas.Add(newRecord);
-            SaveToPlayerPrefs();
+            if (_saveType == SaveType.PlayerPrefs) {
+                SaveToPlayerPrefs();
+            } else {
+                SaveToFile();
+            }
+        }
+
+        private SavedDataWrapper GetWrapper() {
+            var wrapper = new SavedDataWrapper {
+                saveDatas = _saveDatas
+            };
+
+            return wrapper;
         }
 
         private void LoadFromPlayerPrefs() {
@@ -66,12 +97,31 @@ namespace Game {
         }
 
         private void SaveToPlayerPrefs() {
-            var wrapper = new SavedDataWrapper {
-                saveDatas = _saveDatas
-            };
-
+            var wrapper = GetWrapper();
+            
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
+        }
+
+        private void LoadFromFile() {
+            if (!File.Exists(_filePath)) {
+                return;
+            }
+            
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
+                var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
+                _saveDatas = wrapper.saveDatas;
+            }
+        }
+
+        private void SaveToFile() {
+            var wrapper = GetWrapper();
+            
+            var binaryFormatter = new BinaryFormatter();
+            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                binaryFormatter.Serialize(fileStream, wrapper);
+            }
         }
     }
 
