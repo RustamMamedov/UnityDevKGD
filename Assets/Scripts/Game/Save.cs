@@ -9,6 +9,7 @@ namespace Game {
 
     public class Save : MonoBehaviour {
 
+        #region Data
         [Serializable]
         public class SaveData {
 
@@ -43,6 +44,8 @@ namespace Game {
         private const string RECORDS_KEY = "records";
         private string _filePath;
 
+        #endregion Data
+
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -54,6 +57,7 @@ namespace Game {
             }
         }
 
+        #region Enable/Disable
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -61,6 +65,7 @@ namespace Game {
         private void OnDisable() {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
+        #endregion Enable/Disable
 
         private void OnCarCollision() {
             var newRecord = new SaveData {
@@ -77,6 +82,14 @@ namespace Game {
             }
         }
 
+        private SavedDataWrapper GetWrapper() {
+            var wrapper = new SavedDataWrapper {
+                saveDatas = _saveDatas
+            };
+            return wrapper;
+        }
+
+        #region PlayerPrefs
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;
@@ -86,19 +99,14 @@ namespace Game {
             _saveDatas = wrapper.saveDatas;
         }
 
-        private SavedDataWrapper GetWrapper() {
-            var wrapper = new SavedDataWrapper {
-                saveDatas = _saveDatas
-            };
-            return wrapper;
-        }
-
         private void SaveToPlayerPrefs() {
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
         }
+        #endregion PlayerPrefs
 
+        #region File
         private void LoadFromFile() {
             if (!File.Exists(_filePath)) {
                 return;
@@ -119,5 +127,6 @@ namespace Game {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
         }
+        #endregion File
     }
 }
