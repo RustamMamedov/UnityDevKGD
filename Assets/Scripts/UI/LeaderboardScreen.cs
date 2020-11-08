@@ -31,6 +31,9 @@ namespace UI {
             for (int i = 0; i < Save.SavedDatas.Count; i++) {
                 var Resolt =Instantiate(_resoltViewPrefab,_table.gameObject.transform);
                 Resolt.SetData(i+1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                if (Save.position == i) {
+                    Resolt.SetExcretion();
+                }
                 _resolts.Add(Resolt.gameObject);
             }
         }

@@ -43,6 +43,7 @@ namespace Game {
 
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
+        public static int position;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
@@ -77,7 +78,7 @@ namespace Game {
             };
             _saveDatas.Add(newRecord);
 
-            SortandRemoveRecords();
+            position=SortandRemoveRecords(newRecord);
             
 
             if (_saveType == SaveType.PlayerPrefs) {
@@ -97,7 +98,7 @@ namespace Game {
             return wrapper;
         }
 
-        private void SortandRemoveRecords() {
+        private int SortandRemoveRecords(SaveData current) {
             for(int i=0;i<_saveDatas.Count-1;i++)
                 for (int j = i+1; j < _saveDatas.Count; j++) {
                     if(int.Parse(_saveDatas[i].score)< int.Parse(_saveDatas[j].score)) {//int32 почему-то не робит, вроде в System но не робит поэтому просто int.Parse
@@ -108,6 +109,11 @@ namespace Game {
                 }
             while (_saveDatas.Count > 10)
                 _saveDatas.RemoveAt(_saveDatas.Count - 1);
+            for (int i = 0; i < _saveDatas.Count - 1; i++)
+                if (_saveDatas[i] == current) {
+                    return i;
+                }
+            return -1;
         }
 
         #region PlayerPrefs
