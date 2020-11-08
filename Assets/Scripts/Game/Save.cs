@@ -45,7 +45,7 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
-        //public static bool finishSAve=false;
+        public static bool finishSAve=false;
 
         [SerializeField]
         private EventListeners _carCollisionEventListeners;
@@ -83,7 +83,7 @@ namespace Game {
 
         private void OnEnable() {
             _carCollisionEventListeners.OnEventHappened += OnCarCollison;
-            //finishSAve = false;
+            finishSAve = false;
         }
 
         private void OnDisable() {
@@ -104,10 +104,10 @@ namespace Game {
             else {
                 SaveFromFile();
             }
-            //finishSAve = true;
-            Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
+            finishSAve = true;
+            //Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
             Sort10BestResult();
-            Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
+            //Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
         }
 
         private void Sort10BestResult() {
