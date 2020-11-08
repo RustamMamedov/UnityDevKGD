@@ -22,15 +22,15 @@ public class Flowers : MonoBehaviour {
         _flower.transform.Translate(_speedVX*Time.deltaTime,0,0);
         _flower.transform.Translate(0,_speedVY * Time.deltaTime, 0);
 
-        if (Math.Abs(transform.position.x)>1.4f ) {
+        if (Math.Abs(transform.position.x)>1f ) {
             _speedVX = -_speedVX;
         }
 
-        if (transform.position.y >= 4.7f) {
+        if (transform.position.y >= 4f) {
             _speedVY =-_speedVY;
         }
 
-        if(transform.position.y <= -2.7f) {
+        if(transform.position.y <= -2f) {
             _speedVY = -_speedVY;
         }
     }
