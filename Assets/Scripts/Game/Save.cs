@@ -1,26 +1,51 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game {
     
     public class Save : MonoBehaviour {
-        
+
+#region Inner Definitions
+
         [Serializable]
-        public class SaveData {
+        public class Record : IComparable<Record>{
             
+            // Left public to allow JSON serialize these fields
             public string date;
             public string score;
+
+            private DateTime _dateTime;
+
+            public int Score => Int32.Parse(score);
+            public DateTime Date => DateTime.ParseExact(date, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            
+            public int CompareTo(Record other) {
+                if (other.Score != Score) {
+                    return Score > other.Score ? -1 : 1;
+                }
+
+                try {
+                    return Date.CompareTo(other.Date);
+                } catch (Exception e) {
+                    return date.CompareTo(other.date);
+                }
+            }
+
+            public bool IsValid() {
+                return !String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(score);
+            }
         }
 
         [Serializable]
         private class SavedDataWrapper {
 
-            public List<SaveData> saveDatas;
+            public List<Record> saveDatas;
         }
 
         private enum SaveType {
@@ -28,7 +53,10 @@ namespace Game {
             PlayerPrefs,
             File
         }
-        
+#endregion
+
+#region Fields
+
         [SerializeField]
         private EventListener _carCollisionEventListener;
         
@@ -38,25 +66,33 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
-        private static List<SaveData> _saveDatas;
+        [Range(0, 20)]
+        [SerializeField] 
+        private int _maxRecordsCountToSave;
+
+        private static List<Record> _saveDatas;
         
-        public static List<SaveData> SaveDatas => _saveDatas;
+        public static List<Record> SaveDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+#endregion
+
+#region LifeCycle
 
         private void Awake() {
-            _saveDatas = new List<SaveData>();
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            _saveDatas = new List<Record>();
+            _filePath = Path.Combine(Application.persistentDataPath, "records.save");
 
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
             } else {
                 LoadFromFile();
             }
-            
-        }
 
+            CheckRecords();
+        }
+        
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -64,18 +100,65 @@ namespace Game {
         private void OnDisable() {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
+#endregion
+
+#region OnEvent handlers
 
         private void OnCarCollision() {
-            var newRecord = new SaveData {
+            var newRecord = new Record {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
             
-            _saveDatas.Add(newRecord);
+            AddRecord(newRecord);
+            
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
+            }
+            
+            Debug.Log(_saveDatas.Count + " count");
+        }
+#endregion
+
+#region Additive Methods
+        
+        private void AddRecord(Record record) {
+            if (_saveDatas.Count == 0) {
+                _saveDatas.Add(record);
+                return;
+            }
+            
+            // Index of place where we should place our record depending on order
+            int index = -1;
+            
+            index = _saveDatas.FindIndex(other => record.CompareTo(other) < 0);
+            if (index == -1) {
+                index = _saveDatas.Count;
+            }
+            
+            _saveDatas.Insert(index, record);
+        
+            if (_saveDatas.Count > _maxRecordsCountToSave) {
+                _saveDatas.RemoveAt(_saveDatas.Count - 1);
+            }
+        }
+        
+        private void CheckRecords() {
+            // If data was corrupted delete it from list
+            for (int i = _saveDatas.Count - 1; i > -1; --i) {
+                if (!_saveDatas[i].IsValid()) {
+                    _saveDatas.RemoveAt(i);
+                }
+            }
+            
+            // Sort records in descending order
+            _saveDatas.Sort((first, second) => first.CompareTo(second));
+            
+            // Removing rear elements if list size is more than available
+            while (_saveDatas.Count > _maxRecordsCountToSave) {
+                _saveDatas.RemoveAt(_saveDatas.Count - 1);
             }
         }
 
@@ -86,6 +169,9 @@ namespace Game {
 
             return wrapper;
         }
+#endregion
+
+#region Save/Load Methods
 
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
@@ -101,6 +187,8 @@ namespace Game {
             
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
+            
+            Debug.Log("Json: " + json);
         }
 
         private void LoadFromFile() {
@@ -123,6 +211,7 @@ namespace Game {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
         }
+#endregion
     }
 
 }
