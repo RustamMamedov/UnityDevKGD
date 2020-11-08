@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1469224008302629846}
   - component: {fileID: 1469224008302629848}
   - component: {fileID: 1469224008302629849}
+  - component: {fileID: 4114168419987438214}
   m_Layer: 0
   m_Name: Save
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   _carCollisionEventListener: {fileID: 1469224008302629849}
   _currentScore: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
   _saveType: 0
+  _dataSaved: {fileID: 4114168419987438214}
 --- !u!114 &1469224008302629849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +62,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 1071cd80cf33a754db44c9e94052b2ec, type: 2}
+--- !u!114 &4114168419987438214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469224008302629847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: db118959a2019ec49a6610a5097b790d, type: 2}
