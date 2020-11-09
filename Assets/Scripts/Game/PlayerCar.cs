@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using Events;
 using UI;
-using UnityEngine;
 
 namespace Game {
 
     public class PlayerCar : Car {
+
         [SerializeField]
         private EventListener _touchEventListener;
 
@@ -34,15 +35,10 @@ namespace Game {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
+
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
-        }
-
-        protected override void OnCarCollision() {
-            base.OnCarCollision();
-            UIManager.Instance.ShowLeaderboardScreen();
-
         }
 
         private void OnPlayerTouch() {
@@ -54,6 +50,9 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+        }
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
