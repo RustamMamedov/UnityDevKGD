@@ -27,7 +27,12 @@ namespace Game {
         protected float _currentSpeed=0f;
         private bool _dodged = false;
 
-        #endregion region1
+#if UNITY_EDITOR
+        public CarSettings GetCarSettings() {
+            return _carSettings;
+        }
+#endif
+#endregion region1
 
         #region region2
         protected virtual void SubscribeToEvents() {

@@ -70,5 +70,21 @@ namespace Game {
             base.Move();
             _positionPlayeZ.Value = transform.position.z;
         }
+
+        //Gizmos для обозначения обьектов или каких либо диапазонов внутри редактора (информация для разработчика)
+
+        private void OnDrawGizmos() {
+            
+        }
+
+        private void OnDrawGizmosSelected() {
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawWireSphere(transform.position, 5f);
+            Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "");
+            Gizmos.DrawFrustum(transform.position + transform.forward * 2, 15f, 10f, 50f, .5f);
+            var mesh = GetComponent<MeshFilter>().sharedMesh;
+            Gizmos.DrawWireMesh(mesh,0,transform.position+transform.forward*5,Quaternion.identity,Vector3.one);
+        }
     }
 }
