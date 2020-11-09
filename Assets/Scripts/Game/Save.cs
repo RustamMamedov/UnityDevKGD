@@ -46,7 +46,7 @@ namespace Game {
         
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
-
+        
         private const string RECORDS_KEY = "records";
         private string _filePath;
             
@@ -77,6 +77,7 @@ namespace Game {
                 _saveDatas.Add(newRecord);
             }
             SortListAndLeaveTenEntries();
+            
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
@@ -109,6 +110,7 @@ namespace Game {
                         break;
                     }
                 }
+                
                 if (Int32.Parse(_saveDatas[i].score) == _currentScore.value) {
                     _currentScorePosition.value = i;
                 }
