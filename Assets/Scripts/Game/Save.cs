@@ -15,6 +15,22 @@ namespace Game {
             public string score;
         }
 
+        private class ScoreComparer : IComparer<SaveData> {
+            public int Compare(SaveData d1, SaveData d2) {
+                var val1 = Int32.Parse(d1.score);
+                var val2 = Int32.Parse(d2.score);
+                if (val1 > val2) {
+                    return -1;
+                }
+                else if (val1 < val2) {
+                    return 1;
+                }
+                return 0;
+            }
+        }
+
+        private ScoreComparer _comparer;
+
         [SerializeField]
         private class SavedDataWrapper {
             public List<SaveData> saveDatas;
@@ -33,6 +49,8 @@ namespace Game {
 
         [SerializeField]
         private SaveType _saveType;
+        [SerializeField]
+        private int _countBestResult;
 
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
@@ -56,8 +74,15 @@ namespace Game {
         }
         private void OnDisable() {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
+            _saveDatas.Clear();
         }
 
+        private void BestResults() {
+            _saveDatas.Sort(_comparer);
+            for(int i = _saveDatas.Count - 1; i >= _countBestResult; i--) {
+                _saveDatas.RemoveAt(i);
+            }
+        }
         private void OnCarCollision() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
@@ -70,7 +95,9 @@ namespace Game {
             }
             else {
                 SaveToFile();
-            }   
+            }
+            BestResults();
+
         }
 
         private SavedDataWrapper GetWrapper() {
