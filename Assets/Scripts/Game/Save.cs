@@ -67,6 +67,8 @@ namespace Game {
                 score = _currentScore.value.ToString()
             };
             _saveDatas.Add(newRecord);
+            AddRecordsAndSort(newRecord);
+            DeleteRecords();
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
@@ -115,6 +117,22 @@ namespace Game {
             var binaryFormatter = new BinaryFormatter();
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
+            }
+        }
+
+        private void AddRecordsAndSort(SaveData newRecord) {
+            for (int i = 0; i < _saveDatas.Count; i++) {
+                if (Int32.Parse(_saveDatas[i].score) >= Int32.Parse(newRecord.score)) {
+                    _saveDatas.Insert(i + 1, newRecord);
+                    return;
+                }
+            }
+            //_saveDatas.Insert(0, newRecord);
+        }
+
+        private void DeleteRecords() {
+            while (_saveDatas.Count > 10) {
+                _saveDatas.Remove(_saveDatas[_saveDatas.Count - 1]);
             }
         }
     }
