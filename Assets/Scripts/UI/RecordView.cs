@@ -15,7 +15,7 @@ namespace UI {
         private Text _scoreLabel;
 
         public void SetData(int place, string data, string score) {
-            _placeLabel.text = place.ToString();
+            _placeLabel.text = $"{place}";
             _dataLabel.text = data;
             _scoreLabel.text = score;
         }

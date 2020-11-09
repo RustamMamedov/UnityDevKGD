@@ -80,6 +80,9 @@ namespace Game {
         }
 
         private bool CurrentScoreIsNewRecord() {
+            if (_saveDatas.Count == 0) {
+                return true;
+            }
             if (_saveDatas.Any(res => Int32.Parse(res.score) == _currentScore.value)) {
                 return false;
             }
