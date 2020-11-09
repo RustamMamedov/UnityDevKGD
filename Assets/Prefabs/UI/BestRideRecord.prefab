@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 414019337222081063}
   - component: {fileID: 5869447327546776122}
   m_Layer: 5
-  m_Name: PlaceLable
+  m_Name: PlaceLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 6510740764062657560}
   - component: {fileID: 7177299782718600789}
   - component: {fileID: 8734383992200785760}
+  - component: {fileID: 3825530137419661468}
   m_Layer: 5
   m_Name: BestRideRecord
   m_TagString: Untagged
@@ -155,6 +156,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3825530137419661468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056570015142867974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f737bc04b0a054c3981f6040eb57bc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placeLabel: {fileID: 5869447327546776122}
+  _dateLabel: {fileID: 2980843805148188552}
+  _scoreLabel: {fileID: 1953521076573906711}
 --- !u!1 &6939248594997964027
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +183,7 @@ GameObject:
   - component: {fileID: 102525136455009907}
   - component: {fileID: 1953521076573906711}
   m_Layer: 5
-  m_Name: ScorePlaceLable
+  m_Name: ScoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
