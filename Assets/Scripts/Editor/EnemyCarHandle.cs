@@ -28,7 +28,7 @@ namespace GameEditor {
                 style.fontSize = 30;
                 style.normal.textColor = Color.red;
                 var text = $"{_enemyCar.name}. Dodge score: {_enemyCar.CarSettings.dodgeScore}";
-                Handles.Label(_enemyCar.transform.position + Vector3.up * 5f, "Hi");
+                Handles.Label(_enemyCar.transform.position + Vector3.up * 5f, text);
             }
 
         }
