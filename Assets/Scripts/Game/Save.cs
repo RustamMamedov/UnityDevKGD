@@ -74,10 +74,9 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            
+
             InsertNewRecord(NewRecord);
             CheckTail();
-     
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
@@ -95,6 +94,7 @@ namespace Game {
                 }
             }
             _savedDatas.Insert(0, NewRecord);
+            _currentRecordPos = 1;
         }
 
         private void CheckTail() {
