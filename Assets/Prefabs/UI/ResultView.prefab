@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5163150298323862533}
   - component: {fileID: 4984506755672424809}
   m_Layer: 5
-  m_Name: DataLabel
+  m_Name: DateLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 636986424244809912}
   - component: {fileID: 1364752853397695487}
   - component: {fileID: 1276532477266429548}
+  - component: {fileID: 7081455547976753258}
   m_Layer: 5
   m_Name: ResultView
   m_TagString: Untagged
@@ -176,6 +177,21 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &7081455547976753258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4923500885969737200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a873b216afe134f4a9abab2b6d734149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreLabel: {fileID: 1579941463234992490}
+  _dateLabel: {fileID: 4984506755672424809}
+  _placeLabel: {fileID: 1450615657297410447}
 --- !u!1 &5058780685670295828
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +204,7 @@ GameObject:
   - component: {fileID: 5182528393074982781}
   - component: {fileID: 1579941463234992490}
   m_Layer: 5
-  m_Name: PointsLabel
+  m_Name: ScoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
