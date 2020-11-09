@@ -15,8 +15,8 @@ namespace Game {
         public CarSettings DodgeScore => _dodgeScore;
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                _currentScore.value = 0;
                 _carCollisionEventDispatcher.Dispatch();
+                _currentScore.value = 0;
                 Debug.Log("CarCollision");
               
 
