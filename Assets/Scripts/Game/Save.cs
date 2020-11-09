@@ -10,10 +10,20 @@ namespace Game {
     public class Save : MonoBehaviour {
 
         [Serializable]
-        public class SaveData {
+        public class SaveData : IComparable<SaveData> {
 
             public string date;
             public string score;
+
+            public int CompareTo(SaveData other) {
+                if (int.Parse(this.score) < int.Parse(other.score)) {
+                    return 1;
+                } else if (int.Parse(this.score) > int.Parse(other.score)) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
         }
 
         [Serializable]
@@ -36,6 +46,9 @@ namespace Game {
 
         [SerializeField]
         private SaveType _saveType;
+
+        [SerializeField]
+        private EventDispatcher _saveRecordsEventDispatcher;
 
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
@@ -66,15 +79,23 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
+            
             _saveDatas.Add(newRecord);
+            _saveDatas.Sort();
+            if (_saveDatas.Count > 10) {
+                _saveDatas.RemoveRange(10, _saveDatas.Count - 10);
+            }
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
             }
+
+            _saveRecordsEventDispatcher.Dispatch();
         }
 
+    
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;

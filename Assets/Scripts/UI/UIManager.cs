@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Events;
 
 namespace UI {
 
@@ -20,8 +21,17 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
+        [SerializeField]
+        private EventListener _saveRecordEventListener;
         private string _currentSceneName = "Gameplay";
 
+        private void OnEnable() {
+            _saveRecordEventListener.OnEventHappened += ShowLeaderboardScreen;
+        }
+
+        private void OnDisable() {
+            _saveRecordEventListener.OnEventHappened -= ShowLeaderboardScreen;
+        }
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -52,11 +62,6 @@ namespace UI {
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
         }
-
-        public void LeaderboardScreen() { 
-            _fader.OnFadeOut -= LeaderboardScreen;
-            ShowLeaderboardScreen();
-        }
         
         private IEnumerator LoadSceneCoroutine(string sceneName) {
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -65,7 +70,7 @@ namespace UI {
             }
             _fader.FadeIn();
         }
-
+        
         private void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
