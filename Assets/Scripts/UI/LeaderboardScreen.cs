@@ -37,7 +37,6 @@ namespace UI {
             _recordViews = new RecordView[Save.SavedDatas.Count];
             for (int i = 0; i < _recordViews.Length; i++) {
                 var recordView = Instantiate(_recordViewPrefab, _recordViewParent);
-                Debug.Log(Save.SavedDatas[i].date);
                 recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
                 _recordViews[i] = recordView;
             }
