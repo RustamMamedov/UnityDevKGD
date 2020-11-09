@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Game;
+using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace UI {
 
@@ -14,10 +16,17 @@ namespace UI {
         [SerializeField]
         private Text _scoreT;
 
+        [SerializeField]
+        private GameObject logo;
+
+        public bool isCurrentRecord = false;
+
         public void SetData(int position, string date, string score) {
             _placeT.text = position.ToString();
             _dateT.text = date;
             _scoreT.text = score;
+            logo.SetActive(isCurrentRecord);
+
         }
     }
 }

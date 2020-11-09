@@ -35,6 +35,9 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        private ScriptableIntValue _currentNumberRecord;
+
+        [SerializeField]
         private SaveType _saveType;
 
         private static List<SaveData> _saveDatas;
@@ -69,14 +72,17 @@ namespace Game {
 
             if (SavedDatas.Count < 10) {
                 SavedDatas.Add(newRecord);
+                _currentNumberRecord.value = SavedDatas.Count - 1;
                 SortSave();
             }
             else {
+                _currentNumberRecord.value = -1;
                 SortSave();
                 if (Int32.Parse(_saveDatas[SavedDatas.Count - 1].score) < Int32.Parse(newRecord.score)) {
                     addNewRecord(newRecord);
                 }
                 else {
+                    _currentNumberRecord.value = -1;
                 }
             }
 
@@ -91,6 +97,7 @@ namespace Game {
         private void addNewRecord(SaveData newRecord) {
             _saveDatas.RemoveAt(_saveDatas.Count - 1);
             _saveDatas.Add(newRecord);
+            _currentNumberRecord.value = SavedDatas.Count - 1;
             SortSave();
         }
 
@@ -99,6 +106,10 @@ namespace Game {
             for (int i = 0; i < CountDatas; i++) {
                 for (int j = i; j < CountDatas; j++) {
                     if (Int32.Parse(_saveDatas[i].score) < Int32.Parse(_saveDatas[j].score)) {
+                        if(_currentNumberRecord.value == j) {
+                            _currentNumberRecord.value = i;
+                        }
+
                         var tmp = _saveDatas[i].score;
                         _saveDatas[i].score = _saveDatas[j].score;
                         _saveDatas[j].score = tmp;

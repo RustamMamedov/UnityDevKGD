@@ -20,7 +20,7 @@ namespace UI {
         private RecordView _recordView;
 
         [SerializeField]
-        private GameObject _currentRecord;
+        private ScriptableIntValue _numberRecord;
 
         private List<GameObject> _prefabs = new List<GameObject>();
 
@@ -35,7 +35,14 @@ namespace UI {
         private void OnEnable() {
             for (int i = 0; i < Save.SavedDatas.Count; i++) {
                 _recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
-                var Record = Instantiate(_prefabResult, _GameObject.transform);
+                if (i + 1 == _numberRecord.value) {
+                    _recordView.isCurrentRecord = true;
+                }
+                else {
+                    _recordView.isCurrentRecord = false;
+                }
+                GameObject Record = Instantiate(_prefabResult, _GameObject.transform);
+
                 _prefabs.Add(Record);
             }
          }
