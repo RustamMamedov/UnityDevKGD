@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -14,6 +16,7 @@ namespace Game {
 
             public string date;
             public string score;
+            public bool isNew;
         }
 
         [Serializable]
@@ -62,15 +65,31 @@ namespace Game {
         private void OnCarCollision() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString()
+                score = _currentScore.value.ToString(),
+                isNew = true
             };
 
-            _savedData.Add(newRecord);
+            AddNewRecord(newRecord);
 
             if (_saveType == SaveType.File) {
                 SaveToFile();
             } else {
                 SaveToPlayerPrefs();
+            }
+
+            UIManager.instance.ShowLeaderBoardScreen();
+        }
+
+        private void AddNewRecord(SaveData newRecord) {
+            foreach (SaveData save in _savedData) {
+                save.isNew = false;
+            }
+
+            _savedData.Add(newRecord);
+            _savedData = _savedData.OrderByDescending(save => save.score).ToList<SaveData>();
+
+            if (_savedData.Count > 10) {
+                _savedData.RemoveAt(_savedData.Count - 1);
             }
         }
 
