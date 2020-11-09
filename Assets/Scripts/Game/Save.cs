@@ -15,6 +15,7 @@ namespace Game {
 
             public string date;
             public string score;
+            public bool newRec;
         }
 
         [Serializable]
@@ -65,9 +66,13 @@ namespace Game {
         private void OnCarCollision() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString()
+                score = _currentScore.value.ToString(),
+                newRec = true
             };
-            _saveDatas.Add(newRecord);
+
+            for (int i = 0; i < _saveDatas.Count; i++) {
+                _saveDatas[i].newRec = false;
+            }
             AddRecordsAndSort(newRecord);
             DeleteRecords();
 
@@ -76,7 +81,6 @@ namespace Game {
             } else {
                 SaveToFile();
             }
-            UIManager.Instance.ShowLeaderboardScreen();
         }
 
         private void LoadFromPlayerPrefs() {
@@ -129,7 +133,7 @@ namespace Game {
                     return;
                 }
             }
-            //_saveDatas.Insert(0, newRecord);
+            _saveDatas.Insert(0, newRecord);
         }
 
         private void DeleteRecords() {
