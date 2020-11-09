@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -37,12 +38,19 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
+        [SerializeField]
+        private ScriptableIntValue _currentScorePosition;
+        
+        [SerializeField] 
+        private ScriptableBoolValue _crazyModeEnabled;
+        
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
-
+        private bool _saved = false;
+            
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -67,11 +75,47 @@ namespace Game {
                 score = _currentScore.value.ToString()
             };
             _saveDatas.Add(newRecord);
-
+            SortListAndLeaveTenEntries();
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
+            }
+            UIManager.Instance.ShowLeaderboardScreen();
+        }
+
+        private void SortListAndLeaveTenEntries() {
+            _currentScorePosition.value = 11;
+            
+            if (_saveDatas.Count <= 1) {
+                return;
+            }
+            
+            for (int i = 0; i < _saveDatas.Count; i++) {
+                for (int j = i + 1; j < _saveDatas.Count; j++) {
+                    if (_saveDatas[i].score == "0") {
+                        _saveDatas.Remove(_saveDatas[i]);
+                    }
+                    
+                    if (Int32.Parse(_saveDatas[i].score) < Int32.Parse(_saveDatas[j].score)) {
+                        var tmp = _saveDatas[i];
+                        _saveDatas[i] = _saveDatas[j];
+                        _saveDatas[j] = tmp;
+                    }
+                    
+                    if (_saveDatas[i].score == _saveDatas[j].score) {
+                        _saveDatas.Remove(_saveDatas[i]);
+                    }
+
+                    if (Int32.Parse(_saveDatas[i].score) == _currentScore.value) {
+                        _currentScorePosition.value = i;
+                    }
+                }
+            }
+            if (_saveDatas.Count > 10) {
+                for (int i = _saveDatas.Count - 1; i > 9; i--) {
+                    _saveDatas.Remove(_saveDatas[i]);
+                }
             }
         }
 
@@ -107,10 +151,10 @@ namespace Game {
                 var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToFile() {
+            //TODO: create two different files: for casual and crazy mode
             var wrapper = GetWrapper();
             var binaryFormatter = new BinaryFormatter();
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
