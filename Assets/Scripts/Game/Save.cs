@@ -36,8 +36,8 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
-        private List<SaveData> _saveDatas;
-        public List<SaveData> SavedDatas => _saveDatas;
+        private static List<SaveData> _saveDatas;
+        public static List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
