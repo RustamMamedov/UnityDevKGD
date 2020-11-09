@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Events;
+using System.Collections.Generic;
+using Game;
+
 namespace UI {
 
     public class LeaderboardScreen : MonoBehaviour {
@@ -8,12 +10,40 @@ namespace UI {
         [SerializeField]
         private Button _menuB;
 
+        [SerializeField]
+        private GameObject _prefabResult;
+
+        [SerializeField]
+        private GameObject _GameObject;
+
+        [SerializeField]
+        private RecordView _recordView;
+
+        [SerializeField]
+        private GameObject _currentRecord;
+
+        private List<GameObject> _prefabs = new List<GameObject>();
+
         private void Awake() {
             _menuB.onClick.AddListener(OnMenuButtonClick);
         }
 
         private void OnMenuButtonClick() {
             UIManager.Instance.LoadMenu();
+        }
+
+        private void OnEnable() {
+            for (int i = 0; i < Save.SavedDatas.Count; i++) {
+                _recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                var Record = Instantiate(_prefabResult, _GameObject.transform);
+                _prefabs.Add(Record);
+            }
+         }
+        private void OnDisable() {
+            for (int i = Save.SavedDatas.Count - 1; i > -1; i--) {
+                Destroy(_prefabs[i]);
+                _prefabs.RemoveAt(i);
+            }
         }
     }
 }
