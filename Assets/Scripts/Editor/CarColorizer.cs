@@ -22,7 +22,9 @@ namespace GameEditor {
                 var gameObjects =  Selection.gameObjects;
                 for (int i = 0; i < gameObjects.Length; i++) {
                     if (gameObjects[i].TryGetComponent<MeshRenderer>(out var meshRenderer)) {
-                        meshRenderer.sharedMaterial.color = _color;
+                        var material = new Material(meshRenderer.sharedMaterial);
+                        material.color = _color;
+                        meshRenderer.material = material;
                     }
                 }
             }
