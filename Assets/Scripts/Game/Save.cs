@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -75,6 +76,7 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+            UIManager.Instance.ShowLeaderboardScreen();
         }
 
         private void LoadFromPlayerPrefs() {

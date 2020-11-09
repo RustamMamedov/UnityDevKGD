@@ -13,7 +13,7 @@ namespace UI {
         }
 
         private void OnCarCollision() {
-            UIManager.Instance.ShowLeaderboardScreen();
+            //UIManager.Instance.ShowLeaderboardScreen();
         }
     }
 }
