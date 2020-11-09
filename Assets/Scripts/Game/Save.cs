@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
+using UI;
 
 namespace Game {
 
@@ -66,12 +67,34 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
+
+            Debug.Log(_saveDatas.Count);
+            AddNewRecordTop10(newRecord);
+            DelerRecords();
+            Debug.Log(_saveDatas.Count);
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
+            }
+
+            //UIManager.Instance.ShowLeaderboardScreen();
+        }
+
+        private void AddNewRecordTop10(SaveData NewRecord) {
+            for (int i = _saveDatas.Count - 1; i >= 0; i--) {
+                if (Int32.Parse(_saveDatas[i].score) >= Int32.Parse(NewRecord.score)) {
+                    _saveDatas.Insert(i + 1, NewRecord);
+                    return;
+                }
+            }
+            _saveDatas.Insert(0, NewRecord);
+        }
+
+        private void DelerRecords() {
+            while (_saveDatas.Count > 10) {
+                _saveDatas.Remove(_saveDatas[_saveDatas.Count - 1]);
             }
         }
 
