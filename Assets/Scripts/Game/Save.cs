@@ -1,55 +1,66 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Events;
 using UnityEngine;
-
+using Events;
+using System;
 namespace Game {
 
     public class Save : MonoBehaviour {
 
         [Serializable]
         public class SaveData {
-
             public string date;
             public string score;
         }
 
         [Serializable]
         private class SavedDataWrapper {
-
-            public List<SaveData> saveDatas;
+            public List<SaveData> savedDatas;
         }
 
         private enum SaveType {
             PlayerPrefs,
-            File,
+            File
         }
 
-        [SerializeField] private EventListener _carCollisionEventListener;
+        [SerializeField]
+        private SaveType _saveType;
 
-        [SerializeField] private ScriptableIntValue _currentScore;
+        [SerializeField]
+        private EventListener _carCollisionEventListener;
 
-        [SerializeField] private SaveType _saveType;
+        [SerializeField]
+        private EventDispatcher _saveEventDispatcher;
 
-        private List<SaveData> _saveData;
-        public List<SaveData> SaveDatas => _saveData;
-        private const string RECORDS_KEY = "records";
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private int _listLimit;
+
+        private static List<SaveData> _saveDatas;
+
+        public static List<SaveData> SaveDatas => _saveDatas;
+
+        private const string RECORDS_KEY = "record";
+    
         private string _filePath;
 
-        private void Awake() {
-            _saveData = new List<SaveData>();
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+        private static int _currentRecordPos;
 
+        public static int CurrentRecordPos => _currentRecordPos;
+
+        private void Awake() {
+            _saveDatas = new List<SaveData>();
+            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
-            }
-            else {
+            } else {
                 LoadFromFile();
             }
         }
-
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -59,36 +70,51 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            var newRecord = new SaveData {
+            var NewRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString(),
+                score = _currentScore.value.ToString()
             };
-            Debug.Log($"new record {newRecord.date} {newRecord.score} ");
-            _saveData.Add(newRecord);
+
+            InsertNewRecord(NewRecord);
+            CheckTail();
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
-            }
-            else {
+            } else {
                 SaveToFile();
             }
-            
-          
+            _saveEventDispatcher.Dispatch();
         }
 
+        private void InsertNewRecord (SaveData NewRecord) {
+            for(int i = _saveDatas.Count - 1; i >= 0; i--) {
+                if(Int32.Parse(_saveDatas[i].score) >= Int32.Parse(NewRecord.score)) {
+                    _saveDatas.Insert(i + 1, NewRecord);
+                    _currentRecordPos = i + 2;
+                    return;
+                }
+            }
+            _saveDatas.Insert(0, NewRecord);
+            _currentRecordPos = 1;
+        }
+
+        private void CheckTail() {
+            while(_saveDatas.Count > _listLimit) {
+                _saveDatas.Remove(_saveDatas[_saveDatas.Count - 1]);
+            }
+        }
+
+        private SavedDataWrapper GetWrapper() {
+            return (new SavedDataWrapper {
+                savedDatas = _saveDatas
+            });
+        }
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;
             }
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
-            _saveData = wrapper.saveDatas;
-        }
-
-        private SavedDataWrapper GetWrapper() {
-            var wrapper = new SavedDataWrapper {
-                saveDatas = _saveData
-            };
-            return wrapper;
+            _saveDatas = wrapper.savedDatas;
         }
 
         private void SaveToPlayerPrefs() {
@@ -102,21 +128,21 @@ namespace Game {
                 return;
             }
 
-
             var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
-                var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
-                _saveData = wrapper.saveDatas;
+            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+                var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
+                _saveDatas = wrapper.savedDatas;
             }
-
-            Debug.Log(_saveData.Count);
         }
 
         private void SaveToFile() {
+            var wrapper = GetWrapper();
+
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
-                binaryFormatter.Serialize(fileStream, GetWrapper());
+                binaryFormatter.Serialize(fileStream, wrapper);
             }
+
         }
     }
 }
