@@ -35,7 +35,13 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        private ScriptableIntValue _playerScorePosition;
+
+        [SerializeField]
         private SaveType _saveType;
+
+        [SerializeField]
+        private EventDispatcher _scoreSavedEventDispather;
 
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
@@ -43,9 +49,12 @@ namespace Game {
         private const string RECORDS_KEY = "records";
         private string _filePath;
 
+
+
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            Debug.Log(_filePath);
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
             }
@@ -69,11 +78,37 @@ namespace Game {
             };
             _saveDatas.Add(newRecord);
 
+            if (_saveDatas.Count > 1) {
+                DataSorting(_saveDatas);
+            }
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             }
             else {
                 SaveToFile();
+            }
+
+            _scoreSavedEventDispather.Dispatch();
+        }
+
+        private void DataSorting(List<SaveData> saveDatas) {
+            for (int i = saveDatas.Count - 2; i >= 0; i--) {
+
+                if (int.Parse(saveDatas[i].score) > int.Parse(saveDatas[saveDatas.Count - 1].score)) {
+                    saveDatas.Insert(i + 1, saveDatas[saveDatas.Count - 1]);
+                    saveDatas.RemoveAt(saveDatas.Count - 1);
+                    _playerScorePosition.value = i + 1;
+                    break;
+                }
+                if (i == 0) {
+                    _playerScorePosition.value = 0;
+                    saveDatas.Insert(i, saveDatas[saveDatas.Count - 1]);
+                    saveDatas.RemoveAt(saveDatas.Count - 1);
+                }
+
+            }
+            if (saveDatas.Count > 10) {
+                saveDatas.RemoveRange(10, saveDatas.Count - 10);
             }
         }
 
@@ -109,7 +144,6 @@ namespace Game {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToFile() {
