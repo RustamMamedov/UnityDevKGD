@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UI;
 
 namespace Game {
 
     public class Save : MonoBehaviour {
 
-        [SerializeField]
+        public static Save Instance;
+
+        [Serializable]
         public class SaveData {
 
             public string date;
@@ -17,7 +20,7 @@ namespace Game {
 
         }
 
-        [SerializeField]
+        [Serializable]
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
@@ -53,17 +56,16 @@ namespace Game {
             } else {
                 LoadFromFile();
             }
+
+            if (Instance != null) {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
         }
 
-        private void OnEnable() {
-            _carCollisionEventListener.OnEventHappened += OnCarCollision;
-        }
-
-        private void OnDisenable() {
-            _carCollisionEventListener.OnEventHappened -= OnCarCollision;
-        }
-
-        private void OnCarCollision() {
+        public void StartSaveProcess() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
@@ -79,8 +81,9 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+            UIManager.Instance.ShowLeaderboardsScreen();
         }
-
+        
         private bool EditRecords() {
             int size = _saveDatas.Count-1;
             if (size > 9 && Int32.Parse(_saveDatas[size-1].score) > Int32.Parse(_saveDatas[size].score)) {
