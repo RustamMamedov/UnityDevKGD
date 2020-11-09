@@ -33,18 +33,22 @@ namespace UI {
         }
 
         private void OnEnable() {
+            Save.SaveData currentRideData = null;
+            if (Save.CurrentRideInd > -1) {
+                currentRideData = Save.SavedDatas[Save.CurrentRideInd];
+            }
             Save.SavedDatas.Sort(CompareRecords);
             _recordViews = new RecordView[Save.SavedDatas.Count];
             for (int i = 0; i < _recordViews.Length; i++) {
                 var recordView = Instantiate(_recordViewPrefab, _recordViewParent);
-                recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score, currentRideData == Save.SavedDatas[i]);
                 _recordViews[i] = recordView;
             }
         }
 
-        private void OnDestroy() {
-            for (int i = 0; i < _recordViews.Length; i++) {
-                Destroy(_recordViews[i]);
+        private void OnDisable() {
+            for (int i = _recordViews.Length - 1; i >= 0; i--) {
+                Destroy(_recordViews[i].gameObject);
             }
             _recordViews = null;
         }

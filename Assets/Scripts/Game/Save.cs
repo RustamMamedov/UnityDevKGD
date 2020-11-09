@@ -43,6 +43,9 @@ namespace Game {
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
+        private static int _currentRideInd = -1;
+        public static int CurrentRideInd => _currentRideInd;
+
         private const string RECORDS_KEY = "records";
         private string _filePath;
 
@@ -70,12 +73,15 @@ namespace Game {
                 score = _currentScore.value.ToString()
             };
 
+            _currentRideInd = -1;
             if (_saveDatas.Count < _maxRecords) {
                 _saveDatas.Add(newRecord);
+                _currentRideInd = _saveDatas.Count - 1;
             } else {
                 for (int i = 0; i < _saveDatas.Count; i++) {
                     if (Int32.Parse(newRecord.score) >= Int32.Parse(_saveDatas[i].score)) {
                         _saveDatas[i] = newRecord;
+                        _currentRideInd = i;
                         break;
                     }
                 }
