@@ -86,7 +86,7 @@ namespace Game {
             }
 
             _savedData.Add(newRecord);
-            _savedData = _savedData.OrderByDescending(save => save.score).ToList<SaveData>();
+            _savedData = _savedData.OrderByDescending(save => Int32.Parse(save.score)).ToList<SaveData>();
 
             if (_savedData.Count > 10) {
                 _savedData.RemoveAt(_savedData.Count - 1);
