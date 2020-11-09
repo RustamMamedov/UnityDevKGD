@@ -4,6 +4,7 @@ using System;
 using Events;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
 
 namespace Game {
 
@@ -79,8 +80,8 @@ namespace Game {
         }
 
         private bool CurrentScoreIsNewRecord() {
-            if (_saveDatas.Count < _numberRecordsInTable) {
-                return true;
+            if (_saveDatas.Any(res => Int32.Parse(res.score) == _currentScore.value)) {
+                return false;
             }
             var lastScoreInTop = Int32.Parse(_saveDatas[_saveDatas.Count - 1].score);
             return _currentScore.value > lastScoreInTop;
