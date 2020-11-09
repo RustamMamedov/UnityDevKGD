@@ -48,7 +48,7 @@ namespace Game {
 
         private void OnCarCollision() {
             UnsubscribeToEvents();
-            if (UIManager.Instance != null /*&& Save.finishSAve*/) {
+            if (UIManager.Instance != null && Save.finishSAve) {
                 //Debug.Log("NextScreen");
                 UIManager.Instance.LoadLeaderBoard();
             }
