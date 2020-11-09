@@ -31,6 +31,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventDispatcher _gameSavedEventDispatcher;
+
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
@@ -72,6 +75,7 @@ namespace Game {
                     SaveToFile();
                 }
             }
+            _gameSavedEventDispatcher.Dispatch();
         }
 
         private bool CurrentScoreIsNewRecord() {

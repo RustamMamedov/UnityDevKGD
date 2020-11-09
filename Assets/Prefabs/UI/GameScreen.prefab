@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 7543882774779309184}
   - component: {fileID: 5841129695843706732}
   - component: {fileID: 4143052279588381641}
+  - component: {fileID: 5530617185602971545}
   m_Layer: 5
   m_Name: GameScreen
   m_TagString: Untagged
@@ -500,6 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carCollisionEventListener: {fileID: 4143052279588381641}
+  _gameSavedEventListener: {fileID: 5530617185602971545}
 --- !u!114 &4143052279588381641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +515,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
+--- !u!114 &5530617185602971545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543882774779309311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: c779c143762a4cc42bf734d849484d6c, type: 2}
 --- !u!1 &7543882775087262477
 GameObject:
   m_ObjectHideFlags: 0
