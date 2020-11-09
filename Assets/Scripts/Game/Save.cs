@@ -52,7 +52,12 @@ namespace Game {
             
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            if (_crazyModeEnabled.value) {
+                _filePath = Path.Combine(Application.persistentDataPath, "crazyData.txt");
+            } else {
+                _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            }
+            
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
             } else {
@@ -88,10 +93,6 @@ namespace Game {
 
         private void SortListAndLeaveTenEntries() {
             _currentScorePosition.value = 11;
-            
-            if (_saveDatas.Count <= 1) {
-                return;
-            }
 
             for (int i = 0; i < _saveDatas.Count; i++) {
                 for (int j = i + 1; j < _saveDatas.Count; j++) {
@@ -158,7 +159,6 @@ namespace Game {
         }
 
         private void SaveToFile() {
-            //TODO: create two different files: for casual and crazy mode
             var wrapper = GetWrapper();
             var binaryFormatter = new BinaryFormatter();
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
