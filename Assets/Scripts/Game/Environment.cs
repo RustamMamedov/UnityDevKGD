@@ -9,6 +9,7 @@ namespace Game {
         private EventListener _roadCollisionEventListener;
 
         [SerializeField]
+        //[AssetOnly] - удаляет файлы почему-то
         private GameObject _roadPrefab;
         [SerializeField]
         private int _initialRoadNumber = 10;
