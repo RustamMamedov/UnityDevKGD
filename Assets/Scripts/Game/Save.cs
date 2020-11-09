@@ -73,7 +73,28 @@ namespace Game {
                 data = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
+
+            if (_saveDatas.Count != 10) {
+
+                _saveDatas.Add(newRecord);
+            }
+            else {
+
+                for (int i = _saveDatas.Count - 1; i < 0; i--) {
+
+                    if (Int32.Parse(newRecord.score) >= Int32.Parse(_saveDatas[i].score)) {
+
+                        var a = _saveDatas[i].score;
+                        var b = _saveDatas[i].data;
+                        _saveDatas[i].score = newRecord.score;
+                        _saveDatas[i].data = newRecord.data;
+                        newRecord.score = a;
+                        newRecord.data = b;
+
+                    }
+                }
+            }
+
             if (_saveType == SaveType.PlayerPrefs) {
 
                 SaveToPlayerPrefs();
@@ -126,6 +147,7 @@ namespace Game {
         private void SaveToFile() {
             
             var wrapper = GetWrapper();
+            
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream,wrapper);
