@@ -33,7 +33,14 @@ namespace UI {
             if (Save.SavedData != null) {
                 foreach (Save.SaveData save in Save.SavedData) {
                     var recordView = Instantiate(_resultView, _leaderboardTable.transform);
-                    recordView.GetComponent<RecordView>().SetData(place, save.date, save.score);
+                    var recordViewComponent = recordView.GetComponent<RecordView>();
+                    recordViewComponent.SetData(place, save.date, save.score);
+
+                    if (save.isNew) {
+                        recordViewComponent.MarkRecord();
+                    } else {
+                        recordViewComponent.UnmarkRecord();
+                    }
 
                     place++;
                 }

@@ -14,10 +14,21 @@ namespace UI {
         [SerializeField]
         private Text _placeLabel;
 
+        [SerializeField]
+        private Image _newRecordImage;
+
         public void SetData(int place, string date, string score) {
             _placeLabel.text = place.ToString();
             _dateLabel.text = date;
             _scoreLabel.text = score;
+        }
+
+        public void MarkRecord() {
+            _newRecordImage.gameObject.SetActive(true);
+        }
+
+        public void UnmarkRecord() {
+            _newRecordImage.gameObject.SetActive(false);
         }
     }
 
