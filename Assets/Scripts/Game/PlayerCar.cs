@@ -35,7 +35,7 @@ namespace Game {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
-        
+
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
@@ -51,7 +51,6 @@ namespace Game {
         }
 
         protected override void OnCarCollision() {
-            UIManager.Instance.ShowLeaderboardScreen();
             base.OnCarCollision();
         }
         private IEnumerator DodgeCoroutine(int nextRoad) {
