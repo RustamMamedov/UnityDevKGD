@@ -10,6 +10,9 @@ namespace Game {
         private EventListeners _touchEventListeners;
 
         [SerializeField]
+        private EventDispatcher _saveDataEventDispatcher;
+
+        [SerializeField]
         private ScriptableIntValue _touchSide;
 
         [SerializeField]
@@ -27,6 +30,11 @@ namespace Game {
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListeners.OnEventHappened += OnPlayerTouch;
+        }
+
+        protected override void OnCarCollision() {
+            _saveDataEventDispatcher.Dispatch();
+            base.OnCarCollision();
         }
 
         protected override void UnsubscribeToEvents() {

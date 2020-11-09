@@ -10,7 +10,10 @@ namespace Game {
 
     public class Save : MonoBehaviour {
 
-        public static Save Instance;
+        //public static Save Instance;
+
+        [SerializeField]
+        private EventListeners _saveResultEventListener;
 
         [Serializable]
         public class SaveData {
@@ -72,7 +75,7 @@ namespace Game {
         private SaveType _saveType;
 
         private void Awake() {
-            Instance = this;
+            //Instance = this;
             _savedData = new List<SaveData>();
             //Debug.Log(Application.persistentDataPath);
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -86,15 +89,17 @@ namespace Game {
 
         private void OnEnable() {
             //_carCollisionEventListeners.OnEventHappened += OnCarCollison;
+            _saveResultEventListener.OnEventHappened += SaveFromCollision;
             currentResult = null;
         }
 
         private void OnDisable() {
             //_carCollisionEventListeners.OnEventHappened -= OnCarCollison;
+            _saveResultEventListener.OnEventHappened -= SaveFromCollision;
             _savedData.Clear();
         }
 
-        public void SaveFromCollision() {
+        private void SaveFromCollision() {
             OnCarCollison();
         }
 

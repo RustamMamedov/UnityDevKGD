@@ -46,9 +46,10 @@ namespace Game {
             Move();
         }
 
-        private void OnCarCollision() {
+        //private void OnCarCollision() {
+        protected virtual void OnCarCollision() { 
             UnsubscribeToEvents();
-            Save.Instance.SaveFromCollision();
+            //Save.Instance.SaveFromCollision();
             if (UIManager.Instance != null) {
                 UIManager.Instance.LoadLeaderBoard();
             }
