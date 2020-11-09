@@ -66,12 +66,48 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
+
+            if (SavedDatas.Count < 10) {
+                SavedDatas.Add(newRecord);
+                SortSave();
+            }
+            else {
+                SortSave();
+                if (Int32.Parse(_saveDatas[SavedDatas.Count - 1].score) < Int32.Parse(newRecord.score)) {
+                    addNewRecord(newRecord);
+                }
+                else {
+                }
+            }
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
-            } else {
+            }
+            else {
                 SaveToFile();
+            }
+        }
+
+        private void addNewRecord(SaveData newRecord) {
+            _saveDatas.RemoveAt(_saveDatas.Count - 1);
+            _saveDatas.Add(newRecord);
+            SortSave();
+        }
+
+        private void SortSave() {
+            var CountDatas = _saveDatas.Count;
+            for (int i = 0; i < CountDatas; i++) {
+                for (int j = i; j < CountDatas; j++) {
+                    if (Int32.Parse(_saveDatas[i].score) < Int32.Parse(_saveDatas[j].score)) {
+                        var tmp = _saveDatas[i].score;
+                        _saveDatas[i].score = _saveDatas[j].score;
+                        _saveDatas[j].score = tmp;
+
+                        tmp = _saveDatas[i].date;
+                        _saveDatas[i].date = _saveDatas[j].date;
+                        _saveDatas[j].date = tmp;
+                    }
+                }
             }
         }
 
