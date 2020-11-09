@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Events;
-
+using Sirenix.OdinInspector;
 namespace Game {
 
     public class Enviroment : MonoBehaviour {
@@ -10,6 +10,7 @@ namespace Game {
         private EventListener _roadCollisionEventListener;
 
         [SerializeField]
+        [AssetsOnly]
         private GameObject _roadPrefab;
 
         [SerializeField]
