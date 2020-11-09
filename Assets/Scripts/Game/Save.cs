@@ -15,6 +15,7 @@ namespace Game {
 
             public string date;
             public string score;
+            public bool newRec;
         }
 
         [Serializable]
@@ -65,21 +66,22 @@ namespace Game {
         private void OnCarCollision() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString()
+                score = _currentScore.value.ToString(),
+                newRec = true,
             };
 
-            Debug.Log(_saveDatas.Count);
+            for (int i = 0; i < _saveDatas.Count; i++) {
+                _saveDatas[i].newRec = false;
+            }
+
             AddNewRecordTop10(newRecord);
             DelerRecords();
-            Debug.Log(_saveDatas.Count);
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
             } else {
                 SaveToFile();
             }
-
-            //UIManager.Instance.ShowLeaderboardScreen();
         }
 
         private void AddNewRecordTop10(SaveData NewRecord) {
