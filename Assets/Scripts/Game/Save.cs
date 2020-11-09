@@ -49,7 +49,6 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
-        private bool _saved = false;
             
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -90,28 +89,32 @@ namespace Game {
             if (_saveDatas.Count <= 1) {
                 return;
             }
-            
+
             for (int i = 0; i < _saveDatas.Count; i++) {
                 for (int j = i + 1; j < _saveDatas.Count; j++) {
-                    if (_saveDatas[i].score == "0") {
-                        _saveDatas.Remove(_saveDatas[i]);
-                    }
-                    
                     if (Int32.Parse(_saveDatas[i].score) < Int32.Parse(_saveDatas[j].score)) {
                         var tmp = _saveDatas[i];
                         _saveDatas[i] = _saveDatas[j];
                         _saveDatas[j] = tmp;
                     }
-                    
-                    if (_saveDatas[i].score == _saveDatas[j].score) {
-                        _saveDatas.Remove(_saveDatas[i]);
-                    }
-
-                    if (Int32.Parse(_saveDatas[i].score) == _currentScore.value) {
-                        _currentScorePosition.value = i;
-                    }
                 }
             }
+
+            for (int i = _saveDatas.Count - 1; i > -1; i--) {
+                for (int j = i - 1; j > -1; j--) {
+                    if (_saveDatas[i].score == _saveDatas[j].score) {
+                        _saveDatas.Remove(_saveDatas[j]);
+                        break;
+                    }
+                }
+                if (Int32.Parse(_saveDatas[i].score) == 0) {
+                    _saveDatas.Remove(_saveDatas[i]);
+                }
+                if (Int32.Parse(_saveDatas[i].score) == _currentScore.value) {
+                    _currentScorePosition.value = i;
+                }
+            }
+            
             if (_saveDatas.Count > 10) {
                 for (int i = _saveDatas.Count - 1; i > 9; i--) {
                     _saveDatas.Remove(_saveDatas[i]);
