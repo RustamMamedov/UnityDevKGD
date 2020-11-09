@@ -73,7 +73,9 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
+            if (Int32.Parse(newRecord.score) != 0) {
+                _saveDatas.Add(newRecord);
+            }
             SortListAndLeaveTenEntries();
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
@@ -106,9 +108,6 @@ namespace Game {
                         _saveDatas.Remove(_saveDatas[j]);
                         break;
                     }
-                }
-                if (Int32.Parse(_saveDatas[i].score) == 0) {
-                    _saveDatas.Remove(_saveDatas[i]);
                 }
                 if (Int32.Parse(_saveDatas[i].score) == _currentScore.value) {
                     _currentScorePosition.value = i;
