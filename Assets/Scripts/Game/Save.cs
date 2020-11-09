@@ -9,7 +9,7 @@ namespace Game {
 
     public class Save : MonoBehaviour {
 
-        [Serializable]
+        [SerializeField]
         public class SaveData {
 
             public string date;
@@ -17,7 +17,7 @@ namespace Game {
 
         }
 
-        [Serializable]
+        [SerializeField]
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
@@ -68,13 +68,42 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
+
             _saveDatas.Add(newRecord);
+            if (!EditRecords()) {
+                return; 
+            }
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveDataToPlayerPrefs();
             } else {
                 SaveToFile();
             }
+        }
+
+        private bool EditRecords() {
+            int size = _saveDatas.Count-1;
+            if (size > 9 && Int32.Parse(_saveDatas[size-1].score) > Int32.Parse(_saveDatas[size].score)) {
+                return false;
+            }
+
+            for (int i = size; i >0; i--) {
+                if (Int32.Parse(_saveDatas[i].score) <= Int32.Parse(_saveDatas[i-1].score)) {
+                    break;
+                }
+                SwapInSaveDatas(i, i - 1);
+            }
+            if (size > 9) {
+                _saveDatas.RemoveAt(size);
+            }
+
+            return true;
+        }
+
+        private void SwapInSaveDatas(int x, int y) {
+            SaveData temp = _saveDatas[x];
+            _saveDatas[x] = _saveDatas[y];
+            _saveDatas[y] = temp;
         }
 
         private void LoadFromPlayerPrefs() {
