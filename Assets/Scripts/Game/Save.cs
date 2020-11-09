@@ -94,6 +94,7 @@ namespace Game {
                 }
             }
             _savedDatas.Insert(0, NewRecord);
+            _currentRecordPos = 1;
         }
 
         private void CheckTail() {
