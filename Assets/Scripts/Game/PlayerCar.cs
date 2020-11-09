@@ -10,9 +10,6 @@ namespace Game {
         private EventListener _touchEventListener;
 
         [SerializeField]
-        private EventListener _dodgeEventListener;
-
-        [SerializeField]
         private ScriptableIntValue _touchSide;
 
         [SerializeField]
@@ -20,12 +17,6 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
-
-        [SerializeField]
-        private RewardHandle _rewardHandler;
-
-        [SerializeField]
-        private Cars _dodgedCars;
 
         [SerializeField]
         private float _dodgeDuration;
@@ -45,13 +36,11 @@ namespace Game {
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
-            _dodgeEventListener.OnEventHappened += OnCarDodged;
         }
 
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
-            _dodgeEventListener.OnEventHappened -= OnCarDodged;
         }
 
         protected override void Move() {
@@ -90,10 +79,6 @@ namespace Game {
             }
 
             StartCoroutine(DodgeCoroutine(nextRoad));
-        }
-
-        private void OnCarDodged() {
-            _rewardHandler.GetPointsForCar(_dodgedCars.carsList[0]);
         }
     }
 }

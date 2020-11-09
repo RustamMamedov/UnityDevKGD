@@ -7,9 +7,6 @@ namespace Game {
     public class EnemySpawner : MonoBehaviour {
 
         [SerializeField]
-        private EventDispatcher _carDodgedEventDispatcher;
-
-        [SerializeField]
         private EventListener _updateEventListener;
 
         [SerializeField]
@@ -32,9 +29,6 @@ namespace Game {
 
         [SerializeField]
         private List<GameObject> _carPrefabs = new List<GameObject>();
-
-        [SerializeField]
-        private Cars _dodgedCars;
 
         private float _currentTimer = 0f;
 
@@ -83,9 +77,6 @@ namespace Game {
         private void HandleCarsBehindPlayer() {
             foreach (GameObject car in _cars) {
                 if (_playerPositionZ.value - car.transform.position.z >= _distanceToPlayerToDestroy) {
-                    _dodgedCars.carsList.Add(car);
-                    _carDodgedEventDispatcher.Dispatch();
-
                     Destroy(car);
                     _cars.Remove(car);
                     break;
