@@ -37,6 +37,9 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
+        [SerializeField]
+        private int _maxRecords = 10;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
@@ -66,7 +69,17 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
+
+            if (_saveDatas.Count < _maxRecords) {
+                _saveDatas.Add(newRecord);
+            } else {
+                for (int i = 0; i < _saveDatas.Count; i++) {
+                    if (Int32.Parse(newRecord.score) >= Int32.Parse(_saveDatas[i].score)) {
+                        _saveDatas[i] = newRecord;
+                        break;
+                    }
+                }
+            }
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
