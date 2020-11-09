@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -14,6 +15,7 @@ namespace Game {
 
             public string date;
             public string score;
+            public bool newScore;
         }
 
         [Serializable]
@@ -22,14 +24,23 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        private enum SaveType {
+
+            PlayerPrefs,
+            File,
+        }
+
+        [SerializeField]
+        private SaveType _saveType;
+
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        private List<SaveData> _saveDatas;
-        public List<SaveData> SavedDatas => _saveDatas;
+        private static List<SaveData> _saveDatas;
+        public static List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
@@ -37,10 +48,14 @@ namespace Game {
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            // LoadFromPlayerPrefs();
-            LoadFromFile();
-        }
 
+            if (_saveType == SaveType.PlayerPrefs) {
+                LoadFromPlayerPrefs();
+            } else {
+                LoadFromFile();
+            }
+        }
+    
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappend += OnCarCollision;
         }
@@ -52,13 +67,30 @@ namespace Game {
         private void OnCarCollision() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString()
+                score = _currentScore.value.ToString(),
+                newScore = true,
             };
-            Debug.Log($"new record: {newRecord.date} {newRecord.score}");
-            _saveDatas.Add(newRecord);
 
-            // SaveToPlayerPrefs();
-            SaveToFile();
+            AddNewRecord(newRecord);
+
+            if (_saveType == SaveType.PlayerPrefs) {
+                SaveToPlayerPrefs();
+            } else {
+                SaveToFile();
+            }
+        }
+       
+        private void AddNewRecord(SaveData newRecord) {
+            foreach (SaveData save in _saveDatas) {
+                save.newScore = false;
+            }
+
+            _saveDatas.Add(newRecord);
+            _saveDatas = _saveDatas.OrderByDescending(save => Int32.Parse(save.score)).ToList<SaveData>();
+
+            if (_saveDatas.Count > 10) {
+                _saveDatas.RemoveAt(_saveDatas.Count - 1);
+            }
         }
 
         private void LoadFromPlayerPrefs() {
