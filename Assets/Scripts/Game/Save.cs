@@ -36,6 +36,9 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
+        [SerializeField]
+        private int _numberRecordsInTable;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
@@ -61,18 +64,35 @@ namespace Game {
         }
 
         private void OnCarCollision() {
+            if (CurrentScoreIsNewRecord()) {
+                AddCurrentScoreToTable();
+                if (_saveType == SaveType.PlayerPrefs) {
+                    SaveToPlayerPrefs();
+                } else {
+                    SaveToFile();
+                }
+            }
+        }
+
+        private bool CurrentScoreIsNewRecord() {
+            if (_saveDatas.Count < _numberRecordsInTable) {
+                return true;
+            }
+            var lastScoreInTop = Int32.Parse(_saveDatas[_saveDatas.Count - 1].score);
+            return _currentScore.value > lastScoreInTop;
+        }
+
+        private void AddCurrentScoreToTable() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            _saveDatas.Add(newRecord);
 
-            if (_saveType == SaveType.PlayerPrefs) {
-                SaveToPlayerPrefs();
-            }
-            else {
-                SaveToFile();
-            }
+            _saveDatas.Add(newRecord);
+            _saveDatas.Sort((res1, res2) => (Int32.Parse(res1.score)).CompareTo(Int32.Parse(res2.score)));
+
+            if (_saveDatas.Count > _numberRecordsInTable)
+                _saveDatas.RemoveAt(_saveDatas.Count - 1);
         }
 
         private SavedDataWrapper GetWrapper() {
@@ -89,7 +109,6 @@ namespace Game {
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
             _saveDatas = wrapper.saveDatas;
-            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToPlayerPrefs() {
@@ -108,7 +127,6 @@ namespace Game {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToFile() {
