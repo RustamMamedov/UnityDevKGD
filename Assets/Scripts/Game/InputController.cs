@@ -32,7 +32,7 @@ namespace Game {
 
             touchPosition = Input.mousePosition;
 #else 
-            if (Input.touches[0] < 1) {
+            if (Input.touchCount < 1) {
                 return;
             }
 
