@@ -93,7 +93,7 @@ namespace Game {
             };
 
             _saveDatas.Add(newRecord);
-            _saveDatas.Sort((res1, res2) => (Int32.Parse(res1.score)).CompareTo(Int32.Parse(res2.score)));
+            _saveDatas.Sort((res1, res2) => (Int32.Parse(res2.score)).CompareTo(Int32.Parse(res1.score)));
 
             if (_saveDatas.Count > _numberRecordsInTable)
                 _saveDatas.RemoveAt(_saveDatas.Count - 1);
