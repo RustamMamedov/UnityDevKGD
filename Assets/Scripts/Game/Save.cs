@@ -32,6 +32,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventDispatcher _saveDispatcher;
+
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
@@ -92,6 +95,8 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+
+            _saveDispatcher.Dispatch();
         }
 
         private void LoadFromPlayerPrefs() {
