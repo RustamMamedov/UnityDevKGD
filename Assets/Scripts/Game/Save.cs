@@ -10,6 +10,8 @@ namespace Game {
 
     public class Save : MonoBehaviour {
 
+        public static Save Instance;
+
         [Serializable]
         public class SaveData {
 
@@ -47,8 +49,6 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
-        public static bool finishSAve=false;
-
         [SerializeField]
         private EventListeners _carCollisionEventListeners;
 
@@ -72,6 +72,7 @@ namespace Game {
         private SaveType _saveType;
 
         private void Awake() {
+            Instance = this;
             _savedData = new List<SaveData>();
             //Debug.Log(Application.persistentDataPath);
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -84,18 +85,20 @@ namespace Game {
         }
 
         private void OnEnable() {
-            _carCollisionEventListeners.OnEventHappened += OnCarCollison;
-            finishSAve = false;
+            //_carCollisionEventListeners.OnEventHappened += OnCarCollison;
             currentResult = null;
         }
 
         private void OnDisable() {
-            _carCollisionEventListeners.OnEventHappened -= OnCarCollison;
+            //_carCollisionEventListeners.OnEventHappened -= OnCarCollison;
             _savedData.Clear();
         }
 
+        public void SaveFromCollision() {
+            OnCarCollison();
+        }
+
         private void OnCarCollison() {
-            //Debug.Log("SaveData");
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.Value.ToString()
@@ -110,7 +113,7 @@ namespace Game {
             else {
                 SaveFromFile();
             }
-            finishSAve = true;
+            Debug.Log("SaveData");
             //Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
             Sort10BestResult();
             //Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
