@@ -43,6 +43,9 @@ namespace Game {
         [SerializeField]
         private int _numberRecordsInTable;
 
+        [SerializeField]
+        private ScriptableIntValue _lastRecordIndex;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
@@ -50,6 +53,7 @@ namespace Game {
         private string _filePath;
 
         private void Awake() {
+            _lastRecordIndex.value = -1;
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
@@ -80,11 +84,11 @@ namespace Game {
         }
 
         private bool CurrentScoreIsNewRecord() {
-            if (_saveDatas.Count == 0) {
-                return true;
-            }
             if (_saveDatas.Any(res => Int32.Parse(res.score) == _currentScore.value)) {
                 return false;
+            }
+            if (_saveDatas.Count < _numberRecordsInTable) {
+                return true;
             }
             var lastScoreInTop = Int32.Parse(_saveDatas[_saveDatas.Count - 1].score);
             return _currentScore.value > lastScoreInTop;
@@ -98,6 +102,7 @@ namespace Game {
 
             _saveDatas.Add(newRecord);
             _saveDatas.Sort((res1, res2) => (Int32.Parse(res2.score)).CompareTo(Int32.Parse(res1.score)));
+            _lastRecordIndex.value = _saveDatas.IndexOf(newRecord);
 
             if (_saveDatas.Count > _numberRecordsInTable)
                 _saveDatas.RemoveAt(_saveDatas.Count - 1);

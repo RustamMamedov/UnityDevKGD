@@ -16,6 +16,9 @@ namespace UI {
         [SerializeField]
         private GameObject _resultViewPrefab;
 
+        [SerializeField]
+        private ScriptableIntValue _lastRecordIndex;
+
         private List<GameObject> _bestResults;
 
         private void Awake() {
@@ -34,8 +37,15 @@ namespace UI {
         private void CreateTable() {
             var tableSize = Save.SavedDatas.Count;
             for (int i = 0; i < tableSize; i++) {
+
                 var result = Instantiate(_resultViewPrefab, _recordTable.transform);
-                result.GetComponent<RecordView>().SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                var recordView = result.GetComponent<RecordView>();
+
+                recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                if (_lastRecordIndex.value == i) {
+                    recordView.MarkNewRecord();
+                }
+
                 _bestResults.Add(result);
             }
         }
