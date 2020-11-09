@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Events;
 
 namespace UI {
 
@@ -20,6 +21,9 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
+        [SerializeField]
+        private EventListener _scoreSavedEventListener;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -28,6 +32,18 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        } 
+
+        private void OnEnable() {
+            _scoreSavedEventListener.OnEventHappened += OnScoreSaved;  
+        }
+
+        private void OnDisable() {
+            _scoreSavedEventListener.OnEventHappened -= OnScoreSaved;
+        }
+
+        private void OnScoreSaved() {
+            ShowLeaderboardScreen();
         }
 
         public void LoadMenu() {
