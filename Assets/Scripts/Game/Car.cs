@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-using UI;
 
 namespace Game {
     public class Car : MonoBehaviour {
@@ -55,9 +54,6 @@ namespace Game {
         protected virtual void OnCarCollision() { 
             UnsubscribeToEvents();
             //Save.Instance.SaveFromCollision();
-            if (UIManager.Instance != null) {
-                UIManager.Instance.LoadLeaderBoard();
-            }
             //Debug.Log("CarCollision");
         }
 

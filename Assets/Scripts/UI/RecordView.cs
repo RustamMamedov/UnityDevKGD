@@ -12,10 +12,16 @@ namespace UI {
 
         public Image BG;
 
+        enum ListText {
+            Plase=0,
+            Date,
+            Score
+        }
+
         public void SetData(int pos, string date, string score) {
-            _textLables[0].text=pos.ToString();
-            _textLables[1].text = date;
-            _textLables[2].text = score;
+            _textLables[ListText.Plase.GetHashCode()].text=pos.ToString();
+            _textLables[ListText.Date.GetHashCode()].text = date;
+            _textLables[ListText.Score.GetHashCode()].text = score;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UI;
 
 namespace Game {
     public class PlayerCar : Car {
@@ -35,6 +36,9 @@ namespace Game {
         protected override void OnCarCollision() {
             _saveDataEventDispatcher.Dispatch();
             base.OnCarCollision();
+            if (UIManager.Instance != null) {
+                UIManager.Instance.LoadLeaderBoard();
+            }
         }
 
         protected override void UnsubscribeToEvents() {
