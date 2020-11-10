@@ -57,7 +57,7 @@ namespace Game {
             _inDodge = false;
             _currentRoad = nextRoad;
         }
-
+        /*
         private void OnDrawGizmos() {
             //
             //
@@ -73,6 +73,6 @@ namespace Game {
             var mesh = GetComponent<MeshFilter>().sharedMesh;
             Gizmos.DrawWireMesh(mesh,transform.position+transform.forward*5,Quaternion.identity,Vector3.one);
 
-        }
+        }*/
     }
 }
