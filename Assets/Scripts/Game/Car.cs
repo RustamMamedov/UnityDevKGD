@@ -17,6 +17,10 @@ namespace Game {
 
         protected float _currentSpeed;
 
+#if UNITY_EDITOR
+        public CarSettings CarSettings => _carSettings;
+#endif
+
         protected virtual void OnEnable() {
             SubscribeToEvents();
         }
@@ -49,6 +53,11 @@ namespace Game {
             }
             
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
+        }
+
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            _carSettings.dodgeScore++;
         }
     }
 }
