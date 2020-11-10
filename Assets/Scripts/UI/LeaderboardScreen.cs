@@ -53,7 +53,7 @@ namespace UI {
                 newResult.SetData(i + 1, Save.savedDatas[i].date, Save.savedDatas[i].score);
                 if (i == Save._last) newResult.Symbol();
                 _listResultView.Add(newResult.gameObject);
-                Debug.Log($"{Save._last} rrr");
+                //Debug.Log($"{Save._last} rrr");
                 newResult.gameObject.SetActive(true);
             }
         }

@@ -87,7 +87,7 @@ namespace Game {
             for (int i = 0; i < _saveDatas.Count; i++) {
                 if (record == _saveDatas[i]) {
                     _last = i;
-                    Debug.Log($"{_last} zzz");
+                    //Debug.Log($"{_last} zzz");
                     break;
                 }
             }
