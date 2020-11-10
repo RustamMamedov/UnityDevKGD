@@ -70,6 +70,7 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
+            _currentScore.value = 0;
 
             _saveDatas.Add(newRecord);
             if (!EditRecords()) {
