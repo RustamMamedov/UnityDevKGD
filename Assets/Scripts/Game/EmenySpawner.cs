@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Events;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace Game {
     
@@ -11,10 +12,21 @@ namespace Game {
         
         [SerializeField]
         private EventListener _carCollisionListener;
-        
+
+        [ValidateInput(nameof(VolidateList))]
         [SerializeField]
         private List<GameObject> _carsPrefab = new List<GameObject>();
         
+        private bool VolidateList() {
+            for(int i = 0; i < _carsPrefab.Count-1; i++) {
+                for (int j = i+1; j < _carsPrefab.Count; j++) {
+                    if (_carsPrefab[i] == _carsPrefab[j])
+                        return false;
+                }
+            }
+            return true;
+        }
+
         [SerializeField]
         private float _spawnCooldown;
         
