@@ -20,6 +20,9 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
+        private Color _gizmosColor = Color.white;
+
+        [SerializeField]
         private float _dodgeDuration;
 
         private int _currentRoad;
@@ -65,6 +68,21 @@ namespace Game {
         protected override void Move() {
             base.Move();
             _playerPositionZ.value = transform.position.z;
+        }
+        
+        private void OnDrawGizmos() {
+
+        }
+
+        
+        private void OnDrawGizmosSelected() {
+            Gizmos.color = _gizmosColor;
+
+            Gizmos.DrawWireSphere(transform.position, 5f);
+            Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
+            Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, .5f);
+            var mesh = GetComponent<MeshFilter>().sharedMesh;
+            Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5, Quaternion.identity);
         }
     }
 }
