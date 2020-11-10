@@ -53,7 +53,7 @@ namespace Game {
             var timer = 0f;
             
             var targetPosX =transform.position.x +_roadWidth.value*(nextRoad>_currentRoad?1:-1);
-            while (timer < _dodgeDuration) {
+            while (timer <= _dodgeDuration) {
                 timer += Time.deltaTime;
                 var posX = Mathf.Lerp(transform.position.x, targetPosX, timer/_dodgeDuration);
                 transform.position =new Vector3(posX,transform.position.y,transform.position.z);
