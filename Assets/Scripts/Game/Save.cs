@@ -33,10 +33,16 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        private ScriptableIntValue _maxSaves;
+
+        [SerializeField]
         private SaveType _saveType;
 
-        private List<SaveData> _savedDatas;
-        public List<SaveData> SavedDatas => _savedDatas;
+        private static List<SaveData> _savedDatas;
+        public static List<SaveData> SavedDatas => _savedDatas;
+
+        private static int _currentPlace;
+        public static int CurrentPlace => _currentPlace ;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
@@ -50,6 +56,8 @@ namespace Game {
             } else {
                 LoadFromFile();
             }
+
+            _savedDatas.Sort((x, y) => x.score.CompareTo(y.score));
         }
 
         private void OnEnable() {
@@ -62,7 +70,7 @@ namespace Game {
 
         private void SaveToPlayerPrefs() {
             var wrapper = GetWrapper();
-            var json = JsonUtility.ToJson(_savedDatas);
+            var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
         }
         
@@ -95,6 +103,39 @@ namespace Game {
             }
         }
 
+        private void OnCarCollision() {
+            int place = -1;
+
+            for (int i = _savedDatas.Count - 1; i >= 0; i--) {
+                if (Int32.Parse(_savedDatas[i].score) <= _currentScore.value) {
+                    place = i;
+                    break;
+                }
+            }
+
+            if ((place != -1) || (_savedDatas.Count < _maxSaves.value)) {
+                _savedDatas.RemoveAt(0);
+                _savedDatas.Insert(place, CreateNewRecord());
+                _currentPlace = place;
+                
+                if (_saveType == SaveType.PlayerPrefs) {
+                    SaveToPlayerPrefs();
+                } else {
+                    SaveToFile();
+                }
+            } else {
+                _currentPlace = -1;
+            }
+
+            Debug.Log("save");
+        }
+        
+        private void PlaceNewRecord() {
+            for (int i = 0; i < _savedDatas.Count; i++) {
+                
+            }
+        }
+
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
                 saveDatas = _savedDatas
@@ -102,18 +143,11 @@ namespace Game {
             return wrapper;
         }
 
-        private void OnCarCollision() {
-            var newRecord = new SaveData {
-                date = DateTime.Now.ToString("MM/dd/yyy HH:mm"),
-                score = _currentScore.value.ToString()
+        private SaveData CreateNewRecord() {
+            return  new SaveData {
+                    date = DateTime.Now.ToString("MM/dd/yyy HH:mm"),
+                    score = _currentScore.value.ToString()
             };
-            _savedDatas.Add(newRecord);
-            
-            if (_saveType == SaveType.PlayerPrefs) {
-                SaveToPlayerPrefs();
-            } else {
-                SaveToFile();
-            }
         }
     }
 }
