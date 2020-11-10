@@ -14,6 +14,7 @@ namespace UI {
 
         private void OnPlayButtonClick() {
             UIManager.Instance.LoadGameplay();
+            _playButton.onClick.RemoveAllListeners();
         }
     }
 }
