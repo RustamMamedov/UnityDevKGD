@@ -36,7 +36,11 @@ public class LeaderboardScreen : MonoBehaviour
     private void InitializeLeaderboard() {
         List<Save.SaveData> saves = Save.SavedDatas;
         for (int i = 0; i < saves.Count; i++) {
-            var newResultView = Instantiate(_resultView, _results.transform);
+            GameObject newResultView = Instantiate(_resultView, _results.transform);
+
+            if (saves[i].isHighlighted) {
+                newResultView.transform.GetChild(0).gameObject.SetActive(true);
+            }
 
             var recordView = newResultView.GetComponent<RecordView>();
             recordView.SetData(i+1, saves[i].date, saves[i].score);

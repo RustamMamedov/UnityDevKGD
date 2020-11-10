@@ -17,6 +17,7 @@ namespace Game {
 
             public string date;
             public string score;
+            public bool isHighlighted;
 
         }
 
@@ -68,12 +69,15 @@ namespace Game {
         public void StartSaveProcess() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString()
+                score = _currentScore.value.ToString(),
+                isHighlighted = true
             };
             _currentScore.value = 0;
 
+            Turn_Highlights_Off_In_savedDatas();
             _saveDatas.Add(newRecord);
             if (!EditRecords()) {
+                UIManager.Instance.ShowLeaderboardsScreen();
                 return; 
             }
 
@@ -85,6 +89,12 @@ namespace Game {
             UIManager.Instance.ShowLeaderboardsScreen();
         }
         
+        private void Turn_Highlights_Off_In_savedDatas() {
+            foreach (var it in _saveDatas) {
+                it.isHighlighted = false;
+            }
+        }
+
         private bool EditRecords() {
             int size = _saveDatas.Count-1;
             if (size > 9 && Int32.Parse(_saveDatas[size-1].score) > Int32.Parse(_saveDatas[size].score)) {
