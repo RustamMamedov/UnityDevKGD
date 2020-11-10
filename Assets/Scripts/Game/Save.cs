@@ -4,6 +4,7 @@ using Events;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -23,6 +24,7 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        [InfoBox("@Info()")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -47,6 +49,13 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+
+        private string Info() {
+            if (_saveType == SaveType.File)
+                return _filePath;
+            else
+                return "PlayerPrefs";
+        }
 
         #endregion Data
 
