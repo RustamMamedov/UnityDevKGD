@@ -6,6 +6,7 @@ using Game;
 using System.Collections.Generic;
 
 public class LeaderboardScreen : MonoBehaviour {
+
     [SerializeField]
     private Button _menuButton;
 
@@ -22,6 +23,11 @@ public class LeaderboardScreen : MonoBehaviour {
     private void OnEnable() {
         InitializeLeaderboard();
     }
+
+    private void OnDisable() {
+        DestroyLeaderboard();
+    }
+
     public void OnMenuButtonClick() {
         UIManager.Instance.LoadMenu();
     }
@@ -37,6 +43,13 @@ public class LeaderboardScreen : MonoBehaviour {
 
             var recordView = newResultView.GetComponent<RecordView>();
             recordView.SetData(i + 1, saves[i].date, saves[i].score);
+        }
+    }
+
+    private void DestroyLeaderboard() {
+        for (int i = _results.transform.childCount - 1; i >= 0; i--) {
+            var recordView = _results.transform.GetChild(i);
+            Destroy(recordView.gameObject);
         }
     }
 }
