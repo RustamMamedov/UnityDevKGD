@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 
 namespace UI {
 
@@ -24,6 +25,8 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
+        [SerializeField]
+        private Text _currentScore;
 
         private void Awake() {
             if (Instance != null) {
@@ -51,6 +54,7 @@ namespace UI {
         }
 
         private void LoadMenuScene() {
+            _currentScore.text ="0";
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
             ShowMenuScreen();
