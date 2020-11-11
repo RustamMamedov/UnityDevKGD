@@ -18,11 +18,8 @@ namespace UI {
 
         private List<GameObject> _scoreBoard = new List<GameObject>{};
 
-        private void Awake() {
-            _menuButton.onClick.AddListener(OnMenuButtonClick);
-        }
-
         private void OnEnable() {
+            _menuButton.onClick.AddListener(OnMenuButtonClick);
             var saveDatas = Save.SavedDatas;
             int place = 1;
             for (int i = saveDatas.Count - 1; i >= 0; i--) {

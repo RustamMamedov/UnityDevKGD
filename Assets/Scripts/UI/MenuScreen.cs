@@ -8,13 +8,13 @@ namespace UI {
         [SerializeField]
         private Button _playButton;
 
-        private void Awake() {
+        private void OnEnable() {
             _playButton.onClick.AddListener(OnPlayButtonClick);
         }
 
         private void OnPlayButtonClick() {
-            UIManager.Instance.LoadGameplay();
             _playButton.onClick.RemoveAllListeners();
+            UIManager.Instance.LoadGameplay();
         }
     }
 }
