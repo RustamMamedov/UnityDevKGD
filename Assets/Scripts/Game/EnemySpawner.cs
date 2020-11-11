@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -12,6 +13,7 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionListener;
 
+        [ValidateInput(nameof(ValidateEnemyCars))]
         [SerializeField]
         private List<GameObject> _enemyCars = new List<GameObject>();
 
@@ -81,6 +83,17 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private bool ValidateEnemyCars() {
+            bool isTrue = true;
+            for (int i = 0; i < _enemyCars.Count-1; i++) {
+                if (_enemyCars[i] == _enemyCars[_enemyCars.Count-1]) {
+                    isTrue = false;
+                    break;
+                }
+            }
+            return isTrue;
         }
     }
 }
