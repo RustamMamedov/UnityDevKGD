@@ -26,12 +26,22 @@ namespace UI {
         private bool isBusy;
 
         private void Awake() {
+            OnEnable();  
+        }
+
+        private void OnEnable() {
             _updateEventListener.OnEventHappened += UpdateBehavior;
+        }
+
+        private void OnDisable() {
+            _currentScore = 0;
+            _scoreLabel.text = $"{_currentScore}";
         }
 
         public void UpdateBehavior() {
             if (_currentScore < _assetScore.value && !isBusy) {
-               StartCoroutine(SetScoreCoroutine(_assetScore.value));
+                StartCoroutine(SetScoreCoroutine(_assetScore.value));
+                return;
             }
         }
 
