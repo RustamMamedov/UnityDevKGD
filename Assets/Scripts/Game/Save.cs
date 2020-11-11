@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -36,6 +37,8 @@ namespace Game {
         private ScriptableIntValue _maxSaves;
 
         [SerializeField]
+        [InfoBox("PlayerPrefs", "IsUsingPlayerPrefs")]
+        [InfoBox("/Users/ASUS/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "IsUsingFile")]
         private SaveType _saveType;
 
         private static List<SaveData> _savedDatas;
@@ -129,12 +132,6 @@ namespace Game {
 
             Debug.Log("save");
         }
-        
-        private void PlaceNewRecord() {
-            for (int i = 0; i < _savedDatas.Count; i++) {
-                
-            }
-        }
 
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
@@ -148,6 +145,14 @@ namespace Game {
                     date = DateTime.Now.ToString("MM/dd/yyy HH:mm"),
                     score = _currentScore.value.ToString()
             };
+        }
+
+        private bool IsUsingPlayerPrefs() {
+            return (_saveType == SaveType.PlayerPrefs);
+        }
+
+        private bool IsUsingFile() {
+            return (_saveType == SaveType.File);
         }
     }
 }
