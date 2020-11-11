@@ -97,7 +97,9 @@ namespace Game {
 
         private bool EditRecords() {
             int size = _saveDatas.Count-1;
+            
             if (size > 9 && Int32.Parse(_saveDatas[size-1].score) > Int32.Parse(_saveDatas[size].score)) {
+                _saveDatas.RemoveAt(size);
                 return false;
             }
 
