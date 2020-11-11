@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Game {
 
     public class Car : MonoBehaviour {
+
         [SerializeField]
         protected CarSettings _carSettings;
 
@@ -15,20 +16,24 @@ namespace Game {
 
 
         protected float _currentSpeed;
+        
 
-        private void Awake() {
-            _updateEventListener.OnEventHappened += Move;
+        private void OnEnable() {
+            SubscribeToEvents();
+        }
+
+        private void OnDisable() {
+            
+            UnsubscribeToEvents();
         }
 
 
-
-
-        private void SubscribeToEvents() {
+        protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
 
-        private void UnsubscribeToEvents() {
+        protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
