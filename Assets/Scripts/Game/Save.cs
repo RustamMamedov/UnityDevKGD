@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UI;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -24,6 +25,8 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
+        [InfoBox("C:/Users/shpul/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -141,5 +144,13 @@ namespace Game {
                 _saveDatas.Remove(_saveDatas[_saveDatas.Count - 1]);
             }
         }
+
+        private bool isSaveTypePlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+        private bool isSaveTypeFile() {
+            return _saveType == SaveType.File;
+        }
+
     }
 }
