@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,9 +19,6 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardScreen;
-
-        [SerializeField]
-        private ScriptableIntValue _currentScore;
 
         private void Awake() {
             if (Instance != null) {
