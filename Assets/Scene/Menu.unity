@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 1998376962}
   - component: {fileID: 1998376961}
   - component: {fileID: 1998376963}
+  - component: {fileID: 1998376964}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -454,7 +455,7 @@ MonoBehaviour:
   _menuScreen: {fileID: 5658100954926941499}
   _gameScreen: {fileID: 4301333830771729683}
   _leaderBoardScreen: {fileID: 1281483190328791722}
-  _carCollision: {fileID: 1998376963}
+  _saveDataEventListeners: {fileID: 1998376964}
 --- !u!4 &1998376962
 Transform:
   m_ObjectHideFlags: 0
@@ -485,6 +486,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: ba7c9a77c8eed58468c59b749fc14f21, type: 2}
+--- !u!114 &1998376964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998376960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb824bb7ca623cb49a6d63c5f1bb6187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 3b2a769b836f1aa4fbd43f162a87c9d3, type: 2}
 --- !u!1001 &572146788993307642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1014,32 +1028,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1281483190328791721}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1281483190328791723 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7874653118752446040, guid: a8de121340ebdeb4f830731ff9fe8933,
-    type: 3}
-  m_PrefabInstance: {fileID: 1281483190328791721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1281483190328791724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281483190328791722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a018e4d55c7b6af4f9f8697041273905, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _menu: {fileID: 1281483190328791723}
-  _uiManager: {fileID: 1998376961}
 --- !u!1001 &4301333830771729682
 PrefabInstance:
   m_ObjectHideFlags: 0
