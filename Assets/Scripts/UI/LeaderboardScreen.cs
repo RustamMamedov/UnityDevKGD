@@ -44,12 +44,12 @@ namespace UI {
         }
 
         private void Filling() {
-            for (int i = 0; i < Save.savedDatas.Count; i++) {
+            for (int i = 0; i < Save.SavedDatas.Count; i++) {
                 var newResult = Instantiate(_resultView, _playersList.transform);
-                newResult.SetData(i + 1, Save.savedDatas[i].date, Save.savedDatas[i].score);
-                if (i == Save._last) newResult.Symbol();
+                newResult.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score);
+                if (i == Save.last) newResult.Symbol();
                 _listResultView.Add(newResult.gameObject);
-                Debug.Log($"{Save._last} rrr");
+                //Debug.Log($"{Save.last} rrr");
                 newResult.gameObject.SetActive(true);
             }
         }
