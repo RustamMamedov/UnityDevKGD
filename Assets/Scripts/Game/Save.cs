@@ -123,6 +123,7 @@ namespace Game {
             for (int i = 0; i < _savedData.Count; i++) {
                 if (newResult == _savedData[i]) {
                     last = i;
+                    break;
                 }
                 else last = -1;
             }
