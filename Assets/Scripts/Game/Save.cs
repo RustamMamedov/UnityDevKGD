@@ -55,6 +55,7 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+        public int IndexArrival;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -82,8 +83,12 @@ namespace Game {
             
             _saveDatas.Add(newRecord);
             _saveDatas.Sort();
+
+           
             if (_saveDatas.Count > 10) {
                 _saveDatas.RemoveRange(10, _saveDatas.Count - 10);
+                IndexArrival = _saveDatas.Count;
+                Debug.Log(IndexArrival);
             }
 
             if (_saveType == SaveType.PlayerPrefs) {

@@ -17,10 +17,11 @@ namespace UI {
         private GameObject _list;
     
         private void OnEnable() {
+            var curreentarrival = Save.IndexArrival;
             for (int i = 0; i < Save.SavedDatas.Count; i++) {
                 var data = Save.SavedDatas[i];
                 var createdThing = Instantiate(_resultViewPrefab, _list.transform);
-                createdThing.GetComponent<RecordView>().SetData(i+1, data.date, data.score);
+                createdThing.GetComponent<RecordView>().SetData(i+1, data.date, data.score, i == curreentarrival);
             }
         }
 
