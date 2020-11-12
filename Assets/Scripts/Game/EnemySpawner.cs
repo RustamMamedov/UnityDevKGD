@@ -28,13 +28,13 @@ namespace Game {
         private float _distanceToPlayerToSpawn;
 
         [SerializeField]
+        private int _distanceToDodge = 5;
+
+        [SerializeField]
         private float _distanceToPlayerToDestroy;
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
-
-        [SerializeField]
-        private ScriptableFloatValue _playerPositionX;
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
@@ -86,7 +86,7 @@ namespace Game {
             if(_dodgedCar.currentCar == null) {
                 return;
             }
-            if(Mathf.Abs(_dodgedCar.currentCar.transform.position.z - _playerPositionZ.value) < 10f && Mathf.Abs(_dodgedCar.currentCar.transform.position.x - _playerPositionX.value) < 3f) {
+            if(Mathf.Abs(_dodgedCar.currentCar.transform.position.z - _playerPositionZ.value) < _distanceToDodge) {
                 _carDodgeDispatcher.Dispatch();
             }
         }
