@@ -20,14 +20,15 @@ namespace UI {
         private GameObject _leaderBoardScreen;
 
         [SerializeField]
-        private EventListeners _carCollision;
+        private EventListeners _saveDataEventListeners;
+        //private EventListeners _carCollision;
 
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
             }
-            _carCollision.OnEventHappened += ShowLeaderboardsScreen;
+            _saveDataEventListeners.OnEventHappened += ShowLeaderboardsScreen;
 
             Instance = this;
             DontDestroyOnLoad(gameObject);

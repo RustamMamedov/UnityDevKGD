@@ -32,6 +32,9 @@ namespace Game {
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
 
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+        }
         protected override void Move() {
             base.Move();
             _playerPisotionZ.value = transform.position.z;
