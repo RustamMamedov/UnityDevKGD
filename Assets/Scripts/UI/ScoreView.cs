@@ -25,6 +25,7 @@ namespace UI {
 
         private void Awake() {
             _event.OnEventHappened += UpdateBehaviour;
+            CurrentScore.value = 0;
         }
 
         public void UpdateBehaviour() {
