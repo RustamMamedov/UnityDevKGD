@@ -47,7 +47,7 @@ namespace Game {
         private static int _currentPlace;
         public static int CurrentPlace => _currentPlace ;
 
-        private const string RECORDS_KEY = "records";
+        private const string RECORDS_KEY = "records1";
         private string _filePath;
 
         private void Awake() {
@@ -109,17 +109,28 @@ namespace Game {
         private void OnCarCollision() {
             int place = -1;
 
+            if (_savedDatas.Count < _maxSaves.value) {
+                place = _savedDatas.Count;
+            }
+
             for (int i = _savedDatas.Count - 1; i >= 0; i--) {
                 if (Int32.Parse(_savedDatas[i].score) <= _currentScore.value) {
-                    place = i;
+                    place = i + 1;
                     break;
                 }
             }
 
             if ((place != -1) || (_savedDatas.Count < _maxSaves.value)) {
-                _savedDatas.RemoveAt(0);
+                
                 _savedDatas.Insert(place, CreateNewRecord());
+                if (_savedDatas.Count >= _maxSaves.value) {
+                    _savedDatas.RemoveAt(0);
+                    place--;
+                }
+
+
                 _currentPlace = place;
+                
                 
                 if (_saveType == SaveType.PlayerPrefs) {
                     SaveToPlayerPrefs();
@@ -129,8 +140,6 @@ namespace Game {
             } else {
                 _currentPlace = -1;
             }
-
-            Debug.Log("save");
         }
 
         private SavedDataWrapper GetWrapper() {
