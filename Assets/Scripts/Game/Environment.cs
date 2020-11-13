@@ -45,7 +45,6 @@ namespace Game
                 var road = Instantiate(_roadPrefab, position, Quaternion.identity);
                 _roadTransforms.Add(road.transform);
             }
-            _roadPrefab.SetActive(false);
         }
         private void HandleRoadCollision()
         {

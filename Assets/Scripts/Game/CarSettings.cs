@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
     public class CarSettings : ScriptableObject {
-        [Header("Score")]
+        [BoxGroup("Score")]
+        [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
-        [Header("Speed")]
+        [FoldoutGroup("Speed")]
         public float maxSpeed;
-        [Space]
+        [FoldoutGroup("Speed")]
         public float acceleration;
+
+        private bool ValidateDodgeScore(int score)
+        {
+            return score >= 0;
+        }
     }
 }
