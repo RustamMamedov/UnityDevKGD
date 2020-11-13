@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-using UI;
 
 namespace Game {
 
@@ -12,8 +11,7 @@ namespace Game {
         private EventDispatcher _carTriggerEventDispatcher;
 
         private void OnTriggerEnter(Collider other) {
-            if (other.CompareTag("Player")) {
-                UIManager.Instance.ShowLeaderboardsScreen();
+            if (other.CompareTag("Player")) {              
                 Debug.Log("CarCollision");
                 _carTriggerEventDispatcher.Dispatch();
             }
