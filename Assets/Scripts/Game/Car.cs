@@ -8,11 +8,18 @@ namespace Game {
 
     public class Car : MonoBehaviour {
 
-        [SerializeField] protected CarSettings _carSettings;
+        [SerializeField] 
+        protected CarSettings _carSettings;
 
-        [SerializeField] private EventListener _updateEventListener;
+        [SerializeField] 
+        private EventListener _updateEventListener;
 
-        [SerializeField] private EventListener _carCollisionEventListener;
+        [SerializeField]
+        private EventListener _carCollisionEventListener;
+
+        #if UNITY_EDITOR
+        public CarSettings CarSettings => _carSettings;
+        #endif
 
         protected float _currentSpeed;
 
@@ -48,6 +55,11 @@ namespace Game {
 
         private void UpdateBehaviour() {
             Move();
+        }
+
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            _carSettings.dodgeScore++;
         }
     }
 }
