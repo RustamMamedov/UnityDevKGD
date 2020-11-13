@@ -39,6 +39,9 @@ namespace Game {
         [SerializeField]
         private SaveType _saveType;
 
+        [SerializeField]
+        private EventDispatcher _showLeaderboard;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
@@ -82,6 +85,8 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+
+            _showLeaderboard.Dispatch();
         }
 
         private void AddNewRecordTop10(SaveData NewRecord) {
