@@ -39,8 +39,6 @@ namespace Game {
         private static List<SaveData> _savedDatasPrevious;
 
         public static List<SaveData> SaveDatas => _savedDatas;
-        public static List<SaveData> SaveDatasPrevious => _savedDatasPrevious;
-
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
@@ -60,8 +58,6 @@ namespace Game {
 
         private void OnEnable() {
             _carCollsionEventListener.OnEventHappened += OnCarCollision;
-           // _savedDatas.Clear();
-            _savedDatasPrevious = _savedDatas;
         }
         private void OnDisable() {
             _carCollsionEventListener.OnEventHappened += OnCarCollision;
