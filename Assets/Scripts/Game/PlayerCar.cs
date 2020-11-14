@@ -75,13 +75,13 @@ namespace Game
         }
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = _gizmosColor;
+            /*Gizmos.color = _gizmosColor;
 
             Gizmos.DrawWireSphere(transform.position, 5f);
             Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
             Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, .5f);
             var mesh = GetComponent<MeshFilter>().sharedMesh;
-            Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);
+            Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);*/
 
         }
     }

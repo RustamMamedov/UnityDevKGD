@@ -12,6 +12,8 @@ namespace Game {
         public float maxSpeed;
         [FoldoutGroup("Speed")]
         public float acceleration;
+        [Range(1f,5f)]
+        public float lightLength;
 
         private bool ValidateDodgeScore(int score)
         {
