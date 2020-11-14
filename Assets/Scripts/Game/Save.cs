@@ -100,6 +100,7 @@ namespace Game {
         }
 
         private void SaveFromCollision() {
+            Debug.Log("SaveData");
             OnCarCollison();
         }
 
@@ -118,7 +119,7 @@ namespace Game {
             else {
                 SaveFromFile();
             }
-            Debug.Log("SaveData");
+            //Debug.Log("SaveData");
             //Debug.Log($"{_savedData[0].score}   {_savedData.Count}");
             Sort10BestResult();
             //Debug.Log($"{_savedData[0].score}   {_savedData.Count}");

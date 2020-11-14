@@ -37,6 +37,7 @@ namespace Game {
             _saveDataEventDispatcher.Dispatch();
             base.OnCarCollision();
             if (UIManager.Instance != null) {
+                Debug.Log("nextScreen");
                 UIManager.Instance.LoadLeaderBoard();
             }
         }
