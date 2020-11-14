@@ -25,6 +25,9 @@ namespace UI {
             eventListener.OnEventHappened += UpdateBehaviour;
         }
 
+        private void OnDisable() {
+            currentScoreAsset.value = 0;
+        }
         private void UpdateBehaviour() {
         
             if (_currentScore < currentScoreAsset.value) {
