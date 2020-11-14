@@ -16,6 +16,12 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+        
+        [SerializeField] 
+        private Color _gizmosColor = Color.red;
+        
+        [SerializeField]
+        private List<Transform> _carLights = new List<Transform>();
 
         #if UNITY_EDITOR
         public CarSettings CarSettings => _carSettings;
@@ -56,6 +62,13 @@ namespace Game {
         private void UpdateBehaviour() {
             Move();
         }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = _gizmosColor;
+            foreach (var carLight in _carLights) {
+                Gizmos.DrawFrustum(carLight.position, 45f, 2f + _carSettings.lightLenght, 0f, 2f); 
+            }
+        } 
 
         [ContextMenu("IncreaseDodgeScore")]
         private void IncreaseDodgeScore() {
