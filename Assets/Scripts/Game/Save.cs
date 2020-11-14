@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
+using Sirenix.OdinInspector;
 using Events;
 using UI;
 using UnityEngine;
@@ -35,6 +36,8 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
+        [InfoBox("$_filePath", InfoMessageType.Info, nameof(SaveTypeIsFile))]
+        [InfoBox("PlayerPrefs", InfoMessageType.Info, nameof(SaveTypeIsPlayerPrefs))]
         [SerializeField]
         private SaveType _saveType;
 
@@ -44,12 +47,11 @@ namespace Game {
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
         
+        private string _filePath;
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
-        
         private const string RECORDS_KEY = "records";
-        private string _filePath;
-            
+
         private void Awake() {
             _saveDatas = new List<SaveData>();
             if (_crazyModeEnabled.value) {
@@ -164,6 +166,14 @@ namespace Game {
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+        }
+
+        private bool SaveTypeIsFile() {
+            return _saveType == SaveType.File;
+        }
+        
+        private bool SaveTypeIsPlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
         }
     }
 }
