@@ -6,10 +6,10 @@ namespace UI {
     public class GameScreen : MonoBehaviour {
 
         [SerializeField]
-        private EventListener _carCollisionEventListener;
+        private EventListener _resultsSavedEventListener;
 
         private void Awake() {
-            _carCollisionEventListener.OnEventHappened += OnCarCollision;
+            _resultsSavedEventListener.OnEventHappened += OnCarCollision;
         }
 
         private void OnCarCollision() {

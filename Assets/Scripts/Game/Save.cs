@@ -31,6 +31,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventDispatcher _resultsSavedEventDispatcher;
+
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
@@ -47,7 +50,7 @@ namespace Game {
         private static int _currentPlace;
         public static int CurrentPlace => _currentPlace ;
 
-        private const string RECORDS_KEY = "records1";
+        private const string RECORDS_KEY = "records";
         private string _filePath;
 
         private void Awake() {
@@ -121,25 +124,24 @@ namespace Game {
             }
 
             if ((place != -1) || (_savedDatas.Count < _maxSaves.value)) {
-                
                 _savedDatas.Insert(place, CreateNewRecord());
-                if (_savedDatas.Count >= _maxSaves.value) {
+                if (_savedDatas.Count > _maxSaves.value) {
                     _savedDatas.RemoveAt(0);
                     place--;
                 }
 
-
                 _currentPlace = place;
-                
                 
                 if (_saveType == SaveType.PlayerPrefs) {
                     SaveToPlayerPrefs();
                 } else {
                     SaveToFile();
                 }
+
             } else {
                 _currentPlace = -1;
             }
+            _resultsSavedEventDispatcher.Dispatch();
         }
 
         private SavedDataWrapper GetWrapper() {
