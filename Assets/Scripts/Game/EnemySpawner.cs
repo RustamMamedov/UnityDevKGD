@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -12,6 +13,7 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionListener;
 
+        [ValidateInput(nameof(ListHasDuplicates), "List has duplicates")]
         [SerializeField]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
@@ -83,6 +85,20 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private bool ListHasDuplicates(List<GameObject> list) {
+            var hasDuplicates = false;
+
+            var set = new HashSet<GameObject>();
+            foreach (var car in list) {
+                if (!set.Add(car)) {
+                    hasDuplicates = true;
+                    break;
+                }
+            }
+            
+            return !hasDuplicates;
         }
     }
 }
