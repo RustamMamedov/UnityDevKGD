@@ -47,7 +47,7 @@ namespace Game {
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
         
-        private string _filePath;
+        private string _filePath = "/home/user/.var/app/com.unity.UnityHub/config/unity3d/DefaultCompany/UnityDev2020/data.txt";
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
         private const string RECORDS_KEY = "records";
