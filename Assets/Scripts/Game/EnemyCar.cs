@@ -6,7 +6,7 @@ namespace Game {
     public class EnemyCar : Car {
 
         [SerializeField]
-        private EventDispatcher _enemyCarsTriggerEventDispatch;
+        private EventDispatcher _enemyCarsTriggerEventDispatcher;
 
         [SerializeField]
         private EventDispatcher _enemyCarsBackTriggerEventDispatcher;
@@ -16,7 +16,7 @@ namespace Game {
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                _enemyCarsTriggerEventDispatch.Dispatch();
+                _enemyCarsTriggerEventDispatcher.Dispatch();
             }
         }
         
