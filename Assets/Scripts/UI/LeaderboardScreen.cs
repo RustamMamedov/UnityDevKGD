@@ -14,6 +14,9 @@ namespace UI {
         [SerializeField]
         private GameObject _scorePrefab;
 
+        [SerializeField]
+        private VerticalLayoutGroup _verticalLayoutGroup;
+
         private Save _saveObject;
         private List<GameObject> _scores;
 
@@ -23,6 +26,7 @@ namespace UI {
         private void Awake() {
 
             _menuButton.onClick.AddListener(OnMenuButtonClick);
+            _scores = new List<GameObject>();
         }
 
         private void OnEnable() {
@@ -32,15 +36,18 @@ namespace UI {
 
                 var resultBlank = Instantiate(_scorePrefab);
                 resultBlank.GetComponent<RecordsView>().SetData(i+1,listForCreatingScoreTable[i].data,listForCreatingScoreTable[i].score);
+                resultBlank.transform.SetParent(_verticalLayoutGroup.transform);
+                resultBlank.transform.localScale = new Vector3(1f,1f,1f);
                 _scores.Add(resultBlank);
             }
+            
         }
 
         private List<Save.SaveData>  SortList(Save save) {
             var sortedList = new List<Save.SaveData>();
             sortedList = save.SavedDatas;
             for (int i = 0; i < sortedList.Count-1; i++) {
-                for (int j = 1; j < sortedList.Count; j++) {
+                for (int j = i + 1; j < sortedList.Count; j++) {
                     if (Int32.Parse(sortedList[i].score) < Int32.Parse(sortedList[j].score)) {
 
                         var scoreCash = sortedList[i].score;

@@ -72,7 +72,20 @@ namespace Game {
             _currentRoad = nextRoad;
             
         }
-            
+
+        private void OnDrawGizmos() {
+            //Gizmos.color = Color.red;
+
+            //Gizmos.DrawSphere(transform.position, 5f);
+        }
+
+        private void OnDrawGizmosSelected() {
+
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawWireSphere(transform.position, 5f);
+            //Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
+        }
     }
 }
 

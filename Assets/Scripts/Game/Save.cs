@@ -80,7 +80,7 @@ namespace Game {
             }
             else {
 
-                for (int i = _saveDatas.Count - 1; i < 0; i--) {
+                for (int i = 0; i < _saveDatas.Count - 1; i++) {
 
                     if (Int32.Parse(newRecord.score) >= Int32.Parse(_saveDatas[i].score)) {
 

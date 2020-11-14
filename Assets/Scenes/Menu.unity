@@ -270,6 +270,18 @@ Transform:
   m_Father: {fileID: 853007107}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &486575821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5876715652584700981, guid: eee475058d981484cb2797dcc5ecaa22,
+    type: 3}
+  m_PrefabInstance: {fileID: 5940230338993270435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647780139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6911504513761030874, guid: eee475058d981484cb2797dcc5ecaa22,
@@ -396,7 +408,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &1502739071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +599,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 283356135700568527, guid: 33ca54c14c902144a809bbfb8fba84b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ca54c14c902144a809bbfb8fba84b8, type: 3}
 --- !u!1001 &1246800883087267115
@@ -665,6 +682,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1502739069}
     m_Modifications:
+    - target: {fileID: 352631330012138886, guid: 7f30cef995236274ba06a08957b308c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 388673667987509599, guid: 7f30cef995236274ba06a08957b308c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5447869603491381817, guid: 7f30cef995236274ba06a08957b308c5,
         type: 3}
       propertyPath: m_Name
@@ -780,6 +807,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7964028302837394448, guid: 7f30cef995236274ba06a08957b308c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f30cef995236274ba06a08957b308c5, type: 3}
 --- !u!1001 &5940230338993270435
@@ -789,6 +821,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1502739069}
     m_Modifications:
+    - target: {fileID: 647780140, guid: eee475058d981484cb2797dcc5ecaa22, type: 3}
+      propertyPath: _scorePrefab
+      value: 
+      objectReference: {fileID: 6003197735131478656, guid: 96bec27c3312abd4c874ae52b5b18c0d,
+        type: 3}
+    - target: {fileID: 647780140, guid: eee475058d981484cb2797dcc5ecaa22, type: 3}
+      propertyPath: _verticalLayoutGroup
+      value: 
+      objectReference: {fileID: 486575821}
     - target: {fileID: 334535670733645977, guid: eee475058d981484cb2797dcc5ecaa22,
         type: 3}
       propertyPath: m_AnchorMin.y

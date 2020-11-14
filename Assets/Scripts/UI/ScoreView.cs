@@ -21,7 +21,7 @@ namespace UI {
         private Events.EventListener eventListener;
 
         private void Awake() {
-
+            currentScoreAsset.value = 0;
             eventListener.OnEventHappened += UpdateBehaviour;
         }
 
