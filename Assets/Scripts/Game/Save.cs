@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Events;
 using System;
@@ -27,6 +28,8 @@ namespace Game {
         }
 
         [SerializeField]
+        [InfoBox("PlayerPrefs", nameof(IsSaveToPP))]
+        [InfoBox("C:/Users/Acer/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", nameof(IsSaveToFile))]
         private SaveType _saveType;
 
         [SerializeField]
@@ -85,6 +88,7 @@ namespace Game {
             UIManager.instance.ShowLeaderboardScreen();
         }
 
+
         private void InsertNewRecord(SaveData NewRecord) {
             for (int i = _savedDatas.Count - 1; i >= 0; i--) {
                 if (Int32.Parse(_savedDatas[i].score) >= Int32.Parse(NewRecord.score)) {
@@ -142,6 +146,13 @@ namespace Game {
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+        }
+
+        private bool IsSaveToPP() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+        private bool IsSaveToFile() {
+            return _saveType == SaveType.File;
         }
     }
 }
