@@ -70,6 +70,9 @@ namespace UI {
                 Destroy(_scores[i]);
                 _scores.RemoveAt(i);
             }
+            foreach (Transform child in _verticalLayoutGroup.transform) {
+                Destroy(child.gameObject);
+            }
         }
 
         private void OnMenuButtonClick() {
