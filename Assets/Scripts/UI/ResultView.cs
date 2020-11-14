@@ -19,6 +19,9 @@ namespace UI {
         [SerializeField]
         private Image _lineImage;
 
+        [SerializeField]
+        private string _newScreenImageLocation;
+
         public void SetData(int place, string date, string score) {
             _placeLabel.text = place.ToString() + '.';
             _dateLabel.text = date;
@@ -26,7 +29,7 @@ namespace UI {
         }
 
         public void SetNewScoreImage() {
-            _lineImage.sprite = Resources.Load <Sprite>("Sprites/CHERRY BLOSSOM/3.IMAGE/item_0_image");
+            _lineImage.sprite = Resources.Load <Sprite>(_newScreenImageLocation);
         }
     }
 }
