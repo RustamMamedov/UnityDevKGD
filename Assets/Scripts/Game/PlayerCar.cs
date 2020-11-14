@@ -70,11 +70,6 @@ namespace Game {
             _playerPositionZ.value = transform.position.z;
         }
         
-        private void OnDrawGizmos() {
-
-        }
-
-        
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
 
