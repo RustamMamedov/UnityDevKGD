@@ -1,12 +1,13 @@
 ﻿using Events;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
 
     public class EnemySpawner : MonoBehaviour {
 
-        
+        [HideInInspector]
         public EnemyCarToDodge _dodgedCar;
 
         [SerializeField]
@@ -19,6 +20,7 @@ namespace Game {
         private EventDispatcher _carDodgeDispatcher;
 
         [SerializeField]
+        [ValidateInput(nameof(CarCheck))]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
@@ -98,6 +100,15 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private bool CarCheck() {
+            for (int i = 0; i < _carPrefabs.Count - 1; i++) {
+                if (_carPrefabs[i] == _carPrefabs[_carPrefabs.Count - 1]) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
