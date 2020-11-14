@@ -36,6 +36,9 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventListener _updateBehaviourListener;
+
+        [SerializeField]
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
@@ -85,9 +88,7 @@ namespace Game {
             } else {
                 SaveToFile();
             }
-            UIManager.instance.ShowLeaderboardScreen();
         }
-
 
         private void InsertNewRecord(SaveData NewRecord) {
             for (int i = _savedDatas.Count - 1; i >= 0; i--) {
