@@ -7,8 +7,10 @@ namespace Game {
 
         [SerializeField]
         protected CarSettings _carSettings;
-        public CarSettings CarSettings { get { return _carSettings; } }
 
+#if UNITY_EDITOR
+        public CarSettings CarSettings => _carSettings;
+#endif
 
         [SerializeField]
         private EventListener _updateEventListener;
