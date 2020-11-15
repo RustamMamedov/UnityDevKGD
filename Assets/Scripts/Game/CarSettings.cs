@@ -16,6 +16,10 @@ namespace Game {
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore = 0;
 
+        [BoxGroup("Lights")] 
+        [Range(1f, 5f)] 
+        public float lightDistance;
+        
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
