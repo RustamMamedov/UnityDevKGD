@@ -66,8 +66,7 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"records.save\")", InfoMessageType.Info, nameof(IsSaveTypeSetToFile))]
-        [InfoBox("PlayerPrefs", InfoMessageType.Info, nameof(IsSaveTypeSetToPlayerPrefs))]
+        [InfoBox("@GetSaveInfo()", InfoMessageType.Info)]
         [SerializeField]
         private SaveType _saveType;
 
@@ -230,12 +229,12 @@ namespace Game {
 
 #region EditorMethods
 
-        private bool IsSaveTypeSetToFile() {
-            return _saveType == SaveType.File;
-        }
+        private string GetSaveInfo() {
+            if (_saveType == SaveType.File) {
+                return Path.Combine(Application.persistentDataPath, "records.save");
+            }
 
-        private bool IsSaveTypeSetToPlayerPrefs() {
-            return _saveType == SaveType.PlayerPrefs;
+            return "PlayerPrefs";
         }
 #endregion
     }
