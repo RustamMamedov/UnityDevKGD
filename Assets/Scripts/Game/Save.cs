@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game
 {
@@ -32,6 +33,9 @@ namespace Game
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
+        
+        [InfoBox("PlayerPrefs","TypeSave")]
+        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", "!TypeSave")]
         [SerializeField]
         private SaveType _saveType;
 
@@ -45,6 +49,12 @@ namespace Game
         public static List<SaveData> SavedDatas => _saveDatas;
         private const string RECORDS_KEY = "records";
         private string _filePath;
+
+       
+        private static bool TypeSave(SaveType saveType)
+        {
+            return saveType == SaveType.PlayerPrefs;
+        }
         private void Awake()
         {
             _saveDatas = new List<SaveData>();
