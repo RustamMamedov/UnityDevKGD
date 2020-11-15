@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Events;
 using UnityEngine;
 
@@ -6,20 +7,16 @@ namespace Game {
 
     public class PlayerCar : Car {
 
-        [SerializeField]
-        private EventListener _touchEventListener;
+        [SerializeField] private EventListener _touchEventListener;
 
-        [SerializeField]
-        private ScriptableIntValue _touchSide;
+        [SerializeField] private ScriptableIntValue _touchSide;
 
-        [SerializeField]
-        private float _dodgeDuration;
+        [SerializeField] private float _dodgeDuration;
 
-        [SerializeField]
-        private ScriptableFloatValue _roadWidth;
+        [SerializeField] private ScriptableFloatValue _roadWidth;
 
-        [SerializeField]
-        private ScriptableFloatValue _playerPositionZ;
+        [SerializeField] private ScriptableFloatValue _playerPositionZ;
+        [SerializeField] private Color _gizmosColor = Color.white;
 
         private int _currentRoad;
         private bool _inDodge;
@@ -45,6 +42,7 @@ namespace Game {
             if (!canDodge) {
                 return;
             }
+
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
@@ -58,8 +56,25 @@ namespace Game {
                 transform.position = new Vector3(posX, transform.position.y, transform.position.z);
                 yield return null;
             }
+
             _inDodge = false;
             _currentRoad = nextRoad;
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = _gizmosColor;
+
+            // Gizmos.DrawSphere(transform.position, 5f);
+        }
+
+        private void OnDrawGizmosSelected() {
+            Gizmos.color = _gizmosColor;
+
+            // Gizmos.DrawWireSphere(transform.position, 5f);
+            // Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
+            // Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, 0.5f);
+            var mesh = GetComponent<MeshFilter>().sharedMesh;
+            Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5, Quaternion.identity, Vector3.one);
         }
     }
 }
