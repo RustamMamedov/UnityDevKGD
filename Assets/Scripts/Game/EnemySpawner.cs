@@ -13,7 +13,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
-        private GameObject _carPrefab;
+        private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
         private float _spawnCooldown;
@@ -30,7 +30,7 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
-
+        private bool _rewardFlag = false;
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 
@@ -66,19 +66,21 @@ namespace Game {
             _currentTimer = 0f;
 
             SpawnCar();
-            
         }
         
         private void SpawnCar() {
+            _rewardFlag = false;
             var randomRoad = Random.Range(-1, 2);
+            var randomCarNumber = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefab, position, Quaternion.Euler(0f, 180f, 0f));
+            var car = Instantiate(_carPrefabs[randomCarNumber], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
         }
 
         private void HandleCarsBehindPlayer() {
+            
             for(int i = _cars.Count - 1; i > -1 ; i--) {
-                if(_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
+                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
                 }
