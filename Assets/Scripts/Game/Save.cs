@@ -5,6 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using Events;
 using System;
+using Sirenix.OdinInspector;
+
 namespace Game {
 
     public class Save : MonoBehaviour {
@@ -26,26 +28,24 @@ namespace Game {
         }
 
         [SerializeField]
+        [InfoBox("PlayerPrefs", nameof(IsSaveTypePlayerPrefs))]
+        [InfoBox("C:/Users/PC/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", nameof(IsSaveTypeFile))]
         private SaveType _saveType;
 
-        [SerializeField]
-        private EventListener _carCollisionEventListener;
+        [SerializeField] private EventListener _carCollisionEventListener;
 
-        [SerializeField]
-        private EventDispatcher _saveEventDispatcher;
+        [SerializeField] private EventDispatcher _saveEventDispatcher;
 
-        [SerializeField]
-        private ScriptableIntValue _currentScore;
+        [SerializeField] private ScriptableIntValue _currentScore;
 
-        [SerializeField]
-        private int _listLimit;
+        [SerializeField] private int _listLimit;
 
         private static List<SaveData> _saveDatas;
 
         public static List<SaveData> SaveDatas => _saveDatas;
 
         private const string RECORDS_KEY = "record";
-    
+
         private string _filePath;
 
         private static int _currentRecordPos;
@@ -57,10 +57,12 @@ namespace Game {
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
-            } else {
+            }
+            else {
                 LoadFromFile();
             }
         }
+
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
@@ -79,26 +81,29 @@ namespace Game {
             CheckTail();
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
-            } else {
+            }
+            else {
                 SaveToFile();
             }
+
             _saveEventDispatcher.Dispatch();
         }
 
-        private void InsertNewRecord (SaveData NewRecord) {
-            for(int i = _saveDatas.Count - 1; i >= 0; i--) {
-                if(Int32.Parse(_saveDatas[i].score) >= Int32.Parse(NewRecord.score)) {
+        private void InsertNewRecord(SaveData NewRecord) {
+            for (int i = _saveDatas.Count - 1; i >= 0; i--) {
+                if (Int32.Parse(_saveDatas[i].score) >= Int32.Parse(NewRecord.score)) {
                     _saveDatas.Insert(i + 1, NewRecord);
                     _currentRecordPos = i + 2;
                     return;
                 }
             }
+
             _saveDatas.Insert(0, NewRecord);
             _currentRecordPos = 1;
         }
 
         private void CheckTail() {
-            while(_saveDatas.Count > _listLimit) {
+            while (_saveDatas.Count > _listLimit) {
                 _saveDatas.Remove(_saveDatas[_saveDatas.Count - 1]);
             }
         }
@@ -108,6 +113,7 @@ namespace Game {
                 savedDatas = _saveDatas
             });
         }
+
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;
@@ -130,7 +136,7 @@ namespace Game {
 
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
-                var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
+                var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.savedDatas;
             }
         }
@@ -142,7 +148,14 @@ namespace Game {
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+        }
 
+        private bool IsSaveTypePlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+        
+        private bool IsSaveTypeFile() {
+            return _saveType == SaveType.File;
         }
     }
 }
