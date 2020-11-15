@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UI;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -36,6 +37,8 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        [InfoBox("PlayerPrefs", nameof(IsSaveToPrefs))] 
+        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", nameof(IsSaveToFile))]
         private SaveType _saveType;
 
         private static List<SaveData> _saveDatas;
@@ -103,6 +106,14 @@ namespace Game {
                 UIManager.Instance.ShowLeaderboardsScreen();
             }
         }
+
+        private bool IsSaveToPrefs() { 
+            return _saveType == SaveType.PlayerPrefs; 
+        } 
+ 
+        private bool IsSaveToFile() { 
+            return _saveType == SaveType.File; 
+        } 
 
         private int GetScore(string score) {
             return Int32.Parse(score);
