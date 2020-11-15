@@ -1,11 +1,11 @@
 ﻿using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
 
     public class Car : MonoBehaviour {
-
-        [SerializeField] protected CarSettings _carSettings;
+        [SerializeField] [Required] protected CarSettings _carSettings;
 
         [SerializeField] private EventListener _updateEventListener;
 
