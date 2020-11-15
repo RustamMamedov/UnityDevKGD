@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
 
 namespace Game {
@@ -12,7 +13,8 @@ namespace Game {
 
         [SerializeField] private EventListener _carCollisionListener;
 
-        [SerializeField] private List<GameObject> _carPrefabs;
+        [SerializeField] [ValidateInput(nameof(ValidateListItems))]
+        private List<GameObject> _carPrefabs;
 
         [SerializeField] private float _spawnCooldown;
 
@@ -80,6 +82,18 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private bool ValidateListItems() {
+            for (int i = 0; i < _carPrefabs.Count - 1; i++) {
+                for (int j = i + 1; j < _carPrefabs.Count; j++) {
+                    if (_carPrefabs[i].Equals(_carPrefabs[j])) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
     }
