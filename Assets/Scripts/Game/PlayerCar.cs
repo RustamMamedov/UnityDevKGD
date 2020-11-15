@@ -21,6 +21,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPisotionZ;
 
+        [SerializeField]
+        private Color _gizmosColor = Color.white;
+
         private int _currentRoad;
         private bool _inDodge;
         protected override void SubscribeToEvent() {   
@@ -62,5 +65,23 @@ namespace Game {
             _inDodge = false;
             _currentRoad = nextRoad;
         }
+        #region Gizmos
+        private void OnDrawGizmos() {
+            //Gizmos.color = Color.red;
+
+            //Gizmos.DrawSphere(transform.position, 5f);
+        }
+        private void OnDrawGizmosSelected() { // показывает при выделении объекта
+            Gizmos.color = _gizmosColor;
+
+            Gizmos.DrawWireSphere(transform.position, 5f);
+            Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
+            Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, .5f);
+            var mesh = GetComponent<MeshFilter>().sharedMesh;
+            //Debug.Log(mesh);
+            Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);
+
+        }
+        #endregion Gizmos
     }
 }
