@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game {
     public class EnemySpawner : MonoBehaviour {
@@ -13,6 +14,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
+        [ValidateInput(nameof(ValidateCarPrefabs))]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
@@ -80,5 +82,15 @@ namespace Game {
             UnsubscribeEvents();
         }
 
+        private bool ValidateCarPrefabs() {
+            for (int i = 0; i < _carPrefabs.Count - 1; i++) {
+                for (int j = i + 1; j < _carPrefabs.Count; j++) {
+                    if (_carPrefabs[i] == _carPrefabs[j]) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
