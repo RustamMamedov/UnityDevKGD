@@ -15,16 +15,13 @@ namespace UI {
         private Text _scoreLabel;
 
         [SerializeField]
-        private GameObject _imageNewRecordMark;
+        private Image _imageNewRecordMark;
 
-        public void SetData(int place, string data, string score) {
+        public void SetData(int place, string data, string score, bool isCurrentRide) {
             _placeLabel.text = $"{place}";
             _dataLabel.text = data;
             _scoreLabel.text = score;
-        }
-
-        public void MarkNewRecord() {
-            _imageNewRecordMark.SetActive(true);
+            _imageNewRecordMark.enabled = isCurrentRide;
         }
     }
 }
