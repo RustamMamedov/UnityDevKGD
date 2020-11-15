@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -13,6 +15,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField] 
+        [ValidateInput(nameof(ValidateCarPrefabList))]
         private List<GameObject> _carPrefabs;
 
         [SerializeField] 
@@ -31,6 +34,7 @@ namespace Game {
         private ScriptableFloatValue _roadWidth;
 
         private float _currentTimer;
+        
         private List<GameObject> _cars = new List<GameObject>();
 
         private void OnEnable() {
@@ -84,6 +88,10 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private bool ValidateCarPrefabList() {
+            return _carPrefabs.Count == _carPrefabs.Distinct().Count();
         }
     }
 }
