@@ -28,7 +28,7 @@ namespace UI {
             
         }
         private void OnDisable() {
-            int i = recordView.transform.GetChildCount();
+            int i = recordView.transform.childCount;
             while (--i >= 0) {
                 
                 Destroy(recordView.transform.GetChild(i).gameObject);
