@@ -35,7 +35,7 @@ namespace Game
 
         
         [InfoBox("PlayerPrefs","TypeSave")]
-        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", "!TypeSave")]
+        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", "TypeSaved")]
         [SerializeField]
         private SaveType _saveType;
 
@@ -50,10 +50,14 @@ namespace Game
         private const string RECORDS_KEY = "records";
         private string _filePath;
 
-       
+
         private static bool TypeSave(SaveType saveType)
         {
             return saveType == SaveType.PlayerPrefs;
+        }
+        private static bool TypeSaved(SaveType saveType)
+        {
+            return saveType == SaveType.File;
         }
         private void Awake()
         {

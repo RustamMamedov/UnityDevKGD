@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game
 {
@@ -13,6 +14,7 @@ namespace Game
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
+        [ValidateInput(nameof(ValidatePrefabsList))]
         [SerializeField]
         private List<GameObject> _carPrefab=new List<GameObject>();
 
@@ -48,6 +50,21 @@ namespace Game
         private float _currentTimer;
         private bool _dodged;
         private List<GameObject> _cars = new List<GameObject>();
+
+        private bool ValidatePrefabsList(List<GameObject> prefabs)
+        {
+            for (int i = 0; i < prefabs.Count - 1; i++)
+            {
+                for (int j = i + 1; j < prefabs.Count; j++)
+                {
+                    if (prefabs[i] == prefabs[j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         private void OnEnable()
         {
             SubscribeToEvents();
