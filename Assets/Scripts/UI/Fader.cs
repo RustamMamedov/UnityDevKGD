@@ -9,7 +9,7 @@ namespace UI {
         [SerializeField]
         private float _fadeTime;
 
-        public event Action OnFadeIn;
+        public event Action OnFadeIn = delegate { };
         public event Action OnFadeOut = delegate { };
 
         public void FadeIn() {
