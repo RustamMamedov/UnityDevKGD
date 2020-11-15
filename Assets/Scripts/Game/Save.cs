@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -32,7 +32,7 @@ namespace Game {
 
                 try {
                     return Date.CompareTo(other.Date);
-                } catch (Exception e) {
+                } catch (Exception) {
                     return date.CompareTo(other.date);
                 }
             }
@@ -65,7 +65,9 @@ namespace Game {
         
         [SerializeField]
         private ScriptableIntValue _currentScore;
-        
+
+        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"records.save\")", InfoMessageType.Info, nameof(IsSaveTypeSetToFile))]
+        [InfoBox("PlayerPrefs", InfoMessageType.Info, nameof(IsSaveTypeSetToPlayerPrefs))]
         [SerializeField]
         private SaveType _saveType;
 
@@ -82,7 +84,9 @@ namespace Game {
         public static int IndexOfCurrentRideInLeaderboard => _indexOfCurrentRideInLeaderboard;
 
         private const string RECORDS_KEY = "records";
+
         private string _filePath;
+        
 #endregion
 
 #region LifeCycle
@@ -221,6 +225,17 @@ namespace Game {
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+        }
+#endregion
+
+#region EditorMethods
+
+        private bool IsSaveTypeSetToFile() {
+            return _saveType == SaveType.File;
+        }
+
+        private bool IsSaveTypeSetToPlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
         }
 #endregion
     }
