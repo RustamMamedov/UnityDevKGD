@@ -1,15 +1,15 @@
-using System;
 using System.Collections.Generic;
 using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
 
-    public class Enviroment : MonoBehaviour {
+    public class Environment : MonoBehaviour {
 
-        [SerializeField] private EventListener _roadCollissionEventListener;
+        [SerializeField] private EventListener _roadCollisionEventListener;
 
-        [SerializeField] private GameObject _roadPrefab;
+        [SerializeField] [AssetsOnly] private GameObject _roadPrefab;
 
         [SerializeField] private int _initialRoadNumber = 10;
 
@@ -22,11 +22,11 @@ namespace Game {
         }
 
         private void OnEnable() {
-            _roadCollissionEventListener.OnEventHappened += HandleRoadCollision;
+            _roadCollisionEventListener.OnEventHappened += HandleRoadCollision;
         }
 
         private void OnDisable() {
-            _roadCollissionEventListener.OnEventHappened -= HandleRoadCollision;
+            _roadCollisionEventListener.OnEventHappened -= HandleRoadCollision;
         }
 
         private void GenerateRoad() {
@@ -36,8 +36,6 @@ namespace Game {
                 var road = Instantiate(_roadPrefab, position, Quaternion.identity);
                 _roadTransforms.Add(road.transform);
             }
-
-            _roadPrefab.gameObject.SetActive(false);
         }
 
         private void HandleRoadCollision() {
