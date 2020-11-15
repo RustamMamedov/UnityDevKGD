@@ -104,8 +104,10 @@ namespace Game {
 
         private bool CarCheck() {
             for (int i = 0; i < _carPrefabs.Count - 1; i++) {
-                if (_carPrefabs[i] == _carPrefabs[_carPrefabs.Count - 1]) {
-                    return false;
+                for (int j = i + 1; j < _carPrefabs.Count; j++) {
+                    if (_carPrefabs[i] == _carPrefabs[j]) {
+                        return false;
+                    }
                 }
             }
             return true;
