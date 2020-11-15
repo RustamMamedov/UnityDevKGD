@@ -29,7 +29,7 @@ namespace Game {
 
         [SerializeField]
         [InfoBox("PlayerPrefs", nameof(IsSaveToPP))]
-        [InfoBox("C:/Users/Acer/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", nameof(IsSaveToFile))]
+        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", nameof(IsSaveToFile))]
         private SaveType _saveType;
 
         [SerializeField]
