@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -5,11 +6,13 @@ namespace Game {
     [CreateAssetMenu(fileName = "CarSettings", menuName = "Car/CarSettings")]
     public class CarSettings : ScriptableObject {
 
-        [Header("Score")]
+        [BoxGroup("Score")]
         public int dodgeScore;
-        [Header("Speed")]
+        
+        [FoldoutGroup("Speed")]
         public float maxSpeed;
         [Space]
+        [FoldoutGroup("Speed")]
         public float acceleration;
     }
 }
