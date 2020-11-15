@@ -14,7 +14,14 @@ namespace Game {
 
         private void OnDrawGizmos() {
             Gizmos.color = _color;
-            Gizmos.DrawFrustum(transform.position, 45f, _carSettings.lightDistance + _offset, 0f, 2f);
+            //Matrix4x4 temp = Gizmos.matrix;
+            //Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawFrustum(Vector3.zero, 45f, _carSettings.lightDistance + _offset, 0f, 2f);
+
+            //Gizmos.DrawWireSphere(Vector3.zero, 10f);
+            //Gizmos.matrix = temp;
+            
         }
     }
 }
