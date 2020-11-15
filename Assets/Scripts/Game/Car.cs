@@ -1,5 +1,6 @@
 ﻿using Events;
 using UnityEngine;
+using UI;
 
 namespace Game {
 
@@ -39,6 +40,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
+            UIManager.Instance.ShowLeaderboardScreen();
             UnsubscribeToEvents();
         }
 
