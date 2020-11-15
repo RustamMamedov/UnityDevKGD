@@ -15,9 +15,15 @@ namespace Game {
         [FoldoutGroup("Speed")]
         [InfoBox("Speed is beeing increased by acceleration every frame")]
         public float acceleration;
-
+        [FoldoutGroup("Distance")]
+        [ValidateInput(nameof(ValidateLightDistance))]
+        public float lightDistance;
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
+        }
+
+        private bool ValidateLightDistance(float dist) {
+            return (dist >= 1f && dist <= 5f);
         }
     }
 
