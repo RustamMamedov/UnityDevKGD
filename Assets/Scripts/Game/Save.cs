@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using Events;
 using System;
+using Sirenix.OdinInspector;
 namespace Game {
 
     public class Save : MonoBehaviour {
@@ -26,6 +27,8 @@ namespace Game {
         }
 
         [SerializeField]
+        [InfoBox("PlayerPrefs",nameof(IsSavetoPP))]
+        [InfoBox("C:/Users/PC/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", nameof(IsSavetoFile))]
         private SaveType _saveType;
 
         [SerializeField]
@@ -143,6 +146,14 @@ namespace Game {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
 
+        }
+
+        private bool IsSavetoPP() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+
+        private bool IsSavetoFile() {
+            return _saveType == SaveType.File;
         }
     }
 }
