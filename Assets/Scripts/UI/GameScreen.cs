@@ -15,5 +15,9 @@ namespace UI {
         private void OnCarCollision() {
             UIManager.Instance.ShowLeaderboardScreen();
         }
+
+        private void OnDisable() {
+            RenderManager.Instance.ReleaseTextures();
+        }
     }
 }
