@@ -1,4 +1,5 @@
 ﻿using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -7,6 +8,7 @@ namespace Game {
 
 #region  1
         [SerializeField]
+        [Required]
         protected CarSettings _carSettings;
 
         [SerializeField]
@@ -14,6 +16,10 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+#if UNITY_EDITOR
+        public CarSettings CarSettings => _carSettings;
+#endif
 
         protected float _currentSpeed;
 
@@ -56,6 +62,11 @@ namespace Game {
                 _currentSpeed += _carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
+        }
+
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            _carSettings.dodgeScore++;
         }
 
 #endregion  4
