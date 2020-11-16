@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -12,8 +13,9 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionListener;
 
+        [ValidateInput(nameof(ValidateCarPrefabsList))]
         [SerializeField]
-        private List<GameObject>  _carPrefabs;
+        private List<GameObject> _carPrefabs;
 
         [SerializeField]
         private float _spawnCooldown;
@@ -32,6 +34,17 @@ namespace Game {
 
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
+
+        private bool ValidateCarPrefabsList(List<GameObject> carPrefabs) {
+            for (int i = 0; i < carPrefabs.Count - 1; i++) {
+                for (int j = i+1; j < carPrefabs.Count; j++) {
+                    if(carPrefabs[i]==carPrefabs[j]) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -69,7 +82,7 @@ namespace Game {
 
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
-            var randomCar = Random.Range(0,_carPrefabs.Count);
+            var randomCar = Random.Range(0, _carPrefabs.Count);
 
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = Instantiate(_carPrefabs[randomCar], position, Quaternion.Euler(0f, 180f, 0f));
