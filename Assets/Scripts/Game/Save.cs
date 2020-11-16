@@ -5,6 +5,7 @@ using UI;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -36,20 +37,24 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        [InfoBox("PlayerPrefs", nameof(IsSavingToPlayerPrefs))]
+        [InfoBox("$InfoBoxMessage", nameof(IsSavingToFile))]
         private SaveType _saveType;
+        private string InfoBoxMessage = "C:/Users/none/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt"; //need to find out how to make this dynamic
 
         private List<SaveData> _saveDatas;
         public List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+        
 
         private void Awake() {
 
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
-                
+
                 LoadFromPlayerPrefs();
             }
             else {
@@ -133,7 +138,7 @@ namespace Game {
 
         private void LoadFromFile() {
             if (!File.Exists(_filePath)) {
-                
+
                 return;
             }
 
@@ -146,14 +151,22 @@ namespace Game {
         }
 
         private void SaveToFile() {
-            
+
             var wrapper = GetWrapper();
-            
+
             var binaryFormatter = new BinaryFormatter();
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
-                binaryFormatter.Serialize(fileStream,wrapper);
+                binaryFormatter.Serialize(fileStream, wrapper);
                 _saveDatas = wrapper.savedDatas;
             }
+        }
+
+        private bool IsSavingToPlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+
+        private bool IsSavingToFile() {
+            return _saveType == SaveType.File;
         }
     }
 }
