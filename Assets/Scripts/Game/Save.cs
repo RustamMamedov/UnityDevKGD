@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
+using Sirenix.OdinInspector;
 using UI;
 using UnityEngine;
 
@@ -31,6 +32,8 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
+        [InfoBox("@\"Path: \" + Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", "IsSaveTypeFile")]
+        [InfoBox("Player prefs", "IsSaveTypePlayerPrefs")]
         [SerializeField]
         private SaveType _saveType;
 
@@ -42,9 +45,9 @@ namespace Game {
         private static List<SaveData> _savedData;
         public static List<SaveData> SavedData => _savedData;
 
-        private string _filePath;
-
         private const string RECORDS_KEY = "records";
+
+        private string _filePath;
 
         private void Awake() {
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
@@ -134,6 +137,14 @@ namespace Game {
             return new SavedDataWrapper {
                 savedData = _savedData
             };
+        }
+
+        private bool IsSaveTypeFile(SaveType saveType) {
+            return saveType == SaveType.File;
+        }
+
+        private bool IsSaveTypePlayerPrefs(SaveType saveType) {
+            return saveType == SaveType.PlayerPrefs;
         }
     }
 }
