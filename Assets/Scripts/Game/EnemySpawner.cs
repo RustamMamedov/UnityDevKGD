@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Events;
 using UnityEngine;
-
+using Sirenix.OdinInspector;
+using System.Linq;
 namespace Game {
 
     public class EnemySpawner : MonoBehaviour {
@@ -13,6 +14,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
+        [ValidateInput(nameof(CarPrefabsValidate))]
         private List<GameObject> _carPrefab;
 
         [SerializeField]
@@ -82,6 +84,15 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private bool CarPrefabsValidate() {
+
+            // _carPrefab.Distinct() - returns the number of distinct elements in List
+            if (_carPrefab.Count == _carPrefab.Distinct().Count()) {
+                return true;
+            }
+            return false;
         }
     }
 }
