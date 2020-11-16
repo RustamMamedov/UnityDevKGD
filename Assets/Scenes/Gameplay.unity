@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carCollisionEventListener: {fileID: 397036223}
   _currentScore: {fileID: 11400000, guid: 626a83a8173b77e48ab707d2f63a58ef, type: 2}
-  _saveType: 0
+  _saveType: 1
 --- !u!4 &397036225
 Transform:
   m_ObjectHideFlags: 0
@@ -624,6 +624,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5951799038241366863, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6718992923444151597, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
       propertyPath: _dodgeDuration
@@ -649,6 +654,11 @@ PrefabInstance:
       propertyPath: _gizmosColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7808918290317640603, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8952388f882d347438563c4e45e6ce50, type: 3}
 --- !u!1001 &8716652142899565949
@@ -658,6 +668,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8716652142058707019, guid: 92d23f39f685e6c47a2e6a5cb92a001a,
+        type: 3}
+      propertyPath: _carPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716652142058707019, guid: 92d23f39f685e6c47a2e6a5cb92a001a,
+        type: 3}
+      propertyPath: _carPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 1106068356828452, guid: 4fd286b338658f84db100ebd31338c7e,
+        type: 3}
     - target: {fileID: 8716652142058707022, guid: 92d23f39f685e6c47a2e6a5cb92a001a,
         type: 3}
       propertyPath: m_LocalPosition.x
