@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -10,6 +11,7 @@ namespace Game {
         private EventListener _roadCollisionEventListener;
 
         [SerializeField]
+        [AssetsOnly]
         private GameObject _roadPrefab;
 
         [SerializeField]
@@ -31,8 +33,6 @@ namespace Game {
                 var road = Instantiate(_roadPrefab, position, Quaternion.identity);
                 _roadTransforms.Add(road.transform);
             }
-
-            _roadPrefab.gameObject.SetActive(false);
         }
 
         private void OnEnable() {
