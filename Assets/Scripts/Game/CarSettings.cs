@@ -17,8 +17,13 @@ namespace Game {
         [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Warning)]
         public float acceleration;
 
+        [FoldoutGroup("Car light")]
+        [Range(1, 5)]
+        public float lightLength;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
+
     }
 }
