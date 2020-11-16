@@ -18,6 +18,8 @@ namespace Game {
         [BoxGroup("Speed/Score")]
         public int dodgeScore2;
 
+        public GameObject renderCarPrefab;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
