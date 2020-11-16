@@ -1,4 +1,5 @@
 ﻿using Events;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using Values;
@@ -15,8 +16,13 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
+        [ValidateInput("ValidateEnemyPrefabs", "Multiple prefabs in the list are the same!", InfoMessageType.Error)]
         [SerializeField]
         private List<GameObject> _enemyPrefabs;
+
+        private bool ValidateEnemyPrefabs(List<GameObject> enemyPrefabs) {
+            return new HashSet<GameObject>(enemyPrefabs).Count == enemyPrefabs.Count;
+        }
 
         [SerializeField]
         private float _spawnCooldown;
