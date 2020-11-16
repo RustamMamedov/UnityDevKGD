@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -27,6 +29,7 @@ namespace Game {
         [SerializeField]
         private float _distanceToPlayerToDestroy;
 
+        [ValidateInput(nameof(ValidateCarsInput), "Values in CarPrefabs repeats", InfoMessageType.Error)]
         [SerializeField]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
@@ -86,6 +89,18 @@ namespace Game {
 
         private void OnCarCollision() {
             UnsubscribeToEvents();
+        }
+
+        private bool ValidateCarsInput(List<GameObject> carPrefabs) {
+            for (int i = 0; i < _carPrefabs.Count - 1; i++) {
+                for (int j = i + 1; j < _carPrefabs.Count; j++) {
+                    if (_carPrefabs[i].name.Equals(_carPrefabs[j].name)) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
     }
