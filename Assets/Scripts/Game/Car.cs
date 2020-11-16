@@ -60,6 +60,11 @@ namespace Game {
             }
             transform.Translate(transform.forward * _carrentSpeed * Time.deltaTime, Space.World);
         }
+
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            _carSettings.dodgeScore++;
+        }
     }
 }
 
