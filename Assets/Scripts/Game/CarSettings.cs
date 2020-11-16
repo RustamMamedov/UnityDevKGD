@@ -9,14 +9,12 @@ namespace Game {
         [FoldoutGroup("Speed", false)]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
-        [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Warning)]
+        [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Info)]
         public float acceleration;
 
-        [BoxGroup("Speed/Score")]
+        [BoxGroup("Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
-        [BoxGroup("Speed/Score")]
-        public int dodgeScore2;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
