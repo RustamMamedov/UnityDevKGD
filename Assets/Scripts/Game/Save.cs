@@ -38,9 +38,9 @@ namespace Game {
 
         [SerializeField]
         [InfoBox("PlayerPrefs", nameof(IsSavingToPlayerPrefs))]
-        [InfoBox("$InfoBoxMessage", nameof(IsSavingToFile))]
+        [InfoBox("$_infoBoxMessage", nameof(IsSavingToFile))]
         private SaveType _saveType;
-        private string InfoBoxMessage = "C:/Users/none/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt"; //need to find out how to make this dynamic
+        private string _infoBoxMessage = "C:/Users/none/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt"; //need to find out how to make this dynamic
 
         private List<SaveData> _saveDatas;
         public List<SaveData> SavedDatas => _saveDatas;
