@@ -27,7 +27,6 @@ namespace UI {
             _renderCamera.targetTexture = _texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
-            Debug.Break();
             Destroy(carInstance);
             return _texture;
         }
