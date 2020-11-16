@@ -22,6 +22,9 @@ namespace Game {
         [SerializeField]
         private EventListeners _carDodge;
 
+#if UNITY_EDITOR
+        public CarsSettings CarsSettings => _carSetting;
+#endif
         private bool _dodged = false;
 
         protected float _currentSpeed;
