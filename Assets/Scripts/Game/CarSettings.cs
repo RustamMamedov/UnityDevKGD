@@ -18,7 +18,7 @@ namespace Game {
 
         [BoxGroup("Headlights")]
         [Range(1f, 5f)]
-        public int headlightRangeh;
+        public int headlightRange;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;

@@ -14,9 +14,10 @@ namespace Game {
             if (_carSettings == null) {
                 return;
             }
+
             Gizmos.color = _gizmosColor;
-            Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(transform.position, 30f, _carSettings.headlightRangeh, 0f, 1.2f);
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+            Gizmos.DrawFrustum(Vector3.zero, 30f, 0f, _carSettings.headlightRange, 1f);
         }
     }
 }
