@@ -15,4 +15,3 @@ namespace Game {
         public float acceleration;
     }
 }
-}
