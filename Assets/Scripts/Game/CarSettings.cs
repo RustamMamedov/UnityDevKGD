@@ -8,5 +8,8 @@ namespace Game {
         public int dodgeScore;
         public int maxSpeed;
         public int acceleration;
+
+        [Range(1,5)]
+        public int lightDistance;
     }
 }
