@@ -1,12 +1,14 @@
 ﻿using Events;
 using UnityEngine;
 using UI;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
     public class Car : MonoBehaviour {
 
         [SerializeField]
+        [Required]
         public CarSettings carSettings;
 
         [SerializeField]
@@ -48,6 +50,10 @@ namespace Game {
                 _currentSpeed += carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
+        }
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            carSettings.dodgeScore++;
         }
     }
 }
