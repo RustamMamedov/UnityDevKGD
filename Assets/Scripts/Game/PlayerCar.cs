@@ -66,11 +66,6 @@ namespace Game {
             _currentRoad = nextRoad;
         }
 
-        private void OnDrawGizmos() {
-            //Gizmos.color = Color.red;
-
-            //Gizmos.DrawSphere(transform.position, 5f);
-        }
 
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
