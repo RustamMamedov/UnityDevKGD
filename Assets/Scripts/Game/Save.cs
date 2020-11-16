@@ -36,8 +36,8 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        [InfoBox("$_filePath", InfoMessageType.Info, nameof(SaveTypeIsFile))]
-        [InfoBox("PlayerPrefs", InfoMessageType.Info, nameof(SaveTypeIsPlayerPrefs))]
+        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", nameof(SaveTypeIsFile))]
+        [InfoBox("PlayerPrefs", nameof(SaveTypeIsPlayerPrefs))]
         [SerializeField]
         private SaveType _saveType;
 
@@ -47,7 +47,7 @@ namespace Game {
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
         
-        private string _filePath = "/home/user/.var/app/com.unity.UnityHub/config/unity3d/DefaultCompany/UnityDev2020/data.txt";
+        private string _filePath;
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
         private const string RECORDS_KEY = "records";
