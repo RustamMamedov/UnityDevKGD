@@ -6,13 +6,16 @@ namespace Game {
     public class Car : MonoBehaviour {
 
         [SerializeField]
-        public CarSettings _carSettings;
+        protected CarSettings _carSettings;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
         private EventListener _updateEventListener;
+#if UNITY_EDITOR
+        public CarSettings CarSettings => _carSettings;
+#endif
 
         protected float _currentSpeed;
 
