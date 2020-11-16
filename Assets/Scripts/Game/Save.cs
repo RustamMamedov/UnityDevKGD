@@ -94,6 +94,7 @@ namespace Game {
                 }
             } else {
                 _saveDatas.Add(newRecord);
+                SortSave();
             }
 
             if (_saveType == SaveType.PlayerPrefs) {

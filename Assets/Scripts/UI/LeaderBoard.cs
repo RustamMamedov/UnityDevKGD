@@ -33,7 +33,7 @@ namespace UI {
 
         private void OnDisable() {
             
-            for (int i = 0; i < Save.SavedDatas.Count; i++) { 
+            for (int i = 1; i < Save.SavedDatas.Count + 1; i++) { 
                 Destroy(_table.GetChild(i).gameObject); 
             }
         
