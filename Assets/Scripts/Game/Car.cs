@@ -66,7 +66,7 @@ namespace Game {
         private void OnDrawGizmos() {
             Gizmos.color = _gizmosColor;
             foreach (var carLight in _carLights) {
-                Gizmos.DrawFrustum(carLight.position, 45f, 2f + _carSettings.lightLenght, 0f, 2f); 
+                Gizmos.DrawFrustum(carLight.position, 45f, _carSettings.lightLenght + 2f, 0f, 2f); 
             }
         } 
 
