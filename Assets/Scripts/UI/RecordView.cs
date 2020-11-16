@@ -1,25 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class RecordView : MonoBehaviour
-{
-    [SerializeField]
-    private GameObject _bestRideRecords;
+namespace UI {
 
-    [SerializeField]
-    private GameObject _recordView;
+    public class RecordView : MonoBehaviour {
 
+        [SerializeField]
+        private Text _placeLabel;
 
+        [SerializeField]
+        private Text _dateLabel;
 
-    public void SetData(int place,string date, string score) {
-        var records = _bestRideRecords;
-        records.transform.GetChild(0).GetComponent<Text>().text = place.ToString();
-        records.transform.GetChild(1).GetComponent<Text>().text = date;
-        records.transform.GetChild(2).GetComponent<Text>().text = score;
-        
-        Instantiate(records,_recordView.transform);
-        
+        [SerializeField]
+        private Text _scoreLabel;
+
+        [SerializeField]
+        private Image _currentRideImage;
+
+        public void SetData(int place, string date, string score, bool isCurrentRide) {
+            _placeLabel.text = $"{place}";
+            _dateLabel.text = date;
+            _scoreLabel.text = score;
+            _currentRideImage.enabled = isCurrentRide;
+        }
     }
 }
