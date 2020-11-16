@@ -16,7 +16,7 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
-        [ValidateInput("ValidateEnemyPrefabs", "Multiple prefabs in the list are the same!", InfoMessageType.Error)]
+        [ValidateInput(nameof(ValidateEnemyPrefabs), "Multiple prefabs in the list are the same!", InfoMessageType.Error)]
         [SerializeField]
         private List<GameObject> _enemyPrefabs;
 

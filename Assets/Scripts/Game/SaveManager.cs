@@ -117,7 +117,7 @@ namespace Game {
         [SerializeField]
         private int _recordsLimit;
 
-        [InfoBox("$GetSaveDescription")]
+        [InfoBox("$" + nameof(GetSaveDescription))]
         [SerializeField]
         private SaveType _saveType;
 
