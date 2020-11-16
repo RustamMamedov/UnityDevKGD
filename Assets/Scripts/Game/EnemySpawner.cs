@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using Random = UnityEngine.Random;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -18,6 +19,7 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        [ValidateInput(nameof(ValidateCarPrefsList),"You shouldn't add same prefab to this list more then one time! ")]
         private List<GameObject> _carPrefabs;
 
         [SerializeField]
@@ -98,6 +100,17 @@ namespace Game {
                     
                 }
             }
+        }
+
+        private bool ValidateCarPrefsList() {
+
+            for (int i = 0; i < _carPrefabs.Count - 1; i++) {
+                for (int j = i + 1; j < _carPrefabs.Count; j++)  {
+                    if (_carPrefabs[i].Equals(_carPrefabs[j]))
+                        return false;
+                }
+            }
+            return true;
         }
     }
 }
