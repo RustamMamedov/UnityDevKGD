@@ -16,6 +16,10 @@ namespace Game {
 
         protected float _currentSpeed;
 
+#if UNITY_EDITOR
+        public CarSettings CarSettings => carSettings;
+#endif
+
         private void OnEnable() {
             SubscribeToEvents();
         }
