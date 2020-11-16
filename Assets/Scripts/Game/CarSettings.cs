@@ -1,7 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game {
@@ -18,6 +15,10 @@ namespace Game {
 
         [FoldoutGroup("Speed settings", false)]
         public float acceleration;
+
+        [BoxGroup("Other settings")]
+        [PropertyRange(1f, 5f)]
+        public float carLightDistance;
 
 
         private bool ValidateScore(int score) {
