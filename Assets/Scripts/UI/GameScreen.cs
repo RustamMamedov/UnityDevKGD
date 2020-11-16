@@ -6,13 +6,13 @@ namespace UI {
     public class GameScreen : MonoBehaviour {
 
         [SerializeField]
-        private EventListener _carCollisionEventListener;
+        private EventListener _saveEventListener;
 
         private void Awake() {
-            _carCollisionEventListener.OnEventHappened += OnCarCollision;
+            _saveEventListener.OnEventHappened += OnGameSaved;
         }
 
-        private void OnCarCollision() {
+        private void OnGameSaved() {
             UIManager.Instance.ShowLeaderboardScreen();
         }
     }
