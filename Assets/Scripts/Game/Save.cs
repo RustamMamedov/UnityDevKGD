@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -38,6 +39,7 @@ namespace Game {
         private ScriptableIntValue _currentNumberRecord;
 
         [SerializeField]
+        [InfoBox("@GetSaveInfo()", InfoMessageType.Info)]
         private SaveType _saveType;
 
         private static List<SaveData> _saveDatas;
@@ -163,6 +165,14 @@ namespace Game {
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+        }
+
+        private string GetSaveInfo() {
+            if (_saveType == SaveType.File) {
+                return Path.Combine(Application.persistentDataPath, "records.save");
+            }
+
+            return "PlayerPrefs";
         }
     }
 }
