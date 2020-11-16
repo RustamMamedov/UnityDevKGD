@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -24,6 +25,8 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
+        [InfoBox("/Users/anastasialutovinova/Library/Application Support/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -44,6 +47,14 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+
+        private bool isSaveTypePlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+
+        private bool isSaveTypeFile() {
+            return _saveType == SaveType.File;
+        }
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -66,7 +77,7 @@ namespace Game {
 
         private void OnCarCollision() {
             var newRecord = new SaveData {
-                date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
+                date = DateTime.Now.ToString("MM/dd/yyyy HH:mm "),
                 score = _currentScore.value.ToString(),
                 newScore = true,
             };
