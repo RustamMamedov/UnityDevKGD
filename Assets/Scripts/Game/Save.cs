@@ -50,7 +50,11 @@ namespace Game {
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             _savedData = new List<SaveData>();
 
-            LoadFromFile();
+            if (_saveType == SaveType.PlayerPrefs) {
+                LoadFromPlayerPrefs();
+            } else {
+                LoadFromFile();
+            }
 
         }
 
