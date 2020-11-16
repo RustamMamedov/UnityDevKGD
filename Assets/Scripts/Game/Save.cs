@@ -4,6 +4,7 @@ using System;
 using Events;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Sirenix.OdinInspector;
 using System.Linq;
 
 namespace Game {
@@ -23,11 +24,6 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
-        private enum SaveType {
-            PlayerPrefs,
-            File
-        }
-
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
@@ -37,8 +33,26 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
+        #region Save Type
+
+        private enum SaveType {
+            PlayerPrefs,
+            File
+        }
+
         [SerializeField]
+        [InfoBox("@GetMessageForSaveType()", InfoMessageType.Info)]
         private SaveType _saveType;
+
+        private string GetMessageForSaveType() {
+            if (_saveType == SaveType.File) {
+                return String.Concat(UnityEngine.Application.persistentDataPath, Path.AltDirectorySeparatorChar, "data.txt");
+            }
+
+            return "PlayerPrefs";
+        }
+
+        #endregion Save Type
 
         [SerializeField]
         private int _numberRecordsInTable;
