@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -37,8 +38,10 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _playerScorePosition;
 
+        [InfoBox("$_typeInfo")]
         [SerializeField]
         private SaveType _saveType;
+        private static string _typeInfo = "PlayerPrefs";
 
         [SerializeField]
         private EventDispatcher _scoreSavedEventDispather;
@@ -48,6 +51,18 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+
+
+        private void OnDrawGizmosSelected() {
+            if (_saveType == SaveType.PlayerPrefs) {
+                _typeInfo = "PlayerPrefs";
+            }
+            else {
+                _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+                _typeInfo = _filePath;
+            }
+        }
+
 
 
 
