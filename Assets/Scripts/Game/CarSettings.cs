@@ -18,6 +18,10 @@ namespace Game {
         [BoxGroup("Speed/Score")]
         public int dodgeScore2;
 
+        [BoxGroup("Light")]
+        [Range(1f, 5f)]
+        public float lightLength;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
