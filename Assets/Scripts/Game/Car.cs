@@ -51,7 +51,7 @@ namespace Game {
             UnsubscribeToEvents();
         }
 
-        private void UpdateBehaviour() {
+        protected virtual void UpdateBehaviour() {
             Move();
         }
         #endregion  2

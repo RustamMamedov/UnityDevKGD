@@ -53,9 +53,6 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
-        protected override void OnCarCollision() {
-            base.OnCarCollision();
-        }
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
