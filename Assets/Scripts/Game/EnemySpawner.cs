@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -15,6 +16,7 @@ namespace Game {
 
 	[Header ("Вражины в игре: ")]
 	[SerializeField]
+	[ValidateInput(nameof(ValidateEnemyCars))]
 	private List<GameObject> _carPrefab = new List<GameObject>();
 
 	[SerializeField]
@@ -34,6 +36,18 @@ namespace Game {
 
 	private float _currentTimer;
 	private List<GameObject> _cars = new List<GameObject>();
+
+
+	private bool ValidateEnemyCars() {
+	    bool isTrue = true;
+	    for (int i = 0; i < _carPrefab.Count - 1; i++) {
+		if (_carPrefab[i] == _carPrefab[_carPrefab.Count - 1]) {
+		    isTrue = false;
+		    break;
+		}
+	    }
+	    return isTrue;
+	}
 
 	private void OnEnable() {
 	    SubscribeToEvents();
