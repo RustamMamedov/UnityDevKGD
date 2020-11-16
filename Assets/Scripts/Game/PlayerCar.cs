@@ -63,15 +63,13 @@ namespace Game {
         }
 
         private void OnDrawGizmos() {
-            Gizmos.color = Color.red;
-
-            Gizmos.DrawSphere(transform.position, 5f);
+            
         }
 
         private void OnDrawGizmosSelected() {
             Gizmos.color = Color.red;
 
-            Gizmos.DrawSphere(transform.position, 5f);
+            Gizmos.DrawWireSphere(transform.position, 5f);
         }
     }
 }
