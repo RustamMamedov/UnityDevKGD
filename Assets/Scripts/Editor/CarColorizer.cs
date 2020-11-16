@@ -23,10 +23,10 @@ namespace GameEditor {
                     if (gameObjects[i].TryGetComponent<MeshRenderer>(out var meshRenderer)) {
                         var material = new Material(meshRenderer.sharedMaterial);
                         material.color = _color;
-                        meshRenderer.material = material;
+                        meshRenderer.sharedMaterial = material;
                     }
                 }
             }
         }
     }
-}
+} 
