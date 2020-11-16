@@ -1,4 +1,5 @@
 ﻿using Events;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -116,8 +117,19 @@ namespace Game {
         [SerializeField]
         private int _recordsLimit;
 
+        [InfoBox("$GetSaveDescription")]
         [SerializeField]
         private SaveType _saveType;
+
+        private string GetSaveDescription() {
+            if (_saveType == SaveType.File) {
+                return $"File {GetSaveFilePath()} is used for saving.";
+            } else if (_saveType == SaveType.PlayerPrefs) {
+                return "PlayerPrefs are used for saving.";
+            } else {
+                return "No saving!";
+            }
+        }
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
@@ -144,7 +156,7 @@ namespace Game {
             base.Awake();
             _records = new List<Record>();
             _newRecordIndex = invalidIndex;
-            _saveFilePath = Path.Combine(Application.persistentDataPath, "records.save");
+            _saveFilePath = GetSaveFilePath();
             LoadAndSetData();
         }
 
@@ -234,6 +246,8 @@ namespace Game {
 
 
         // Data loading/saving.
+
+        private string GetSaveFilePath() => Path.Combine(Application.persistentDataPath, "records.save");
 
         private void LoadAndSetData() {
             List<Record> loadedRecords = null;
