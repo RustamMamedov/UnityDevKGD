@@ -10,6 +10,10 @@ namespace Game {
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
 
+        [BoxGroup("Car Light")]
+        [Range(1, 5)]
+        public float lightRange;
+
         [FoldoutGroup("Speed",false)]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
