@@ -20,6 +20,10 @@ namespace Game {
         [BoxGroup("Speed/Score")]
         public int dodgeScore2;
 
+        [BoxGroup("Car Light")]
+        [Range(1, 5)]
+        public int carLight;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
