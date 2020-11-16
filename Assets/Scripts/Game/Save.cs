@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
 using UI;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -24,6 +25,9 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+
+        [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
+        [InfoBox("C:/Users/shpul/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -146,6 +150,14 @@ namespace Game {
             using(FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
+        }
+
+        private bool isSaveTypePlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+
+        private bool isSaveTypeFile() {
+            return _saveType == SaveType.File;
         }
     }
 }
