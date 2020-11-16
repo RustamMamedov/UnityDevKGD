@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UI;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -24,6 +25,8 @@ namespace Game {
 
     public class Save : MonoBehaviour {
 
+        [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
+        [InfoBox("C:/Users/nikit/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
         private enum SaveType {
             PlayerPrefs,
             File
@@ -41,6 +44,7 @@ namespace Game {
         public static List<SaveData> SaveDatas => _savedDatas;
 
         private const string RECORDS_KEY = "records";
+     
         private string _filePath;
         private int _minScore = 0;
 
@@ -120,6 +124,14 @@ namespace Game {
                     break;
                 }
             }
+        }
+
+        private bool isSaveTypePlayerPrefs() {
+            return _saveType == SaveType.PlayerPrefs;
+        }
+
+        private bool isSaveTypeFile() {
+            return _saveType == SaveType.File;
         }
 
         [SerializeField]
