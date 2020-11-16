@@ -19,6 +19,9 @@ namespace Game {
         [InfoBox("Speed up")]
         public float acceleration;
 
+        [Range(1f, 5f)]//Один из вариантов
+        public float CarLightLength;
+
         private bool VolidateDodgeScore() {
                 return dodgeScore>0;
         }
