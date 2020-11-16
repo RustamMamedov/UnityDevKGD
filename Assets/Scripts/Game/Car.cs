@@ -1,5 +1,6 @@
 ﻿using Events;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -7,6 +8,7 @@ namespace Game {
 
 #region  1
         [SerializeField]
+        [Required]
         protected CarSettings _carSettings;
 
         [SerializeField]
