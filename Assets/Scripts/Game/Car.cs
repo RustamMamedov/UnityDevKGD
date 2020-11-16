@@ -53,5 +53,10 @@ namespace Game {
             Move();
         }
 
+        [ContextMenu("Increase dodge score")]
+        private void IncreaseDodgeScore() {
+            carSettings.dodgeScore++;
+        }
+
     }
 }
