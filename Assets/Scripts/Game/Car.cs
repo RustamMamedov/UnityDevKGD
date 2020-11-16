@@ -16,8 +16,11 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         protected float _currentSpeed;
-
 #endregion  1
+
+#if UNITY_EDITOR
+        public CarSettings CarSettings => _carSettings;
+#endif
 
 #region  3
         private void OnEnable() {
