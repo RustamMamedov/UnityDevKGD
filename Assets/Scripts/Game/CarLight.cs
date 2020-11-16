@@ -13,10 +13,6 @@ public class CarLight : MonoBehaviour {
     [SerializeField]
     private Color _color = Color.white;
 
-    [SerializeField]
-    [Range(0, 5)]
-    private float _maxRange;
-
     [FoldoutGroup("Light settings")]
     [BoxGroup("Light settings/Width and height")]
     [SerializeField]
