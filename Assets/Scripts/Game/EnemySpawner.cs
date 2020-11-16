@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Events;
+using System.Linq;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 
 namespace Game {
@@ -13,6 +15,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
+        [ValidateInput(nameof(CheckDuplicates), "Value is invalid for 'Car Prefabs'")]
         private List<GameObject> _carPrefabs;
 
         [SerializeField]
@@ -29,6 +32,10 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
+
+        private bool CheckDuplicates() {
+            return _carPrefabs.Distinct().Count() == _carPrefabs.Count;
+        }
 
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
