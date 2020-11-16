@@ -13,6 +13,10 @@ namespace Game {
         [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Warning)]
         public float acceleration;
 
+        [BoxGroup("Lights")]
+        [Range(1f, 5f)]
+        public float lightDistance;
+
         [BoxGroup("Speed/Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
