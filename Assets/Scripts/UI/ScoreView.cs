@@ -30,6 +30,7 @@ namespace UI {
         private void OnEnable() {
             _currentScore = 0;
             _currentScoreValue.value = 0;
+            _scoreLabel.text = _currentScore.ToString();
         }
 
         private void UpdateBehaviour() {
