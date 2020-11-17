@@ -8,6 +8,9 @@ namespace Game {
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
 
+        [Range(0, 5)]
+        public int carLightDistance = 5;
+
         [BoxGroup("Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
