@@ -8,7 +8,7 @@ namespace Game {
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
 
-        [Range(0, 5)]
+        [Range(1, 5)]
         public int carLightDistance = 5;
 
         [BoxGroup("Score")]
