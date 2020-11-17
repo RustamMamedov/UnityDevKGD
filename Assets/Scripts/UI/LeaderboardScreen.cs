@@ -42,7 +42,7 @@ namespace UI {
         }
 
         private void OnDisable() {
-            for (var i = 0; _saveRecord.Count > i; i++) {
+            for (var i = _saveRecord.Count - 1; _saveRecord.Count != 0; i--) {
                 var temp = _saveRecord[i];
                 _saveRecord.RemoveAt(i);
                 Destroy(temp);
