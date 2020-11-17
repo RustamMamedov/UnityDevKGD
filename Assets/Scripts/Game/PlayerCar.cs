@@ -22,8 +22,8 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
-        [SerializeField]
-        private Color _gizmosColor;
+        //[SerializeField]
+        //private Color _gizmosColor;
 
         private int _currentRoad;
 
@@ -67,7 +67,7 @@ namespace Game {
             _inDodge = false;
             _currentRoad = nextRoad;
         }
-
+        /*
         private void OnDrawGizmos() {
             
         }
@@ -80,7 +80,7 @@ namespace Game {
             Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, .5f);
             var mesh = GetComponent<MeshFilter>().sharedMesh;
             Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);
-        }
+        }*/
 
     }
 }
