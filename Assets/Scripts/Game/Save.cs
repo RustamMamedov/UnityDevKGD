@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -22,6 +23,7 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
+        [InfoBox("@Info()")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -153,6 +155,15 @@ namespace Game {
             //удаление
             for (var i = 10; _saveDatas.Count > i; i++) {
                 _saveDatas.RemoveAt(i);
+            }
+        }
+
+        private string Info() {
+            if (_saveType == SaveType.PlayerPrefs) {
+                return "PlayerPrefs";
+            }
+            else {
+                return _filePath;
             }
         }
     }
