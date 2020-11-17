@@ -21,18 +21,18 @@ namespace Game {
 #endif
 
         protected float _currentSpeed;
-        #endregion 1
+#endregion 1
 
-        #region 3
+#region 3
         private void OnEnable() {
             SubscribeToEvent();
         }
         private void OnDisable() {
             UnsubscribeToEvent();
         }
-        #endregion 3
+#endregion 3
 
-        #region 2
+#region 2
         protected virtual void SubscribeToEvent() {
             _updateEventListeners.OnEventHappened += UpdateBehavior;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
@@ -47,15 +47,22 @@ namespace Game {
         private void UpdateBehavior() {
             Move();
         }
-        #endregion 2
+#endregion 2
 
-        #region 4
+#region 4
         protected virtual void Move() {
             if (_currentSpeed < _carSetting.maxSpeed) {
                 _currentSpeed += _carSetting.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
-        #endregion 4
+
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            _carSetting.dodgeScore--;
+        }
+
+
+#endregion 4
     }
 }
