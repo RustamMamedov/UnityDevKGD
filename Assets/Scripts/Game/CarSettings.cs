@@ -9,11 +9,12 @@ namespace Game {
     public class CarSettings : ScriptableObject {
 
         [BoxGroup("Score")]
+        [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
 
         [FoldoutGroup("Score/Speed")]
-        [ValidateInput(nameof(ValidateDodgeScore))]
         public float maxSpeed;
+
         [FoldoutGroup("Score/Speed", false)]
         [InfoBox("Speed is beeing increased by acceleartion every framy")]
         public float acceleration;
