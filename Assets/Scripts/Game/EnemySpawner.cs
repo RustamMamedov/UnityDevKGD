@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Events;
 
@@ -13,8 +14,19 @@ namespace Game {
         [SerializeField]
         private EventListeners _carCollisionEventLister;
 
+        [ValidateInput(nameof(ValidationListEnemyCars))]
+
         [SerializeField]
         private List<GameObject> _carPrefabs;
+
+        private bool ValidationListEnemyCars(List<GameObject> carPrefabs) {
+            for (int i = 0; i < carPrefabs.Count; i++) {
+                if (i != carPrefabs.LastIndexOf(carPrefabs[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         [SerializeField]
         private float _spawnCooldawn;
