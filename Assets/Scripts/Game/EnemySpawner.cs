@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
 namespace Game {
+
     public class EnemySpawner : MonoBehaviour {
 
         [SerializeField]
