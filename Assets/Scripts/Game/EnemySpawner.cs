@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Events;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -13,6 +14,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
+        [ValidateInput(nameof(ValidateCarPrefs), "Was added two equal car prefabs")]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
@@ -96,6 +98,20 @@ namespace Game {
                     _carsIndexs.RemoveAt(i);
                 }
             }
+        }
+
+        private bool ValidateCarPrefs(List<GameObject> prefs) {
+
+            foreach (var item in prefs) {
+                List<GameObject> tempList = prefs.FindAll(
+                    delegate (GameObject it) {
+                        return it.name == item.name;
+                    } );
+                if (tempList.Count > 1) {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }
