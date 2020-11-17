@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -70,9 +71,23 @@ namespace Game {
             PlayerPrefs,
             FromFile
         }
-
+#if UNITY_EDITOR
+        [InfoBox("$InfoString", "Information")]
+#endif
         [SerializeField]
         private SaveType _saveType;
+#if UNITY_EDITOR
+        private string InfoString;
+        private bool Information(SaveType saveData) {
+            if (saveData == SaveType.FromFile) {
+                InfoString = Path.Combine(Application.persistentDataPath, "data.txt");
+            }
+            else {
+                InfoString = "PlayerPrefs";
+            }
+            return true;
+        }
+#endif
 
         private void Awake() {
             //Instance = this;
