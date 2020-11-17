@@ -59,7 +59,7 @@ namespace Game {
 
         [ContextMenu("IncreaseDodgeScore")]
         private void IncreaseDodgeScore() {
-            _carSetting.dodgeScore--;
+            _carSetting.dodgeScore++;
         }
 
 

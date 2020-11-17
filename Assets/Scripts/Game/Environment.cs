@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game {
     public class Environment : MonoBehaviour {
@@ -10,7 +11,8 @@ namespace Game {
         private EventListener _roadCollisionEventListener;
 
         [SerializeField]
-        private GameObject _roadPrefab;
+        [AssetsOnly] // модно указать только то, что находится в проекте, а не на сцене
+        private GameObject _roadPrefab; 
 
         [SerializeField]
         private int _initialRoadNumber = 10;
@@ -36,7 +38,7 @@ namespace Game {
                 var road = Instantiate(_roadPrefab, position, Quaternion.identity);
                 _roadTransform.Add(road.transform);
             }
-            _roadPrefab.SetActive(false);
+           //_roadPrefab.SetActive(false);
         }
         private void HandleRoadCollision() {
             MoveFirstRoadPart();
