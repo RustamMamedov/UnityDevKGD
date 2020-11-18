@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -68,12 +69,22 @@ namespace Game {
             FromFile
         }
 
+        [InfoBox("$_information",nameof (Information))]
         [SerializeField]
         private SaveType _saveType;
+        private string _information;
+        private bool Information() {
+            if (_saveType == SaveType.FromFile) {
+                _information = Path.Combine(Application.persistentDataPath, "data.txt");
+            }
+            else {
+                _information = "PlayerPrefs";
+            }
+            return true;
+        }
 
         private void Awake() {
             _savedData = new List<SaveData>();
-            //Debug.Log(Application.persistentDataPath);
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
