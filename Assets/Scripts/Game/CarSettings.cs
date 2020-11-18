@@ -8,14 +8,18 @@ namespace Game {
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
 
+        [Range(1, 5)]
+        public int carLightDistance = 5;
+
         [BoxGroup("Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
 
-        [FoldoutGroup("Speed", false)]
+        [FoldoutGroup("Score/Speed")]
         public float maxSpeed;
-        [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Warning)]
-        [FoldoutGroup("Speed")]
+
+        [FoldoutGroup("Score/Speed", false)]
+        [InfoBox("Speed is beeing increased by acceleartion every framy")]
         public float acceleration;
 
         private bool ValidateDodgeScore(int score) {
