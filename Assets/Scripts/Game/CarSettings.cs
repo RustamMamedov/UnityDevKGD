@@ -1,18 +1,25 @@
 ﻿using Events;
 using System;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
 
-        [Header("Score")]
+        [BoxGroup("Score")]
+        [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
-        [Header("Speed")]
+
+        [FoldoutGroup("Speed", false)]
         public float maxSpeed;
-        [Space]
+        [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Warning)]
+        [FoldoutGroup("Speed")]
         public float acceleration;
 
+        private bool ValidateDodgeScore(int score) {
+            return score >= 0;
+        }
     }
 }

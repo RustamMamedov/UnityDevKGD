@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using UnityEngine.Networking.Match;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -11,6 +12,7 @@ namespace Game {
         private EventListener _roadCollisionEventListener;
 
         [SerializeField]
+        [AssetsOnly]
         private GameObject _roadPrefab;
 
         [SerializeField]
@@ -38,7 +40,6 @@ namespace Game {
                 _roadTransforms.Add(road.transform);
 
             }
-            _roadPrefab.SetActive(false);
         }
 
         private void HandleRoadCollision() {
