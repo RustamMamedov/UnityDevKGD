@@ -51,7 +51,7 @@ namespace UI {
             for (int i=0; i< Save.savedDatas.Count; i++) {
                 var newResult = Instantiate(_resultView, _playersList.transform);
                 newResult.SetData(i + 1, Save.savedDatas[i].date, Save.savedDatas[i].score);
-                if (i == Save._last) newResult.Symbol();
+                if (i == Save.last) newResult.Symbol();
                 _listResultView.Add(newResult.gameObject);
                 //Debug.Log($"{Save._last} rrr");
                 newResult.gameObject.SetActive(true);
