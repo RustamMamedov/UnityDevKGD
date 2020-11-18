@@ -72,6 +72,10 @@ namespace Game {
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
+        [ContextMenu("IncreaseDodgeScore")]
+        private void IncreaseDodgeScore() {
+            _carSetting.dodgedScore++;
+        }
 #endregion 4
     }
 }
