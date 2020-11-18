@@ -1,84 +1,100 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Events;
 
 namespace Game {
-    public class EnemySpawner : MonoBehaviour{
-        [SerializeField]
-        private EventListeners _updateEventListeners;
+
+    public class EnemySpawner : MonoBehaviour {
 
         [SerializeField]
-        private EventListeners _carCollisionListener;
+        private EventListeners _updateEventListener;
 
         [SerializeField]
-        private List<GameObject> _carPrefab = new List<GameObject>();
+        private EventListeners _carCollisionEventLister;
+
+        [ValidateInput(nameof(ValidationCarPrefab))]
 
         [SerializeField]
-        private float _spawnCooldown;
+        private List<GameObject> _carPrefabs;
 
         [SerializeField]
-        private float _distanceToPlayerToSpawner;
+        private float _spawnCooldawn;
 
         [SerializeField]
-        private float _distanceToPlayerToDestroy;
+        private float _distanceToPlaySpawn;
 
         [SerializeField]
-        private ScriptableFloatValue _playerPisotionZ;
+        private float _distanceToPlayDestrou;
+
+        [SerializeField]
+        private ScriptableFloatValue _playerDistanseZ;
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
-        private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 
-        private void OnEnable() {
-            SubscribeToEvent();
-        }
-        private void OnDisable() {
-            UnsubscribeToEvent();
+        private float _currentTime;
+
+        private bool ValidationCarPrefab(List<GameObject> carPrefabs) {
+            for (int i = 0; i < carPrefabs.Count; i++) {
+                if (i != carPrefabs.LastIndexOf(carPrefabs[i])) {
+                    return false;
+                }
+            }
+            return true;
         }
 
-        private void SubscribeToEvent() {
-            _updateEventListeners.OnEventHappened += UpdateBehaviour;
-            _carCollisionListener.OnEventHappened += OnCarCollision;
+        private void OnEnable() {
+            SubscribeToEvents();
         }
-        private void UnsubscribeToEvent() {
-            _updateEventListeners.OnEventHappened -= UpdateBehaviour;
-            _carCollisionListener.OnEventHappened -= OnCarCollision;
+
+        private void OnDisable() {
+            UnsubscribeToEvents();
+        }
+
+        private void SubscribeToEvents() {
+            _updateEventListener.OnEventHappened += UpdateBehavour;
+            _carCollisionEventLister.OnEventHappened += OnCarCollision;
+        }
+
+        private void UnsubscribeToEvents() {
+            _updateEventListener.OnEventHappened -= UpdateBehavour;
+            _carCollisionEventLister.OnEventHappened -= OnCarCollision;
         }
 
         private void OnCarCollision() {
-            UnsubscribeToEvent();
+            UnsubscribeToEvents();
         }
 
-        private void UpdateBehaviour() {
-            HandleCarsBehindPlayer();
-            _currentTimer += Time.deltaTime;
-            if (_currentTimer < _spawnCooldown) {
+        private void UpdateBehavour() {
+            HendleCarBehaindPlayer();
+
+            _currentTime += Time.deltaTime;
+            if (_currentTime < _spawnCooldawn) {
                 return;
             }
-            _currentTimer = 0f;
-
+            _currentTime = 0;
             SpawnCar();
         }
 
         private void SpawnCar() {
+            var randomCar = _carPrefabs[Random.Range(0, 3)];
             var randomRoad = Random.Range(-1, 2);
-            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPisotionZ.value + _distanceToPlayerToSpawner);
-            var randomCar = Random.Range(0, _carPrefab.Count);
-            var car = Instantiate(_carPrefab[randomCar], position, Quaternion.Euler(0f, 180f, 0f));
+            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerDistanseZ.value + _distanceToPlaySpawn);
+            var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
         }
 
-         private void HandleCarsBehindPlayer() {
-            for(int i = _cars.Count - 1; i > -1; i--) {
-                if (_playerPisotionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
+        private void HendleCarBehaindPlayer() {
+            for (int i = _cars.Count - 1; i > -1; i--) {
+                if (_playerDistanseZ.value - _cars[i].transform.position.z > _distanceToPlayDestrou) {
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
                 }
             }
-        }  
+        }
     }
 }
-
