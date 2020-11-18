@@ -22,7 +22,7 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
-        private EventListener _carCollision;
+        private EventListener _endingSave;
 
         //private string _currentSceneName = "Gameplay";
 
@@ -52,7 +52,7 @@ namespace UI {
                 Destroy(gameObject);
                 return;
             }
-            _carCollision.OnEventHappened += ShowLeaderboardScreen;
+            _endingSave.OnEventHappened += ShowLeaderboardScreen;
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
