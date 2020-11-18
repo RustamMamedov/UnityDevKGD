@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Sirenix.OdinInspector;
 
 namespace Game {
@@ -20,7 +20,10 @@ namespace Game {
         public float acceleration;
 
         [Range(1f, 5f)]//Один из вариантов
-        public float CarLightLength;
+        public float carLightLength;
+
+        [ShowIf(nameof(isEnemyCar))]
+        public GameObject renderCarPrefab;
 
         private bool VolidateDodgeScore() {
                 return dodgeScore>0;

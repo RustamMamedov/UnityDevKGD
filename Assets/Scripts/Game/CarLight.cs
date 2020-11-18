@@ -12,7 +12,8 @@ namespace Game {
 
         private void OnDrawGizmosSelected() {
             Gizmos.color = _colorLight;
-            Gizmos.DrawFrustum(transform.position, 30f,7f, _car.CarSettings.CarLightLength, 1f);
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 30f, _car.CarSettings.carLightLength, 1f, 1f);
         }
     }
 }
