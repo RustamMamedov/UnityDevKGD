@@ -20,6 +20,9 @@ namespace Game {
         [BoxGroup("Speed/Score")]
         public int dodgeScore2;
 
+        [Range(1f,5f)]
+        public float lightlenght;
+
         private bool ValidateDodgeScore(int score) {//защита от ошибки
             return score >= 0;
         }
