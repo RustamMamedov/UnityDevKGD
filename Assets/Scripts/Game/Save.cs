@@ -7,6 +7,7 @@ using TMPro;
 using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine.Jobs;
+using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -35,6 +36,7 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
+        [InfoBox("$_information", nameof(Information))]
         [SerializeField]
         private SaveType _saveType;
 
@@ -49,7 +51,17 @@ namespace Game {
 
         private const string RECORDS_KAY = "records";
         private string _filePath;
-        public static int _last;
+        public static int last;
+        private string _information;
+
+        private bool Information() {
+            if (_saveType == SaveType.File) {
+                _information = Path.Combine(Application.persistentDataPath, "date.txt");
+            } else {
+                _information = "PlayerPrefs";
+            }
+            return true;
+        }
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -86,7 +98,7 @@ namespace Game {
             }
             for (int i = 0; i < _saveDatas.Count; i++) {
                 if (record == _saveDatas[i]) {
-                    _last = i;
+                    last = i;
                     //Debug.Log($"{_last} zzz");
                     break;
                 }
@@ -112,8 +124,6 @@ namespace Game {
             }
             _endingSave.Dispatch();
         }
-
-
 
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KAY)) {
@@ -157,7 +167,6 @@ namespace Game {
             using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
-
         }
     }
 }
