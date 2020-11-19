@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 namespace Game {
 
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
+
     public class CarSettings : ScriptableObject {
 
         [FoldoutGroup("Speed", false)]
