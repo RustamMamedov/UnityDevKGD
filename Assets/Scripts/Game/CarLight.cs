@@ -10,7 +10,8 @@ namespace Game {
         private Car _car;
 
         private void OnDrawGizmosSelected() {
-            Gizmos.DrawFrustum(transform.position, 30f, 7f, _car.CarSettings.lightDistance, .5f);
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 30f, _car.CarSettings.lightDistance, 1f, 1f);
         }
     }
 }
