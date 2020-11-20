@@ -31,8 +31,5 @@ namespace UI {
         private void UpdateBehaviour() {
             _progressImage.fillAmount = _sceneLoadingValue.value;
         }
-
-
     }
-
 }

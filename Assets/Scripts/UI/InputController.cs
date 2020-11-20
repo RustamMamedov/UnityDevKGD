@@ -4,10 +4,9 @@ using UnityEngine;
 using Events;
 using Game;
 
-namespace UI
-{
-    public class InputController : MonoBehaviour
-    {
+namespace UI {
+
+    public class InputController : MonoBehaviour {
         [SerializeField]
         private EventListener _updateEventListener;
 
@@ -16,20 +15,16 @@ namespace UI
 
         [SerializeField]
         private ScriptableIntValue _touchSide;
-        private void OnEnable()
-        {
-            _updateEventListener.OnEventHappened += UpdateBehaviour;  
+        private void OnEnable() {
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
-        private void OnDisable()
-        {
+        private void OnDisable() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
         }
-        private void UpdateBehaviour()
-        {
+        private void UpdateBehaviour() {
             var touchPosition = Vector2.zero;
 #if UNITY_EDITOR
-            if (!Input.GetMouseButton(0))
-            {
+            if (!Input.GetMouseButton(0)) {
                 return;
             }
             touchPosition = Input.mousePosition;
