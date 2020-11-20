@@ -13,7 +13,7 @@ namespace Game {
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmoColor;
             Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(transform.position, 45f, 0f, _carSettings.lightDistance, 1f);
+            Gizmos.DrawFrustum(Vector3.zero, 45f, 0f, _carSettings.lightDistance, 1f);
         }
     }
 }
