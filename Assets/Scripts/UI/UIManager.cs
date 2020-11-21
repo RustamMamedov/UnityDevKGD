@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +20,14 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardScreen;
+        
+        [SerializeField]
+        private MusicManager _musicManager;
 
+        private void Start() {
+            ShowMenuScreen();
+        }
+        
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -63,6 +71,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
