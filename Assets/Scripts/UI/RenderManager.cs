@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UI {
 
@@ -8,10 +6,10 @@ namespace UI {
 
         public static RenderManager Instance;
 
-        [SerializeField] 
+        [SerializeField]
         private Camera _renderCamera;
 
-        [SerializeField] 
+        [SerializeField]
         private Transform _rootTransform;
 
         private RenderTexture _texture;
@@ -22,14 +20,14 @@ namespace UI {
 
         public RenderTexture Render(GameObject prefab) {
             var carInstance = Instantiate(prefab, _rootTransform);
-            var texture = RenderTexture.GetTemporary(64, 64, 16);
-            texture.antiAliasing = 8;
-            texture.Create();
-            _renderCamera.targetTexture = texture;
+            _texture = RenderTexture.GetTemporary(64, 64, 16);
+            _texture.antiAliasing = 8;
+            _texture.Create();
+            _renderCamera.targetTexture = _texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
             Destroy(carInstance);
-            return texture;
+            return _texture;
         }
 
         public void ReleaseTextures() {
