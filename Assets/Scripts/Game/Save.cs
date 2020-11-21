@@ -163,7 +163,7 @@ namespace Game {
                 return "PlayerPrefs";
             }
             else {
-                return _filePath;
+                return Path.Combine(Application.persistentDataPath, "date.txt");
             }
         }
     }
