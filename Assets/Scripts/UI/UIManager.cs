@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Audio;
 namespace UI {
 
     public class UIManager : MonoBehaviour {
@@ -21,6 +21,8 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderBoardScreen;
 
+        [SerializeField]
+        private MusicManager _musicManager;
         private void Awake() {
             
             if (Instance != null) {
@@ -31,6 +33,10 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start() {
+            ShowMenuScreen();
         }
 
         public void LoadMenu() {
@@ -67,6 +73,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayerMenuMusic();
         }
 
         public void ShowGameScreen() {
