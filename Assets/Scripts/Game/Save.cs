@@ -37,16 +37,20 @@ namespace Game {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
-        [InfoBox("PlayerPrefs", nameof(IsSavingToPlayerPrefs))]
-        [InfoBox("$_infoBoxMessage", nameof(IsSavingToFile))]
+        [InfoBox("$message", nameof(SavingToPlayerPrefsOrToFile))]
         private SaveType _saveType;
-        private string _infoBoxMessage = "C:/Users/none/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt"; //need to find out how to make this dynamic
+        private string message;
+        public string InfoBoxMessage {
+            get {
+                return (Path.Combine(Application.persistentDataPath,"data.txt"));
+            }
+        }
 
         private List<SaveData> _saveDatas;
         public List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
-        private string _filePath;
+        private static string _filePath;
         
 
         private void Awake() {
@@ -161,12 +165,15 @@ namespace Game {
             }
         }
 
-        private bool IsSavingToPlayerPrefs() {
-            return _saveType == SaveType.PlayerPrefs;
-        }
-
-        private bool IsSavingToFile() {
-            return _saveType == SaveType.File;
+        private bool SavingToPlayerPrefsOrToFile() {
+            if (_saveType == SaveType.PlayerPrefs) {
+                message = "PlayerPrefs";
+               
+            }
+            else {
+                message = InfoBoxMessage;
+            }
+            return true;
         }
     }
 }
