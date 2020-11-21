@@ -26,9 +26,10 @@ namespace Game {
             File
         }
 
+        private string FilePath => Path.Combine(Application.persistentDataPath, "data.txt");
         [SerializeField]
         [InfoBox("PlayerPrefs",nameof(IsSavetoPP))]
-        [InfoBox("C:/Users/PC/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", nameof(IsSavetoFile))]
+        [InfoBox("$FilePath" , nameof(IsSavetoFile))]
         private SaveType _saveType;
 
         [SerializeField]
@@ -49,7 +50,7 @@ namespace Game {
 
         private const string RECORDS_KEY = "record";
     
-        private string _filePath;
+       
 
         private static int _currentRecordPos;
 
@@ -57,7 +58,6 @@ namespace Game {
 
         private void Awake() {
             _savedDatas = new List<SaveData>();
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
             } else {
@@ -127,12 +127,12 @@ namespace Game {
         }
 
         private void LoadFromFile() {
-            if (!File.Exists(_filePath)) {
+            if (!File.Exists(FilePath)) {
                 return;
             }
 
             var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+            using (FileStream fileStream = File.Open(FilePath, FileMode.OpenOrCreate)) {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
                 _savedDatas = wrapper.savedDatas;
             }
@@ -142,7 +142,7 @@ namespace Game {
             var wrapper = GetWrapper();
 
             var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
+            using (FileStream fileStream = File.Open(FilePath, FileMode.OpenOrCreate)) {
                 binaryFormatter.Serialize(fileStream, wrapper);
             }
 
