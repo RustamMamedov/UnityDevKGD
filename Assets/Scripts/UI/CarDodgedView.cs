@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Game;
+﻿using Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +6,7 @@ namespace UI {
 
     public class CarDodgedView : MonoBehaviour {
 
-        [SerializeField] 
+        [SerializeField]
         private RawImage _carImage;
 
         [SerializeField]
@@ -17,7 +15,7 @@ namespace UI {
         private void OnEnable() {
             Init();
         }
-        
+
         public void Init() {
             _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
         }
