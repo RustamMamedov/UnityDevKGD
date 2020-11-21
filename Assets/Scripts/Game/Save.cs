@@ -29,7 +29,7 @@ namespace Game {
 
         [SerializeField]
         [InfoBox("PlayerPrefs", nameof(IsSaveTypePlayerPrefs))]
-        [InfoBox("C:/Users/PC/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", nameof(IsSaveTypeFile))]
+        [InfoBox("$FileName", nameof(IsSaveTypeFile))]
         private SaveType _saveType;
 
         [SerializeField] private EventListener _carCollisionEventListener;
@@ -47,6 +47,7 @@ namespace Game {
         private const string RECORDS_KEY = "record";
 
         private string _filePath;
+        private string FileName => Path.Combine(Application.persistentDataPath, "data.txt");
 
         private static int _currentRecordPos;
 
@@ -153,7 +154,7 @@ namespace Game {
         private bool IsSaveTypePlayerPrefs() {
             return _saveType == SaveType.PlayerPrefs;
         }
-        
+
         private bool IsSaveTypeFile() {
             return _saveType == SaveType.File;
         }
