@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 namespace UI {
-    public class EndGameShow : MonoBehaviour {
+    public class GameScreen : MonoBehaviour {
 
         [SerializeField]
         private EventListener _saveEventListener;
@@ -15,6 +15,9 @@ namespace UI {
         private void ShowLeaderboardScreen() {
             UIManager.Instance.ShowLeaderboardScreen();
         }
-        
+
+        private void OnDisable() {
+            RenderManager.Instance.ReleaseTextures();
+        }
     }
 }
