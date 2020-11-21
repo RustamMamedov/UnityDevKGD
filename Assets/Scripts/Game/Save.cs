@@ -29,7 +29,7 @@ namespace Game {
 
         [SerializeField]
         [InfoBox("PlayerPrefs", nameof(IsSaveToPP))]
-        [InfoBox("@Path.Combine(UnityEngine.Application.persistentDataPath, \"data.txt\")", nameof(IsSaveToFile))]
+        [InfoBox("$FilePath", nameof(IsSaveToFile))]
         private SaveType _saveType;
 
         [SerializeField]
@@ -53,6 +53,8 @@ namespace Game {
 
         private const string RECORDS_KEY = "record";
         private string _filePath;
+
+        private string FilePath => Path.Combine(Application.persistentDataPath, "data.txt");
 
         private void Awake() {
             _savedDatas = new List<SaveData>();
