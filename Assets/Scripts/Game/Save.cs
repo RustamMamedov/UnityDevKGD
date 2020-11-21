@@ -52,7 +52,7 @@ namespace Game {
 
         private string Info() {
             if (_saveType == SaveType.File)
-                return _filePath;
+                return Path.Combine(Application.persistentDataPath, "date.txt");
             else
                 return "PlayerPrefs";
         }
