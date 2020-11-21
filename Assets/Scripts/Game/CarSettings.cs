@@ -28,6 +28,15 @@ namespace Game {
         [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
+        [BoxGroup("Camera Settings")]
+        [ShowIf(nameof(isEnemyCar))]
+        public Vector3 cameraRenderPosition;
+
+        [BoxGroup("Camera Settings")]
+        [ShowIf(nameof(isEnemyCar))]
+        public Vector3 cameraRenderRotation;
+
+
         private bool VolidateDodgeScore() {
                 return dodgeScore>0;
         }

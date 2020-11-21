@@ -17,7 +17,7 @@ namespace UI {
         }
 
         public void Init() {
-            _carImage.texture = RenderManager.Instanse.Render(_carSettings.renderCarPrefab);
+            _carImage.texture = RenderManager.Instanse.Render(_carSettings);
          }
     }
 }
