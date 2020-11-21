@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Sirenix.OdinInspector;
 
 namespace Game {
@@ -6,8 +6,11 @@ namespace Game {
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
     public class CarSettings : ScriptableObject {
 
+        public bool isEnemyCar;
+
         [BoxGroup("Speed/Score")]
         [ValidateInput(nameof(VolidateDodgeScore))]
+        [ShowIf(nameof(isEnemyCar))]
         public int dodgeScore;
 
         [BoxGroup("Speed", false)]
