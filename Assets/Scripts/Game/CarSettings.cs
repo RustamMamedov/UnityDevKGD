@@ -6,6 +6,9 @@ namespace Game {
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings", order = 0)]
     public class CarSettings : ScriptableObject {
 
+        [FoldoutGroup("Info", false)] 
+        public string carName;
+        
         [FoldoutGroup("Speed", false)]
         public float acceleration;
         [FoldoutGroup("Speed")]
