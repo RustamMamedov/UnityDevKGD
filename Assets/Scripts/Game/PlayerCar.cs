@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Events;
 using System.Collections;
-using TMPro;
+using Audio;
 
 namespace Game {
     public class PlayerCar : Car {
@@ -19,6 +19,9 @@ namespace Game {
         private bool _inDodge;
 
         [SerializeField]
+        private AudioSoursePlayer _collisionPlayer;
+
+        [SerializeField]
         private Color _gismozColor = Color.white;
 
         protected override void SubscribeToEvents() {
@@ -28,6 +31,11 @@ namespace Game {
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+        }
+
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            _collisionPlayer.Play();
         }
 
         private void OnPlayerTouch() {

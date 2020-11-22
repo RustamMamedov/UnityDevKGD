@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Audio;
 
 namespace Game {
+
     public class EmenyCar : Car {
         [SerializeField]
         private EventDispatcher _carCollisionDispatcher;
@@ -22,6 +24,9 @@ namespace Game {
 
         [SerializeField]
         private EventDispatcher _carDodge;
+
+        [SerializeField]
+        private AudioSoursePlayer _dodgePlayer;
 
 
         private void OnTriggerEnter(Collider other) {
@@ -45,6 +50,7 @@ namespace Game {
             if (_playerCarPositionZ.value-transform.position.z>_sizePlayerCar.value+_sizeBoxCollider.size.z*.5f) {
                     _updateEventListener.OnEventHappened -= IsDodged;
                     _score.value += _carSettings.dodgeScore;
+                    _dodgePlayer.Play();
                     _carDodge.Dispatch();
                 }
         }

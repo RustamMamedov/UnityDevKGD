@@ -51,6 +51,7 @@ namespace UI {
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
+            _musicManager.PlayMenuMusic();
             ShowMenuScreen();
         }
 
@@ -62,6 +63,7 @@ namespace UI {
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Game"));
+            _musicManager.PlayGameMusic();
             ShowGameScreen();
         }
 
