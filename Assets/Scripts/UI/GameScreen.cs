@@ -9,5 +9,4 @@ namespace UI {
             RenderManager.Instance.ReleaseTextures();
         }
     }
-
 }

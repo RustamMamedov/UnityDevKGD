@@ -6,6 +6,8 @@ namespace Game {
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
     public class CarSettings : ScriptableObject {
 
+        public bool isEnemyCar;
+
         //[Header("Speed")]
         [FoldoutGroup("Speed", false)] //закрыт по умолчанию
         public float maxSpeed;
@@ -16,10 +18,12 @@ namespace Game {
 
         [BoxGroup("Speed/Score")] //вложить список в список
         [ValidateInput(nameof(ValidateDodgeScore))]
+        [ShowIf(nameof(isEnemyCar))]
         public int dodgeScore;
-        [BoxGroup("Speed/Score")]
-        public int dodgeScore2;
+        //[BoxGroup("Speed/Score")]
+        //public int dodgeScore2;
 
+        [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
         [Range(1f,5f)]
