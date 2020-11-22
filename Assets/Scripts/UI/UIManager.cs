@@ -2,7 +2,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Audio; 
+
 namespace UI {
+
     public class UIManager : MonoBehaviour {
 
         public static UIManager Instance;
@@ -18,6 +21,9 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderBoardScreen;
+
+        [SerializeField]
+        private MusicManager _musicMAnager;
 
         private void Awake() {
             if (Instance) {
@@ -70,6 +76,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicMAnager.OnMenuPlayMusic();
         }
 
         public void ShowGameScreen() {
