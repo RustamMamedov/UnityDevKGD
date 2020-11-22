@@ -4,8 +4,9 @@ using Sirenix.OdinInspector;
 namespace Game {
 
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
-
     public class CarSettings : ScriptableObject {
+
+        public bool isEnemyCar;
 
         [FoldoutGroup("Speed", false)]
         public float maxSpeed;
@@ -16,14 +17,13 @@ namespace Game {
 
         [BoxGroup("Speed/Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
+        [ShowIf(nameof(isEnemyCar))]
         public int dodgeScore;
-
-        [BoxGroup("Speed/Score")]
-        public int dodgeScore2;
 
         [Range(1f, 5f)]
         public float lightDistance;
 
+        [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
         private bool ValidateDodgeScore(int score) {
