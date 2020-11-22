@@ -15,11 +15,15 @@ namespace UI {
         private CarSettings _carSettings;
 
         private void Init() {
-            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
+             _carImage.texture = RenderManager.Instance.Render(_carSettings);
         }
 
-        private void OnEnable() {
+        public void OnInit() {
             Init();
         }
+
+        //private void OnEnable() {
+        //    Init();
+        //}
     }
 }
