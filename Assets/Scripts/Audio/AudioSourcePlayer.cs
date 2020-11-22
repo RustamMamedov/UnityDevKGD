@@ -8,15 +8,20 @@ namespace Audio {
         [SerializeField]
         private AudioSource _audioSource;
 
+        public bool IsPlaying => _audioSource.isPlaying;
+
         [Button]
         public void Play() {
             _audioSource.Play();
-            Debug.Log("play");
         }
 
         [Button]
         public void Stop() {
             _audioSource.Stop();
+        }
+
+        public void SetVolume(float value) {
+            _audioSource.volume = value;
         }
     }
 }

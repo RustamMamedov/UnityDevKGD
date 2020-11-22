@@ -39,11 +39,13 @@ namespace UI {
         }
 
         public void LoadMenu() {
+            _musicManager.PlayMenuMusic();
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
         public void LoadGameplay() {
+            _musicManager.PlayGameMusic();
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
