@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game {
     
+    [RequireComponent(typeof(Light))]
     public class CarLight : MonoBehaviour {
 
         [SerializeField] 
@@ -9,6 +11,13 @@ namespace Game {
 
         [SerializeField] 
         private CarSettings _carSettings;
+
+        private Light _light;
+
+        private void Awake() {
+            _light = GetComponent<Light>();
+            _light.range = _carSettings.lightDistance * 8;
+        }
 
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmoColor;
