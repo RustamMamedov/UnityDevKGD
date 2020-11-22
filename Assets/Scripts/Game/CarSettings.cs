@@ -8,18 +8,24 @@ namespace Game {
         [BoxGroup("Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
-        [BoxGroup("Score")]
-        public int dodgeScore2;
+
         [FoldoutGroup("Speed")]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
         [InfoBox("Speed is beeing increased by acceleration every frame")]
         public float acceleration;
+
         [FoldoutGroup("Distance")]
         [Range(1f,5f)]
         public float lightDistance;
 
+        [FoldoutGroup("RenderParameters")]
         public GameObject renderCarPrefab;
+        [FoldoutGroup("RenderParameters")]
+        public Vector3 renderCameraPosition;
+        [FoldoutGroup("RenderParameters")]
+        public Quaternion renderCameraRotation;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
