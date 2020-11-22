@@ -48,9 +48,10 @@ namespace Game {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
-        private void OnCarCollision() {
+        protected virtual void OnCarCollision() {
             UnsubscribeToEvents();
         }
+
         private void UpdateBehaviour() {
             Move();
         }

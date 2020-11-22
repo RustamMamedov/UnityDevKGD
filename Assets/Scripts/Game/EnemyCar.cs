@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Audio;
 
 namespace Game {
     public class EnemyCar : Car {
@@ -24,11 +25,15 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _carPositionZ;
 
+        [SerializeField]
+        private AudioSourcePlayer _audioSourcePlayer;
+
         private void IsDodge() {
             if (_carPositionZ.value - transform.position.z > _playerSize.value + _boxCollider.size.z / 2) {
                 _carDodge.Dispatch();
                 _score.value += _carSettings.dodgeScore;
                 _updateEventListener.OnEventHappened -= IsDodge;
+                _audioSourcePlayer.Play();
             }
         }
 
