@@ -1,9 +1,6 @@
-using Game;
-using UnityEngine;
 using UnityEditor;
-using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities.Editor;
+using Game;
 
 namespace GameEditor {
 
@@ -18,6 +15,7 @@ namespace GameEditor {
             var tree = new OdinMenuTree();
             tree.Selection.SupportsMultiSelect = false;
             tree.AddAllAssetsAtPath("Car assets", "Assets/Resourses/Cars assets", typeof(CarSettings));
+            tree.AddAllAssetsAtPath("Score", "Assets/Resourses/ScriptableValues", typeof(ScriptableIntValue));    
             return tree;
         }
     }
