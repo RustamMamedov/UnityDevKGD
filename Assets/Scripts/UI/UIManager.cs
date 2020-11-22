@@ -90,6 +90,7 @@ namespace UI {
         }
 
         public void HideAllScreens() {
+            _musicMAnager.OnStopedAllMusic();
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderBoardScreen.SetActive(false);

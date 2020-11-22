@@ -13,7 +13,7 @@ namespace Audio {
             _menuAudioSourecePlayer.Play();
         }
 
-        public void OnMenuStopMusic() {
+        public void OnStopedAllMusic() {
             _menuAudioSourecePlayer.Stop();
         }
     }
