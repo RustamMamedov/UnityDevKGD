@@ -19,7 +19,7 @@ namespace UI {
             Instance = this;
         }
 
-        public RenderTexture Render(GameObject prefab) {
+        public RenderTexture Render(GameObject prefab, Vector3 cameraPosition, Quaternion cameraRotation) {
             var carInstance = Instantiate(prefab, _carRootTransform);
             
             _texture = RenderTexture.GetTemporary(64, 64, 16);
@@ -27,6 +27,8 @@ namespace UI {
             _texture.Create();
 
             _renderCamera.targetTexture = _texture;
+            _renderCamera.transform.position = cameraPosition;
+            _renderCamera.transform.rotation = cameraRotation;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
 
