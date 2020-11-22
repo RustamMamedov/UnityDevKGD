@@ -27,7 +27,7 @@ namespace Game {
 
 
         [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
-        [InfoBox("C:/Users/shpul/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
+        [InfoBox("$_path", "isSaveTypeFile")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -51,6 +51,7 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+        private string _path;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
@@ -157,6 +158,7 @@ namespace Game {
         }
 
         private bool isSaveTypeFile() {
+            _path = Path.Combine(Application.persistentDataPath, "data.txt");
             return _saveType == SaveType.File;
         }
     }
