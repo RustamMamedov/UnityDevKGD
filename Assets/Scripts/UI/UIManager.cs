@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Audio;
 using Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,14 @@ namespace UI {
 
         [SerializeField] 
         private EventListener _dataSavedListener;
+
+        [SerializeField] 
+        private MusicManager _musicManager;
+
+        private void Start() {
+            HideAllScreens();
+            ShowMenuScreen();
+        }
 
         private void Awake() {
             if (Instance != null) {
@@ -82,6 +91,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
