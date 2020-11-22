@@ -12,9 +12,17 @@ namespace Game {
         [SerializeField]
         private CarSettings _carSettings;
 
+        [SerializeField]
+        private Light _carLight;
+
+        private void Awake() {
+            _carLight.range = _carSettings.carLightLength;
+        }
         private void OnDrawGizmosSelected() {
-            //Debug.Log(transform.position);
-            Gizmos.DrawFrustum(transform.position, 45f, _carSettings.carLightLength, 0.5f, 1f);
+            var tempMatrix = Gizmos.matrix;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 45f, _carSettings.carLightLength, 1f, 1f);
+            Gizmos.matrix = tempMatrix;
         }
     }
 
