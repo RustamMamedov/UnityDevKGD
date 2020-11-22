@@ -22,6 +22,11 @@ namespace UI {
         private int _currentScore = 0;
         private bool _isScoreChanging = false;
 
+        private void OnEnable() {
+            _currentScore = _currentScoreAsset.value;
+            _scoreLabel.text = $"{_currentScore}";
+        }
+
         private void Awake() {
             _eventListener.OnEventHappened += UpdateBehaviour;
         }

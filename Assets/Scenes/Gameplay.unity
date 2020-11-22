@@ -225,6 +225,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2499cdccffdf34baad08702528ffef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &369412177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 369412178}
+  - component: {fileID: 369412179}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: PlayerDodge
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &369412178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369412177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1608640852}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &369412179
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369412177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.152138, y: 4.6168365, z: 4.632705}
+  m_Center: {x: -0.10180855, y: 1.8084183, z: 0.5308625}
 --- !u!114 &847393881 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1379223640563581742, guid: 8952388f882d347438563c4e45e6ce50,
