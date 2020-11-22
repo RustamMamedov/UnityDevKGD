@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Audio;
 
 namespace UI {
 
@@ -18,6 +19,9 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
+        private MusicManager _musicManager;
+
+        [SerializeField]
         private Fader _fader;
 
         private void Awake() {
@@ -27,6 +31,10 @@ namespace UI {
             }
             instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start() {
+            ShowMenuScreen();
         }
 
         public void LoadMenu() {
@@ -60,7 +68,8 @@ namespace UI {
 
         private void ShowMenuScreen() {
             HideAllScreens();
-            _menuScreen.SetActive(true); 
+            _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         private void ShowGameScreen() {
