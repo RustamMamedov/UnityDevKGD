@@ -15,9 +15,10 @@ namespace Game {
                 return;
             }
 
-            Gizmos.color = _gizmosColor;
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
-            Gizmos.DrawFrustum(Vector3.zero, 30f, 0f, _carSettings.headlightRange, 1f);
+            var tempMatrix = Gizmos.matrix;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawFrustum(Vector3.zero, 45f, 0f, _carSettings.headlightRange, 1f);
+            Gizmos.matrix = tempMatrix;
         }
     }
 }
