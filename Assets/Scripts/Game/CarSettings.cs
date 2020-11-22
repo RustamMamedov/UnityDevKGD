@@ -24,7 +24,16 @@ namespace Game {
         public float lightDistance;
 
         [ShowIf(nameof(isEnemyCar))]
+        [BoxGroup("Render")]
         public GameObject renderCarPrefab;
+
+        [ShowIf(nameof(isEnemyCar))]
+        [BoxGroup("Render/CameraSettings")]
+        public Vector3 cameraPosition;
+
+        [ShowIf(nameof(isEnemyCar))]
+        [BoxGroup("Render/CameraSettings")]
+        public Vector3 cameraRotation;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
