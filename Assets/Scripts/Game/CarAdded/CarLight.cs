@@ -11,7 +11,7 @@ namespace Game {
 
         private void OnDrawGizmos() {
             Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(transform.forward, 30f, _settings.lenghLightCar + 1, 1f, 1f);
+            Gizmos.DrawFrustum(new Vector3(0f,0f,-1f), 30f, _settings.lenghLightCar, 1f, 1f);
         }
 
     }
