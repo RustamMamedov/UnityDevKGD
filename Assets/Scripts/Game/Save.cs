@@ -40,8 +40,7 @@ namespace Game {
         private ScriptableIntValue _maxSaves;
 
         [SerializeField]
-        [InfoBox("PlayerPrefs", "IsUsingPlayerPrefs")]
-        [InfoBox("/Users/ASUS/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "IsUsingFile")]
+        [InfoBox("$GetSaveType")]
         private SaveType _saveType;
 
         private static List<SaveData> _savedDatas;
@@ -158,12 +157,12 @@ namespace Game {
             };
         }
 
-        private bool IsUsingPlayerPrefs() {
-            return (_saveType == SaveType.PlayerPrefs);
-        }
-
-        private bool IsUsingFile() {
-            return (_saveType == SaveType.File);
+        private string GetSaveType() {
+            if (_saveType == SaveType.PlayerPrefs) {
+                return "PlayerPrefs";
+            } else {
+                return Application.persistentDataPath + "/data.txt";
+            }
         }
     }
 }
