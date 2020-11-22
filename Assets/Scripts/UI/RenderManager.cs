@@ -5,7 +5,7 @@ namespace UI {
     
     public class RenderManager : MonoBehaviour {
     
-        public static RenderManager Instance;
+        public static RenderManager Instance { get; private set; }
 
         [SerializeField]
         private Camera _renderCamera;
@@ -16,7 +16,10 @@ namespace UI {
         private Transform _carRootTransform;
 
         private void Awake() {
-            Instance = this;
+            if (Instance == null) {
+                Instance = this;
+            }
+
         }
 
         public RenderTexture Render(GameObject prefab, Vector3 cameraPosition, Quaternion cameraRotation) {
