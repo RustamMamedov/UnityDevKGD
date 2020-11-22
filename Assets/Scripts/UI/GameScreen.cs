@@ -4,7 +4,7 @@ using UnityEngine;
 using Events;
 
 namespace UI {
-    public class LeaderboardShow : MonoBehaviour {
+    public class GameScreen : MonoBehaviour {
 
 
         [SerializeField] private EventListener _collisionEventListener;
@@ -15,6 +15,10 @@ namespace UI {
 
         private void ShowLeaderboardScreen() {
             UIManager.Instance.ShowLeaderboardScreen();
+        }
+
+        private void OnDisable() {
+            RenderManager.Instance.ReleaseTexture();
         }
 
     }
