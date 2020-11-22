@@ -28,12 +28,16 @@ namespace Game {
         [SerializeField]
         private AudioSourcePlayer _audioSourcePlayer;
 
+        [SerializeField]
+        private ScriptableIntValue _counter;
+
         private void IsDodge() {
             if (_carPositionZ.value - transform.position.z > _playerSize.value + _boxCollider.size.z / 2) {
                 _carDodge.Dispatch();
                 _score.value += _carSettings.dodgeScore;
                 _updateEventListener.OnEventHappened -= IsDodge;
                 _audioSourcePlayer.Play();
+                _counter.value ++;
             }
         }
 
