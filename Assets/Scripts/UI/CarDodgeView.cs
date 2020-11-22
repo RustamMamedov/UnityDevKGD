@@ -7,13 +7,24 @@ namespace UI {
     public class CarDodgeView : MonoBehaviour {
         [SerializeField]
         private RawImage _carImage;
+
         [SerializeField]
-        private CarSettings _carSettings;
-        private void OnEnable() {
-            Init();
+        private Text _scoreLabel;
+
+        private int score = 0;
+        
+        public void Init(GameObject renderCarPrefab, Vector3 renderCameraPosition, Quaternion renderCameraRotation) {
+           _carImage.texture = RenderManager.Instance.CarRender(renderCarPrefab,renderCameraPosition, renderCameraRotation); 
         }
-        public void Init() {
-            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab); 
+
+        public void DodgeCounter() {
+            score++;
+            _scoreLabel.text = $"{score}";
+        }
+
+        private void OnDisable() {
+            score = 0;
+            _scoreLabel.text = $"{score}";
         }
     }
 }
