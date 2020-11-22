@@ -19,6 +19,8 @@ namespace Game {
         [BoxGroup("Lights")] 
         [Range(1f, 5f)] 
         public float lightDistance;
+
+        public GameObject renderCarPrefab;
         
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
