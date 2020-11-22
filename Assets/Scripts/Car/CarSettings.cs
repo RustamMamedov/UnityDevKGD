@@ -24,8 +24,12 @@ namespace Game{
         [BoxGroup("LenghLightCar")]
         public float lenghLightCar;
 
-        [ShowIf(nameof(isEnemyCar))]
+        [ShowIfGroup(nameof(isEnemyCar))]
+        [BoxGroup(nameof(isEnemyCar)+ "/RenderSettings")]
         public GameObject renderCarPrefab;
+
+        [BoxGroup(nameof(isEnemyCar) + "/RenderSettings/CameraRender")]
+        public Vector3 positionCamera, rotationCamera;
 
         private static float MyCustomPositionLightCar(float value) {
             return EditorGUILayout.Slider(value, 1f, 5f); 
