@@ -97,6 +97,7 @@ namespace UI {
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
+            _musicManager.PlayGameMusic(); 
         }
 
         public void ShowLeaderboardScreen() {

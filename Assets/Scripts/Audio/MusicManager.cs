@@ -6,10 +6,20 @@ namespace Audio {
         
         [SerializeField]
         private AudioSourcePlayer _menuMusicPlayer;
+        
+        [SerializeField]
+        private AudioSourcePlayer _gameMusicPlayer;
 
         public void PlayMenuMusic() {
-            _menuMusicPlayer.Play();
+            _gameMusicPlayer.FadeStop();
+            _menuMusicPlayer.FadePlay();
         }
+
+        public void PlayGameMusic() {
+            _menuMusicPlayer.FadeStop();
+            _gameMusicPlayer.FadePlay();
+        }
+
     }
 }
 
