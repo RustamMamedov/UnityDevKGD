@@ -9,15 +9,8 @@ namespace UI {
         [SerializeField]
         private RawImage _carImage;
 
-        [SerializeField]
-        private CarSettings _carSettings;
-
-        private void OnEnable() {
-            Init();
-        }
-
-        public void Init() {
-            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
+        public void Init(CarSettings settings) {
+            _carImage.texture = RenderManager.Instance.Render(settings.renderCarPrefab, settings.renderCameraPos, settings.renderCameraRot);
         }
     }
 }
