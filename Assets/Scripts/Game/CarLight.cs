@@ -30,11 +30,4 @@ public class CarLight : MonoBehaviour {
     private void OnEnable() {
 
     }
-
-    private void OnDrawGizmos() {
-        Gizmos.color = _color;
-
-        var difference = transform.position.z - _car.transform.position.z;
-        Gizmos.DrawFrustum(transform.position, _fov, _car.CarSettings.lightLength + difference, _minRange, _aspect);
-    }
 }

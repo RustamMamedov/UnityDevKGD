@@ -83,15 +83,5 @@ namespace Game {
 
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
-
-        private void OnDrawGizmosSelected() {
-            Gizmos.color = _gizmosColor;
-
-            Gizmos.DrawWireSphere(transform.position, 5f);
-            Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
-            var mesh = GetComponent<MeshFilter>().sharedMesh;
-            Gizmos.DrawMesh(mesh, 0, transform.position + transform.forward * 5f);
-
-        }
     }
 }
