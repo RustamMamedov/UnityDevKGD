@@ -24,6 +24,7 @@ namespace Game {
         }
 
         private void OnEnable() {
+            _roadPrefab.SetActive(true);
             _roadCollisionsEventListeners.OnEventHappened += HandleRoadCollision;
         }
 
