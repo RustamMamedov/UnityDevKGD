@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game {
+namespace Game { 
+
     public class CarLight : MonoBehaviour {
 
         [SerializeField]
-        private Color _colorLight;
-        [SerializeField]
         private Car _car;
+        [SerializeField]
+        private Light _light;
 
-        private void OnDrawGizmosSelected() {
-            Gizmos.color = _colorLight;
-            Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 30f, _car.CarSettings.carLightLength, 1f, 1f);
+        private void OnDrawGizmos() {
+            //Gizmos.color = _colorLight;
+            //Gizmos.matrix = transform.localToWorldMatrix;
+            //Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 30f, _car.CarSettings.carLightLength, 1f, 1f);
+            _light.range = _car.CarSettings.carLightLength * 10f;
         }
     }
 }
