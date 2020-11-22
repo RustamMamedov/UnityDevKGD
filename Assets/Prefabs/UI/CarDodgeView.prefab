@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 3137431401093798629}
   - component: {fileID: 8953597682427026198}
   - component: {fileID: 7952584886702532734}
-  - component: {fileID: 7720223071408213979}
+  - component: {fileID: 474217433640857365}
   m_Layer: 5
   m_Name: CarDodgeView
   m_TagString: Untagged
@@ -162,20 +162,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carImage: {fileID: 3955923154561568362}
+  _carCounterText: {fileID: 8650294416873816260}
   _carSettings: {fileID: 11400000, guid: 7989b4834d5a28546accb0f78ea9f2fe, type: 2}
---- !u!114 &7720223071408213979
+  _carDodgedName: {fileID: 11400000, guid: fd68e5efe13c5ca45bc2e50c8b061ac1, type: 2}
+  _carDodgedEventListener: {fileID: 474217433640857365}
+--- !u!114 &474217433640857365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6255879748606828082}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
+  _someEvent: {fileID: 11400000, guid: 7c127b8fac5c84b41882b97ff9121728, type: 2}
 --- !u!1 &6312353548979357447
 GameObject:
   m_ObjectHideFlags: 0
