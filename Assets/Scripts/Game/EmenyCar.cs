@@ -28,6 +28,9 @@ namespace Game {
         [SerializeField]
         private AudioSoursePlayer _dodgePlayer;
 
+        [SerializeField]
+        private ScriptableIntValue _typeScore;
+
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
@@ -50,6 +53,7 @@ namespace Game {
             if (_playerCarPositionZ.value-transform.position.z>_sizePlayerCar.value+_sizeBoxCollider.size.z*.5f) {
                     _updateEventListener.OnEventHappened -= IsDodged;
                     _score.value += _carSettings.dodgeScore;
+                    _typeScore.value++;
                     _dodgePlayer.Play();
                     _carDodge.Dispatch();
                 }

@@ -20,21 +20,18 @@ namespace UI {
             Instanse = this;
         }
 
-    
-
-        
         public RenderTexture Render(CarSettings carSettings) {
             _renderCamera.enabled = true;
             var carInstance = Instantiate(carSettings.renderCarPrefab, _rootTransform);
             _texture = RenderTexture.GetTemporary(64, 64, 16);
             _texture.antiAliasing = 8;
             _texture.Create();
-            //_renderCamera.transform.position = carSettings.cameraRenderPosition;
-            //_renderCamera.transform.rotation = Quaternion.Euler(carSettings.cameraRenderRotation);
+            _renderCamera.transform.position = _rootTransform.position+carSettings.cameraRenderPosition;
+            _renderCamera.transform.rotation = Quaternion.Euler(carSettings.cameraRenderRotation);
             _renderCamera.targetTexture = _texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
-            //Destroy(carInstance);
+            Destroy(carInstance);
             _renderCamera.enabled = false;
             return _texture;
         }

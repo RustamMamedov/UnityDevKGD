@@ -25,14 +25,15 @@ namespace Game {
         [Range(1f, 5f)]//Один из вариантов
         public float carLightLength;
 
+        [BoxGroup("Render")]
         [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
-        [BoxGroup("Camera Settings")]
+        [BoxGroup("Render/Camera Settings")]
         [ShowIf(nameof(isEnemyCar))]
         public Vector3 cameraRenderPosition;
 
-        [BoxGroup("Camera Settings")]
+        [BoxGroup("Render/Camera Settings")]
         [ShowIf(nameof(isEnemyCar))]
         public Vector3 cameraRenderRotation;
 

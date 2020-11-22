@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 1643992566634540394}
   - component: {fileID: 3885522471831108975}
   - component: {fileID: 1764278421628537304}
+  - component: {fileID: 7511810748055014185}
   m_Layer: 5
   m_Name: CarDodgedView1
   m_TagString: Untagged
@@ -176,6 +177,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carImage: {fileID: 3586123419971897959}
   _carSettings: {fileID: 11400000, guid: 9e69b158063a6430b9aef314e0c9ce2e, type: 2}
+  _update: {fileID: 7511810748055014185}
+  _currentScore: {fileID: 3055412494238636170}
+  _score: {fileID: 0}
+--- !u!114 &7511810748055014185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312372333917126014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
 --- !u!1 &5914633943051075388
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,6 @@ namespace Audio {
             while (timer < time) {
                 timer += Time.deltaTime;
                 _audioSource.volume = Mathf.Lerp(_audioSource.volume, to, timer / time);
-                Debug.Log(_audioSource.volume);
                 yield return null;
             }
             if (to == 0f) {
