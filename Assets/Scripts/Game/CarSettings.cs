@@ -20,6 +20,8 @@ namespace Game {
         [BoxGroup("Speed/Score")]
         public int dodgeScore2;
 
+        public GameObject renderCarPrefab;
+
         [Range(1f,5f)]
         public float lightlenght;
 
