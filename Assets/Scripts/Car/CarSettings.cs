@@ -9,13 +9,22 @@ namespace Game{
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
     public class CarSettings : ScriptableObject {
 
+        public bool isEnemyCar;
+
+        [ShowIf(nameof(isEnemyCar))]
         public int dodgedScore;
+
+        [FoldoutGroup("Speed",true)]
         public float maxSpeed;
+        
+        [FoldoutGroup("Speed")]
         public float acceleration;
 
-        [CustomValueDrawer("MyCustomPositionLightCar")]
+        [CustomValueDrawer(nameof(MyCustomPositionLightCar))]
+        [BoxGroup("LenghLightCar")]
         public float lenghLightCar;
 
+        [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
         private static float MyCustomPositionLightCar(float value) {
