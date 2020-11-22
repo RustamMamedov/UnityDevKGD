@@ -12,8 +12,11 @@ namespace Game{
         public int dodgedScore;
         public float maxSpeed;
         public float acceleration;
+
         [CustomValueDrawer("MyCustomPositionLightCar")]
         public float lenghLightCar;
+
+        public GameObject renderCarPrefab;
 
         private static float MyCustomPositionLightCar(float value) {
             return EditorGUILayout.Slider(value, 1f, 5f); 
