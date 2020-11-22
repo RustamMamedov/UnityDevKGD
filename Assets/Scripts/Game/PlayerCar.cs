@@ -18,9 +18,16 @@ namespace Game {
         [SerializeField] private ScriptableFloatValue _playerPositionZ;
         [SerializeField] private Color _gizmosColor = Color.white;
 
+        [SerializeField] private Light _spotLightLeft;
+        [SerializeField] private Light _spotLightRight;
+
         private int _currentRoad;
         private bool _inDodge;
 
+        private void Awake() {
+            _spotLightLeft.range = CarSettings.lightDistance;
+            _spotLightRight.range = CarSettings.lightDistance;
+        }
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
@@ -70,11 +77,11 @@ namespace Game {
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
 
-            Gizmos.DrawWireSphere(transform.position, 5f);
-            Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
-            Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, 0.5f);
-            var mesh = GetComponent<MeshFilter>().sharedMesh;
-            Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5, Quaternion.identity, Vector3.one);
+            // Gizmos.DrawWireSphere(transform.position, 5f);
+            // Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "car_gizmo");
+            // Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, 0.5f);
+            // var mesh = GetComponent<MeshFilter>().sharedMesh;
+            // Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5, Quaternion.identity, Vector3.one);
         }
     }
 }
