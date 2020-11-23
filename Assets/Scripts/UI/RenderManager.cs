@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
 
@@ -15,6 +16,7 @@ namespace UI {
         private Transform _rootTransform;
 
         private RenderTexture _texture;
+
         private void Awake() {
             Instance = this;
         }
@@ -29,6 +31,10 @@ namespace UI {
             _renderCamera.targetTexture = null;
             Destroy(carInstance);
             return _texture;
+        }
+        public IEnumerator RenderCoroutine(GameObject prefab, RawImage carImage) {
+            carImage.texture= Render(prefab);
+            yield return null;
         }
         public void ReleaseTextures() {
             RenderTexture.ReleaseTemporary(_texture);

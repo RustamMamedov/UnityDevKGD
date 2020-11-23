@@ -31,6 +31,8 @@ namespace Game {
 
         private int _currentRoad;
         private bool _inDodge;
+
+        
         protected override void SubscribeToEvents() {
             _currentScore.value = 0;
             base.SubscribeToEvents();

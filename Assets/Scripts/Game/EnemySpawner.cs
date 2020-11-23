@@ -84,6 +84,9 @@ namespace Game {
             _currentTimer = 0f;
             SpawnCar();
         }
+        private void Dodge(CarSettings carSettings) {
+                carSettings.dodgeScoreValue.value++;
+        }
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
@@ -96,12 +99,15 @@ namespace Game {
         private void HandleCarsBehindPlayer() {
             for (int i = _cars.Count - 1; i > -1; i--) {
                 if ((_playerPositionZ.value - _cars[i].transform.position.z >= _playerLength.value / 2 + _enemiesLength[_enemiesSettings[i]].value / 2) && (_dodged)) {
+                    Dodge(_enemiesScores[_enemiesSettings[i]]);
+                    Debug.Log($"{i}");
                     _currentScore.value += _enemiesScores[_enemiesSettings[i]].dodgeScore;
                     _dodged = false;
                 }
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     Destroy(_cars[i]);
                     _cars.RemoveAt(i);
+                    _enemiesSettings.RemoveAt(i);
                 }
             }
         }

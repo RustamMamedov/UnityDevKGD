@@ -21,10 +21,17 @@ namespace Game {
 
         [Range(1f, 5f)]
         public float lightLength;
-
+        
+        [BoxGroup("Render")]
         [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
+        [BoxGroup("Render")]
+        [ShowIf(nameof(isEnemyCar))]
+        public Transform renderCameraTransform;
+
+        [ShowIf(nameof(isEnemyCar))]
+        public ScriptableIntValue dodgeScoreValue;
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
