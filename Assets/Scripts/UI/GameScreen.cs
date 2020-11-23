@@ -1,9 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using Game;
 using UnityEngine.UI;
+using Audio;
 
 namespace UI {
     public class GameScreen : MonoBehaviour {
@@ -21,6 +22,9 @@ namespace UI {
         private List<CarSettings> _carSettings;
 
         [SerializeField] private EventListener _carDodgedListerer;
+
+        [SerializeField]
+        private MusicManager _musicManager;
         private void OnEnable() {
             StartCoroutine(CarRenderCoroutine());
             _collisionEventListener.OnEventHappened += ShowLeaderboardScreen;
@@ -34,6 +38,7 @@ namespace UI {
                 _carDodgedViewText[i].text = "0";
 
             }
+            StartCoroutine(_musicManager.gameplayMusicPlayer.StopGradually(0.1f));
             UIManager.Instance.ShowLeaderboardScreen();
         }
 
