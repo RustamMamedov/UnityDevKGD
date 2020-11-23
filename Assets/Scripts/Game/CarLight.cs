@@ -15,8 +15,10 @@ namespace Game {
         private void OnDrawGizmosSelected() {
 
             Gizmos.color = _gizmosColor;
+            var tempMatrix = Gizmos.matrix;
             Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(Vector3.zero, 15f, _carSettings.carLight, .1f, 0.5f);
+            Gizmos.DrawFrustum(Vector3.zero, 45f, 15f, 3f, 1f);
+            Gizmos.matrix = tempMatrix;
         }
     }
 }
