@@ -45,13 +45,13 @@ namespace Game {
         private void SetupScore(CarSettings carSettings) {
             switch (carSettings.carType) {
                 case CarSettings.CarType.FamilyCar:
-                    _familyCarDodgeView.SetScore(_familyCarDodgeView.currentScore + carSettings.dodgeScore);
+                    _familyCarDodgeView.SetScore(_familyCarDodgeView.currentScore + 1);
                     break;
                 case CarSettings.CarType.SUV:
-                    _suvDodgeView.SetScore(_suvDodgeView.currentScore + carSettings.dodgeScore);
+                    _suvDodgeView.SetScore(_suvDodgeView.currentScore + 1);
                     break;
                 case CarSettings.CarType.Truck:
-                    _truckDodgeView.SetScore(_truckDodgeView.currentScore + carSettings.dodgeScore);
+                    _truckDodgeView.SetScore(_truckDodgeView.currentScore + 1);
                     break;
             }
         }
