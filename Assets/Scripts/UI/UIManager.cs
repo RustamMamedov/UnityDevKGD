@@ -70,16 +70,16 @@ namespace UI {
 
         public void ShowMenuScreen() {
             HideAllScreens();
-            _menuScreen.SetActive(true);
             _musicManager.StopGameMusic();
             _musicManager.PlayMenuMusic();
+            _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
-            _gameScreen.SetActive(true);
             _musicManager.StopMenuMusic();
             _musicManager.PlayGameMusic();
+            _gameScreen.SetActive(true);
         }
 
         public void ShowLeaderboardScreen() {
