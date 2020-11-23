@@ -8,11 +8,6 @@ namespace Game {
 
         // Fields.
 
-        // Minimal distance along Z axis between this and player cars
-        // needed for dodge to happen.
-        [SerializeField]
-        private float _dodgeDistance;
-
         [SerializeField]
         private EventDispatcher _carCollisionDispatcher;
 
@@ -42,7 +37,7 @@ namespace Game {
 
         protected override void Move() {
             base.Move();
-            if (!_dodged && transform.position.z < _playerPositionZValue.value - _dodgeDistance) {
+            if (!_dodged && transform.position.z < _playerPositionZValue.value - CarSettings.dodgeDistance) {
                 _dodged = true;
                 _dodgeScoreValue.value = CarSettings.dodgeScore;
                 _carDodgedDispatcher.Dispatch();

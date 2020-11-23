@@ -7,8 +7,12 @@ namespace Game {
     public class CarSettings : ScriptableObject {
 
         [BoxGroup("Score settings")]
-        [ValidateInput(nameof(ValidateScore))]
+        [ValidateInput(nameof(ValidateNonNegative))]
         public int dodgeScore;
+
+        [BoxGroup("Score settings")]
+        [ValidateInput(nameof(ValidateNonNegative))]
+        public float dodgeDistance;
 
         [FoldoutGroup("Speed settings")]
         public float maxSpeed;
@@ -27,8 +31,8 @@ namespace Game {
         [PropertyRange(1f, 5f)]
         public float carLightDistance;
 
-        private bool ValidateScore(int score) {
-            return score >= 0;
+        private bool ValidateNonNegative(double value) {
+            return value >= 0;
         }
 
 
