@@ -81,6 +81,9 @@ namespace Game {
 
             InsertNewRecord(NewRecord);
             CheckTail();
+            for (int i = 0; i < _savedDatas.Count; i++) {
+                Debug.Log($" record: {i + 1} {_savedDatas[i].date} {_savedDatas[i].score} ");
+            }
 
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveToPlayerPrefs();
