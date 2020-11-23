@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Events;
+using Audio;
 
 namespace UI {
 
@@ -22,7 +23,14 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
+        private MusicManager _musicManager;
+
+        [SerializeField]
         private EventListener _scoreSavedEventListener;
+
+        private void Start() {
+            ShowMenuScreen();
+        }
 
         private void Awake() {
             if (Instance != null) {
@@ -79,6 +87,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
