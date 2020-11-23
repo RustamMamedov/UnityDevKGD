@@ -75,7 +75,7 @@ namespace Game {
         }
 
         private void OnCarDodged() {
-            if (_canReward && _inDodge) {
+            if (_canReward) {
                 _dodgeRewarder.SetScorePoints(_dodgedCar);
                 StartCoroutine(RewardCoolDown());
             }
