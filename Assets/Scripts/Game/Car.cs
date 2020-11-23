@@ -57,7 +57,7 @@ namespace Game {
             //Debug.Log("CarCollision");
         }
 
-        private void OnCarDodged() {
+        protected virtual void OnCarDodged() {
             if (!_dodged) {
                 _dodged = true;
                 _currentScore.Value += _carSettings.dodgedScore;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using UI;
+using Audio;
 
 namespace Game {
     public class PlayerCar : Car {
@@ -25,6 +26,12 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _positionPlayeZ;
 
+        [SerializeField]
+        private AudioSourcePlayer _dodgedSound;
+
+        [SerializeField]
+        private AudioSourcePlayer _dodgedCollision;
+
         private int _currentRoad = 0;
         private bool _inDodge;
 
@@ -33,7 +40,12 @@ namespace Game {
             _touchEventListeners.OnEventHappened += OnPlayerTouch;
         }
 
+        protected override void OnCarDodged() {
+            _dodgedSound.Play();
+        }
+
         protected override void OnCarCollision() {
+            _dodgedCollision.Play();
             _saveDataEventDispatcher.Dispatch();
             base.OnCarCollision();
             if (UIManager.Instance != null) {

@@ -35,27 +35,32 @@ namespace UI {
         }
 
         private void Start() {
+            _musicMAnager.OnMenuPlayMusic();
             ShowMenuScreen();
         }
 
         public void LoadMenu() {
+            _musicMAnager.OnStopedGameplayMusic();
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FedeOut();
         }
 
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
+            _musicMAnager.OnMenuPlayMusic();
             StartCoroutine(LoadGameplaySceneCoroutine("Menu"));
             ShowMenuScreen();
         }
 
         public void LoadGamePlay() {
+            _musicMAnager.OnStopedMennuMusic();
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FedeOut();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut-=LoadGameplayScene;
+            _musicMAnager.OnGamplayPlayMusic();
             StartCoroutine(LoadGameplaySceneCoroutine("GamePlay"));
             ShowGameScreen();
         }
@@ -76,7 +81,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicMAnager.OnMenuPlayMusic();
+            //_musicMAnager.OnMenuPlayMusic();
         }
 
         public void ShowGameScreen() {
@@ -90,7 +95,6 @@ namespace UI {
         }
 
         public void HideAllScreens() {
-            _musicMAnager.OnStopedAllMusic();
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderBoardScreen.SetActive(false);
