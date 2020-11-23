@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Audio;
+
 namespace UI {
     public class UIManager : MonoBehaviour {
 
@@ -17,6 +19,9 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
+        [SerializeField]
+        private MusicManager _musicManager;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -26,7 +31,11 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        public void LoadMenu() {
+	private void Start() {
+            ShowMenuScreen();
+	}
+
+	public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
@@ -61,6 +70,8 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreen();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
+
         }
 
         public void ShowGameScreen() {
