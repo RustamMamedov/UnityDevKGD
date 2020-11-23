@@ -11,20 +11,20 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
-        private int score = 0;
+        private int _score = 0;
         
         public void Init(GameObject renderCarPrefab, Vector3 renderCameraPosition, Quaternion renderCameraRotation) {
            _carImage.texture = RenderManager.Instance.CarRender(renderCarPrefab,renderCameraPosition, renderCameraRotation); 
         }
 
         public void DodgeCounter() {
-            score++;
-            _scoreLabel.text = $"{score}";
+            _score++;
+            _scoreLabel.text = $"{_score}";
         }
 
         private void OnDisable() {
-            score = 0;
-            _scoreLabel.text = $"{score}";
+            _score = 0;
+            _scoreLabel.text = $"{_score}";
         }
     }
 }
