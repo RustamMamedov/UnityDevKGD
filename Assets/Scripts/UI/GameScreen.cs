@@ -32,8 +32,17 @@ namespace UI {
 
         private void Awake() {
             CarDodgeViewsCreate();
-            StartCoroutine(EnemyCarRender());
             _gameSavedEventListener.OnEventHappened += ShowLeaderboard;
+        }
+
+        private void OnEnable() {
+            StartCoroutine(EnemyCarRender());
+        }
+
+        private void OnDisable() {
+            for (int i = 0; i < _carDodgeViews.Length; i++) {
+                RenderManager.Instance.ReleaseTextures();
+            }
         }
 
         private void CarDodgeViewsCreate() {
