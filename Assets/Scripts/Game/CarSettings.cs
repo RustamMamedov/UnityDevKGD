@@ -6,10 +6,6 @@ namespace Game {
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
     public class CarSettings : ScriptableObject {
 
-        [FoldoutGroup("Camera Render", false)]
-        public Vector3 cameraPosition;
-        [FoldoutGroup("Camera Render", false)]
-        public Quaternion cameraRotation;
         [FoldoutGroup("Speed", false)]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
@@ -26,6 +22,12 @@ namespace Game {
         [Range(1f, 5f)]
         public float lightDistance;
 
+
+        [BoxGroup("Camera Render")]
+        public Vector3 cameraPosition;
+        [BoxGroup("Camera Render")]
+        public Quaternion cameraRotation;
+        [BoxGroup("Camera Render")]
         public GameObject renderCarPrefab;
 
         private bool ValidateDodgeScore(int score) {
