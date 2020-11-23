@@ -12,15 +12,26 @@ namespace Game {
         [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Warning)]
         public float acceleration;
 
-        [BoxGroup("Speed/Score")] [ValidateInput(nameof(ValidateDodgeScore))]
+        [BoxGroup("Speed/Score")]
+        [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
 
         [BoxGroup("Speed/Score")] public int dodgeScore2;
 
-        [FoldoutGroup("Distance")] [Range(1, 5)]
+        [FoldoutGroup("Lights Distance")]
+        [Range(1, 5)]
         public float lightDistance;
 
+        [FoldoutGroup("UI Render")]
         public GameObject renderCarPrefab;
+
+        [FoldoutGroup("UI Render/Camera Render")]
+        public Vector3 cameraPosition;
+
+        [FoldoutGroup("UI Render/Camera Render")]
+        public Quaternion cameraRotation;
+
+        public int differentCarCount;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
