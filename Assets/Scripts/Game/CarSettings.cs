@@ -22,6 +22,10 @@ namespace Game {
 
         public GameObject renderCarPrefab;
 
+        public Vector3 renderCameraPosition;
+
+        public Quaternion renderCameraRotation;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
