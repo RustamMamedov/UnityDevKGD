@@ -16,8 +16,12 @@ namespace Game {
         [FoldoutGroup("Speed settings", false)]
         public float acceleration;
 
-        [BoxGroup("Other settings")]
+        [BoxGroup("Icon rendering settings")]
         public GameObject renderableCarPrefab;
+
+        [BoxGroup("Icon rendering settings")]
+        [PropertyTooltip("The distance between rendered object and render camera.")]
+        public float renderDistance;
 
         [BoxGroup("Other settings")]
         [PropertyRange(1f, 5f)]
