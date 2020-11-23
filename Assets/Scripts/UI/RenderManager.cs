@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace UI {
 
@@ -18,9 +18,10 @@ namespace UI {
             Instance = this;
         }
 
-        public RenderTexture Render(GameObject prefab) {
+        public RenderTexture Render(GameObject prefab, Vector3 renderCameraPosition, Quaternion renderCameraRotation) {
+            _renderCamera.transform.position += renderCameraPosition;
+            _renderCamera.transform.rotation = renderCameraRotation;
             var carInstance = Instantiate(prefab, _rootTransform);
-            Debug.Log(carInstance);
             _texture = RenderTexture.GetTemporary(64, 64, 16);
             _texture.antiAliasing = 8;
             _texture.Create();
@@ -28,6 +29,7 @@ namespace UI {
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
             Destroy(carInstance);
+            _renderCamera.transform.position -= renderCameraPosition;
 
             return _texture;
         }
