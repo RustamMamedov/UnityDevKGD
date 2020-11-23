@@ -39,22 +39,26 @@ namespace UI {
 
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
+            _fader.OnFadeOut += _musicManager.PlayMenuMusic;
             _fader.FadeOut();
         }
 
         public void LoadGamePlay() {
             _fader.OnFadeOut += LoadGamePlayScene;
+            _fader.OnFadeOut += _musicManager.PlayGameplayMusic;
             _fader.FadeOut();
         }
 
         private void LoadGamePlayScene() {
             _fader.OnFadeOut -= LoadGamePlayScene;
             StartCoroutine(LoadSceneCoroutine("GamePlay"));
+            _fader.OnFadeOut -= _musicManager.PlayGameplayMusic;
             ShowGameScreen();
         }
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadGamePlayScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
+            _fader.OnFadeOut -= _musicManager.PlayMenuMusic;
             ShowMenuScreen();
         }
 
