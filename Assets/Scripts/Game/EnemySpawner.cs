@@ -100,7 +100,6 @@ namespace Game {
             for (int i = _cars.Count - 1; i > -1; i--) {
                 if ((_playerPositionZ.value - _cars[i].transform.position.z >= _playerLength.value / 2 + _enemiesLength[_enemiesSettings[i]].value / 2) && (_dodged)) {
                     Dodge(_enemiesScores[_enemiesSettings[i]]);
-                    Debug.Log($"{i}");
                     _currentScore.value += _enemiesScores[_enemiesSettings[i]].dodgeScore;
                     _dodged = false;
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using UI;
+using Audio;
 
 namespace Game {
 
@@ -28,6 +29,9 @@ namespace Game {
 
         [SerializeField]
         private Color _gizmosColor = Color.white;
+
+        [SerializeField]
+        private AudioSourcePlayer _dodgePlayer;
 
         private int _currentRoad;
         private bool _inDodge;
@@ -58,6 +62,7 @@ namespace Game {
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
+            _dodgePlayer.Play();
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
             while (timer < _dodgeDuration) {
                 timer += Time.deltaTime;

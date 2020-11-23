@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using Game;
+using Audio;
 
 namespace UI {
 
@@ -14,6 +15,8 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _wasSaved;
 
+        [SerializeField]
+        private AudioSourcePlayer _collisionPlayer;
         private void OnEnable() {
             SubscribeToEvents();
         }
@@ -29,6 +32,7 @@ namespace UI {
         }
         private void OnCarCollision() {
             UnsubscribeToEvents();
+            _collisionPlayer.Play();
             while (_wasSaved.value != 1) ;
             UIManager.Instance.ShowLeaderboardsScreen();
             _wasSaved.value = 0;
