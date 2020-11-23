@@ -10,11 +10,15 @@ namespace UI {
         [SerializeField]
         private List<CarDodgeView> _carDodgeViewsList;
 
+        [SerializeField]
+        private Light _light;
+
         public IEnumerator CarDodgeViewsCoroutine() {
             for (int i=0; i<_carDodgeViewsList.Count; i++) {
                 _carDodgeViewsList[i].Init();
                 yield return new WaitForEndOfFrame();
             }
+            _light.enabled = false;
         }
 
         private void OnEnable() {
