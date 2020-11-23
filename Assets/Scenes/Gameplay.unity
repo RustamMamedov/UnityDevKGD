@@ -121,66 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1136577102
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1136577105}
-  - component: {fileID: 1136577103}
-  - component: {fileID: 1136577104}
-  m_Layer: 0
-  m_Name: RewardHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1136577103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136577102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: c504471d56fdd0544b3de8867eded149, type: 2}
---- !u!114 &1136577104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136577102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79f2fa811135eb4f9a9f671da8c18e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentScore: {fileID: 11400000, guid: 0dcb30b140732b34397b3d3d90c8d38d, type: 2}
-  _carDodgeEventListener: {fileID: 1136577103}
-  _dodgedCars: {fileID: 11400000, guid: a509532a8536b7e47b592deb0ed27c03, type: 2}
---- !u!4 &1136577105
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136577102}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0753423, y: 8.520011, z: 82.21733}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1172596541
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1172596543
 MonoBehaviour:
@@ -243,211 +183,6 @@ MonoBehaviour:
     type: 3}
   _roadLength: 12
   _initialRoadNumber: 10
---- !u!21 &1193825693
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Car_18C_D (Instance)
-  m_Shader: {fileID: 4800000, guid: 89bc66873974d114aa2d51023507e925, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e09199b7faefad34ca2578a9f3cae390, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Ramp:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Outline: 0.001
-    - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
---- !u!1001 &1212191993
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1307635527795650, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_Name
-      value: SUV (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.090548515
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.04879093
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23223122420387580, guid: dec6e1dfe0585314386ba9c3b833424a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1780280265}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
---- !u!1001 &1702950635
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1307635527795650, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_Name
-      value: SUV
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.7832928
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.090548515
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.04879093
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23223122420387580, guid: dec6e1dfe0585314386ba9c3b833424a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1193825693}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
 --- !u!1001 &1762714047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,7 +228,7 @@ PrefabInstance:
     - target: {fileID: 1898846396593854222, guid: 02a4d8e48e6d27c46bc16004b4788050,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1898846396593854222, guid: 02a4d8e48e6d27c46bc16004b4788050,
         type: 3}
@@ -517,87 +252,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02a4d8e48e6d27c46bc16004b4788050, type: 3}
---- !u!21 &1780280265
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Car_18C_D (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-  m_Shader: {fileID: 4800000, guid: 89bc66873974d114aa2d51023507e925, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e09199b7faefad34ca2578a9f3cae390, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Ramp:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Outline: 0.001
-    - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &1908573881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -720,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 1319412433651681378, guid: c15efa6340d3cba4c886af0b9bd2d060,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1319412433651681378, guid: c15efa6340d3cba4c886af0b9bd2d060,
         type: 3}
@@ -799,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 9051192431673112261, guid: d1ff976b8be6e374490cee95b88f6d99,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9051192431673112261, guid: d1ff976b8be6e374490cee95b88f6d99,
         type: 3}
@@ -879,7 +533,7 @@ PrefabInstance:
     - target: {fileID: 9163605481689851247, guid: 876b6e259d4e09f45b71d6a93f682ec2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9163605481689851247, guid: 876b6e259d4e09f45b71d6a93f682ec2,
         type: 3}

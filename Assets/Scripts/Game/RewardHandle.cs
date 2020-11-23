@@ -1,5 +1,7 @@
 ﻿using Events;
+using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game {
 
@@ -14,9 +16,19 @@ namespace Game {
         [SerializeField]
         private Cars _dodgedCars;
 
+        [SerializeField]
+        private CarDodgeView _familyCarDodgeView;
+
+        [SerializeField]
+        private CarDodgeView _suvDodgeView;
+
+        [SerializeField]
+        private CarDodgeView _truckDodgeView;
+
         public void OnCarDodged() {
             _dodgedCars.carsList[0].TryGetComponent<EnemyCar>(out var enemyCar);
             _currentScore.value += enemyCar.carSettings.dodgeScore;
+            SetupScore(enemyCar.CarSettings);
             _dodgedCars.carsList.RemoveAt(0);
         }
 
@@ -30,5 +42,18 @@ namespace Game {
             _carDodgeEventListener.OnEventHappened -= OnCarDodged;
         }
 
+        private void SetupScore(CarSettings carSettings) {
+            switch (carSettings.carType) {
+                case CarSettings.CarType.FamilyCar:
+                    _familyCarDodgeView.SetScore(_familyCarDodgeView.currentScore + carSettings.dodgeScore);
+                    break;
+                case CarSettings.CarType.SUV:
+                    _suvDodgeView.SetScore(_suvDodgeView.currentScore + carSettings.dodgeScore);
+                    break;
+                case CarSettings.CarType.Truck:
+                    _truckDodgeView.SetScore(_truckDodgeView.currentScore + carSettings.dodgeScore);
+                    break;
+            }
+        }
     }
 }

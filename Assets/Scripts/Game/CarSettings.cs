@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game {
@@ -29,6 +30,17 @@ namespace Game {
 
         [BoxGroup("Render settings")]
         public Vector3 cameraPosition;
+
+        [BoxGroup("Type of car")]
+        public enum CarType {
+            FamilyCar,
+            SUV,
+            Truck,
+            SportCar,
+        }
+
+        [BoxGroup("Type of car")]
+        public CarType carType;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
