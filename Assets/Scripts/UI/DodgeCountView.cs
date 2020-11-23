@@ -21,6 +21,9 @@ namespace UI {
         [PropertyRange(4, 128)]
         private int _iconTextureSize;
 
+        [SerializeField]
+        private Text _text;
+
         private RenderTexture _renderTexture;
 
 
@@ -30,6 +33,10 @@ namespace UI {
             _renderTexture = RenderManager.Instance.Render(
                 _carSettings.renderableCarPrefab, _carSettings.renderDistance, _iconTextureSize, _iconTextureSize);
             _icon.texture = _renderTexture;
+        }
+
+        private void Update() {
+            _text.text = _carSettings.dodgesCountValue.value.ToString();
         }
 
         private void OnDestroy() {
