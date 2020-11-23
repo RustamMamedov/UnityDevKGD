@@ -15,7 +15,7 @@ namespace Game {
         private EventDispatcher _carDodgedDispatcher;
 
         [SerializeField]
-        private ScriptableIntValue _dodgeScoreValue;
+        private ScriptableCarSettingsReference _dodgedCarReference;
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZValue;
@@ -39,7 +39,7 @@ namespace Game {
             base.Move();
             if (!_dodged && transform.position.z < _playerPositionZValue.value - CarSettings.dodgeDistance) {
                 _dodged = true;
-                _dodgeScoreValue.value = CarSettings.dodgeScore;
+                _dodgedCarReference.reference = CarSettings;
                 _carDodgedDispatcher.Dispatch();
             }
         }

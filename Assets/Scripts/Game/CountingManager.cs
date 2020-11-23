@@ -1,4 +1,6 @@
-﻿using Events;
+﻿using Boo.Lang;
+using Events;
+using System.Linq;
 using UnityEngine;
 using Values;
 
@@ -12,10 +14,13 @@ namespace Game {
         private EventListener _carDodgeEventListener;
 
         [SerializeField]
-        private ScriptableIntValue _dodgeScoreValue;
+        private ScriptableCarSettingsReference _dodgedCarReference;
 
         [SerializeField]
         private ScriptableIntValue _currentScoreValue;
+
+        [SerializeField]
+        private CarSettings[] _managedCars;
 
 
         // Life cycle.
@@ -40,7 +45,11 @@ namespace Game {
         // Event handlers.
 
         private void OnCarDodge() {
-            _currentScoreValue.value += _dodgeScoreValue.value;
+            var carSettings = _dodgedCarReference.reference;
+            if (_managedCars.Contains(carSettings)) {
+                _currentScoreValue.value += carSettings.dodgeScore;
+                carSettings.dodgesCountValue.value += 1;
+            }
         }
 
 
@@ -48,6 +57,9 @@ namespace Game {
 
         private void ResetScores() {
             _currentScoreValue.value = 0;
+            foreach (var carSettings in _managedCars) {
+                carSettings.dodgesCountValue.value = 0;
+            }
         }
 
 
