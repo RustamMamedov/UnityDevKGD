@@ -133,7 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carImage: {fileID: 1677140709057792223}
-  _carSettings: {fileID: 11400000, guid: 763e7857ac51dcd4188f51c3fc59e88b, type: 2}
+  _carDodgeEventListener: {fileID: 6230289641580218085}
+  _typePassedCar: {fileID: 11400000, guid: 885c0bd209214c7418b3bde9921a1f24, type: 2}
+  _dodgeScoreLabel: {fileID: 3759751834045621789}
 --- !u!114 &370610992233787144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,12 +172,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5354854850816187178}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 08b36a2ef2303c44e93cb271d1b26a37, type: 2}
+  _someEvent: {fileID: 11400000, guid: f9f5652e19ae09840b5cc5052dce5207, type: 2}
 --- !u!1 &7335115797890725341
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ GameObject:
   - component: {fileID: 6997836915890707597}
   - component: {fileID: 3759751834045621789}
   m_Layer: 5
-  m_Name: ScoreLabel
+  m_Name: DodgeScoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

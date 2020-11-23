@@ -13,6 +13,9 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _dodgedScore;
 
+        [SerializeField]
+        private ScriptableIntValue _typePassedCar;
+
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
@@ -22,6 +25,7 @@ namespace Game {
         private void OnTriggerExit(Collider other) {
             if (other.CompareTag("PlayerDodge")) {
                 _dodgedScore.value = _carSettings.dodgeScore;
+                _typePassedCar.value = (int)_carSettings.enemyType;
                 _carDodgedEventDispatcher.Dispatch();
             }
         }
