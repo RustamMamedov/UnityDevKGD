@@ -171,9 +171,7 @@ namespace Game {
 
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
                 _savedDatas = wrapper.saveDatas;
-            }
-
-            Debug.Log(_savedDatas.Count);
+            }       
 
         }
 
