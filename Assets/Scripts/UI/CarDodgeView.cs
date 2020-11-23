@@ -14,12 +14,23 @@ namespace UI {
         [SerializeField]
         private CarSettings _carSettings;
 
-        private void OnEnable() {
-            Init();
+        [SerializeField]
+        private Text _scoreLabel;
+
+        private int _score = 0;
+
+        public void Init(GameObject renderCarPrefab, Vector3 renderCameraPos) {
+            _carImage.texture = RenderManager.instance.Render(renderCarPrefab, renderCameraPos);
         }
 
-        public void Init() {
-            _carImage.texture = RenderManager.instance.Render(_carSettings.renderCarPrefab);
+        public void DodgeCounter() {
+            _score++;
+            _scoreLabel.text = $"{_score}";
+        }
+
+        private void OnDisable() {
+            _score = 0;
+            _scoreLabel.text = $"{_score}";
         }
     }
 }
