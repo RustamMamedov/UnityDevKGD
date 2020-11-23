@@ -13,12 +13,8 @@ namespace UI {
         [SerializeField]
         private CarSettings _carSettings;
 
-        private void OnEnable() {
-            Init();
-        }
-
-        public void Init() {
-            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
+        public void Init(GameObject carPrefab, Vector3 cameraPosition, Quaternion cameraRotation) {
+            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab, _carSettings.cameraPosition, _carSettings.cameraRotation);
         }
     }
 }
