@@ -6,6 +6,10 @@ namespace Game {
     [CreateAssetMenu(fileName = "CarSettings", menuName = "CarSettings")]
     public class CarSettings : ScriptableObject {
 
+        [FoldoutGroup("Camera Render", false)]
+        public Vector3 cameraPosition;
+        [FoldoutGroup("Camera Render", false)]
+        public Quaternion cameraRotation;
         [FoldoutGroup("Speed", false)]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
