@@ -10,7 +10,6 @@ namespace UI {
 
 
         [SerializeField] private EventListener _collisionEventListener;
-        [SerializeField] private EventListener _collisionEventListener2;
 
         [SerializeField]
         private List<CarDodgedView> _carDodgedViewList;
@@ -25,19 +24,19 @@ namespace UI {
         private void OnEnable() {
             StartCoroutine(CarRenderCoroutine());
             _collisionEventListener.OnEventHappened += ShowLeaderboardScreen;
-            _collisionEventListener2.OnEventHappened += ZeroingPoints;
+
             _carDodgedListerer.OnEventHappened += DodgeCounter;
         }
 
         private void ShowLeaderboardScreen() {
+            for (var i = _carDodgedViewList.Count - 1; i > -1; i--) {
+                _carSettings[i].differentCarCount = 0;
+                _carDodgedViewText[i].text = "0";
+
+            }
             UIManager.Instance.ShowLeaderboardScreen();
         }
 
-        private void ZeroingPoints(){
-            for (var i = _carDodgedViewList.Count - 1; i > -1; i--) {
-               _carSettings[i].differentCarCount=0;
-            }
-        }
 
         IEnumerator CarRenderCoroutine() {
             for (var i = _carDodgedViewList.Count - 1; i > -1; i--) {
@@ -55,7 +54,6 @@ namespace UI {
         private void OnDisable() {
             RenderManager.Instance.ReleaseTexture();
             _collisionEventListener.OnEventHappened -= ShowLeaderboardScreen;
-            _collisionEventListener2.OnEventHappened -= ZeroingPoints;
             _carDodgedListerer.OnEventHappened -= DodgeCounter;
         }
 
