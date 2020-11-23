@@ -10,10 +10,14 @@ namespace UI {
 
         [SerializeField] private ScriptableIntValue _currentScore;
 
+        [SerializeField]
+        private List<CarSettings> _carSettings;
+
         private void OnTriggerEnter(Collider other) {
             for (int i = 0; i < _enemyCars.Count; i++) {
                 if (_enemyCars[i].tag.Equals(other.tag)) {
                     _currentScore.value += _enemyCars[i].DodgeScore.dodgeScore;
+                    _carSettings[i].differentCarCount++;
                 }
             }
         }
