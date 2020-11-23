@@ -30,9 +30,6 @@ namespace Game {
         private Color _gizmosColor;
 
         [SerializeField]
-        private List<GameObject> _dodgeCar = new List<GameObject>();
-
-        [SerializeField]
         private OnCollisionAudio _onCollisionAudio;
 
         [SerializeField]
@@ -74,9 +71,7 @@ namespace Game {
         private void AddScore() {
             if (EnemyCar.EnemyPositionZ != 0 && CanAddScore && _playerPositionZ.value > EnemyCar.EnemyPositionZ) {
                 _score.value += DodgeScore;
-                for (int i = 0; i < _dodgeCar.Count; i++) {
-                    _dodgeCar[i].GetComponent<DodgeCount>().AddScore(DodgeScore);
-                }
+                // DodgeCount.Counter.AddScore(DodgeScore);
                 _onDodgeAudio.PlayAudio();
                 CanAddScore = false;
             }
