@@ -27,7 +27,8 @@ namespace UI {
         // Life cycle.
 
         public void Start() {
-            _renderTexture = RenderManager.Instance.Render(_carSettings.renderableCarPrefab, _iconTextureSize, _iconTextureSize);
+            _renderTexture = RenderManager.Instance.Render(
+                _carSettings.renderableCarPrefab, _carSettings.renderDistance, _iconTextureSize, _iconTextureSize);
             _icon.texture = _renderTexture;
         }
 
