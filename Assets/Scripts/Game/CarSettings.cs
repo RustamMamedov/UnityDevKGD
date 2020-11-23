@@ -16,7 +16,7 @@ namespace Game {
         public float acceleration;
 
         [FoldoutGroup("Car light settings", false)]
-        [Range(1f, 5f)] 
+        [Range(1f, 50f)] 
         public float lightLenght;
 
         [ShowIf(nameof(isEnemyCar))]
