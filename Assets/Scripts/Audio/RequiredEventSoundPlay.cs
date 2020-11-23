@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using Audio;
@@ -36,6 +35,5 @@ namespace Game {
             yield return new WaitForSeconds(1f);
             _canPlay = true;
         }
-
     }
 }
