@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4310612916711108}
   - component: {fileID: 33186008617946968}
   - component: {fileID: 23520746583950704}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_21A_R.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4848202468025318}
   - component: {fileID: 33992952703174852}
   - component: {fileID: 23135755016447938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car_21A_Addon_Wheel_R.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4554386020587644}
   - component: {fileID: 33365605919285750}
   - component: {fileID: 23262341961870168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_21A_M.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 4085910117293632}
   - component: {fileID: 33881366641722452}
   - component: {fileID: 23292604355156472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car_21A_Addon_Wheel_F.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 4238721181132254}
   - component: {fileID: 33560735315161802}
   - component: {fileID: 23157617925469152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car_21A_Addon_Wheel_F.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 23444570465993898}
   - component: {fileID: 136468120182449508}
   - component: {fileID: 65821881727477648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car_21A_Addon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 65354401694384084}
   - component: {fileID: 65826396494326438}
   - component: {fileID: 65060746859415202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car_21A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 4055226430314952}
   - component: {fileID: 33334895206289908}
   - component: {fileID: 23480014398760136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_21A_M.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 4799142459763862}
   - component: {fileID: 33391092581047986}
   - component: {fileID: 23723534193594946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_21A_F.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,14 +801,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4485059992272672}
-  - component: {fileID: 668900646875124187}
-  - component: {fileID: 8143329897584325624}
-  - component: {fileID: 2073971889199262219}
-  - component: {fileID: 4262621553474095762}
-  - component: {fileID: 796122968754471656}
-  - component: {fileID: -235215182894044688}
-  m_Layer: 0
-  m_Name: Truck
+  m_Layer: 8
+  m_Name: Truck Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -830,93 +824,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &668900646875124187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97d8f2ea13673d3498ddb1456c7feff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _carSetting: {fileID: 11400000, guid: df687f6a2a71249db95cd3a1b71d83c6, type: 2}
-  _updateEventListeners: {fileID: 2073971889199262219}
-  _carCollisionEventListener: {fileID: 4262621553474095762}
-  _enemyCarTriggerEventDispatcher: {fileID: 796122968754471656}
-  _carDodge: {fileID: -235215182894044688}
-  _scoreValue: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
-  _ownBoxCollider: {fileID: 8143329897584325624}
-  _carPlayerSize: {fileID: 11400000, guid: 3a4ea601d9601474d93768968d2f607c, type: 2}
-  _playerPosition: {fileID: 11400000, guid: d6f67af7443461c4dac0c4648ea5c993, type: 2}
-  _counter: {fileID: 11400000, guid: 4d277dc4c9cb4a64a9a9d57ea457c7f7, type: 2}
---- !u!65 &8143329897584325624
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 12}
-  m_Center: {x: 0, y: 1.95, z: 0}
---- !u!114 &2073971889199262219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
---- !u!114 &4262621553474095762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: e06c09baf5bf31e49a247ff5847b83eb, type: 2}
---- !u!114 &796122968754471656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: e06c09baf5bf31e49a247ff5847b83eb, type: 2}
---- !u!114 &-235215182894044688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699544679643506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 56d2eff301ec144d686090ed74cea401, type: 2}
 --- !u!1 &1878664431752172
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +835,7 @@ GameObject:
   - component: {fileID: 4655786407278708}
   - component: {fileID: 33633494421677904}
   - component: {fileID: 23079077222438562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_21A_R.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +914,7 @@ GameObject:
   - component: {fileID: 4509803624587862}
   - component: {fileID: 33518294786488246}
   - component: {fileID: 23221521501240642}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Car_21A_Addon_Wheel_R.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +993,7 @@ GameObject:
   - component: {fileID: 4348028683046866}
   - component: {fileID: 33902585783913996}
   - component: {fileID: 23455335088586670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_21A_F.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

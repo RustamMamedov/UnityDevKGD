@@ -23,6 +23,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPosition;
 
+        [SerializeField]
+        private ScriptableIntValue _counter;
+
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
@@ -37,6 +40,7 @@ namespace Game {
                 _scoreValue.value += _carSetting.dodgeScore;
                 _carDodge.Dispatch();
                 _updateEventListeners.OnEventHappened -= IsDodged;
+                _counter.value++;
             }
         }
 

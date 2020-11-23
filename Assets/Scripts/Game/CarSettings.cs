@@ -24,7 +24,16 @@ namespace Game {
         //public int dodgeScore2;
 
         [ShowIf(nameof(isEnemyCar))]
+        [BoxGroup("Render")]
         public GameObject renderCarPrefab;
+
+        [ShowIf(nameof(isEnemyCar))]
+        [BoxGroup("Render/CameraSettings")]
+        public Vector3 cameraPosition;
+
+        [ShowIf(nameof(isEnemyCar))]
+        [BoxGroup("Render/CameraSettings")]
+        public Vector3 cameraRotation;
 
         [Range(1f,5f)]
         public float lightlenght;
