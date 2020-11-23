@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4622097374010884}
   - component: {fileID: 33463410564523856}
   - component: {fileID: 23324959738915008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_6G_R.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4213644545190728}
   - component: {fileID: 33024664142434552}
   - component: {fileID: 23383599810637508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_6G_F.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4261528576717780}
   - component: {fileID: 33093589133197370}
   - component: {fileID: 23102859826700968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_6G_R.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 4778540952914282}
   - component: {fileID: 33102485966070114}
   - component: {fileID: 23449391936194184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_6G_F.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 6550409247136681478}
   - component: {fileID: 6252593135899000130}
   - component: {fileID: 1427816729381480962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCar Render
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -449,6 +449,8 @@ MonoBehaviour:
   _playerPositionZ: {fileID: 11400000, guid: f4597bdf44c4d4d529a773966e596a27, type: 2}
   _score: {fileID: 0}
   _gizmosColor: {r: 0, g: 0, b: 0, a: 0}
+  _dodgeCar:
+  - {fileID: 0}
 --- !u!114 &2361997462574890286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,7 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7538171985022262116}
   - component: {fileID: 3284088950111423048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +609,7 @@ GameObject:
   - component: {fileID: 450568527212480548}
   - component: {fileID: 7760792876735447299}
   - component: {fileID: 4763763494804967527}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5361,7 +5363,7 @@ GameObject:
   - component: {fileID: 7441438891820211406}
   - component: {fileID: 2850984414879326208}
   - component: {fileID: 1184229145632525005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10114,7 +10116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3970437828822819189}
   - component: {fileID: 3704156135548241504}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10242,7 +10244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5388259491725690888}
   - component: {fileID: 587587487235050515}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10370,7 +10372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4282215327950654607}
   - component: {fileID: 1871400933367000574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10462,7 +10464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227825912312211146}
   - component: {fileID: 7166990856069229490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10577,6 +10579,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RigthLight
       objectReference: {fileID: 0}
+    - target: {fileID: 1342061517058641235, guid: 9f21127b07e45d942b4e197b661711ac,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7830677591734486613, guid: 9f21127b07e45d942b4e197b661711ac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10672,6 +10679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342061517058641235, guid: 9f21127b07e45d942b4e197b661711ac,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7830677591734486613, guid: 9f21127b07e45d942b4e197b661711ac,
         type: 3}
