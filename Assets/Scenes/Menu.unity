@@ -313,6 +313,25 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2660507146435198708}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1267878741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 672664230584024490, guid: d627355f9bb65814d9184d5dc0427be4,
+    type: 3}
+  m_PrefabInstance: {fileID: 972921075358593001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1267878742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267878741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25036015880176e45b38742036ed4221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSourcePlayer: {fileID: 1532900126}
 --- !u!1 &1316959357
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +443,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1532900126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2751771594655354781, guid: d627355f9bb65814d9184d5dc0427be4,
+    type: 3}
+  m_PrefabInstance: {fileID: 972921075358593001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4fe985202ba441cba7c43c4a40d00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1631100837
@@ -1949,7 +1980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19095aa7c9fb5fc4da5671c2f5966762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: a61aa61fe39ffad49b676149418eec92, type: 2}
+  _someEvent: {fileID: 11400000, guid: c752ac13a7633864b8b427269291ca26, type: 2}
 --- !u!1001 &8900926348645761262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1971,6 +2002,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900926348332663074, guid: 5103adb4d35da7e4f9111ba8ca4948d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8900926348332663075, guid: 5103adb4d35da7e4f9111ba8ca4948d2,
         type: 3}
