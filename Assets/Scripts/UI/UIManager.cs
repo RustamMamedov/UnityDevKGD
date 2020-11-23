@@ -60,6 +60,8 @@ namespace UI {
         }
 
         public void LoadGameplay() {
+            _musicManager.StopMenuMusic();
+
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }

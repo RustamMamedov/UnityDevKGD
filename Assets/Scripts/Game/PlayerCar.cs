@@ -3,6 +3,7 @@ using UnityEngine;
 using Events;
 using System.Collections.Generic;
 using UnityEngine.Experimental.GlobalIllumination;
+using Audio;
 
 namespace Game {
 
@@ -29,6 +30,9 @@ namespace Game {
         [SerializeField]
         private Color _gizmosColor;
 
+        [SerializeField]
+        private AudioSourcePlayer _onCarCollisionSound;
+
 
         private int _currentRoad;
         private bool _inDodge;
@@ -41,6 +45,11 @@ namespace Game {
                 }
             }
             base.OnEnable();
+        }
+
+        protected override void OnCarCollision() {
+            _onCarCollisionSound.Play();
+            base.OnCarCollision();
         }
 
         protected override void SubscribeToEvents() {

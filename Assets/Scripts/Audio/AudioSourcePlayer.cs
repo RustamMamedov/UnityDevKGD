@@ -18,5 +18,12 @@ namespace Audio {
         public void Stop() {
             _audioSource.Stop();
         }
+
+        public void SetAudioSourceVolume(float volume) {
+            _audioSource.volume = volume;
+        }
+        public float GetAudioSourceVolume() {
+            return _audioSource.volume;
+        }
     }
 }
