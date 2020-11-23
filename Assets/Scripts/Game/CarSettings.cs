@@ -21,7 +21,14 @@ namespace Game {
         [Range(1, 5)]
         public float lightLength;
 
+        [BoxGroup("Render settings")]
         public GameObject renderCarPrefab;
+
+        [BoxGroup("Render settings")]
+        public Quaternion _cameraRotation;
+
+        [BoxGroup("Render settings")]
+        public Vector3 _cameraPosition;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
