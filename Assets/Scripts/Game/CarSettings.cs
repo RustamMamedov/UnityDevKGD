@@ -5,27 +5,27 @@ namespace Game {
 
     [CreateAssetMenu(fileName = "New Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
-
+        
         [BoxGroup("Score")]
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
+        [BoxGroup("Score")]
 
+        public int dodgeScore2;
         [FoldoutGroup("Speed")]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
-        [InfoBox("Speed is beeing increased by acceleration every frame")]
+        [InfoBox("Speed is beeing increased by this value every frame")]
         public float acceleration;
 
-        [FoldoutGroup("Distance")]
+        [BoxGroup("LightSettings")]
         [Range(1f, 5f)]
-        public float lightDistance;
+        public int lightDistance;
 
-        [FoldoutGroup("RenderParameters")]
+        [BoxGroup("Render Settings")]
         public GameObject renderCarPrefab;
-        [FoldoutGroup("RenderParameters")]
-        public Vector3 renderCameraPosition;
-        [FoldoutGroup("RenderParameters")]
-        public Quaternion renderCameraRotation;
+        [BoxGroup("Render Settings")]
+        public Vector3 cameraPos;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
