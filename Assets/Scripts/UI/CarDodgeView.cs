@@ -25,6 +25,10 @@ namespace UI {
             _scoreLabel.text = currentScore.ToString();
         }
 
+        private void OnDisable() {
+            currentScore = 0;
+        }
+
         public void Init() {
             RenderManager.Instance.SetCameraTransform(_carSettings.cameraPosition, _carSettings.cameraRotation);
             _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
