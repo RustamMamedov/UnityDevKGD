@@ -41,11 +41,13 @@ namespace UI {
 
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
+            _fader.OnFadeOut += _musicManager.PlayMenuMusic;
             _fader.FadeOut();
         }
 
         public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
+            _fader.OnFadeOut += _musicManager.PlayGameplayMusic;
             _fader.FadeOut();
         }
         
@@ -59,12 +61,14 @@ namespace UI {
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
+            _fader.OnFadeOut -= _musicManager.PlayGameplayMusic;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
         }
 
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
+            _fader.OnFadeOut -= _musicManager.PlayMenuMusic;
             StartCoroutine(LoadSceneCoroutine("Menu"));
             ShowMenuScreen();
             
@@ -73,7 +77,6 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayerMenuMusic();
         }
 
         public void ShowGameScreen() {
