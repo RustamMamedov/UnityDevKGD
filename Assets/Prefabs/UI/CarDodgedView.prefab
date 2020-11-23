@@ -103,11 +103,11 @@ RectTransform:
   m_Father: {fileID: 1416324909677849835}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 112, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1416324909134618090
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 1416324909677849839}
   - component: {fileID: 1416324909677849837}
   - component: {fileID: 1416324909677849834}
+  - component: {fileID: 9008405037987930463}
   - component: {fileID: 8441071804899828879}
   m_Layer: 5
   m_Name: CarDodgedView
@@ -234,12 +235,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416324909677849832}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 9d3d37848f0d8fec89c15180d7e22c35, type: 2}
+--- !u!114 &9008405037987930463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416324909677849832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: baf461a514bce4f678f98370eab67ca6, type: 2}
 --- !u!114 &8441071804899828879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,3 +268,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carImage: {fileID: 8711211107304226643}
   _carSettings: {fileID: 11400000, guid: 4fcf991bd9c1fa6a08aa07fa66ba961e, type: 2}
+  _carDodgedEventListener: {fileID: 9008405037987930463}
+  _carsDodgedLabel: {fileID: 1416324909134618091}
