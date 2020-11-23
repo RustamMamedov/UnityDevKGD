@@ -11,7 +11,15 @@ namespace Game {
             Player,
         }
 
+        public enum EnemyType {
+            SUV,
+            Truck,
+            Family,
+        }
+
         public CarType carType;
+        [ShowIf("carType", CarType.Enemy)]
+        public EnemyType enemyType;
 
         [ValidateInput(nameof(ValidateDodgeScore))]
         [ShowIf("carType", CarType.Enemy)]
