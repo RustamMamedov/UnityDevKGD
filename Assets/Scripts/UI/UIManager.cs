@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Events;
+using Audio;
 using UnityEngine.SceneManagement;
 
 namespace UI {
@@ -23,6 +24,13 @@ namespace UI {
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+        [SerializeField]
+        private MusicManager _musicManager;
+
+        private void Start() {
+            ShowMenuScreen();
+        }
 
         private void Awake() {
             if (Instance != null) {
@@ -70,6 +78,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
