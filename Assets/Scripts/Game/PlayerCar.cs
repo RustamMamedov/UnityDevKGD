@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 using UI;
+using UnityEngine.Experimental.GlobalIllumination;
 
 namespace Game {
 
@@ -24,10 +25,22 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
+        private List<Light> _lights;
+
+        [SerializeField]
         private Color _gizmosColor;
 
         private int _currentRoad;
         private bool _inDodge;
+
+        protected override void OnEnable() {
+            if(_lights != null) {
+                foreach(Light light in _lights) {
+                    light.range = _carSettings.lightLength;
+                }
+            }
+            base.OnEnable();
+        }
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();

@@ -44,7 +44,7 @@ namespace Game {
         #endregion 2
 
         #region 3
-        private void OnEnable() {
+        protected virtual void OnEnable() {
             SubscribeToEvents();
         }
         private void OnDisable() {
