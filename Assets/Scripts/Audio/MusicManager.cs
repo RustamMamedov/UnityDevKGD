@@ -24,7 +24,7 @@ namespace Audio {
 
 
         public void StopGameplayMusic() {
-            StartCoroutine(StopMusicCoroutine(_gameplayMusicPlayer, _menuMusicPlayer.GetAudioSourceVolume()));
+            StartCoroutine(StopMusicCoroutine(_gameplayMusicPlayer, _gameplayMusicPlayer.GetAudioSourceVolume()));
         }
 
         private IEnumerator StopMusicCoroutine(AudioSourcePlayer audioPlayer, float startVolume) {

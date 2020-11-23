@@ -55,6 +55,7 @@ namespace UI {
         }
 
         public void LoadMenu() {
+            _musicManager.StopGameplayMusic();
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
