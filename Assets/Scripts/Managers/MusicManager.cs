@@ -8,7 +8,7 @@ namespace Audio {
         private AudioSourcePlayer _menuMusicPlayer;
 
         public void PlayMenuMusic() {
-            _menuMusicPlayer.Play();
+            _menuMusicPlayer.PlayRandom();
         }
     }
 }
