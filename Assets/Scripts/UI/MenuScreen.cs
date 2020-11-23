@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 
 namespace UI {
+
     public class MenuScreen : MonoBehaviour{
+
         [SerializeField]
         private Button _play;
 
