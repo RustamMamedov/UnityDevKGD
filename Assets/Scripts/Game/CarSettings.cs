@@ -22,10 +22,17 @@ namespace Game {
 
         [FoldoutGroup("Light", false)]
         [BoxGroup("Light/Length")]
-        [Range(1f, 5f)] 
+        [Range(1f, 100f)] 
         public int lightLength;
 
+        [FoldoutGroup("RenderParameters")] 
         public GameObject renderCarPrefab;
+
+        [FoldoutGroup("RenderParameters")] 
+        public Vector3 renderCameraPosition; 
+
+        [FoldoutGroup("RenderParameters")] 
+        public Quaternion renderCameraRotation; 
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
