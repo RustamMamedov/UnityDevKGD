@@ -1,6 +1,6 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using Events;
+using Audio;
 
 namespace Game {
     public class EnemyCar : Car {
@@ -17,6 +17,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
+        [SerializeField]
+        private AudioSourcePlayer _dodgedSoundPlayer;
+
         private bool _dodged = false;
 
         private void OnTriggerEnter(Collider other) {
@@ -30,6 +33,7 @@ namespace Game {
                 _dodged = true;
                 _currentScore.value += _carSettings.dodgeScore;
                 _dodgedEnemyCarsNumber.value++;
+                _dodgedSoundPlayer.Play();
             }
             base.UpdateBehaviour();
         }

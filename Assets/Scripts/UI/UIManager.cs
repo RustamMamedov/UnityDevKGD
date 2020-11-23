@@ -23,10 +23,14 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
-        private EventListener _scoreSavedEventListener;
+        private MusicManager _musicManager;
 
         [SerializeField]
-        private MusicManager _musicManager;
+        private EventListener _scoreSavedEventListener;
+
+        private void Start() {
+            ShowMenuScreen();
+        }
 
         private void Awake() {
             if (Instance != null) {
@@ -50,16 +54,15 @@ namespace UI {
             ShowLeaderboardScreen();
         }
 
-        private void Start() {
-            ShowMenuScreen();
-        }
-
         public void LoadMenu() {
+            _musicManager.StopGameplayMusic();
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
         public void LoadGameplay() {
+            _musicManager.StopMenuMusic();
+
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
@@ -87,12 +90,12 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();
         }
 
         public void ShowLeaderboardScreen() {

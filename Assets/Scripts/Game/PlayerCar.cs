@@ -4,6 +4,7 @@ using UnityEngine;
 using Events;
 using UI;
 using UnityEngine.Experimental.GlobalIllumination;
+using Audio;
 
 namespace Game {
 
@@ -29,6 +30,9 @@ namespace Game {
 
         [SerializeField]
         private Color _gizmosColor;
+
+        [SerializeField]
+        private AudioSourcePlayer _onCarCollisionSound;
 
         private int _currentRoad;
         private bool _inDodge;
@@ -67,6 +71,7 @@ namespace Game {
         }
 
         protected override void OnCarCollision() {
+            _onCarCollisionSound.Play();
             base.OnCarCollision();
         }
         private IEnumerator DodgeCoroutine(int nextRoad) {
