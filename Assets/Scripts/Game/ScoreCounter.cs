@@ -25,7 +25,7 @@ namespace Game {
 
         private void OnCarDodged() {
             _currentScore.value += _dodgedScore.value;
-            _dodgedScore.value = 0;
+            //_dodgedScore.value = 0;
         }
     }
 }
