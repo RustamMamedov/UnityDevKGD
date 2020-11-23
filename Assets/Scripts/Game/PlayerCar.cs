@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Audio;
 using Events;
 using UnityEngine;
 
@@ -23,6 +24,12 @@ namespace Game {
 
         [SerializeField] 
         private ScriptableFloatValue _playerPositionX;
+        
+        [SerializeField] 
+        private AudioSourcePlayer _carCollisionSourcePlayer;
+        
+        [SerializeField] 
+        private AudioSourcePlayer _dodgeSourcePlayer;
 
         private int _currentRoad;
         private bool _inDodge;
@@ -32,9 +39,14 @@ namespace Game {
             _touchEventListener.OnEventHappened += OnPlayerTouch;
         }
 
-        protected override void UnsubscribeToEvents() {
-            base.UnsubscribeToEvents();
+        protected override void UnsubscribeFromEvents() {
+            base.UnsubscribeFromEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+        }
+        
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            _carCollisionSourcePlayer.Play();
         }
 
         protected override void Move() {
@@ -56,6 +68,7 @@ namespace Game {
             _inDodge = true;
             var timer = 0f;
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
+            _dodgeSourcePlayer.Play();
             while (timer <= _dodgeDuration) {
                 yield return null;
                 timer += Time.deltaTime;
