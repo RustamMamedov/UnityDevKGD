@@ -1,6 +1,6 @@
 using UnityEngine;
 using Events;
-using UI;
+using Audio;
 
 namespace Game {
 
@@ -12,11 +12,15 @@ namespace Game {
 
         [SerializeField] private CarSettings _dodgeScore;
 
+        [SerializeField]
+        private AudioSourcePlayer _audioSoursePlayer;
+
         public CarSettings DodgeScore => _dodgeScore;
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
                 _currentScore.value = 0;
+                _audioSoursePlayer.Play();  
                 Debug.Log("CarCollision");
               
 
