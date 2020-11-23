@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Audio;
 
 namespace Game {
 
@@ -25,9 +26,14 @@ namespace Game {
         [SerializeField]
         private Color _gizmosColor = Color.white;
 
+        private MusicManager _musicManager;
         private int _currentRoad;
         private bool _inDodge;
 
+
+        private void Awake() {
+            _musicManager = GameObject.FindObjectOfType<MusicManager>();
+        }
         protected override void SubscribeToEvents() {
 
             base.SubscribeToEvents();
@@ -38,6 +44,7 @@ namespace Game {
 
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            _musicManager.PlayCrashSound();
 
         }
 
@@ -56,6 +63,8 @@ namespace Game {
             }
 
             StartCoroutine(DodgeCoroutine(nextRoad));
+            _musicManager.PlayDodgeSound();
+            
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
