@@ -19,10 +19,19 @@ namespace Game {
         public int dodgeScore2;
 
         [BoxGroup("Light")]
+
         [Range(1f,5f)]
         public float lightLength;
 
+        [BoxGroup("Render")]
         public GameObject renderCarPrefab;
+
+        [BoxGroup("Render")]
+        public Vector3 renderCameraPosition;
+
+        [BoxGroup("Render")]
+        public Vector3 renderCameraRotation;
+
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;

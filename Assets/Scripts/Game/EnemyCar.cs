@@ -10,6 +10,10 @@ namespace Game {
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private ScriptableIntValue _dodgedEnemyCarsNumber;
+
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
@@ -25,6 +29,7 @@ namespace Game {
             if (_playerPositionZ.value >= gameObject.transform.position.z && !_dodged) {
                 _dodged = true;
                 _currentScore.value += _carSettings.dodgeScore;
+                _dodgedEnemyCarsNumber.value++;
 
             }
             base.UpdateBehaviour();

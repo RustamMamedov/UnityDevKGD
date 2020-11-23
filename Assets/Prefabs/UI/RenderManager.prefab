@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2277222410285675276
+--- !u!1 &1346007096394390895
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2277222410285675277}
-  - component: {fileID: 2277222410285675275}
+  - component: {fileID: 3787126970279670525}
+  - component: {fileID: 7768750172404193391}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -17,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2277222410285675277
+--- !u!4 &3787126970279670525
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2277222410285675276}
-  m_LocalRotation: {x: 0.007919315, y: 0.9846717, z: -0.04643359, w: 0.16793716}
-  m_LocalPosition: {x: -2.0999985, y: 1.6500015, z: 7.0600014}
+  m_GameObject: {fileID: 1346007096394390895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2277222411544095744}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5.4, y: 160.643, z: 0}
---- !u!20 &2277222410285675275
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &7768750172404193391
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2277222410285675276}
+  m_GameObject: {fileID: 1346007096394390895}
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
@@ -102,9 +102,9 @@ Transform:
   m_LocalPosition: {x: 127.66933, y: -66.104324, z: -63.49664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2277222410285675277}
   - {fileID: 2277222412113306122}
   - {fileID: 2277222412205983912}
+  - {fileID: 3787126970279670525}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a83e982c2b316c4aa35ef80c218af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderCamera: {fileID: 2277222410285675275}
+  _renderCamera: {fileID: 7768750172404193391}
   _rootTransform: {fileID: 2277222412205983912}
 --- !u!1 &2277222412113306124
 GameObject:
@@ -151,7 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2277222411544095744}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 21.277, y: 195.39499, z: 124.856}
 --- !u!108 &2277222412113306125
 Light:
@@ -242,5 +242,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2277222411544095744}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
