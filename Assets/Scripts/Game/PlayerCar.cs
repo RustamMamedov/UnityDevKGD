@@ -35,6 +35,8 @@ namespace Game {
         [SerializeField]
         private OnCollisionAudio _onCollisionAudio;
 
+        [SerializeField]
+        private DodgeAudio _onDodgeAudio;
 
         private int _currentRoad;
 
@@ -75,7 +77,7 @@ namespace Game {
                 for (int i = 0; i < _dodgeCar.Count; i++) {
                     _dodgeCar[i].GetComponent<DodgeCount>().AddScore(DodgeScore);
                 }
-
+                _onDodgeAudio.PlayAudio();
                 CanAddScore = false;
             }
         }
@@ -95,7 +97,7 @@ namespace Game {
                 transform.position = new Vector3(posX, transform.position.y, transform.position.z);
                 yield return null;
             }
-
+            
             _inDodge = false;
             _currentRoad = nextRoad;
         }
