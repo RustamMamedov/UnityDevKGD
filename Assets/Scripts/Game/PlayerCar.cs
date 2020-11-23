@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Events;
 using UI;
 using UnityEngine;
+using Audio;
 
 namespace Game {
     public class PlayerCar : Car {
@@ -26,6 +28,13 @@ namespace Game {
 
         [SerializeField]
         private Color _gizmosColor;
+
+        [SerializeField]
+        private List<GameObject> _dodgeCar = new List<GameObject>();
+
+        [SerializeField]
+        private OnCollisionAudio _onCollisionAudio;
+
 
         private int _currentRoad;
 
@@ -63,12 +72,17 @@ namespace Game {
         private void AddScore() {
             if (EnemyCar.EnemyPositionZ != 0 && CanAddScore && _playerPositionZ.value > EnemyCar.EnemyPositionZ) {
                 _score.value += DodgeScore;
+                for (int i = 0; i < _dodgeCar.Count; i++) {
+                    _dodgeCar[i].GetComponent<DodgeCount>().AddScore(DodgeScore);
+                }
+
                 CanAddScore = false;
             }
         }
 
         protected override void OnCarCollision() {
             base.OnCarCollision();
+            _onCollisionAudio.PlayAudio();
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
@@ -77,8 +91,8 @@ namespace Game {
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
             while (timer <= _dodgeDuration) {
                 timer += Time.deltaTime;
-                var posX = Mathf.Lerp(transform.position.x, targetPosX, timer/_dodgeDuration);
-                transform.position = new Vector3(posX ,transform.position.y, transform.position.z);
+                var posX = Mathf.Lerp(transform.position.x, targetPosX, timer / _dodgeDuration);
+                transform.position = new Vector3(posX, transform.position.y, transform.position.z);
                 yield return null;
             }
 
@@ -95,9 +109,9 @@ namespace Game {
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
 
-            Gizmos.DrawWireSphere(transform.position, 5f); 
+            Gizmos.DrawWireSphere(transform.position, 5f);
             Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "Car_Gizmo");
-            Gizmos.DrawFrustum(transform.position+transform.forward*2, 45f, 15f, 50f, .5f);
+            Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, .5f);
             var mesh = GetComponent<MeshFilter>().sharedMesh;
             Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);
         }

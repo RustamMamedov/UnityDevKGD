@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 23809032511686808}
   - component: {fileID: 392127977180710847}
   - component: {fileID: 5626163783527439490}
+  - component: {fileID: 4457594561834012733}
   - component: {fileID: 2361997462574890286}
   - component: {fileID: 6550409247136681478}
   - component: {fileID: 6252593135899000130}
@@ -449,6 +450,24 @@ MonoBehaviour:
   _playerPositionZ: {fileID: 11400000, guid: f4597bdf44c4d4d529a773966e596a27, type: 2}
   _score: {fileID: 0}
   _gizmosColor: {r: 0, g: 0, b: 0, a: 0}
+  _dodgeCar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _onCollisionAudio: {fileID: 4457594561834012733}
+--- !u!114 &4457594561834012733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd6f2198e6da49c3a306ed3b77c825d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSourcePlayer: {fileID: 0}
 --- !u!114 &2361997462574890286
 MonoBehaviour:
   m_ObjectHideFlags: 0
