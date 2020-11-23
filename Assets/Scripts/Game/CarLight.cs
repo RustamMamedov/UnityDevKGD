@@ -10,7 +10,14 @@ namespace Game {
         [SerializeField]
         private Color _color;
 
+        [SerializeField]
+        private Light _light;
+
         private float _offset = 2f;
+
+        private void Awake() {
+            _light.range = _carSettings.lightDistance * _offset;
+        }
 
         private void OnDrawGizmos() {
             Gizmos.color = _color;
