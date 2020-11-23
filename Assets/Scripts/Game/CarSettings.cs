@@ -19,8 +19,12 @@ namespace Game {
         public float acceleration;
 
         [FoldoutGroup("Car light")]
-        [Range(1, 5)]
-        public float lightLength;
+        [Range(0, 100)]
+        public float lightRange;
+
+        [FoldoutGroup("Car light")]
+        [Range(0, 100)]
+        public float lightAngle;
 
         [BoxGroup("Render settings")]
         public GameObject renderCarPrefab;

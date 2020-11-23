@@ -14,18 +14,12 @@ public class CarLight : MonoBehaviour {
     private Color _color = Color.white;
 
     [FoldoutGroup("Light settings")]
-    [BoxGroup("Light settings/Width and height")]
+    [BoxGroup("Light settings/Light")]
     [SerializeField]
-    [Range(0, 100)]
-    private float _fov;
-
-    [FoldoutGroup("Light settings")]
-    [BoxGroup("Light settings/Width and height")]
-    [SerializeField]
-    [Range(0, 1)]
-    private float _aspect;
+    private Light _spotLight;
 
     private void OnEnable() {
-
+        _spotLight.range = _car.CarSettings.lightRange;
+        _spotLight.spotAngle = _car.CarSettings.lightAngle;
     }
 }
