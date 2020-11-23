@@ -17,9 +17,11 @@ namespace Game {
         public float acceleration;
 
         [BoxGroup("Other settings")]
+        public GameObject renderableCarPrefab;
+
+        [BoxGroup("Other settings")]
         [PropertyRange(1f, 5f)]
         public float carLightDistance;
-
 
         private bool ValidateScore(int score) {
             return score >= 0;
