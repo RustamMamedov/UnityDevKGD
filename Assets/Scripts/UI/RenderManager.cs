@@ -16,17 +16,13 @@ namespace UI {
         [SerializeField]
         private GameObject _renderRoot;
 
-        [SerializeField]
-        [PropertyRange(16, 256)]
-        private int _textureSize;
-
 
         // Methods.
 
-        public RenderTexture Render(GameObject prefab) {
+        public RenderTexture Render(GameObject prefab, int textureWidth, int textureHeight) {
             _renderRoot.SetActive(true);
             var instance = Instantiate(prefab, _renderRoot.transform);
-            var texture = RenderTexture.GetTemporary(_textureSize, _textureSize, 16);
+            var texture = RenderTexture.GetTemporary(textureWidth, textureHeight, 16);
             texture.antiAliasing = 8;
             texture.Create();
             _renderCamera.targetTexture = texture;
