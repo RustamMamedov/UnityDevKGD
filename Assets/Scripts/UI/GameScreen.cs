@@ -15,5 +15,9 @@ namespace UI {
         private void OnGameSaved() {
             UIManager.Instance.ShowLeaderboardScreen();
         }
+
+        private void OnDisable() {
+            RenderManager.Instance.ReleaseTextures();
+        }
     }
 }
