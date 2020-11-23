@@ -34,7 +34,7 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Start() {
+        private void OnEnable() {
             ShowMenuScreen();
         }
 

@@ -25,8 +25,6 @@ public class CarLight : MonoBehaviour {
     [Range(0, 1)]
     private float _aspect;
 
-    private float _minRange = 0f;
-
     private void OnEnable() {
 
     }

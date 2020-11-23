@@ -12,11 +12,8 @@ namespace UI {
         [SerializeField]
         private CarSettings _carSettings;
 
-        private void OnEnable() {
-            Init();
-        }
-
         public void Init() {
+            RenderManager.Instance.SetCameraTransform(_carSettings.cameraPosition, _carSettings.cameraRotation);
             _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
         }
     }

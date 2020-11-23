@@ -25,10 +25,10 @@ namespace Game {
         public GameObject renderCarPrefab;
 
         [BoxGroup("Render settings")]
-        public Quaternion _cameraRotation;
+        public Quaternion cameraRotation;
 
         [BoxGroup("Render settings")]
-        public Vector3 _cameraPosition;
+        public Vector3 cameraPosition;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
