@@ -2,34 +2,14 @@
 
 namespace Utilities {
     
-    public class GameSingletonBase<TSelf> : MonoBehaviour
+    public class GameSingletonBase<TSelf> : SceneSingletonBase<TSelf>
         where TSelf : GameSingletonBase<TSelf> {
-
-        // Fields.
-
-        private static TSelf _instance;
-
-
-        // Properties.
-
-        public static TSelf Instance => _instance;
-
 
         // Life cycle.
 
-        protected virtual void Awake() {
-            if (_instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-            _instance = (TSelf) this;
+        protected override void Awake() {
+            base.Awake();
             DontDestroyOnLoad(gameObject);
-        }
-
-        protected virtual void OnDestroy() {
-            if (_instance == this) {
-                _instance = null;
-            }
         }
 
 
