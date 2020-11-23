@@ -33,7 +33,7 @@ namespace Game {
 
         [Range(1f, 5f)]
         [ShowIf("carType", CarType.Player)]
-        public int headlightRange;
+        public float headlightRange;
 
         #region Render
 
