@@ -34,10 +34,10 @@ namespace UI {
             touchPosition = Input.mousePosition;
 
 #else 
-            if (!Input.touchCount < 1) {
+            if (Input.touchCount < 1) {
                 return;
             }
-            touchPosition = InputController.touches[0].position;
+            touchPosition = Input.touches[0].position;
 #endif
 
             _touchSide.value = touchPosition.x > Screen.width * .5 ? 1 : -1;
