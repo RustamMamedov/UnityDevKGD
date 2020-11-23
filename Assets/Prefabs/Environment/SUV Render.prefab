@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4327294645381766}
   - component: {fileID: 33264370412794188}
   - component: {fileID: 23906751206540242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_18C_R.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4069148093592790}
   - component: {fileID: 33585759279652468}
   - component: {fileID: 23869944977057574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_18C_R.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,13 +169,8 @@ GameObject:
   - component: {fileID: 4483306839220528}
   - component: {fileID: 33763178186631926}
   - component: {fileID: 23223122420387580}
-  - component: {fileID: 7417745694526727946}
-  - component: {fileID: 8059661793372064602}
-  - component: {fileID: 2707821478591220437}
-  - component: {fileID: 8077076490592456375}
-  - component: {fileID: 7258802239890721975}
-  m_Layer: 0
-  m_Name: SUV
+  m_Layer: 8
+  m_Name: SUV Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,76 +241,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7417745694526727946
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8072972, y: 2.0763528, z: 7.0108266}
-  m_Center: {x: 0, y: 1.534154, z: 0.46119332}
---- !u!114 &8059661793372064602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c39e6a183fda544e8f292590fd83d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: 9e69b158063a6430b9aef314e0c9ce2e, type: 2}
-  _updateEventListener: {fileID: 8077076490592456375}
-  _carCollisionEventListener: {fileID: 7258802239890721975}
-  _carCollisionEventDispatcher: {fileID: 2707821478591220437}
-  _currentScore: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
-  _playerPositionZ: {fileID: 11400000, guid: e2c332ba7a04a419788e653f6f7c118a, type: 2}
---- !u!114 &2707821478591220437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 9a8da3c342c9e8b4d888021e85543f1e, type: 2}
---- !u!114 &8077076490592456375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
---- !u!114 &7258802239890721975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307635527795650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 9a8da3c342c9e8b4d888021e85543f1e, type: 2}
 --- !u!1 &1739067607676298
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +252,7 @@ GameObject:
   - component: {fileID: 4831904349077060}
   - component: {fileID: 33076360376385218}
   - component: {fileID: 23004007155832016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_18C_F.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +331,7 @@ GameObject:
   - component: {fileID: 4574259249931382}
   - component: {fileID: 33695058586657220}
   - component: {fileID: 23088815329435174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel_18C_F.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
