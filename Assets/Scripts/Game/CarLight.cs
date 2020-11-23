@@ -10,6 +10,17 @@ namespace Game {
         [SerializeField]
         private CarSettings _carSettings;
 
+        [SerializeField]
+        private Light _light;
+
+        private void Awake() {
+            if (_light == null) {
+                return;
+            }
+
+            _light.range = _carSettings.headlightRange * 10f;
+        }
+
         private void OnDrawGizmos() {
             if (_carSettings == null) {
                 return;
