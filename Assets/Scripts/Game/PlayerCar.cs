@@ -82,9 +82,11 @@ namespace Game {
         }
 
         private IEnumerator RewardCoolDown() {
+            Debug.Log("RewardCoolDown Coroutine started");
             _canReward = false;
             yield return new WaitForSeconds(1f);
             _canReward = true;
+            Debug.Log("RewardCoolDown Coroutine ended");
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
