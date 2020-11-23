@@ -20,7 +20,7 @@ namespace Game {
 
         [BoxGroup("Light")]
 
-        [Range(1f,5f)]
+        [Range(1f,60f)]
         public float lightLength;
 
         [BoxGroup("Render")]

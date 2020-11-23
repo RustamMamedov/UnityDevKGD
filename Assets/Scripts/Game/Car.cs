@@ -26,7 +26,7 @@ namespace Game {
         #endregion  1
 
         #region  3
-        private void OnEnable() {
+        protected virtual void OnEnable() {
             SubscribeToEvents();
         }
 
