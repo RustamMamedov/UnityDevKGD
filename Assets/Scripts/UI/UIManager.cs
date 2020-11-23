@@ -41,17 +41,20 @@ namespace UI {
         public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
+            
         }
 
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
+            _musicManager.PlayMenuMusic(); 
             ShowMenuScreen();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
+             _musicManager.PlayGameplayMusic(); 
             ShowGameScreen();
         }
 
