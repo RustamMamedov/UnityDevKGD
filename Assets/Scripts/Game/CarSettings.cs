@@ -13,22 +13,35 @@ namespace Game {
 
         public CarType carType;
 
+        [ValidateInput(nameof(ValidateDodgeScore))]
+        [ShowIf("carType", CarType.Enemy)]
+        public int dodgeScore;
+
         [FoldoutGroup("Speed", false)]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
         [InfoBox("Speed is beeing increased by acceleration every frame", InfoMessageType.Info)]
         public float acceleration;
 
-        [ValidateInput(nameof(ValidateDodgeScore))]
-        [ShowIf("carType", CarType.Enemy)]
-        public int dodgeScore;
-
-        [ShowIf("carType", CarType.Enemy)]
-        public GameObject renderCarPrefab;
-
         [Range(1f, 5f)]
         [ShowIf("carType", CarType.Player)]
         public int headlightRange;
+
+        #region Render
+
+        [ShowIf("carType", CarType.Enemy)]
+        [BoxGroup("Car Render")]
+        public GameObject renderCarPrefab;
+
+        [ShowIf("carType", CarType.Enemy)]
+        [FoldoutGroup("Car Render/Camera Render", false)]
+        public Vector3 position;
+        
+        [ShowIf("carType", CarType.Enemy)]
+        [FoldoutGroup("Car Render/Camera Render", false)]
+        public Quaternion rotation;
+
+        #endregion Render
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
