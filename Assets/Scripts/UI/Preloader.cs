@@ -16,7 +16,6 @@ namespace UI {
 
         private IEnumerator LoadMenuScene() {
             var asyncOperation = SceneManager.LoadSceneAsync("Menu");
-            asyncOperation.allowSceneActivation = false;
             while (!asyncOperation.isDone) {
                 _sceneLoadingValue.value = asyncOperation.progress / .9f;
                 yield return null;
