@@ -253,9 +253,35 @@ Transform:
   m_Father: {fileID: 568432302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &874539046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1921388287222777020, guid: 741b3bac808be464f84e2ac3398cec9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1921388287426227354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &874539047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1921388287222777021, guid: 741b3bac808be464f84e2ac3398cec9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1921388287426227354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &874539048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874539046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1bf5d69f93772541bb374e98ad87e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderCamera: {fileID: 1432242236}
+  _rootTransform: {fileID: 975189729}
+--- !u!4 &975189729 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1921388286987917947, guid: 741b3bac808be464f84e2ac3398cec9e,
     type: 3}
   m_PrefabInstance: {fileID: 1921388287426227354}
   m_PrefabAsset: {fileID: 0}
@@ -406,7 +432,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
 --- !u!114 &1136397722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +481,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9200245228593851149, guid: c8e1d3cdd77ed7c488fdeb2f9ffc4acf,
     type: 3}
   m_PrefabInstance: {fileID: 9200245227264068521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1432242236 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1921388288824616102, guid: 741b3bac808be464f84e2ac3398cec9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1921388287426227354}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2102977366 stripped
 MonoBehaviour:
@@ -675,6 +707,11 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 8400000, guid: dd1c09d9b36f57844ba91c82bb94e07c, type: 2}
+    - target: {fileID: 1921388288824616102, guid: 741b3bac808be464f84e2ac3398cec9e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741b3bac808be464f84e2ac3398cec9e, type: 3}
 --- !u!1001 &2262675319462214393
