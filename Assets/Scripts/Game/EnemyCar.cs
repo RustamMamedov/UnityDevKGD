@@ -14,10 +14,15 @@ namespace Game {
         private ScriptableFloatValue _positionPlayerCarZ;
 
         [SerializeField]
-        private float _distansCarZ;
+        private ScriptableFloatValue _distansBetweenCarsZ;
 
         [SerializeField]
-        private EventDispatcher _carDodgedEventDispatcher; 
+        private EventDispatcher _carDodgedEventDispatcher;
+
+        [SerializeField]
+        private ScriptableIntValue _currentDodged;
+
+        private bool _dodged=false;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
@@ -33,8 +38,12 @@ namespace Game {
 
         private void Dodged() {
             var distance = _positionPlayerCarZ.Value - transform.position.z;
-            if (distance > _distansCarZ) {
+            if (distance > _distansBetweenCarsZ.Value) {
                 _carDodgedEventDispatcher.Dispatch();
+                if (!_dodged) {
+                    _currentDodged.Value++;
+                    _dodged = true;
+                }
             }
         }
     }
