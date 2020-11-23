@@ -1,4 +1,5 @@
-﻿using Events;
+﻿using Audio;
+using Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,12 +33,21 @@ namespace UI {
         [SerializeField]
         private EventListener _progressSavedEventListener;
 
+        [SerializeField]
+        private MusicManager _musicManager;
+
+        private string _loadingSceneName = null;
+
 
         // Life cycle.
 
         protected override void Awake() {
             base.Awake();
             _progressSavedEventListener.OnEventHappened += ShowLeaderboardScreen;
+        }
+
+        private void Start() {
+            PrepareScene();
         }
 
         protected override void OnDestroy() {
@@ -49,35 +59,52 @@ namespace UI {
         // Scene loading.
 
         public void LoadGameplayScene() {
-            _fader.OnFadeOut += PrepareGameplayScene;
+            if (_loadingSceneName != null) {
+                return;
+            }
+            _loadingSceneName = _gameplaySceneName;
+            _fader.OnFadeOut += ContinueSceneLoading;
             _fader.FadeOut();
         }
 
         public void LoadMenuScene() {
-            _fader.OnFadeOut += PrepareMenuScene;
+            if (_loadingSceneName != null) {
+                return;
+            }
+            _loadingSceneName = _menuSceneName;
+            _fader.OnFadeOut += ContinueSceneLoading;
             _fader.FadeOut();
         }
 
-        private void PrepareGameplayScene() {
-            _fader.OnFadeOut -= PrepareGameplayScene;
-            HideAllScreens();
-            ShowGameScreen();
-            StartCoroutine(LoadSceneCoroutine(_gameplaySceneName));
+        private void ContinueSceneLoading() {
+            _fader.OnFadeOut -= ContinueSceneLoading;
+            StartCoroutine(LoadSceneCoroutine());
         }
 
-        private void PrepareMenuScene() {
-            _fader.OnFadeOut -= PrepareMenuScene;
-            HideAllScreens();
-            ShowMenuScreen();
-            StartCoroutine(LoadSceneCoroutine(_menuSceneName));
-        }
-
-        private IEnumerator LoadSceneCoroutine(string name) {
-            var loading = SceneManager.LoadSceneAsync(name);
+        private IEnumerator LoadSceneCoroutine() {
+            var loading = SceneManager.LoadSceneAsync(_loadingSceneName);
             while (!loading.isDone) {
                 yield return null;
             }
+            PrepareScene();
+            _loadingSceneName = null;
             _fader.FadeIn();
+        }
+
+        private void PrepareScene() {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if (currentSceneName == _menuSceneName) {
+                HideAllScreens();
+                ShowMenuScreen();
+                _musicManager.PlayMenuMusic();
+            } else if (currentSceneName == _gameplaySceneName) {
+                HideAllScreens();
+                ShowGameScreen();
+                _musicManager.StopMusic();
+            } else {
+                HideAllScreens();
+                _musicManager.StopMusic();
+            }
         }
 
 
