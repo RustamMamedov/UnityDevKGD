@@ -46,6 +46,7 @@ namespace Audio {
 				musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, desiredVolume, timer / _musicFadeTime); 
 				yield return null; 
 			}
+			
 			if (stopMusic) {
 				musicPlayer.Stop();
 			}
