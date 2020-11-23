@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Utilities;
 
 namespace Audio {
 
-    public class MusicManager : MonoBehaviour {
+    public class MusicManager : SceneSingletonBase<MusicManager> {
 
         // Fields.
 
