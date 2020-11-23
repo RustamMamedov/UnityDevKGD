@@ -25,9 +25,6 @@ namespace UI {
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
-        [SerializeField]
-        private MusicManager _musicManager;
-
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -74,7 +71,6 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayrMenuMusic();
         }
 
         public void ShowGameScreen() {

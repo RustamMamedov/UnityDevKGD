@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Audio;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI {
@@ -13,6 +14,7 @@ namespace UI {
         }
 
         private void OnPlayButtonClick() {
+            MusicManager.Instance.PlayGameplayMusic();
             UIManager.Instance.LoadGameplay();
         }
     }

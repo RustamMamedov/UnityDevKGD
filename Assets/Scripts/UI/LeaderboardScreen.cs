@@ -1,5 +1,5 @@
 ﻿using Game;
-using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +52,7 @@ namespace UI {
         }
 
         private void OnMenuButtonClick() {
+            MusicManager.Instance.PlayMenuMusic();
             UIManager.Instance.LoadMenu();
         }
     }
