@@ -9,6 +9,9 @@ namespace Game {
         
         [SerializeField] 
         private EventDispatcher _carTriggerEventDispatcher;
+        
+        [SerializeField] 
+        private EventDispatcher _carDodgedEventDispatcher;
 
         [SerializeField] 
         private ScriptableIntValue _currentScoreAsset;
@@ -47,11 +50,14 @@ namespace Game {
                 }
             }
         }
-        
+
         private void AddScore() {
-            if(_enemyIsDodged) _currentScoreAsset.value += _carSettings.dodgeScore;
+            if (_enemyIsDodged) {
+                _carDodgedEventDispatcher.Dispatch();
+                _currentScoreAsset.value += _carSettings.dodgeScore;
+            }
         }
-        
+
         protected override void Move() {
             base.Move();
             CheckIfDodged();
@@ -61,7 +67,7 @@ namespace Game {
             base.OnDisable();
             AddScore();
         }
-        
+
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carTriggerEventDispatcher.Dispatch();

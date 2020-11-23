@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 namespace Game {
 
@@ -21,7 +22,7 @@ namespace Game {
         private Color _gizmosColor = Color.red;
         
         [SerializeField]
-        private List<Transform> _carLights = new List<Transform>();
+        private List<Light> _carLights = new List<Light>();
 
         #if UNITY_EDITOR
         public CarSettings CarSettings => _carSettings;
@@ -31,10 +32,13 @@ namespace Game {
 
         private void OnEnable() {
             SubscribeToEvents();
+            foreach (var carLight in _carLights) {
+                carLight.range = _carSettings.lightLenght;
+            }
         }
 
         protected virtual void OnDisable() {
-            UnsubscribeToEvents();
+            UnsubscribeFromEvents();
         }
 
         protected virtual void Move() {
@@ -50,13 +54,13 @@ namespace Game {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
 
-        protected virtual void UnsubscribeToEvents() {
+        protected virtual void UnsubscribeFromEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
         }
 
-        private void OnCarCollision() {
-            UnsubscribeToEvents();
+        protected virtual void OnCarCollision() {
+            UnsubscribeFromEvents();
         }
 
         private void UpdateBehaviour() {
@@ -66,7 +70,10 @@ namespace Game {
         private void OnDrawGizmos() {
             Gizmos.color = _gizmosColor;
             foreach (var carLight in _carLights) {
-                Gizmos.DrawFrustum(carLight.position, 45f, _carSettings.lightLenght + 2f, 0f, 2f); 
+                var tempMatrix = Gizmos.matrix;
+                Gizmos.matrix = carLight.transform.localToWorldMatrix;
+                Gizmos.DrawFrustum(Vector3.zero, 45f, _carSettings.lightLenght, 0f, 1f);
+                Gizmos.matrix = tempMatrix;
             }
         } 
 
