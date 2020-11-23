@@ -71,12 +71,15 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.StopGameMusic();
             _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
+            _musicManager.StopMenuMusic();
+            _musicManager.PlayGameMusic();
         }
 
         public void ShowLeaderboardScreen() {
