@@ -32,11 +32,8 @@ namespace Game {
         }
 
         private void OnTriggerEnter(Collider other) {
-        
             if (other.CompareTag("Player")) {
                 _carTriggerEventDispatcher.Dispatch();
-                UIManager.Instance.ShowLeaderboardScreen();
-
             }
         }
     }
