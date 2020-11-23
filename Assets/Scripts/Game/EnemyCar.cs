@@ -15,6 +15,9 @@ namespace Game {
         private ScriptableIntValue _currentScoreValue;
 
         [SerializeField]
+        private ScriptableIntValue _currentIdDodgeCar;
+
+        [SerializeField]
         private BoxCollider _enemyCarBC;
 
         [SerializeField]
@@ -37,6 +40,7 @@ namespace Game {
             if (!_isCarDodged) {
                 if (transform.position.z < _playerPositionZValue.value - _enemyCarBC.size.z + 1) {
                     _currentScoreValue.value += _carSettings.dodgeScore;
+                    _currentIdDodgeCar.value = _carSettings.id;
                     _carDodgedED.Dispatch();
 
                     _isCarDodged = true;
