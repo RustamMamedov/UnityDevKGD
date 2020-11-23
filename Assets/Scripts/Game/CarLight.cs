@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
 
 namespace Game {
@@ -8,10 +8,12 @@ namespace Game {
         [SerializeField]
         private CarSettings carSettings;
 
-        private void OnDrawGizmos() {
-            Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(transform.position, 45f, 0.1f, carSettings.lenghtLight,1f);
-           
+        [SerializeField]
+        private List<Light> _lights;
+
+        private void OnEnable() {
+            _lights[0].range = carSettings.lenghtLight*15;
+            _lights[1].range = carSettings.lenghtLight*15;
         }
     }
 }
