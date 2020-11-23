@@ -91,7 +91,6 @@ namespace Game {
             if (_saveDatas.Count > 10) {
                 _saveDatas.RemoveRange(10, _saveDatas.Count - 10);
                 IndexArrival = _saveDatas.Count;
-                Debug.Log(IndexArrival);
             }
 
             if (_saveType == SaveType.PlayerPrefs) {
