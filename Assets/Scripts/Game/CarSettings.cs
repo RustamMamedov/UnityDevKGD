@@ -20,7 +20,10 @@ namespace Game {
         [InfoBox("Increase speed every frame",InfoMessageType.Warning)]
         public float acceleration;
 
+        [BoxGroup("Render Settings")]
         public GameObject renderCarPrefab;
+        [BoxGroup("Render Settings")]
+        public Vector3 renderCameraPosition;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
