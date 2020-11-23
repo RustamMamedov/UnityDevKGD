@@ -29,20 +29,19 @@ namespace UI {
             AddBestRideRecordPrefab();
         }
 
-        private void dis() {
-            AddBestRideRecordPrefab();
+        private void OnDisable() {
+            if(_bestRideRecord != null) {
+                for(int i = 0; i <_bestRideRecord.Count; i++) {
+                    Destroy(_bestRideRecord[i].gameObject);
+                }
+                _bestRideRecord.Clear();
+            }
         }
 
 
         private void AddBestRideRecordPrefab() {
             if (_bestRideRecord == null) {
                 _bestRideRecord = new List<GameObject>();
-            }
-            else {
-                for (int i = 0; i < _bestRideRecord.Count; i++) {
-                    Destroy(_bestRideRecord[i].gameObject);
-                }
-                _bestRideRecord.Clear();
             }
             var recordsList = Save.SavedDatas;
             for (int i = 0; i < recordsList.Count; i++) {
