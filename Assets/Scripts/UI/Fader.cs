@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Values;
 
 namespace UI {
     
@@ -12,7 +13,7 @@ namespace UI {
         private CanvasGroup _canvasGroup;
 
         [SerializeField]
-        private float _fadeTime;
+        private ScriptableFloatValue _fadeTimeValue;
 
 
         // Events.
@@ -45,7 +46,7 @@ namespace UI {
         }
 
         private IEnumerator FadeCoroutine(float targetedAlpha) {
-            float alphaChangeSpeed = 1 / _fadeTime;
+            float alphaChangeSpeed = 1 / _fadeTimeValue.value;
             while (_canvasGroup.alpha != targetedAlpha) {
                 _canvasGroup.alpha = Mathf.MoveTowards(_canvasGroup.alpha, targetedAlpha, alphaChangeSpeed * Time.deltaTime);
                 _canvasGroup.interactable = _canvasGroup.alpha > 0;
