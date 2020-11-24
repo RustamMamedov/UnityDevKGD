@@ -1,11 +1,11 @@
-﻿using Boo.Lang;
-using Events;
+﻿using Events;
+using Game;
 using System.Linq;
 using UnityEngine;
 using Values;
 
-namespace Game {
-    
+namespace Managers {
+
     public class CountingManager : MonoBehaviour {
 
         // Fields.

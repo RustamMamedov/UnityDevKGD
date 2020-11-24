@@ -9,8 +9,8 @@ using UnityEngine;
 using Utilities;
 using Values;
 
-namespace Game {
-    
+namespace Managers {
+
     public class SaveManager : GameSingletonBase<SaveManager> {
 
         // Nested types.
@@ -41,7 +41,7 @@ namespace Game {
             public Record() : this(
                 dateTime: default,
                 score: 0
-            ) {}
+            ) { }
 
             public Record(DateTime dateTime, int score) {
                 _dateTime = dateTime;
@@ -192,7 +192,7 @@ namespace Game {
 
         // Add new record and maintain the records list.
         private void AddRecord(Record newRecord) {
-            
+
             _newRecordIndex = invalidIndex;
             if (newRecord == null || !newRecord.IsValid) {
                 return;
@@ -237,7 +237,7 @@ namespace Game {
                 }
 
             }
-          
+
             // Set fields.
             _records = records;
             _newRecordIndex = invalidIndex;
@@ -251,11 +251,13 @@ namespace Game {
 
         private void LoadAndSetData() {
             List<Record> loadedRecords = null;
-            if (_saveType == SaveType.PlayerPrefs) {
-                LoadDataFromPlayerPrefs(out loadedRecords);
-            } else if (_saveType == SaveType.File) {
-                LoadDataFromFile(out loadedRecords);
-            }
+            try {
+                if (_saveType == SaveType.PlayerPrefs) {
+                    LoadDataFromPlayerPrefs(out loadedRecords);
+                } else if (_saveType == SaveType.File) {
+                    LoadDataFromFile(out loadedRecords);
+                }
+            } catch (SerializationException) {}
             SetRecords(loadedRecords);
         }
 

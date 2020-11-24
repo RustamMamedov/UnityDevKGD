@@ -1,9 +1,9 @@
-﻿using Game;
+﻿using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI {
-    
+
     public class LeaderboardScreen : MonoBehaviour {
 
         // Fields.
