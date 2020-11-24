@@ -9,10 +9,14 @@ namespace UI {
         private EventListener _carCollisionListener;
 
         private void OnEnable() {
-            _carCollisionListener.OnEventHappened += ShowLeadderBoard;
+            _carCollisionListener.OnEventHappened += ShowLeaderBoard;
         }
 
-        private void ShowLeadderBoard() {
+        private void OnDisable() {
+            _carCollisionListener.OnEventHappened -= ShowLeaderBoard;
+        }
+
+        private void ShowLeaderBoard() {
             UIManager.instance.ShowLeaderboardScreen();
         }
     }
