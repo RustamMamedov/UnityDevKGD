@@ -26,7 +26,7 @@ namespace Game {
         }
 
         [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
-        [InfoBox("C:/Users/shpul/AppData/LocalLow/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
+        [InfoBox("@\" Path: \" + UnityEngine.Application.persistentDataPath.ToString()", "isSaveTypeFile")]
         private enum SaveType {
 
             PlayerPrefs,
