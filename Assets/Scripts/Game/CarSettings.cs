@@ -32,7 +32,7 @@ namespace Game {
         public float renderDistance;
 
         [BoxGroup("Other settings")]
-        [PropertyRange(1f, 5f)]
+        [PropertyRange(1f, 50f)]
         public float carLightDistance;
 
         private bool ValidateNonNegative(double value) {
