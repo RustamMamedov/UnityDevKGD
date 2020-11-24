@@ -47,7 +47,7 @@ namespace UI {
         }
 
         private void Start() {
-            PrepareScene();
+            PrepareToSceneStart(firstLoading: true);
         }
 
         protected override void OnDestroy() {
@@ -65,6 +65,7 @@ namespace UI {
             _loadingSceneName = _gameplaySceneName;
             _fader.OnFadeOut += ContinueSceneLoading;
             _fader.FadeOut();
+            PrepareToSceneEnd();
         }
 
         public void LoadMenuScene() {
@@ -74,6 +75,7 @@ namespace UI {
             _loadingSceneName = _menuSceneName;
             _fader.OnFadeOut += ContinueSceneLoading;
             _fader.FadeOut();
+            PrepareToSceneEnd();
         }
 
         private void ContinueSceneLoading() {
@@ -86,24 +88,27 @@ namespace UI {
             while (!loading.isDone) {
                 yield return null;
             }
-            PrepareScene();
+            PrepareToSceneStart();
             _loadingSceneName = null;
             _fader.FadeIn();
         }
 
-        private void PrepareScene() {
+        private void PrepareToSceneEnd() {
+            _musicManager.StopMusic(immediately: false);
+        }
+
+        private void PrepareToSceneStart(bool firstLoading = false) {
             string currentSceneName = SceneManager.GetActiveScene().name;
             if (currentSceneName == _menuSceneName) {
                 HideAllScreens();
                 ShowMenuScreen();
-                _musicManager.PlayMenuMusic();
+                _musicManager.PlayMenuMusic(immediately: firstLoading);
             } else if (currentSceneName == _gameplaySceneName) {
                 HideAllScreens();
                 ShowGameScreen();
-                _musicManager.StopMusic();
+                _musicManager.PlayGameMusic(immediately: firstLoading);
             } else {
                 HideAllScreens();
-                _musicManager.StopMusic();
             }
         }
 
