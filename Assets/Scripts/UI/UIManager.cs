@@ -86,12 +86,14 @@ namespace UI {
             StartCoroutine(LoadSceneCoroutine("Menu"));
             //_currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
             ShowMenuScreen();
+            _musicManager.PlayMenuMusic();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
+            _musicManager.PlayGameMusic();
         }
 
 

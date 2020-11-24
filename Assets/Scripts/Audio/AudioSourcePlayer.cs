@@ -19,5 +19,18 @@ namespace Audio {
         public void Stop() {
             _audioSource.Stop();
         }
+
+        public IEnumerator Vol(float from, float to, float time) {
+            float timer = 0f;
+            while (timer <= time) {
+                _audioSource.volume = Mathf.Lerp(from, to, timer/time);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            if (to == 0f) {
+                _audioSource.Stop();
+            }
+        }
     }
 }
