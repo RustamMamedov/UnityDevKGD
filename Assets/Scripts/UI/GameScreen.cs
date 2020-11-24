@@ -17,6 +17,16 @@ namespace UI {
         [SerializeField]
         private List<CarDodgeView> _carsDodgedViews = new List<CarDodgeView>();
 
+        [SerializeField]
+        private EventListener _carDodged;
+
+        [SerializeField]
+        private ScriptableIntValue _dodgeCarId;
+
+        private void Start() {
+            _carDodged.OnEventHappened += CheckId;
+        }
+
         private void OnEnable() {
             StartCoroutine(CarRendererCoroutine());
         }
@@ -27,6 +37,9 @@ namespace UI {
 
         private void OnCarCollision() {
             UIManager.Instance.ShowLeaderboardScreen();
+            foreach (var carDodgedView in _carsDodgedViews) {
+                carDodgedView.ClearScoreLabel();
+            }
         }
 
         private void OnDisable() {
@@ -36,6 +49,11 @@ namespace UI {
             for (int i = 0; i < _carsDodgedViews.Count; i++) {
                 _carsDodgedViews[i].Init(_carSettings[i].renderCarPrefab, _carSettings[i].cameraPosition, _carSettings[i].cameraRotation);
                 yield return new WaitForEndOfFrame();
+            }
+        }
+        private void CheckId() {
+            for (var i = 0; i < _carsDodgedViews.Count; i++) {
+                _carsDodgedViews[i].CheckDodgeId(_dodgeCarId);
             }
         }
     }
