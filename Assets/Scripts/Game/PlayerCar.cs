@@ -32,9 +32,6 @@ namespace Game {
         private ScriptableFloatValue _roadWidth;
 
         [SerializeField]
-        private Color _gizmosColor = Color.white;
-
-        [SerializeField]
         private Rewarder _dodgeRewarder;
 
         private int _currentRoad;
@@ -82,11 +79,9 @@ namespace Game {
         }
 
         private IEnumerator RewardCoolDown() {
-            Debug.Log("RewardCoolDown Coroutine started");
             _canReward = false;
             yield return new WaitForSeconds(1f);
             _canReward = true;
-            Debug.Log("RewardCoolDown Coroutine ended");
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
