@@ -51,14 +51,14 @@ namespace UI {
 
         private void LoadGamePlayScene() {
             _fader.OnFadeOut -= LoadGamePlayScene;
-            StartCoroutine(LoadSceneCoroutine("GamePlay"));
             _fader.OnFadeOut -= _musicManager.PlayGameplayMusic;
+            StartCoroutine(LoadSceneCoroutine("GamePlay"));
             ShowGameScreen();
         }
         private void LoadMenuScene() {
-            _fader.OnFadeOut -= LoadGamePlayScene;
-            StartCoroutine(LoadSceneCoroutine("Menu"));
+            _fader.OnFadeOut -= LoadMenuScene;
             _fader.OnFadeOut -= _musicManager.PlayMenuMusic;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
             ShowMenuScreen();
         }
 
@@ -67,6 +67,7 @@ namespace UI {
             while (!asyncOp.isDone) {
                 yield return null;
             }
+            yield return new WaitForSeconds(3f); 
             _fader.FadeIn();
         }
 
