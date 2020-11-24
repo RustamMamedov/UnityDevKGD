@@ -121,6 +121,87 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &200646023
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 604187067}
+    m_Modifications:
+    - target: {fileID: 1111164141081133520, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioSourcePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226525858621857991, guid: df87f785548ef1447a1fc66ed5196dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df87f785548ef1447a1fc66ed5196dc4, type: 3}
+--- !u!114 &200646024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4473095761748701698, guid: df87f785548ef1447a1fc66ed5196dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 200646023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b69a17da77cde846bf8ce8a7eff43dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &568432300
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +666,31 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 604187063}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &604187066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2529266482330744188, guid: 8efac0172632a47f8a54d64bebc83a87,
+    type: 3}
+  m_PrefabInstance: {fileID: 604187063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &604187067 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 449601958423860319, guid: 8efac0172632a47f8a54d64bebc83a87,
+    type: 3}
+  m_PrefabInstance: {fileID: 604187063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &604187068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604187066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f57711a51bcafd4fabdd420742eb46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSourcePlayer: {fileID: 200646024}
 --- !u!114 &637306016 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8202467696366348405, guid: 7f6a88561cbf52b4da5732db6827f398,
