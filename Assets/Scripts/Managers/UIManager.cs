@@ -24,7 +24,7 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
-        private void OnEnable() {
+        private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
@@ -35,50 +35,48 @@ namespace UI {
         }
 
         public void Start() {
+            _musicManager.FadeIn("Menu");
             ShowMenuScreen();
         }
 
         public void LoadMenu() {
-            Debug.Log("LoadMenu");
             _fader.OnFadeOut += LoadMenuScene;
+            _musicManager.FadeOut();
             _fader.FadeOut();
         }
 
         public void LoadGameplay() {
-            Debug.Log("LoadGameplay");
             _fader.OnFadeOut += LoadGameplayScene;
+            _musicManager.FadeOut();
             _fader.FadeOut();
         }
 
         private void LoadMenuScene() {
-            Debug.Log("LoadMenuScene");
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
             ShowMenuScreen();
         }
 
         private void LoadGameplayScene() {
-            Debug.Log("LoadGameplayScene");
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
             ShowGameScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
-            Debug.Log("LoadSceneCoroutine");
             var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
             while (!asyncOperation.isDone) {
                 yield return null;
             }
             
+            _musicManager.FadeIn(sceneName);
             _fader.FadeIn();
         }
 
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
