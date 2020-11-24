@@ -12,6 +12,10 @@ namespace UI {
             _playButton.onClick.AddListener(OnPlayButtonClick);
         }
 
+        private void OnDisable() {
+            _playButton.onClick.RemoveAllListeners();
+        }
+
         private void OnPlayButtonClick() {
             _playButton.onClick.RemoveAllListeners();
             UIManager.Instance.LoadGameplay();
