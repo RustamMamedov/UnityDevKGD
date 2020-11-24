@@ -7,6 +7,13 @@ namespace Game {
         [SerializeField]
         private Car _car;
 
+        [SerializeField]
+        private Light _light;
+
+        private void Awake() {
+            _light.range = _car.CarSettings.carLightDistance;
+        }
+
 #if UNITY_EDITOR
 
         private void OnDrawGizmosSelected() {
