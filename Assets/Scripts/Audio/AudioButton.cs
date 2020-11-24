@@ -12,7 +12,7 @@ namespace Audio {
         [SerializeField]
         private Button _button;
         
-        private void Awake() {
+        private void OnEnable() {
             _button = GetComponent<Button>();
             _button.onClick.AddListener(OnButtonClick);
         }
