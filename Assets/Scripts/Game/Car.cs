@@ -13,7 +13,7 @@ namespace Game {
         private EventListener _updateEventListener;
 
         [SerializeField]
-        private EventListener _carCollisionEventListener;
+        protected EventListener _carCollisionEventListener;
 
         protected float _currentSpeed;
 
@@ -43,7 +43,7 @@ namespace Game {
             Move();
         }
 
-        private void OnCarCollision() {
+        protected virtual void OnCarCollision() {
             UnsubscribeToEvents();
         }
 
@@ -53,11 +53,6 @@ namespace Game {
             }
             
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
-        }
-
-        [ContextMenu("IncreaseDodgeScore")]
-        private void IncreaseDodgeScore() {
-            _carSettings.dodgeScore++;
         }
     }
 }

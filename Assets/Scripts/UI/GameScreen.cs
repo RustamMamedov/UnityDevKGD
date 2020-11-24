@@ -43,8 +43,10 @@ namespace UI {
         private IEnumerator CarDodgeViewCoroutine() {
             for (int i = 0; i < _carSettingsList.Count; i++) {  
                 var carDodge = Instantiate(_carDodgeViewPrefab, _carDodgeViewWrapper.transform);
-                carDodge.GetComponent<CarDodgeView>().Init(_carSettingsList[i].renderCarPrefab, _carSettingsList[i].cameraPosition, _carSettingsList[i].cameraRotation); 
+
+                carDodge.GetComponent<CarDodgeView>().Init(_carSettingsList[i]);
                 _carDodgeViews.Add(carDodge);
+                
                 yield return new WaitForEndOfFrame();
             }
         }
