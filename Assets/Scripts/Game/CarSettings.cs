@@ -10,6 +10,9 @@ namespace Game {
         [ValidateInput(nameof(ValidateDodgeScore))]
         public int dodgeScore;
 
+        [BoxGroup("Dodge car ID")]
+        public int dodgeCarId;
+
         [FoldoutGroup("Speed", false)]
         public float maxSpeed;
         [FoldoutGroup("Speed")]
