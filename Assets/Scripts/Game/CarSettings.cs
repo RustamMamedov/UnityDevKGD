@@ -22,6 +22,8 @@ namespace Game {
         [InfoBox("Speed is beeing increased by acceleartion every framy")]
         public float acceleration;
 
+        public GameObject renderCarPrefab;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
