@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Audio;
 
 namespace Game {
     public class EnemyCar : Car{
@@ -26,6 +27,9 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _counter;
 
+        [SerializeField]
+        private AudioSourcePlayer _audioSoursePlayer;
+
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
@@ -41,6 +45,7 @@ namespace Game {
                 _carDodge.Dispatch();
                 _updateEventListeners.OnEventHappened -= IsDodged;
                 _counter.value++;
+                _audioSoursePlayer.Play();
             }
         }
 
