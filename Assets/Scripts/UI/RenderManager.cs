@@ -19,7 +19,7 @@ namespace UI {
         private void Awake() {
             if(instance != null) {
                 Destroy(gameObject);
-                instance = this;
+                return;
             }
             instance = this;
         }
