@@ -20,7 +20,7 @@ namespace Game {
         public float acceleration;
 
         [BoxGroup("Light")]
-        [Range(1, 5)]
+        [Range(1f, 50f)]
         public int carLightLenght;
 
         [BoxGroup("Render")]
