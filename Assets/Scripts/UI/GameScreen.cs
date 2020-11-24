@@ -27,10 +27,6 @@ namespace UI {
             StartCoroutine(InitCarDodgeView());
         }
 
-        private void ShowLeaderboardScreen() {
-            UIManager.instance.ShowLeaderboardScreen();
-        }
-
         private void DodgeCounter() {
             if(_canSetScore == true) {
                 for (int i = 0; i < _carSettings.Count; i++) {
