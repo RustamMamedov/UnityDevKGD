@@ -81,13 +81,16 @@ namespace UI {
         
         private void ShowMenuScreen() {
             HideAllScreens();
+            StartCoroutine(_musicManager.MuteGameCoroutine());
             _menuScreen.SetActive(true);
             _musicManager.PlayMenuMusic();
         }
 
         private void ShowGameScreen() {
             HideAllScreens();
+            StartCoroutine(_musicManager.MuteMenuCoroutine());
             _gameScreen.SetActive(true);
+            _musicManager.PlayGameMusic();
         }
 
         private void ShowLeaderboardScreen() {

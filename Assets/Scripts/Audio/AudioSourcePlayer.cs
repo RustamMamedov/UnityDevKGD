@@ -11,7 +11,6 @@ namespace Audio {
         [Button]
         public void Play() {
             _audioSource.Play();
-            Debug.Log("play");
         }
 
         [Button]

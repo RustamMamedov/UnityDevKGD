@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Audio;
 
 namespace Game {
 
@@ -53,6 +54,9 @@ namespace Game {
         [SerializeField]
         private EventDispatcher _saveRecordsEventDispatcher;
 
+        [SerializeField]
+        private AudioSourcePlayer _collisionPlayer;
+
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
@@ -79,6 +83,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
+            _collisionPlayer.Play();
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
