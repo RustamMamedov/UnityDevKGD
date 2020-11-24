@@ -40,6 +40,7 @@ namespace UI {
                 Destroy(_scoreBoard[i]);
                 _scoreBoard.RemoveAt(i);
             }
+            _menuButton.onClick.RemoveAllListeners();
         }
 
         private void OnMenuButtonClick() {
