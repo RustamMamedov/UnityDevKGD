@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 namespace Game {
 
@@ -12,6 +13,13 @@ namespace Game {
         [SerializeField] 
         private Color _color = Color.yellow; 
         
+        private Light _spotLight;
+
+        private void OnEnable() {
+            _spotLight = GetComponent<Light>();
+            _spotLight.range = _carSettings.light;
+        }
+
         private void OnDrawGizmos() { 
             Gizmos.color = _color; 
             Gizmos.matrix = transform.localToWorldMatrix; 
