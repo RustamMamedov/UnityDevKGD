@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game {
     
@@ -10,18 +8,18 @@ namespace Game {
         private Color _gizmosColor = Color.white;
         
         [SerializeField]
-        private CarSettings _carSettings;
+        private CarSettings _playerCarSettings;
 
         [SerializeField]
         private Light _carLight;
 
         private void Awake() {
-            _carLight.range = _carSettings.carLightLength;
+            _carLight.range = _playerCarSettings.carLightLength;
         }
         private void OnDrawGizmosSelected() {
             var tempMatrix = Gizmos.matrix;
             Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 45f, _carSettings.carLightLength, 1f, 1f);
+            Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 45f, _playerCarSettings.carLightLength, 1f, 1f);
             Gizmos.matrix = tempMatrix;
         }
     }
