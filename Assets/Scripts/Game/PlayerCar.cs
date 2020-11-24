@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Game;
+using Audio;
 using Events;
 using System.Collections;
 
@@ -9,6 +9,9 @@ namespace Game {
 
         [SerializeField]
         private EventListener _touchEventListener;
+
+        [SerializeField]
+        private EventListener _dodgeEventListener;
 
         [SerializeField]
         private ScriptableIntValue _touchSide;
@@ -25,17 +28,33 @@ namespace Game {
         [SerializeField]
         private float _dodgeDuration;
 
+        [SerializeField]
+        private AudioSource _moveSound;
+
+        [SerializeField]
+        private AudioSource _dodgeSound;
+
+        [SerializeField]
+        private AudioSource _collideSound;
+
         private int _currentRoad;
         private bool _inDodge;
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
+            _dodgeEventListener.OnEventHappened += OnPlayerDodge;
         }
 
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            _dodgeEventListener.OnEventHappened -= OnPlayerDodge;
+        }
+
+        protected override void OnCarCollision() {
+            _collideSound.Play();
+            UnsubscribeToEvents();
         }
 
         private void OnPlayerTouch() {
@@ -46,7 +65,13 @@ namespace Game {
                 return;
             }
 
+            _moveSound.Play();
+
             StartCoroutine(DodgeCoroutine(nextRoad));
+        }
+
+        private void OnPlayerDodge() {
+            _dodgeSound.Play();
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
