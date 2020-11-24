@@ -9,11 +9,19 @@ namespace Game {
         [SerializeField]
         private CarSettings _carSettings;
 
+        [SerializeField]
+        private Light _light;
+
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
-            Gizmos.DrawFrustum(transform.position, 20f, _carSettings.carLightLenght, 0.5f, 3f);
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.color = _gizmosColor;
+            Gizmos.DrawFrustum(Vector3.zero, 20f, _carSettings.carLightLenght, 0.5f, 3f);
         }
 
+        private void Awake() {
+            _light.range = _carSettings.carLightLenght;
+        }
 
     }
 }
