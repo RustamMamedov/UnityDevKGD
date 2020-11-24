@@ -2,6 +2,7 @@
 using Events;
 using System.Runtime.InteropServices.ComTypes;
 using System.Collections;
+using Audio;
 
 namespace Game {
 
@@ -24,6 +25,9 @@ namespace Game {
 
         [SerializeField]
         private Color _gizmosColor = Color.white;
+
+        [SerializeField]
+        private AudioSourcePlayer _audioSourcePlayer;
 
         private int _currentRoad;
         private bool _inDodge;
@@ -81,6 +85,11 @@ namespace Game {
             //Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, 0.5f);
             //var mesh = GetComponent<MeshFilter>().sharedMesh;
             //Gizmos.DrawWireMesh(mesh, 0, transform.position+transform.forward*5); //сетка перед авто
+        }
+
+        protected override void OnCarCollision() {
+            base.OnCarCollision();
+            _audioSourcePlayer.Play();
         }
     }
 }
