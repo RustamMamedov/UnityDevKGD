@@ -42,7 +42,7 @@ namespace Game {
 
 		[ShowIf(nameof(isEnemyCar))]
         [FoldoutGroup("Render settings", false)]
-        public Quaternion cameraRotation;
+        public Vector3 cameraRotation;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;

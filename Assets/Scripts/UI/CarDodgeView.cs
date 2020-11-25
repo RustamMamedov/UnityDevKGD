@@ -1,6 +1,7 @@
 ﻿using Game;
 using UnityEngine;
 using UnityEngine.UI;
+using Events;
 
 namespace UI {
 
@@ -10,33 +11,37 @@ namespace UI {
         private RawImage _carImage;
 
         [SerializeField]
-        private CarSettings _carSettings;
-        
+        private Text _dodgeCountLabel;
+
         [SerializeField]
-        private Text _text;
+        private EventListener _carDodgedEventListener;
 
-        private int _family;
-        private int _suv;     
-        private int _truck;
+        [SerializeField]
+        private ScriptableStringValue _dodgedCarName;
+
+        private CarSettings _settings;
+        private int _counter;
+
         private void OnEnable() {
-            Init();
+            _carDodgedEventListener.OnEventHappened += OnCarDodged;
+            _counter = 0;
+            _dodgeCountLabel.text = $"{_counter}";
         }
 
-        private void Update() {
-            if (_carSettings.FamilyCar == true) {
-                _family++;
-                _text.text = _family.ToString();
-            }else if (_carSettings.SUV == true) {
-                _suv++;
-                _text.text = _suv.ToString();
-            }else if(_carSettings.Truck == true) {
-                _truck++;
-                _text.text = _truck.ToString();
+        private void OnDisable() {
+            _carDodgedEventListener.OnEventHappened -= OnCarDodged;
+        }
+
+        private void OnCarDodged() {
+            if (!_dodgedCarName.value.Equals(_settings.name)) {
+                return;
             }
+            _dodgeCountLabel.text = $"{++_counter}";
         }
-
-        public void Init() {
-            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab, _carSettings.cameraPosition, _carSettings.cameraRotation);
+        
+        public void Init(CarSettings settings) {
+            _settings = settings;
+            _carImage.texture = RenderManager.Instance.Render(settings.renderCarPrefab, settings.cameraPosition, settings.cameraRotation);
         }
     }
 }
