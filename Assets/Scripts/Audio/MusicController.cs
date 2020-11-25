@@ -22,10 +22,8 @@ namespace Audio {
         public void FadeIn(string sceneName) {
             _currentScene = sceneName;
             if (_currentScene == "Menu") {
-                _menuMusicPlayer.Play();
                 StartCoroutine(FadeInCoroutine(_menuMusicPlayer));
             } else if (_currentScene == "Gameplay") {
-                _gameplayMusicPlayer.Play();
                 StartCoroutine(FadeInCoroutine(_gameplayMusicPlayer));
             }
         }
@@ -38,21 +36,23 @@ namespace Audio {
             }
         }
 
-        private IEnumerator FadeInCoroutine(AudioSourcePlayer audioSource) {
-            yield return StartCoroutine(FadeCoroutine(audioSource, _maxMusicVolume));
+        private IEnumerator FadeInCoroutine(AudioSourcePlayer audioSourcePlayer) {
+            audioSourcePlayer.Play();
+            yield return StartCoroutine(FadeCoroutine(audioSourcePlayer.GetComponent<AudioSource>(), _maxMusicVolume));
         }
 
-        private IEnumerator FadeOutCoroutine(AudioSourcePlayer audioSource) {
-            yield return StartCoroutine(FadeCoroutine(audioSource, 0f));
+        private IEnumerator FadeOutCoroutine(AudioSourcePlayer audioSourcePlayer) {
+            yield return StartCoroutine(FadeCoroutine(audioSourcePlayer.GetComponent<AudioSource>(), 0f));
+            audioSourcePlayer.Stop();
         }
 
-        private IEnumerator FadeCoroutine(AudioSourcePlayer audioSource, float targetVolume) {
+        private IEnumerator FadeCoroutine(AudioSource audioSource, float targetVolume) {
             var timer = 0f;
-            var start = audioSource.GetComponent<AudioSource>().volume;
+            var start = audioSource.volume;
 
             while (timer < _fadeTime) {
                 timer += Time.deltaTime;
-                audioSource.GetComponent<AudioSource>().volume = Mathf.Lerp(start, targetVolume, timer / _fadeTime);
+                audioSource.volume = Mathf.Lerp(start, targetVolume, timer / _fadeTime);
                 yield return null;
             }
             yield break;
