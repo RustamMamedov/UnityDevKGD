@@ -14,7 +14,6 @@ namespace UI {
         private void OnEnable() {
             Init();
         }
-
         public void Init() {
             _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
         }

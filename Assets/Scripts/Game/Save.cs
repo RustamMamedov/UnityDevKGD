@@ -88,17 +88,17 @@ namespace Game {
 
             Turn_Highlights_Off_In_savedDatas();
             _saveDatas.Add(newRecord);
-            /* if (!EditRecords()) {
+             if (!EditRecords()) {
                  UIManager.Instance.ShowLeaderboardsScreen();
                  return;
              }
-             */
+             
             if (_saveType == SaveType.PlayerPrefs) {
                 SaveDataToPlayerPrefs();
             } else {
                 SaveToFile();
             }
-            //UIManager.Instance.ShowLeaderboardsScreen();
+            UIManager.Instance.ShowLeaderboardsScreen();
           
         }
 

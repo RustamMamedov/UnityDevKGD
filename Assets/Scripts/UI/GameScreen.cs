@@ -1,20 +1,31 @@
-﻿using Events;
+﻿using System.Collections;
+using Events;
+using Game;
 using UnityEngine;
 
 namespace UI {
+
     public class GameScreen : MonoBehaviour {
 
+/*
         [SerializeField]
-        private EventListener _saveEventListener;
+        private CarSettings[] _carSettings;
 
-        private void Awake() {
-            _saveEventListener.OnEventHappened += OnGameSaved;
+        [SerializeField]
+        private CarDodgeView[] _carDodgeViews;
+
+
+        private void OnEnable() {
+            StartCoroutine(InitCarDodgeViews());
         }
 
-        private void OnGameSaved() {
-            UIManager.Instance.ShowLeaderboardsScreen();
-        }
-
+        private IEnumerator InitCarDodgeViews() {
+           for (int i = 0; i < _carSettings.Length; i++) {
+              _carDodgeViews[i].Init(_carSettings[i]);
+                yield return null;
+            }
+       }
+*/
         private void OnDisable() {
             RenderManager.Instance.ReleaseTextures();
         }
