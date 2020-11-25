@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using Game;
+using Audio;
 using Events;
 
 namespace UI {
@@ -32,6 +33,9 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
+        [SerializeField]
+        private MusicManager _musicManager;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -40,6 +44,10 @@ namespace UI {
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start() {
+            ShowMenuScreen();
         }
 
         public void LoadMenu() {
@@ -84,6 +92,7 @@ namespace UI {
             HideAllScreens();
             if (_menuScreen.activeSelf==false) {
             _menuScreen.SetActive(true);
+                _musicManager.PlayMenuMusic();
             }
         }
 
