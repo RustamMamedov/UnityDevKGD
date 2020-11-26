@@ -19,7 +19,7 @@ public class CarLight : MonoBehaviour {
     private Light _spotLight;
 
     private void OnEnable() {
-        _spotLight.range = _car.CarSettings.lightRange;
-        _spotLight.spotAngle = _car.CarSettings.lightAngle;
+        _spotLight.range = _car.carSettings.lightRange;
+        _spotLight.spotAngle = _car.carSettings.lightAngle;
     }
 }

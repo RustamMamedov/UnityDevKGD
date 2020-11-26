@@ -28,7 +28,7 @@ namespace Game {
         public void OnCarDodged() {
             _dodgedCars.carsList[0].TryGetComponent<EnemyCar>(out var enemyCar);
             _currentScore.value += enemyCar.carSettings.dodgeScore;
-            SetupScore(enemyCar.CarSettings);
+            SetupScore(enemyCar.carSettings);
             _dodgedCars.carsList.RemoveAt(0);
         }
 
