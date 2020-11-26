@@ -1,4 +1,4 @@
-﻿using Events;
+using Events;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +40,7 @@ namespace UI {
             _volume.onValueChanged.AddListener(delegate { OnVolumeChanged(); });
         }
 
-        private void SetValues() {
+        public void SetValues() {
             _volume.value = Save.Settings.volumeValue;
             _difficulty.value = Save.Settings.difficulty == Save.SavedSettings.Difficulty.Hard ? 1f : 0f;
             _time.value = Save.Settings.time == Save.SavedSettings.Time.Night ? 1f : 0f;
