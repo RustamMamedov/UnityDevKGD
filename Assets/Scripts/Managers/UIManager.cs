@@ -17,6 +17,9 @@ namespace UI {
         private GameObject _leaderBoardScreen;
 
         [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
         private Fader _fader;
 
         [SerializeField]
@@ -55,10 +58,19 @@ namespace UI {
             _leaderBoardScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            _settingsScreen.SetActive(true);
+        }
+
+        public void CloseSettingsScreen() {
+            _settingsScreen.SetActive(false);
+        }
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderBoardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
 
         public void LoadMenu() {
@@ -102,6 +114,10 @@ namespace UI {
             while (!asyncOperation.isDone) {
                 yield return null;
             }
+        }
+
+        public bool IsSettingsActive() {
+            return _settingsScreen.activeInHierarchy;
         }
     }
 
