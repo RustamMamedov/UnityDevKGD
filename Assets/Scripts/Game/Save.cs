@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using Sirenix.OdinInspector;
 using Events;
-using UI;
 using UnityEngine;
 
 namespace Game {
@@ -32,6 +31,9 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+        [SerializeField] 
+        private EventDispatcher _gameGotSavedEventDispatcher;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
@@ -80,9 +82,11 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            if (Int32.Parse(newRecord.score) != 0) {
-                _saveDatas.Add(newRecord);
+            if (Int32.Parse(newRecord.score) == 0) {
+                _gameGotSavedEventDispatcher.Dispatch();
+                return;
             }
+            _saveDatas.Add(newRecord);
             SortListAndLeaveTenEntries();
             
             if (_saveType == SaveType.PlayerPrefs) {
@@ -90,7 +94,7 @@ namespace Game {
             } else {
                 SaveToFile();
             }
-            UIManager.Instance.ShowLeaderboardScreen();
+            _gameGotSavedEventDispatcher.Dispatch();
         }
 
         private void SortListAndLeaveTenEntries() {

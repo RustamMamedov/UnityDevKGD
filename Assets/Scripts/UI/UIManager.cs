@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using Audio;
+using Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,9 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
 
+        [SerializeField] 
+        private EventListener _gameGotSavedEventListener;
+
         private void Start() {
             ShowMenuScreen();
         }
@@ -37,7 +41,23 @@ namespace UI {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
+        private void OnEnable() {
+            SubscribeToEvents();
+        }
 
+        protected virtual void OnDisable() {
+            UnsubscribeFromEvents();
+        }
+
+        private void SubscribeToEvents() {
+            _gameGotSavedEventListener.OnEventHappened += ShowLeaderboardScreen;
+        }
+        
+        private void UnsubscribeFromEvents() {
+            _gameGotSavedEventListener.OnEventHappened -= ShowLeaderboardScreen;
+        }
+        
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
