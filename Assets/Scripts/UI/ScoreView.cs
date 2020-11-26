@@ -29,6 +29,10 @@ namespace UI {
             _scoreLabel.text = $"{_currentScore}";
         }
 
+        private void OnDisable() {
+            _score.value = 0;
+        }
+
         private void Update() {
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
