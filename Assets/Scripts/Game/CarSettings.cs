@@ -23,7 +23,15 @@ namespace Game {
         [InfoBox("Speed is beeing increased by acceleartion every framy")]
         public float acceleration;
 
+        [BoxGroup("Render")]
         public GameObject renderCarPrefab;
+
+        [BoxGroup("Render")]
+        public Vector3 renderCameraPos;
+
+        [BoxGroup("Render")]
+        public Vector3 renderCameraRot;
+
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
