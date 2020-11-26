@@ -8,13 +8,28 @@ namespace UI {
         [SerializeField]
         private Button _playButton;
 
+        [SerializeField]
+        private Button _settingsButton;
+
+        [SerializeField]
+        private SettingsScreen _settingsScreen;
+
         private void Awake() {
-            UIManager.instance.ShowMenuScreen();
-            _playButton.onClick.AddListener(OnPlayButtonClick);
+            _playButton.onClick.AddListener(delegate { OnPlayButtonClick(); });
+            _settingsButton.onClick.AddListener(delegate { OnSettingsButtonClick(); });
         }
 
         private void OnPlayButtonClick() {
             UIManager.instance.LoadGameplay();
+        }
+
+        private void OnSettingsButtonClick() {
+            _settingsScreen.SetValues();
+            if (!UIManager.instance.IsSettingsActive()) {
+                UIManager.instance.ShowSettingsScreen();
+            } else {
+                UIManager.instance.CloseSettingsScreen();
+            }
         }
 
     }
