@@ -35,6 +35,7 @@ namespace Audio {
 
         private void OnDisable() {
             _settingsChangedEventListener.OnEventHappened -= SetVolume;
+            _audioSource.volume = Save.Settings.volumeValue;
         }
 
         [Button]
@@ -58,8 +59,9 @@ namespace Audio {
         }
 
         private void SetVolume() {
-            if (_settingsScreen != null)
+            if (_settingsScreen != null) {
                 _audioSource.volume = _settingsScreen.Volume;
+            }
         }
     }
 }

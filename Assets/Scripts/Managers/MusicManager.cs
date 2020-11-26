@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Events;
+using Game;
 using UnityEngine;
 
 namespace Audio {
@@ -11,6 +13,19 @@ namespace Audio {
         [SerializeField]
         private float _fadeTime;
 
+        [SerializeField]
+        private EventListener _gameSavedEventListener;
+
+        private float maxVolume;
+
+        private void OnEnable() {
+            _gameSavedEventListener.OnEventHappened += OnGameSaved;
+        }
+
+        private void OnDisable() {
+            _gameSavedEventListener.OnEventHappened -= OnGameSaved;
+        }
+
         public void PlayMenuMusic() {
             _menuMusicPlayer.PlayRandom();
         }
@@ -20,12 +35,17 @@ namespace Audio {
         }
 
         public void MusicFadeIn() {
-            StartCoroutine(MusicFade(0.1f, 0f));
+            StartCoroutine(MusicFade(maxVolume, 0f));
         }
 
         public void MusicFadeOut() {
+            maxVolume = Save.Settings.volumeValue;
             PlayMenuMusic();
-            StartCoroutine(MusicFade(0f, 0.1f));
+            StartCoroutine(MusicFade(0f, maxVolume));
+        }
+
+        private void OnGameSaved() {
+            maxVolume = Save.Settings.volumeValue;
         }
 
         private IEnumerator MusicFade(float volume, float desiredVolume) {

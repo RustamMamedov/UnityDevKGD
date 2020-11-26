@@ -121,6 +121,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &65083634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5720433886820185148, guid: 9f5684b319989cd48a345d20a64f0355,
+    type: 3}
+  m_PrefabInstance: {fileID: 3569298538547846355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &65083635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65083634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 9c725efe5dd37ce47b7662f627a0ba51, type: 2}
+--- !u!114 &65083636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65083634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 63927d03f2304644babc7c87acd9e739, type: 2}
 --- !u!1 &71461558 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3188261034969066781, guid: 0fa02e788d06a4c438386aa835e751af,
@@ -382,6 +414,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7716029535363925745, guid: 4c2735f0302e61b46b5e619fcbda2682,
+        type: 3}
+      propertyPath: _settingsScreen
+      value: 
+      objectReference: {fileID: 6635740724922121544}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c2735f0302e61b46b5e619fcbda2682, type: 3}
 --- !u!224 &680659256 stripped
@@ -390,6 +427,38 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 680659255}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &753132093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9051192431673112258, guid: d1ff976b8be6e374490cee95b88f6d99,
+    type: 3}
+  m_PrefabInstance: {fileID: 1828666962}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &753132097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753132093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 63927d03f2304644babc7c87acd9e739, type: 2}
+--- !u!114 &753132098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753132093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 63927d03f2304644babc7c87acd9e739, type: 2}
 --- !u!224 &870962474 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3188261034969066782, guid: 0fa02e788d06a4c438386aa835e751af,
@@ -688,7 +757,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3569298538547846355}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 65083634}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de18f2f3482897943b0c150a1ba776a6, type: 3}
@@ -826,6 +895,16 @@ PrefabInstance:
       propertyPath: _settingsScreen
       value: 
       objectReference: {fileID: 6635740724922121544}
+    - target: {fileID: 9051192431673112260, guid: d1ff976b8be6e374490cee95b88f6d99,
+        type: 3}
+      propertyPath: _gameLoadsEventDispatcher
+      value: 
+      objectReference: {fileID: 753132097}
+    - target: {fileID: 9051192431673112260, guid: d1ff976b8be6e374490cee95b88f6d99,
+        type: 3}
+      propertyPath: _gameLoadsEventListener
+      value: 
+      objectReference: {fileID: 753132098}
     - target: {fileID: 9051192431673112261, guid: d1ff976b8be6e374490cee95b88f6d99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1428,6 +1507,16 @@ PrefabInstance:
       propertyPath: _fadeTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5533467242215614802, guid: 9f5684b319989cd48a345d20a64f0355,
+        type: 3}
+      propertyPath: _gameSavedEventListener
+      value: 
+      objectReference: {fileID: 65083635}
+    - target: {fileID: 5533467242215614802, guid: 9f5684b319989cd48a345d20a64f0355,
+        type: 3}
+      propertyPath: _gameLoadsEventListener
+      value: 
+      objectReference: {fileID: 65083636}
     - target: {fileID: 5720433886820185148, guid: 9f5684b319989cd48a345d20a64f0355,
         type: 3}
       propertyPath: m_Name
@@ -1483,6 +1572,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1694453627}
     m_Modifications:
+    - target: {fileID: 36941472891900978, guid: 56421cf53d9a8c847ab86df6ec00b7c7,
+        type: 3}
+      propertyPath: _settingsScreen
+      value: 
+      objectReference: {fileID: 6635740724922121544}
     - target: {fileID: 1998975754247706184, guid: 56421cf53d9a8c847ab86df6ec00b7c7,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1623,6 +1717,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8656060035365178452, guid: 56421cf53d9a8c847ab86df6ec00b7c7,
+        type: 3}
+      propertyPath: _settingsScreen
+      value: 
+      objectReference: {fileID: 6635740724922121544}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56421cf53d9a8c847ab86df6ec00b7c7, type: 3}
 --- !u!114 &6635740724922121544 stripped
@@ -1649,6 +1748,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7637593906862289059}
     - target: {fileID: 1187660524, guid: da8387f3b8f1d7f4d92edd60ac16b6a3, type: 3}
+      propertyPath: _settingsScreen
+      value: 
+      objectReference: {fileID: 6635740724922121544}
+    - target: {fileID: 583257882797260945, guid: da8387f3b8f1d7f4d92edd60ac16b6a3,
+        type: 3}
+      propertyPath: _settingsScreen
+      value: 
+      objectReference: {fileID: 6635740724922121544}
+    - target: {fileID: 1993197437239404303, guid: da8387f3b8f1d7f4d92edd60ac16b6a3,
+        type: 3}
+      propertyPath: _settingsScreen
+      value: 
+      objectReference: {fileID: 6635740724922121544}
+    - target: {fileID: 3066643257716567853, guid: da8387f3b8f1d7f4d92edd60ac16b6a3,
+        type: 3}
       propertyPath: _settingsScreen
       value: 
       objectReference: {fileID: 6635740724922121544}

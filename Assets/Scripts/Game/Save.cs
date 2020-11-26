@@ -87,7 +87,6 @@ namespace Game {
             } else {
                 LoadFromFile();
             }
-
         }
 
         private void OnEnable() {
