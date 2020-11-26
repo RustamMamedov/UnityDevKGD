@@ -5,7 +5,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Events;
 using System;
-using UI;
 
 namespace Game {
 
@@ -36,7 +35,7 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
-        private EventListener _updateBehaviourListener;
+        private EventDispatcher _savedGameDispatcher;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
@@ -87,6 +86,7 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+            _savedGameDispatcher.Dispatch();
         }
 
         private void InsertNewRecord(SaveData NewRecord) {
