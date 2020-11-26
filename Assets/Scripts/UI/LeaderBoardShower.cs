@@ -6,14 +6,14 @@ namespace UI {
     public class LeaderBoardShower : MonoBehaviour {
 
         [SerializeField]
-        private EventListener _carCollisionListener;
+        private EventListener _gameSavedListener;
 
         private void OnEnable() {
-            _carCollisionListener.OnEventHappened += ShowLeaderBoard;
+            _gameSavedListener.OnEventHappened += ShowLeaderBoard;
         }
 
         private void OnDisable() {
-            _carCollisionListener.OnEventHappened -= ShowLeaderBoard;
+            _gameSavedListener.OnEventHappened -= ShowLeaderBoard;
         }
 
         private void ShowLeaderBoard() {
