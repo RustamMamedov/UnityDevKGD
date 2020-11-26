@@ -580,6 +580,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7637593907553568133}
+  - component: {fileID: 1187660524}
+  - component: {fileID: 1187660525}
   m_Layer: 5
   m_Name: MenuScreen
   m_TagString: Untagged
@@ -611,6 +613,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1187660524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7637593907553568132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d68faf0abcb9d740b60f6a57e506a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playButton: {fileID: 7637593907388734558}
+--- !u!114 &1187660525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7637593907553568132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf5fea7cfadbb142b69e6131e75e5e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 8668212499187603004}
+  _buttonType: 0
 --- !u!1001 &6371120451367059955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -797,12 +826,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04033d18c0fc8764d9b4b555ce16bd24, type: 3}
---- !u!4 &219754248310144470 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8786733049925882777, guid: 04033d18c0fc8764d9b4b555ce16bd24,
-    type: 3}
-  m_PrefabInstance: {fileID: 8861965265088081487}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &583257882797260945 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8278781051736633054, guid: 04033d18c0fc8764d9b4b555ce16bd24,
@@ -815,3 +838,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2f119cd63b50e4ca5a43b1f10b022c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &219754248310144470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8786733049925882777, guid: 04033d18c0fc8764d9b4b555ce16bd24,
+    type: 3}
+  m_PrefabInstance: {fileID: 8861965265088081487}
+  m_PrefabAsset: {fileID: 0}
