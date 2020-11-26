@@ -11,6 +11,9 @@ namespace UI {
         private EventDispatcher _gameSavedEventDispatcher;
 
         [SerializeField]
+        private EventDispatcher _settingsChangedEventDispatcher;
+
+        [SerializeField]
         private Button _saveButton;
 
         [SerializeField]
@@ -57,6 +60,7 @@ namespace UI {
         }
 
         private void OnVolumeChanged() {
+            _settingsChangedEventDispatcher.Dispatch();
             _volumeValueText.text = GetRoundedVolume().ToString() + "%";
         }
 

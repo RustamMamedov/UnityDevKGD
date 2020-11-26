@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8786733049925882777}
   - component: {fileID: 1542664785958644978}
   - component: {fileID: 8278781051736633054}
+  - component: {fileID: 3422182360095312608}
   m_Layer: 0
   m_Name: AudioSourcePlayer
   m_TagString: Untagged
@@ -46,7 +47,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.01
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -140,4 +141,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2f119cd63b50e4ca5a43b1f10b022c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _settingsChangedEventListener: {fileID: 3422182360095312608}
+  _multipleSounds: 0
   _audioSource: {fileID: 1542664785958644978}
+  _backgroundMusic: []
+--- !u!114 &3422182360095312608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893467028330697045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: bcf5214606a231e4e9f1a24a7a6925e8, type: 2}
