@@ -755,6 +755,7 @@ Transform:
   m_Children:
   - {fileID: 4294558538493172}
   - {fileID: 4382084664553452}
+  - {fileID: 5508005575505553353}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -787,6 +788,7 @@ MonoBehaviour:
   _carSettings: {fileID: 11400000, guid: 9ae768745df06794ea5df1695f4a16ec, type: 2}
   _carCollisionEventListener: {fileID: 3282426588068618033}
   _carTriggerEventDispatcher: {fileID: 5073323127308800146}
+  _collisionSound: {fileID: 1014985899590604024}
 --- !u!114 &4528071693478940192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,3 +1065,89 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1001 &3382101405333828371
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4485059992272672}
+    m_Modifications:
+    - target: {fileID: 1002698945287462330, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioSourcePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2376307425237362667, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.635235
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.54556
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.287732
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07d02ff1fab1184479f9c06caf715341, type: 3}
+--- !u!4 &5508005575505553353 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7106678753843254490, guid: 07d02ff1fab1184479f9c06caf715341,
+    type: 3}
+  m_PrefabInstance: {fileID: 3382101405333828371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1014985899590604024 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2376307425237362667, guid: 07d02ff1fab1184479f9c06caf715341,
+    type: 3}
+  m_PrefabInstance: {fileID: 3382101405333828371}
+  m_PrefabAsset: {fileID: 0}
