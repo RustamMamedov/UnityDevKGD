@@ -26,6 +26,8 @@ namespace Game {
         [ShowIf(nameof(isEnemyCar))]
         public GameObject renderCarPrefab;
 
+       // []
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }

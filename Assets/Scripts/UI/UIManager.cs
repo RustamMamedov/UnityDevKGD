@@ -26,8 +26,8 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
         private void Awake() {
-            if (Instance != null) {
-                Destroy(gameObject);
+            if (Instance) {
+                //Destroy(gameObject);
                 return;
             }
             _saveDataEventListeners.OnEventHappened += ShowLeaderboardsScreen;
