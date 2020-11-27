@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Events;
 using Game;
-using Packages.Rider.Editor;
 
 namespace UI {
     public class ImnputController : MonoBehaviour {
