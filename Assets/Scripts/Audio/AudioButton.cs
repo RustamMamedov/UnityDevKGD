@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Audio {
+
     [RequireComponent(typeof(Button))]
     public class AudioButton : MonoBehaviour {
 

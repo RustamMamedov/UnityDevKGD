@@ -25,6 +25,7 @@ namespace UI {
 
         [SerializeField]
         private MusicManager _musicManager;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -71,7 +72,6 @@ namespace UI {
             HideAllScreens();
             _menuScreen.SetActive(true);
             _musicManager.PlayMenuMusic();
-
         }
 
         public void ShowGameScreen() {
