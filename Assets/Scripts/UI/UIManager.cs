@@ -2,6 +2,7 @@
 using Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Audio;
 
 namespace UI {
     public class UIManager : MonoBehaviour {
@@ -21,8 +22,9 @@ namespace UI {
 
         [SerializeField]
         private EventListeners _saveDataEventListeners;
-        //private EventListeners _carCollision;
 
+        [SerializeField]
+        private MusicManager _musicManager;
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -35,8 +37,7 @@ namespace UI {
         }
 
         private void Start() {
-            //_fader.OnFadeIn += OnSceneFadeIn;
-            //_fader.FadeIn();
+            ShowMenuScreen();
         }
         public void LoadMenu() {
             _fader.OnFadeOut += LoadMenuScene;
@@ -69,6 +70,8 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
+
         }
 
         public void ShowGameScreen() {
