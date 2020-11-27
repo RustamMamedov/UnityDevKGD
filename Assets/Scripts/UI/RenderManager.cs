@@ -20,11 +20,12 @@ namespace UI {
             Instance = this;
         }
 
-        public RenderTexture Render(GameObject prefab) {
+        public RenderTexture Render(GameObject prefab, Vector3 cameraPosition) {
             var carInstance = Instantiate(prefab, _rootTransform);
             var texture = RenderTexture.GetTemporary(64,64, 16);
             texture.antiAliasing = 8;
             texture.Create();
+            _renderCamera.transform.position = cameraPosition;
             _renderCamera.targetTexture = texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
