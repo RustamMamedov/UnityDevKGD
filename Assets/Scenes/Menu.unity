@@ -348,6 +348,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 853007107}
     m_Modifications:
+    - target: {fileID: 3164832211801499699, guid: 876974c3b6baa7f4c9642c88ededbea1,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioSoursePlayer (Main)
+      objectReference: {fileID: 0}
     - target: {fileID: 3169670358103066275, guid: 876974c3b6baa7f4c9642c88ededbea1,
         type: 3}
       propertyPath: _gameplayMusic
@@ -363,6 +368,11 @@ PrefabInstance:
       propertyPath: _crachSound
       value: 
       objectReference: {fileID: 305355442}
+    - target: {fileID: 3169670358103066275, guid: 876974c3b6baa7f4c9642c88ededbea1,
+        type: 3}
+      propertyPath: _neccesaryTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6317745081110783719, guid: 876974c3b6baa7f4c9642c88ededbea1,
         type: 3}
       propertyPath: m_Name
@@ -548,6 +558,7 @@ GameObject:
   - component: {fileID: 376820916}
   - component: {fileID: 376820915}
   - component: {fileID: 376820914}
+  - component: {fileID: 376820918}
   m_Layer: 5
   m_Name: CarDodgeView (Truck)
   m_TagString: Untagged
@@ -589,7 +600,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carImage: {fileID: 167648264}
+  _countLabel: {fileID: 1992126991}
   _carSettings: {fileID: 11400000, guid: 34d25c0cea591664789573605b81c9a0, type: 2}
+  _carDodgedEventListener: {fileID: 376820918}
+  _dodgedCarName: {fileID: 11400000, guid: 3311b322bb5ee8e478d61432d3ac8aaf, type: 2}
 --- !u!114 &376820915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +654,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376820912}
   m_CullTransparentMesh: 0
+--- !u!114 &376820918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376820912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc1fa0823461324f8e245ff136e884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: a027f87ecebb1bd44a750b7305ac98c5, type: 2}
 --- !u!114 &486575821 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5876715652584700981, guid: eee475058d981484cb2797dcc5ecaa22,
@@ -1088,6 +1115,7 @@ GameObject:
   - component: {fileID: 1357068434}
   - component: {fileID: 1357068433}
   - component: {fileID: 1357068432}
+  - component: {fileID: 1357068436}
   m_Layer: 5
   m_Name: CarDodgeView (SUV)
   m_TagString: Untagged
@@ -1129,7 +1157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carImage: {fileID: 205508695}
+  _countLabel: {fileID: 1290152438}
   _carSettings: {fileID: 11400000, guid: eddcdcf27f1c0b0448edd87b05e2cfa9, type: 2}
+  _carDodgedEventListener: {fileID: 1357068436}
+  _dodgedCarName: {fileID: 11400000, guid: 3311b322bb5ee8e478d61432d3ac8aaf, type: 2}
 --- !u!114 &1357068433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,6 +1211,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357068430}
   m_CullTransparentMesh: 0
+--- !u!114 &1357068436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357068430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc1fa0823461324f8e245ff136e884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: a027f87ecebb1bd44a750b7305ac98c5, type: 2}
 --- !u!1001 &1401946890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1377,6 +1421,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5447869602307643482}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1623917989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3010312368386577432, guid: 7f30cef995236274ba06a08957b308c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5447869602307643482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1650026911 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3169670358103066275, guid: 876974c3b6baa7f4c9642c88ededbea1,
@@ -1493,6 +1549,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24dc06422ede0a846bc0de50c1a09650, type: 3}
+--- !u!1 &1955806292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 388673667987509599, guid: 7f30cef995236274ba06a08957b308c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5447869602307643482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1955806297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955806292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc1fa0823461324f8e245ff136e884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: a027f87ecebb1bd44a750b7305ac98c5, type: 2}
 --- !u!1 &1992126989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1652,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5447869602307643482}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1955806292}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 158fd1c5187fcaa4eb4408d130d426b8, type: 3}
@@ -2069,6 +2144,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 14c47a65fcbee5a4282cfc227b2ce373,
         type: 2}
+    - target: {fileID: 8884732788608762235, guid: 7f30cef995236274ba06a08957b308c5,
+        type: 3}
+      propertyPath: _carDodgedEventListener
+      value: 
+      objectReference: {fileID: 1955806297}
+    - target: {fileID: 8884732788608762235, guid: 7f30cef995236274ba06a08957b308c5,
+        type: 3}
+      propertyPath: _dodgedCarName
+      value: 
+      objectReference: {fileID: 11400000, guid: 3311b322bb5ee8e478d61432d3ac8aaf,
+        type: 2}
+    - target: {fileID: 8884732788608762235, guid: 7f30cef995236274ba06a08957b308c5,
+        type: 3}
+      propertyPath: _countLabel
+      value: 
+      objectReference: {fileID: 1623917989}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f30cef995236274ba06a08957b308c5, type: 3}
 --- !u!1001 &5940230338993270435
