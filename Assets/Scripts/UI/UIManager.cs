@@ -73,11 +73,13 @@ namespace UI {
             HideAllScreens();
             _menuScreen.SetActive(true);
             _musicManager.PlayMenuMusic();
+
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
+            _musicManager.PlayGameMusic();
         }
 
         public void ShowLeaderboardsScreen() {
@@ -88,9 +90,11 @@ namespace UI {
         public void HideAllScreens() {
 
             if (_menuScreen.activeSelf == true) {
+                _musicManager.StopMenuMusic();
                 _menuScreen.SetActive(false);
             }
             if (_gameScreen.activeSelf == true) {
+                _musicManager.StopGameMusic();
                 _gameScreen.SetActive(false);
             }
             if (_leaderboardScreen.activeSelf == true) {

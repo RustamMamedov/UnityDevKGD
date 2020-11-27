@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &2370543 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2024652563528310784, guid: c14b5aac45386c64ca08c93bf9c1515b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4387444765117956292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &11883557
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +850,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 301847198041842669}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1607064668 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2995079406021398149, guid: 0408770611ad84acb8fbc1797b7124bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 301847198041842669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1720375722 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8094019299217088686, guid: 275f4427abc954b3087b6ff452d4d42d,
@@ -976,6 +988,11 @@ PrefabInstance:
       propertyPath: _uiManager
       value: 
       objectReference: {fileID: 11883558}
+    - target: {fileID: 4825720040564256663, guid: 0408770611ad84acb8fbc1797b7124bb,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1607064668}
     - target: {fileID: 5327285664359540120, guid: 0408770611ad84acb8fbc1797b7124bb,
         type: 3}
       propertyPath: m_Name
@@ -1119,7 +1136,7 @@ PrefabInstance:
     - target: {fileID: 2024652563528310784, guid: c14b5aac45386c64ca08c93bf9c1515b,
         type: 3}
       propertyPath: m_Volume
-      value: 0.057
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2024652563528310784, guid: c14b5aac45386c64ca08c93bf9c1515b,
         type: 3}
@@ -1134,6 +1151,11 @@ PrefabInstance:
     - target: {fileID: 2024652563528310784, guid: c14b5aac45386c64ca08c93bf9c1515b,
         type: 3}
       propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024652563528310784, guid: c14b5aac45386c64ca08c93bf9c1515b,
+        type: 3}
+      propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387444765258099828, guid: c14b5aac45386c64ca08c93bf9c1515b,
@@ -1196,6 +1218,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6461480348778077888, guid: c14b5aac45386c64ca08c93bf9c1515b,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606885562179043602, guid: c14b5aac45386c64ca08c93bf9c1515b,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2370543}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14b5aac45386c64ca08c93bf9c1515b, type: 3}
 --- !u!1001 &5163310817215324032

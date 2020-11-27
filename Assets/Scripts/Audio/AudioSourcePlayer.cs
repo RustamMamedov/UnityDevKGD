@@ -8,16 +8,16 @@ namespace Audio {
     public class AudioSourcePlayer : MonoBehaviour {
 
         [SerializeField]
-        private AudioSource _audioSource;
+        public AudioSource audioSource;
 
         [Button]
         public void Play() {
-            _audioSource.Play();
+            audioSource.Play();
         }
 
         [Button]
         public void Stop() {
-            _audioSource.Stop();
+            audioSource.Stop();
         }
     }
 }
