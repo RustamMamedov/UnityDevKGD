@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-
+using Sirenix.OdinInspector;
 
 namespace Game {
     public class Car : MonoBehaviour {
 #region 1
         [SerializeField]
+        [Required]
         protected CarsSettings _carSetting;
 
         [SerializeField]
