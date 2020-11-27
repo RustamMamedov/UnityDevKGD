@@ -18,14 +18,17 @@ namespace Audio {
         [SerializeField]
         private AudioSourcePlayer _crachSound;
 
+        [SerializeField]
+        private float _neccesaryTime;
+
         public void PlayMenuMusic() {
-            _gameplayMusic.Stop();
-            _menuMusicPlayer.Play();
+            _gameplayMusic.StopMusic(_neccesaryTime);
+            _menuMusicPlayer.PlayMusic(_neccesaryTime);
         }
 
         public void PlayGameplayMusic() {
-           _menuMusicPlayer.Stop();
-           _gameplayMusic.Play();
+            _menuMusicPlayer.StopMusic(_neccesaryTime);
+            _gameplayMusic.PlayMusic(_neccesaryTime);
             
         }
 
