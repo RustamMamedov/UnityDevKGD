@@ -15,7 +15,7 @@ namespace Game {
             //Gizmos.color = _colorLight;
             //Gizmos.matrix = transform.localToWorldMatrix;
             //Gizmos.DrawFrustum(new Vector3(0f, 0f, -1f), 30f, _car.CarSettings.carLightLength, 1f, 1f);
-            _light.range = _car.CarSettings.carLightLength * 10f;
+            //_light.range = _car.CarSettings.carLightLength * 10f;
         }
     }
 }
