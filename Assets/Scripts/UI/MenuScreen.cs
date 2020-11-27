@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Events;
 using Game;
 using UnityEngine;
@@ -14,6 +14,8 @@ namespace UI {
         [SerializeField] 
         private Button _startCrazyModeButton;
         
+        [SerializeField] 
+        private Button _settingsButton;
         
         [SerializeField]
         private EventDispatcher _startGameMusicEventDispatcher;
@@ -24,6 +26,7 @@ namespace UI {
         private void Awake() {
             _startCasualModeButton.onClick.AddListener(OnCasualModeButtonClick);
             _startCrazyModeButton.onClick.AddListener(OnCrazyModeButtonClick);
+            _settingsButton.onClick.AddListener(OnSettingsButtonClick);
         }
 
         private void OnCasualModeButtonClick() {
@@ -36,6 +39,10 @@ namespace UI {
             _crazyModeEnabled.value = true;
             _startGameMusicEventDispatcher.Dispatch();
             UIManager.Instance.LoadGameplay();
+        }
+        
+        private void OnSettingsButtonClick() {
+            UIManager.Instance.ShowSettingsScreen();
         }
     }
 }
