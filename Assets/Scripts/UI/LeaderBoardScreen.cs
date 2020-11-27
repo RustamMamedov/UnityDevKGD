@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Events;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,9 @@ namespace UI {
         
         [SerializeField]
         private ScriptableIntValue _currentScorePosition;
+        
+        [SerializeField]
+        private EventDispatcher _startMenuMusicEventDispatcher;
         
         private void Awake() {
             _startGameButton.onClick.AddListener(OnPlayButtonClick);
@@ -39,6 +43,7 @@ namespace UI {
         }
 
         private void OnPlayButtonClick() {
+            _startMenuMusicEventDispatcher.Dispatch();
             UIManager.Instance.LoadMenu();
         }
     }

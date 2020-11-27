@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Events;
 using UnityEngine;
 
 namespace Audio {
@@ -15,20 +16,51 @@ namespace Audio {
 		[SerializeField] 
 		private float _musicFadeTime;
 		
+		[SerializeField]
+		private EventListener _playMenuMusicEventListener;
+		
+		[SerializeField]
+		private EventListener _playGameMusicEventListener;
+
+		private void Awake() {
+			SubscribeToEvents();
+			PlayMenuMusic();
+		}
+
+		private void OnDisable() {
+			UnsubscribeFromEvents();
+		}
+		
+		private void SubscribeToEvents() {
+			_playMenuMusicEventListener.OnEventHappened += PlayMenuMusic;
+			_playGameMusicEventListener.OnEventHappened += PlayGameMusic;
+		}
+		
+		private void UnsubscribeFromEvents() {
+			_playMenuMusicEventListener.OnEventHappened -= PlayMenuMusic;
+			_playGameMusicEventListener.OnEventHappened -= PlayGameMusic;
+		}
+		
 		public void PlayMenuMusic() {
-			StartCoroutine(ChangeVolumeMenuMusicCoroutine(true, _menuMusicPlayer, 0f, 1f));
+			if (_gameMusicPlayer.isPlaying) {
+				StopGameMusic();
+			}
+			StartCoroutine(ChangeVolumeMenuMusicCoroutine(true, _menuMusicPlayer, _menuMusicPlayer.volume, 1f));
 		}
 
 		public void PlayGameMusic() {
-			StartCoroutine(ChangeVolumeMenuMusicCoroutine(true, _gameMusicPlayer, 0f, 1f));
+			if (_menuMusicPlayer.isPlaying) {
+				StopMenuMusic();
+			}
+			StartCoroutine(ChangeVolumeMenuMusicCoroutine(true, _gameMusicPlayer, _gameMusicPlayer.volume, 1f));
 		}
-		
+
 		public void StopMenuMusic() {
-			StartCoroutine(ChangeVolumeMenuMusicCoroutine(false, _menuMusicPlayer, 1f, 0f));
+			StartCoroutine(ChangeVolumeMenuMusicCoroutine(false, _menuMusicPlayer, _menuMusicPlayer.volume, 0f));
 		}
 
 		public void StopGameMusic() {
-			StartCoroutine(ChangeVolumeMenuMusicCoroutine(false, _gameMusicPlayer, 1f, 0f));
+			StartCoroutine(ChangeVolumeMenuMusicCoroutine(false, _gameMusicPlayer, _gameMusicPlayer.volume, 0f));
 		}
 
 		private IEnumerator ChangeVolumeMenuMusicCoroutine(bool playMusic, AudioSource musicPlayer,float startVolume, float desiredVolume) {
@@ -41,9 +73,9 @@ namespace Audio {
 			if (playMusic) {
 				musicPlayer.Play();
 			}
-			while (timer < _musicFadeTime) { 
-				timer += Time.deltaTime; 
-				musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, desiredVolume, timer / _musicFadeTime); 
+			while (timer < _musicFadeTime && musicPlayer.volume != desiredVolume) {
+				timer += Time.deltaTime / _musicFadeTime; 
+				musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, desiredVolume, timer); 
 				yield return null; 
 			}
 			if (stopMusic) {

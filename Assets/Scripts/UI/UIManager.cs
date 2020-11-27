@@ -90,15 +90,11 @@ namespace UI {
 
         public void ShowMenuScreen() {
             HideAllScreens();
-            _musicManager.StopGameMusic();
-            _musicManager.PlayMenuMusic();
             _menuScreen.SetActive(true);
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
-            _musicManager.StopMenuMusic();
-            _musicManager.PlayGameMusic();
             _gameScreen.SetActive(true);
         }
 

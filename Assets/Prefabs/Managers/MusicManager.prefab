@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2695839126690408521}
   - component: {fileID: 1152938160646595282}
+  - component: {fileID: 4373778130960745842}
+  - component: {fileID: 4608823374652047619}
   m_Layer: 5
   m_Name: MusicManager
   m_TagString: Untagged
@@ -46,8 +48,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuMusicPlayer: {fileID: 8558730502178620350}
-  _gameMusicPlayer: {fileID: 0}
-  _musicFadeTime: 5
+  _gameMusicPlayer: {fileID: 1523318489941656510}
+  _musicFadeTime: 2
+  _playMenuMusicEventListener: {fileID: 4373778130960745842}
+  _playGameMusicEventListener: {fileID: 4608823374652047619}
+--- !u!114 &4373778130960745842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451516604566789015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 252e006a4a773567b8516a87741258b6, type: 2}
+--- !u!114 &4608823374652047619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451516604566789015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: efb93c8fa7feb86bab2f8753dd561cb0, type: 2}
 --- !u!1001 &452489176664964366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,6 +273,12 @@ PrefabInstance:
 --- !u!4 &1523318489941656508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8106805375559974578, guid: 05db3f9fce50335b084db29f7f304b87,
+    type: 3}
+  m_PrefabInstance: {fileID: 7323629872381394190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1523318489941656510 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8106805375559974576, guid: 05db3f9fce50335b084db29f7f304b87,
     type: 3}
   m_PrefabInstance: {fileID: 7323629872381394190}
   m_PrefabAsset: {fileID: 0}

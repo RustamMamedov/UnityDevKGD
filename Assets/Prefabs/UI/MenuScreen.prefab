@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6ba14bc3c11a20d8efbd7547363069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSourcePlayer: {fileID: 0}
+  _audioSourcePlayer: {fileID: 4127109430669658885}
 --- !u!114 &8567386529020197620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -500}
+  m_AnchoredPosition: {x: 0, y: -600}
   m_SizeDelta: {x: 640, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5714227817925716522
@@ -715,6 +715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5714227818513855282}
   - component: {fileID: 5714227818018561230}
+  - component: {fileID: 6638350626816285538}
   m_Layer: 5
   m_Name: MenuScreen
   m_TagString: Untagged
@@ -759,7 +760,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startCasualModeButton: {fileID: 5870905909896779228}
   _startCrazyModeButton: {fileID: 5714227818007191126}
+  _settingsButton: {fileID: 5822692310786930878}
+  _startGameMusicEventDispatcher: {fileID: 6638350626816285538}
   _crazyModeEnabled: {fileID: 11400000, guid: 7763c901043d4f77090ec9056be79d6b, type: 2}
+--- !u!114 &6638350626816285538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5714227818513855281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65be3fa1aa2996899e47a474049826a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: efb93c8fa7feb86bab2f8753dd561cb0, type: 2}
 --- !u!1 &6350015515381687578
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 500}
+  m_AnchoredPosition: {x: 0, y: 600}
   m_SizeDelta: {x: 262, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6237569339470856464
@@ -989,6 +1005,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05db3f9fce50335b084db29f7f304b87, type: 3}
+--- !u!114 &4127109430669658885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8106805375559974577, guid: 05db3f9fce50335b084db29f7f304b87,
+    type: 3}
+  m_PrefabInstance: {fileID: 5316315332527289780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607dbee7d849d5db084a0413878c7923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4127109430669658886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8106805375559974578, guid: 05db3f9fce50335b084db29f7f304b87,

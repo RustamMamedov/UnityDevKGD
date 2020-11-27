@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Events;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,10 @@ namespace UI {
         [SerializeField] 
         private Button _startCrazyModeButton;
         
+        
+        [SerializeField]
+        private EventDispatcher _startGameMusicEventDispatcher;
+        
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
 
@@ -23,11 +28,13 @@ namespace UI {
 
         private void OnCasualModeButtonClick() {
             _crazyModeEnabled.value = false;
+            _startGameMusicEventDispatcher.Dispatch();
             UIManager.Instance.LoadGameplay();
         }
         
         private void OnCrazyModeButtonClick() {
             _crazyModeEnabled.value = true;
+            _startGameMusicEventDispatcher.Dispatch();
             UIManager.Instance.LoadGameplay();
         }
     }
