@@ -25,7 +25,7 @@ namespace UI {
             var texture = RenderTexture.GetTemporary(64,64, 16);
             texture.antiAliasing = 8;
             texture.Create();
-            _renderCamera.transform.position = cameraPosition;
+            _renderCamera.transform.localPosition = cameraPosition;
             _renderCamera.targetTexture = texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;

@@ -38,7 +38,7 @@ namespace Game {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
-        private ScriptableIntValue _currentScore;
+        private ScriptableIntValue[] _scores;
 
         [SerializeField]
         [InfoBox("PlayerPrefs", "IsPlayerPrefs")]
@@ -81,10 +81,13 @@ namespace Game {
         public void StartSaveProcess() {
             var newRecord = new SaveData {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
-                score = _currentScore.value.ToString(),
+                score = _scores[0].value.ToString(),
                 isHighlighted = true
             };
-            _currentScore.value = 0;
+
+            foreach (var it in _scores) {
+                it.value = 0;
+            }
 
             Turn_Highlights_Off_In_savedDatas();
             _saveDatas.Add(newRecord);
