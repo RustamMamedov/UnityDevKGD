@@ -8,6 +8,9 @@ namespace Game {
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
 
+        [BoxGroup("Camera")]
+        public Vector3 position;
+
         [Range(1, 5)]
         public int carLightDistance = 5;
 
