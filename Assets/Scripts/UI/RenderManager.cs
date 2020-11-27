@@ -25,7 +25,7 @@ namespace UI {
         }
 
         public RenderTexture Render(CarSettings carSettings) {
-            //_renderCamera.enabled = true;
+            _renderCamera.enabled = true;
             var carInstance = Instantiate(carSettings.renderCarPrefab, _rootTransform);
             _texture = RenderTexture.GetTemporary(64, 64, 16);
             _texture.antiAliasing = 8;
@@ -36,7 +36,7 @@ namespace UI {
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
             Destroy(carInstance);
-           //_renderCamera.enabled = false;
+           _renderCamera.enabled = false;
             return _texture;
         }
         
