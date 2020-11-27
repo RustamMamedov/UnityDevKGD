@@ -2,6 +2,7 @@
 using Events;
 using System.Collections;
 using UI;
+using Audio;
 
 namespace Game {
 
@@ -21,6 +22,9 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
+
+        [SerializeField]
+        private AudioSource _dodgeSound;
 
         //[SerializeField]
         //private Color _gizmosColor;
@@ -55,6 +59,7 @@ namespace Game {
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
+            DodgeSound();
             var timer = 0f;
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
             while (timer < _dodgeDuration) {
@@ -66,6 +71,10 @@ namespace Game {
             }
             _inDodge = false;
             _currentRoad = nextRoad;
+        }
+
+        private void DodgeSound() {
+                _dodgeSound.Play();
         }
         /*
         private void OnDrawGizmos() {
