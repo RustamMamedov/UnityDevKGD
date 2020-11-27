@@ -20,6 +20,8 @@ namespace Game {
         [Range(1f, 5f)]
         public float lenghLightCar;
 
+        public GameObject renderCarPrefab;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
