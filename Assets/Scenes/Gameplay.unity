@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carCollisionEventListener: {fileID: 397036223}
   _currentScore: {fileID: 11400000, guid: 626a83a8173b77e48ab707d2f63a58ef, type: 2}
+  _saveDispatcher: {fileID: 0}
   _saveType: 1
 --- !u!4 &397036225
 Transform:
@@ -335,6 +336,66 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6285478713099718757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1546712746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546712749}
+  - component: {fileID: 1546712748}
+  - component: {fileID: 1546712747}
+  m_Layer: 0
+  m_Name: ScoreCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1546712747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546712746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc1fa0823461324f8e245ff136e884d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: a027f87ecebb1bd44a750b7305ac98c5, type: 2}
+--- !u!114 &1546712748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546712746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb32c027593f3f04a8b99580cc7c3116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carDodgedEventListener: {fileID: 1546712747}
+  _dodgeScore: {fileID: 11400000, guid: febe3e5036ec05749bc32f863ba26cc2, type: 2}
+  _currentScore: {fileID: 11400000, guid: 626a83a8173b77e48ab707d2f63a58ef, type: 2}
+--- !u!4 &1546712749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546712746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.803126, y: 6.496354, z: 13.599998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2058328330
 PrefabInstance:
   m_ObjectHideFlags: 0
