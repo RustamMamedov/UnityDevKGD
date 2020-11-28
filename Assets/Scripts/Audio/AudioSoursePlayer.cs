@@ -6,7 +6,7 @@ namespace Audio {
 public class AudioSoursePlayer : MonoBehaviour {
 
         [SerializeField]
-        private AudioSource _audioSourse;
+        public AudioSource _audioSourse;
 
         [Button]
         public void Play() {

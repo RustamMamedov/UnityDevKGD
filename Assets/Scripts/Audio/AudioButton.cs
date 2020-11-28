@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Audio {
@@ -7,7 +9,7 @@ namespace Audio {
     public class AudioButton : MonoBehaviour {
 
         [SerializeField]
-        private AudioSoursePlayer _audioSoursePlayer;
+        private AudioSoursePlayer _audioSourcePlayer;
 
         private Button _button;
 
@@ -17,7 +19,7 @@ namespace Audio {
         }
 
         private void OnButtonClick() {
-            _audioSoursePlayer.Play();
+            _audioSourcePlayer.Play();
         }
     }
 }
