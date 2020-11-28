@@ -100,7 +100,7 @@ namespace Game {
                     if (distanceToSpawnedCar < _distanceToCountScore && _scoreCountAllow) {
                         var scoreLabel = UIManager.Instance.GameScreen.transform.GetChild(0).GetChild(0).GetComponent<Text>();
 
-                        _currentScore.value += _cars[0].GetComponent<EnemyCar>().CarSettings.dodgeScore; ;
+                       // _currentScore.value += _cars[0].GetComponent<EnemyCar>().CarSettings.dodgeScore; ;
                         scoreLabel.text = _currentScore.value.ToString();
                         _scoreCountAllow = false;
                     }

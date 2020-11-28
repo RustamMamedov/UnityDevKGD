@@ -12,7 +12,7 @@ namespace UI {
         [SerializeField]
         private Transform _rootTransform;
 
-        private RenderTexture texture;
+        private RenderTexture _texture;
 
         private void Awake() {
             Instance = this;
@@ -20,21 +20,18 @@ namespace UI {
 
         public RenderTexture Render(GameObject prefab) {
             var carInstance = Instantiate(prefab, _rootTransform);
-            texture = RenderTexture.GetTemporary(64, 64, 16);
-            texture.antiAliasing = 8;
-            texture.Create();
-            _renderCamera.targetTexture = texture;
+            _texture = RenderTexture.GetTemporary(64, 64, 16);
+            _texture.antiAliasing = 8;
+            _texture.Create();
+            _renderCamera.targetTexture = _texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
             Destroy(carInstance);
-            return texture;
+            return _texture;
         }
 
         public void ReleaseTextures() {
-            RenderTexture.ReleaseTemporary(texture);
+            RenderTexture.ReleaseTemporary(_texture);
         }
-
-
     }
-
 }
