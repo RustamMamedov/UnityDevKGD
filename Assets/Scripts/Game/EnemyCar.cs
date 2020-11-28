@@ -17,7 +17,10 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPosition;
 
+        [SerializeField]
+        private ScriptableIntValue _currentDodgedScore;
 
+        private bool _dodged = false;
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _enemyCarsCollisionEventDispatcher.Dispatch();
@@ -30,8 +33,10 @@ namespace Game {
         }
 
         private void Dodged() {
-            if(_playerPosition.value - transform.position.z > _distanceBetweenCars.value) {
+            if(_playerPosition.value - transform.position.z > _distanceBetweenCars.value && !_dodged) {
                 _carDodged.Dispatch();
+                _currentDodgedScore.value++;
+                _dodged = true;
             }
         }
     }
