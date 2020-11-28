@@ -23,7 +23,18 @@ namespace Game {
         private bool _inDodge;
 
         [SerializeField]
+        private Light _lights1;
+
+        [SerializeField]
+        private Light _lights2;
+
+        [SerializeField]
         private ScriptableFloatValue _roadWidth;
+
+        private void Start() {
+            _lights1.range = _carSettings.lightDistance;
+            _lights2.range = _carSettings.lightDistance;
+        }
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
