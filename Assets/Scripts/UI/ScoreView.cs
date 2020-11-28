@@ -25,16 +25,14 @@ namespace UI {
         private bool _scoreIsChanging = false;
 
         private void OnEnable() {
+            _eventListener.OnEventHappened += UpdateBehaviour;
             _currentScore = _score.value;
             _scoreLabel.text = $"{_currentScore}";
         }
 
         private void OnDisable() {
+            _eventListener.OnEventHappened -= UpdateBehaviour;
             _score.value = 0;
-        }
-
-        private void Update() {
-            _eventListener.OnEventHappened += UpdateBehaviour;
         }
 
         public void UpdateBehaviour() {
