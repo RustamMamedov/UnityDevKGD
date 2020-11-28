@@ -1,14 +1,7 @@
-﻿using System;
-using System.Threading;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
-using Game;
 using Audio;
-using Events;
 
 namespace UI {
 
@@ -24,14 +17,9 @@ namespace UI {
 
         [SerializeField]
         private GameObject _gameScreen;
+
         [SerializeField]
         private GameObject _leaderboardScreen;
-
-        [SerializeField]
-        private Text _currentScoreText;
-
-        [SerializeField]
-        private ScriptableIntValue _currentScore;
 
         [SerializeField]
         private MusicManager _musicManager;
@@ -55,19 +43,12 @@ namespace UI {
             _fader.FadeOut();
         }
 
-        public void LoadLeaderboardScreen() {
-            StartCoroutine(LoadSceneCoroutine("Menu"));
-            ShowLeaderboardsScreen();
-        }
-
         public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
 
         private void LoadMenuScene() {
-            _currentScoreText.text ="0";
-            _currentScore.value = 0;
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
             ShowMenuScreen();
@@ -90,38 +71,37 @@ namespace UI {
 
         public void ShowMenuScreen() {
             HideAllScreens();
-            if (_menuScreen.activeSelf==false) {
             _menuScreen.SetActive(true);
-                _musicManager.PlayMenuMusic();
+            _musicManager.PlayMenuMusic();
+
+        }
+
+        public void ShowGameScreen() {
+            HideAllScreens();
+            _gameScreen.SetActive(true);
+           // _musicManager.PlayGameMusic();
+        }
+
+        public void ShowLeaderboardsScreen() {
+            HideAllScreens();
+            _leaderboardScreen.SetActive(true);
+        }
+
+        public void HideAllScreens() {
+
+            if (_menuScreen.activeSelf == true) {
+               // _musicManager.StopMenuMusic();
+                _menuScreen.SetActive(false);
+            }
+            if (_gameScreen.activeSelf == true) {
+              // _musicManager.StopGameMusic();
+                _gameScreen.SetActive(false);
+            }
+            if (_leaderboardScreen.activeSelf == true) {
+                _leaderboardScreen.SetActive(false);
             }
         }
 
-         public void ShowGameScreen() {
-             HideAllScreens();
-             if (_gameScreen.activeSelf==false) {
-                 _gameScreen.SetActive(true);
-             }
-         }
-
-         public void ShowLeaderboardsScreen() {
-            HideAllScreens();
-            if (_leaderboardScreen.activeSelf==false) {
-                 _leaderboardScreen.SetActive(true);
-            }
-         }
-
-         public void HideAllScreens() {
-
-                    if (_menuScreen.activeSelf==true) {
-                        _menuScreen.SetActive(false);
-                    }
-                    if (_gameScreen.activeSelf == true) {
-                        _gameScreen.SetActive(false);
-                    }
-                    if (_leaderboardScreen.activeSelf == true) {
-                        _leaderboardScreen.SetActive(false);
-                    }
-                }
-        
     }
 }
+
