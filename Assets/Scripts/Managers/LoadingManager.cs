@@ -25,7 +25,7 @@ namespace Managers {
         private IEnumerator LoadScene(string sceneName) {
             AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
             while (!loading.isDone) {
-                _sceneLoadingProgress.value = loading.progress;
+                _sceneLoadingProgress.value = loading.progress / 0.9f;
                 yield return null;
             }
         }
