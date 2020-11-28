@@ -132,7 +132,12 @@ namespace Game {
 
         private void LoadSettings() {
             if (!PlayerPrefs.HasKey(SETTINGS_KEY)) {
-                return;
+                _savedSettings.volumeValue = 0.5f;
+                _savedSettings.time = SavedSettings.Time.Day;
+                _savedSettings.difficulty = SavedSettings.Difficulty.Easy;
+
+                var json = JsonUtility.ToJson(_savedSettings);
+                PlayerPrefs.SetString(SETTINGS_KEY, json);
             }
 
             var settings = JsonUtility.FromJson<SavedSettings>(PlayerPrefs.GetString(SETTINGS_KEY));
