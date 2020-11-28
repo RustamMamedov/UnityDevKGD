@@ -33,6 +33,7 @@ namespace UI {
         private void OnDisable() {
             _eventListener.OnEventHappened -= UpdateBehaviour;
             _score.value = 0;
+            _scoreIsChanging = false;
         }
 
         public void UpdateBehaviour() {
