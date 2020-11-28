@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3188261034969066782}
+  - component: {fileID: 71461559}
   m_Layer: 5
   m_Name: GameScreen
   m_TagString: Untagged
@@ -39,6 +40,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &71461559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188261034969066781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0268a4cd0f61f144b8b8b0422501c339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carDodgedViews:
+  - {fileID: 5460021234362625509}
+  - {fileID: 3152726018532274821}
+  - {fileID: 6759307881447332429}
 --- !u!1 &3188261034988420102
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b2ac23d0db49f47883d7619e182360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreCountDelay: 0.1
+  _scoreCountDelay: 0.01
   _score: {fileID: 11400000, guid: 0dcb30b140732b34397b3d3d90c8d38d, type: 2}
   _eventListener: {fileID: 3188261035010981522}
   _scoreLabel: {fileID: 3188261034988420096}
@@ -350,6 +367,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: FamilyCarDodgeView
       objectReference: {fileID: 0}
+    - target: {fileID: 7223775164975483828, guid: 036b0583b28005c4089801ac1312d5c2,
+        type: 3}
+      propertyPath: _carSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 6592ac76881902f43ab5c7378b88c576,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036b0583b28005c4089801ac1312d5c2, type: 3}
 --- !u!224 &2435977449703131968 stripped
@@ -358,6 +381,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3424395288303969873}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5460021234362625509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7223775164975483828, guid: 036b0583b28005c4089801ac1312d5c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3424395288303969873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71099161a81021a4eb03ce5ed1452854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4147221013531038201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -485,6 +520,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TruckDodgeView
       objectReference: {fileID: 0}
+    - target: {fileID: 7223775164975483828, guid: 036b0583b28005c4089801ac1312d5c2,
+        type: 3}
+      propertyPath: _carSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: e2bafebb5fba269479a77cc8c60e031f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036b0583b28005c4089801ac1312d5c2, type: 3}
 --- !u!224 &4018990166919511272 stripped
@@ -493,6 +534,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4147221013531038201}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6759307881447332429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7223775164975483828, guid: 036b0583b28005c4089801ac1312d5c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4147221013531038201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71099161a81021a4eb03ce5ed1452854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5728783928498092337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -620,6 +673,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SUVDodgeView
       objectReference: {fileID: 0}
+    - target: {fileID: 7223775164975483828, guid: 036b0583b28005c4089801ac1312d5c2,
+        type: 3}
+      propertyPath: _carSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 54f0198033370904ba560a75442fe89e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036b0583b28005c4089801ac1312d5c2, type: 3}
 --- !u!224 &4740895591198069792 stripped
@@ -628,3 +687,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5728783928498092337}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3152726018532274821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7223775164975483828, guid: 036b0583b28005c4089801ac1312d5c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5728783928498092337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71099161a81021a4eb03ce5ed1452854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
