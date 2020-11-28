@@ -12,17 +12,25 @@ namespace UI {
         private RawImage _carImage;
 
         [SerializeField]
-        private CarSettings _carSettings;
+        public CarSettings _carSettings;
 
-        private void OnEnable() {
-            Init();
-        }
+        [SerializeField]
+        private Text _scoreText;
+
+        private int _score;
 
         public void Init() {
-            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab);
+            _carImage.texture = RenderManager.Instance.Render(_carSettings.renderCarPrefab, _carSettings.cameraPosition, _carSettings.cameraRotation);
         }
 
+        private void Update() {
+            ScoreShow();
+        }
 
+        public void ScoreShow() {
+            _score = _carSettings.currentDodgeScore;
+            _scoreText.text = _score.ToString();
+        }
 
     }
 }
