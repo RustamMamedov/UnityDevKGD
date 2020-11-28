@@ -8,8 +8,11 @@ namespace Game {
     [CreateAssetMenu(fileName = "Car", menuName = "Car")]
     public class CarSettings : ScriptableObject {
 
-        [BoxGroup("Camera")]
+        [BoxGroup("RenderCamera")]
         public Vector3 position;
+
+        [BoxGroup("RenderCamera")]
+        public GameObject renderCarPrefab;
 
         [Range(1, 5)]
         public int carLightDistance = 5;
@@ -25,7 +28,6 @@ namespace Game {
         [InfoBox("Speed is beeing increased by acceleartion every framy")]
         public float acceleration;
 
-        public GameObject renderCarPrefab;
 
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
