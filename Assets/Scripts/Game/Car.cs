@@ -24,7 +24,6 @@ namespace Game {
         }
 
         private void OnDisable() {
-            
             UnsubscribeToEvents();
         }
 
@@ -40,7 +39,7 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            UIManager.Instance.ShowLeaderboardScreen();
+            // UIManager.Instance.ShowLeaderboardScreen();
             UnsubscribeToEvents();
         }
 
