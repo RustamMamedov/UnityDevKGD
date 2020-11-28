@@ -16,7 +16,7 @@ namespace Audio {
         private bool _multipleSounds;
 
         [SerializeField]
-        private AudioSource _audioSource;
+        public AudioSource audioSource;
 
         [SerializeField]
         private SettingsScreen _settingsScreen;
@@ -26,7 +26,7 @@ namespace Audio {
         private List<AudioClip> _backgroundMusic;
 
         private void Start() {
-            _audioSource.volume = Save.Settings.volumeValue;
+            audioSource.volume = Save.Settings.volumeValue;
         }
 
         private void OnEnable() {
@@ -35,23 +35,22 @@ namespace Audio {
 
         private void OnDisable() {
             _settingsChangedEventListener.OnEventHappened -= SetVolume;
-            _audioSource.volume = Save.Settings.volumeValue;
         }
 
         [Button]
         public void Play() {
-            _audioSource.Play();
+            audioSource.Play();
         }
 
         [Button]
         public void PlayRandom() {
-            _audioSource.clip = GetRandomClip();
-            _audioSource.Play();
+            audioSource.clip = GetRandomClip();
+            audioSource.Play();
         }
 
         [Button]
         public void Stop() {
-            _audioSource.Stop();
+            audioSource.Stop();
         }
 
         private AudioClip GetRandomClip() {
@@ -60,7 +59,7 @@ namespace Audio {
 
         private void SetVolume() {
             if (_settingsScreen != null) {
-                _audioSource.volume = _settingsScreen.Volume;
+                audioSource.volume = _settingsScreen.Volume;
             }
         }
     }
