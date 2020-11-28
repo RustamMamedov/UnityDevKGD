@@ -5,6 +5,7 @@ using Events;
 using UI;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using Audio;
 
 namespace Game {
 
@@ -40,6 +41,9 @@ namespace Game {
 
         private float _currentTimer;
 
+        [SerializeField]
+        private AudioSourcePlayer _dodgeSound;
+
         private List<GameObject> _cars = new List<GameObject>();
 
         [SerializeField]
@@ -47,7 +51,6 @@ namespace Game {
 
         [SerializeField]
         private float _distanceToCountScore;
-
 
         [ValidateInput(nameof(ValidateEnemyCars))]
         [SerializeField]
@@ -100,7 +103,26 @@ namespace Game {
                     if (distanceToSpawnedCar < _distanceToCountScore && _scoreCountAllow) {
                         var scoreLabel = UIManager.Instance.GameScreen.transform.GetChild(0).GetChild(0).GetComponent<Text>();
 
-                       // _currentScore.value += _cars[0].GetComponent<EnemyCar>().CarSettings.dodgeScore; ;
+                        var enemyCar = _cars[0].GetComponent<EnemyCar>();
+
+                        _currentScore.value += enemyCar.CarSettings.dodgeScore;
+                        _dodgeSound.Play();
+
+                        switch (enemyCar.CarSettings.nameOfCar) {
+                            case "Truck":
+                                enemyCar.CarSettings.currentDodgeScore++;
+                                break;
+
+                            case "FamilyCar":
+                                enemyCar.CarSettings.currentDodgeScore++;
+                                break;
+
+                            case "SUV":
+                                enemyCar.CarSettings.currentDodgeScore++;
+                                break;
+                        }
+
+
                         scoreLabel.text = _currentScore.value.ToString();
                         _scoreCountAllow = false;
                     }
