@@ -83,11 +83,8 @@ namespace Game {
             Debug.Log($"new record: {newRecord.date}  {newRecord.score}");
 
             for (int i = 0; i < _savedDatas.Count - 1; i++) {
-                Debug.Log("start1");
                 for (int j = 0; j < _savedDatas.Count - 1; j++) {
-                    Debug.Log("start2");
                     if (int.Parse(_savedDatas[i].score) < int.Parse(_savedDatas[i + 1].score)) {
-                        Debug.Log("start3");
                         var temp = _savedDatas[i + 1];
                         _savedDatas[i + 1] = _savedDatas[i];
                         _savedDatas[i] = temp;

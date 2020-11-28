@@ -13,6 +13,12 @@ namespace UI {
         private Fader _fader;
 
         [SerializeField]
+        private AudioSourcePlayer _menuMusic;
+
+        [SerializeField]
+        private AudioSourcePlayer _gameMusic;
+
+        [SerializeField]
         private GameObject _leaderboard;
 
         [SerializeField]
@@ -78,6 +84,7 @@ namespace UI {
         public void ShowGameScreen() {
             HideAllScreens();
             GameScreen.SetActive(true);
+            _gameMusic.Play();            
         }
 
         public void ShowLeaderboardsScreen() {

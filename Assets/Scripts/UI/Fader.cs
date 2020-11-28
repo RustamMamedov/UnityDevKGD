@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Audio;
 
 namespace UI {
 
@@ -20,7 +21,7 @@ namespace UI {
         }
 
         public void FadeOut() {
-            StartCoroutine(FadeOutCoroutine());
+            StartCoroutine(FadeOutCoroutine()); 
         }
 
         private IEnumerator FadeInCoroutine() {
