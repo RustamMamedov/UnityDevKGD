@@ -1,19 +1,26 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Values;
 
-namespace Loading {
+namespace Managers {
 
-    public class Preloader : MonoBehaviour {
+    public class LoadingManager : MonoBehaviour {
+
+        // Fields.
 
         [SerializeField]
         private ScriptableFloatValue _sceneLoadingProgress;
 
+
+        // Life cycle.
+
         private void Start() {
             StartCoroutine(LoadScene("Menu"));
         }
+
+
+        // Scene loading methods.
 
         private IEnumerator LoadScene(string sceneName) {
             AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
