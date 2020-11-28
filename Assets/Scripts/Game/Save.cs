@@ -128,6 +128,7 @@ namespace Game {
             PlayerPrefs.SetString(SETTINGS_KEY, json);
 
             _savedSettings = settings;
+            PlayerPrefs.Save();
         }
 
         private void LoadSettings() {
@@ -136,12 +137,20 @@ namespace Game {
                 _savedSettings.time = SavedSettings.Time.Day;
                 _savedSettings.difficulty = SavedSettings.Difficulty.Easy;
 
-                var json = JsonUtility.ToJson(_savedSettings);
-                PlayerPrefs.SetString(SETTINGS_KEY, json);
+                var defaultSettings = WrapToJson<SavedSettings>(_savedSettings);
+                PlayerPrefs.SetString(SETTINGS_KEY, defaultSettings);
             }
 
-            var settings = JsonUtility.FromJson<SavedSettings>(PlayerPrefs.GetString(SETTINGS_KEY));
-            _savedSettings = settings;
+            var settings = ParseJson<SavedSettings>(PlayerPrefs.GetString(SETTINGS_KEY));
+            _savedSettings = (SavedSettings) settings;
+        }
+
+        private string WrapToJson<T>(T data) {
+            return JsonUtility.ToJson(data);
+        }
+
+        private object ParseJson<T>(string json) {
+            return JsonUtility.FromJson<T>(json);
         }
 
         private void AddNewRecord(SaveData newRecord) {
@@ -162,13 +171,14 @@ namespace Game {
                 return;
             }
 
-            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
+            var wrapper = (SavedDataWrapper) ParseJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
             _savedData = wrapper.savedData;
         }
 
         private void SaveToPlayerPrefs() {
-            var json = JsonUtility.ToJson(GetWrapper());
+            var json = WrapToJson<SavedDataWrapper>(GetWrapper());
             PlayerPrefs.SetString(RECORDS_KEY, json);
+            PlayerPrefs.Save();
         }
 
         private void LoadFromFile() {
