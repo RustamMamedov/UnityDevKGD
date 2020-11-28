@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Events;
 using Sirenix.OdinInspector;
+using UI;
 using UnityEngine;
 
 namespace Game {
@@ -10,6 +10,9 @@ namespace Game {
 
         [SerializeField]
         private EventListener _updateEventListener;
+
+        [SerializeField]
+        private EventListener _gameSavedEventListener;
 
         [SerializeField]
         private EventListener _carCollisionListener;
@@ -29,16 +32,22 @@ namespace Game {
         [SerializeField]
         private float _distanceToPlayerToDestroy;
 
+        [SerializeField]
+        private GameScreen _gameScreen;
+
         [ValidateInput(nameof(ValidateCarsInput), "Values in CarPrefabs repeats", InfoMessageType.Error)]
         [SerializeField]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         private float _currentTimer = 0f;
+        private float _easyDifficultySpawnCooldown = 3f;
+        private float _hardDifficultySpawnCooldown = 1f;
 
         private List<GameObject> _cars = new List<GameObject>();
 
         private void OnEnable() {
             SubscribeToEvents();
+            SetDifficulty();
         }
 
         private void OnDisable() {
@@ -46,13 +55,26 @@ namespace Game {
         }
 
         private void SubscribeToEvents() {
+            _gameSavedEventListener.OnEventHappened += SetDifficulty;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
         }
 
         private void UnsubscribeToEvents() {
+            _gameSavedEventListener.OnEventHappened -= SetDifficulty;
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
+        }
+
+        private void SetDifficulty() {
+            switch (Save.Settings.difficulty) {
+                case Save.SavedSettings.Difficulty.Hard:
+                    _spawnCooldown = _hardDifficultySpawnCooldown;
+                    break;
+                case Save.SavedSettings.Difficulty.Easy:
+                    _spawnCooldown = _easyDifficultySpawnCooldown;
+                    break;
+            }
         }
 
         private void UpdateBehaviour() {
