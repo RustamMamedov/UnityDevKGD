@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace UI {
+
     public class RenderManager : MonoBehaviour {
 
         public static RenderManager Instance;
@@ -15,23 +17,28 @@ namespace UI {
         private RenderTexture _texture;
 
         private void Awake() {
+            if (Instance != null) {
+                Destroy(gameObject);
+                return;
+            }
             Instance = this;
         }
 
-        public RenderTexture Render(GameObject prefab) {
-            var carInctance = Instantiate(prefab,_rootTransform );
-            var texture = RenderTexture.GetTemporary(64,64,16);
+        public RenderTexture Render(GameObject prefab, Vector3 cameraPosition) {
+            var carInstance = Instantiate(prefab, _rootTransform);
+            var texture = RenderTexture.GetTemporary(64, 64, 16);
             texture.antiAliasing = 8;
             texture.Create();
+            _renderCamera.transform.localPosition = cameraPosition;
             _renderCamera.targetTexture = texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
-            Destroy(carInctance);
+
+            Destroy(carInstance);
             return texture;
         }
 
         public void ReleaseTextures() {
-
             RenderTexture.ReleaseTemporary(_texture);
         }
     }
