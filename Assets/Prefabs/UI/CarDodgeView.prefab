@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 4967621744999574290}
   - component: {fileID: 1344537536566833957}
   - component: {fileID: 6080703620335978509}
+  - component: {fileID: 6864061019168323393}
   m_Layer: 5
   m_Name: CarDodgeView
   m_TagString: Untagged
@@ -175,7 +176,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2913790089035940960}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
@@ -238,4 +239,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
+  _someEvent: {fileID: 11400000, guid: 56d2eff301ec144d686090ed74cea401, type: 2}
+--- !u!114 &6864061019168323393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913790089035940960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a49ed6ecb08cc4d94f741279ad4c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carImage: {fileID: 3658609560756853549}
+  _dodgeCountLabel: {fileID: 3234888704368418441}
+  _carDodgedEventListener: {fileID: 6080703620335978509}
+  _dodgedCarName: {fileID: 11400000, guid: 5f45ef1e9b491f947933d3fac1639c32, type: 2}

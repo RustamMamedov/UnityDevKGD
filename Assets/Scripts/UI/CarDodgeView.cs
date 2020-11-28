@@ -33,7 +33,7 @@ namespace UI {
         }
 
         private void OnCarDodged() {
-            if (!_dodgedCarName.value.Equals(_settings.name)) {
+            if (_dodgedCarName.value != (_settings.name)) {
                 return;
             }
             _dodgeCountLabel.text = $"{++_counter}";
