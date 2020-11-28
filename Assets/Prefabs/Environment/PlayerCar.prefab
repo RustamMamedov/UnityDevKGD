@@ -5375,6 +5375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1392787230189840017}
   - component: {fileID: 4053558317230095347}
+  - component: {fileID: 8430632832886504776}
   m_Layer: 0
   m_Name: Spot Light (1)
   m_TagString: Untagged
@@ -5409,7 +5410,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
-  m_Range: 50
+  m_Range: 25.599998
   m_SpotAngle: 90
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -5457,6 +5458,20 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &8430632832886504776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453234738766122701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86cd45774b13c9944a8d1c2f795f86c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings: {fileID: 11400000, guid: e5ea0157a070c604bb3e3d8add0f8dc1, type: 2}
+  _light: {fileID: 4053558317230095347}
 --- !u!1 &3025932557183594585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5723,6 +5738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8562212250449558520}
   - component: {fileID: 6826112165132177480}
+  - component: {fileID: 8772001737946343212}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -5757,7 +5773,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
-  m_Range: 50
+  m_Range: 25.599998
   m_SpotAngle: 90
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -5805,6 +5821,20 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &8772001737946343212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213544072454497458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86cd45774b13c9944a8d1c2f795f86c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings: {fileID: 11400000, guid: e5ea0157a070c604bb3e3d8add0f8dc1, type: 2}
+  _light: {fileID: 6826112165132177480}
 --- !u!1 &9084721175690249249
 GameObject:
   m_ObjectHideFlags: 0
