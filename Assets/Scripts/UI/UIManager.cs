@@ -13,13 +13,10 @@ namespace UI {
         private Fader _fader;
 
         [SerializeField]
-        private AudioSourcePlayer _menuMusic;
-
-        [SerializeField]
-        private AudioSourcePlayer _gameMusic;
-
-        [SerializeField]
         private GameObject _leaderboard;
+
+        [SerializeField]
+        private GameObject _settingsMenu;
 
         [SerializeField]
         private GameObject _menuScreen;
@@ -44,6 +41,7 @@ namespace UI {
 
         private void Start() {
             ShowMenuScreen();
+            _musicManager.PlayMenuMusic();
         }
 
         public void LoadMenu() {
@@ -78,13 +76,12 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();
+          //  _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
             HideAllScreens();
             GameScreen.SetActive(true);
-            _gameMusic.Play();            
         }
 
         public void ShowLeaderboardsScreen() {
@@ -96,6 +93,13 @@ namespace UI {
             _menuScreen.SetActive(false);
             GameScreen.SetActive(false);
             _leaderboard.SetActive(false);
+            _settingsMenu.SetActive(false);
         }
+
+        public void ShowSettingsMenu() {
+            HideAllScreens();
+            _settingsMenu.SetActive(true);
+        }
+  
     }
 }
