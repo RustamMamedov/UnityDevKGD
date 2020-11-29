@@ -14,10 +14,10 @@ namespace UI {
         private List<AudioSource> _audioSources = new List<AudioSource>();
 
         [SerializeField]
-        private Scrollbar _difficultyScrollbar;
+        private Slider _difficultySlider;
 
         [SerializeField]
-        private Scrollbar _lightScrollbar;
+        private Slider _lightSlider;
 
         [SerializeField]
         private Button _applyButton;
