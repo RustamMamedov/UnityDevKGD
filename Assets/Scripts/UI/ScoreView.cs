@@ -35,7 +35,8 @@ namespace UI {
         private void OnEnable() {
             _сurrentScoreValue.Value = 0;
             _currentScore = 0;
-            _scoreLabel.text = $"{ _currentScore}";
+            _scoreLabel.text = $"{0}";
+            _isBusy = false;
         }
 
         public void UpdateBehaviour() {

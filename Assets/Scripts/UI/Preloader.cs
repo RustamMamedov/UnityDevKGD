@@ -16,7 +16,6 @@ namespace UI {
 
         private IEnumerator LoadMenuScene() {//карутина - работает как поток из-за IEnumerator.
             var acyncOperation=SceneManager.LoadSceneAsync("Menu");
-            acyncOperation.allowSceneActivation = false;
             while (!acyncOperation.isDone) {
                 _sceneLoadValue.Value = acyncOperation.progress/.9f;
                 yield return null;// yield -

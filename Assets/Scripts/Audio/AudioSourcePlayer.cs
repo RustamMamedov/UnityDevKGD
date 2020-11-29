@@ -10,15 +10,17 @@ namespace Audio {
         [SerializeField]
         private AudioSource _audioSourece;
 
+        [SerializeField]
+        [Range(0f, 1f)]
+        private float _minVolume = 0f;
+
+        [SerializeField]
+        [Range(0f, 1f)]
+        private float _maxVolume = 1f;
+
         [Button]
         public void Play() {
             _audioSourece.Play();
-        }
-
-
-        public void PlayGradually(float timeAudio) {
-            
-            StartCoroutine(CoroutineMusicVolume(0f,1f, timeAudio));
         }
 
         [Button]
@@ -26,8 +28,14 @@ namespace Audio {
             _audioSourece.Stop();
         }
 
-        public void StopGradually(float timeAudio) {
-            StartCoroutine(CoroutineMusicVolume(1f,0f, timeAudio));
+        public IEnumerator PlayGradually(float timeAudio) {
+            Play();
+            yield return StartCoroutine(CoroutineMusicVolume(_minVolume, _maxVolume, timeAudio));
+        }
+
+        public IEnumerator StopGradually(float timeAudio) {
+            yield return StartCoroutine(CoroutineMusicVolume(_maxVolume,_minVolume, timeAudio));
+            Stop();
         }
 
         private IEnumerator CoroutineMusicVolume(float fromAlfa,float targetAlfa, float timeAudio) {
@@ -38,10 +46,6 @@ namespace Audio {
                 time += Time.deltaTime;
                 _audioSourece.volume = Mathf.Lerp(_audioSourece.volume, targetAlfa, time/ timeAudio);
                 yield return null;
-            }
-
-            if (targetAlfa == 0) {
-                Stop();
             }
         }
     }

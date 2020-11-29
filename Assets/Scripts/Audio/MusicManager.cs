@@ -17,19 +17,19 @@ namespace Audio {
 
         public void OnMenuPlayMusic() {
             _menuAudioSourecePlayer.Play();
-            _menuAudioSourecePlayer.PlayGradually(_timeAudio);
+            StartCoroutine(_menuAudioSourecePlayer.PlayGradually(_timeAudio));
         }
 
         public void OnGamplayPlayMusic() {
             _GamplayAudioSourecePlayer.Play();
-            _GamplayAudioSourecePlayer.PlayGradually(_timeAudio);
+            StartCoroutine(_GamplayAudioSourecePlayer.PlayGradually(_timeAudio));
         }
 
         public void OnStopedMennuMusic() {
-            _menuAudioSourecePlayer.StopGradually(_timeAudio);
+            StartCoroutine(_menuAudioSourecePlayer.StopGradually(_timeAudio));
         }
         public void OnStopedGameplayMusic() {
-            _GamplayAudioSourecePlayer.StopGradually(_timeAudio);
+            StartCoroutine(_GamplayAudioSourecePlayer.StopGradually(_timeAudio));
         }
     }
 }

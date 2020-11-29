@@ -20,7 +20,7 @@ namespace Game{
         [FoldoutGroup("Speed")]
         public float acceleration;
 
-        [CustomValueDrawer(nameof(MyCustomPositionLightCar))]
+        //[CustomValueDrawer(nameof(MyCustomPositionLightCar))]
         [BoxGroup("LenghLightCar")]
         public float lenghLightCar;
 
@@ -31,8 +31,8 @@ namespace Game{
         [BoxGroup(nameof(isEnemyCar) + "/RenderSettings/CameraRender")]
         public Vector3 positionCamera, rotationCamera;
 
-        private static float MyCustomPositionLightCar(float value) {
-            return EditorGUILayout.Slider(value, 1f, 5f); 
-        }
+        //private static float MyCustomPositionLightCar(float value) {
+        //    return EditorGUILayout.Slider(value, 1f, 5f); 
+        //}
     }
 }

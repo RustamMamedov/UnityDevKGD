@@ -60,8 +60,8 @@ namespace UI {
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut-=LoadGameplayScene;
-            _musicMAnager.OnGamplayPlayMusic();
             StartCoroutine(LoadGameplaySceneCoroutine("GamePlay"));
+            _musicMAnager.OnGamplayPlayMusic();
             ShowGameScreen();
         }
 
