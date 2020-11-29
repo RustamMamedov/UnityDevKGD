@@ -1,4 +1,7 @@
 using Events;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UI;
 using UnityEngine;
@@ -8,10 +11,10 @@ using UnityEngine.UI;
 namespace Game {
 
 	public class SettingsScreen : MonoBehaviour {
-
+		
 		[SerializeField] 
 		private Button _cancelButton;
-		
+
 		[SerializeField] 
 		private Button _applyButton;
 
@@ -19,18 +22,46 @@ namespace Game {
 		private AudioMixer _audioMixer;
 
 		[SerializeField] 
-		private Toggle _isHardToggle;
+		private AudioSource _clickClackAudioSource;
+
+		[SerializeField] 
+		private Slider _musicVolumeSlider;
 		
+		[SerializeField] 
+		private Slider _gameVolumeSlider;
+
+		[SerializeField] 
+		private Toggle _isHardToggle;
+
 		[SerializeField] 
 		private Toggle _isNightToggle;
+		
+		[SerializeField] 
+		private Toggle _isCrazyModeToggle;
 
 		[SerializeField] 
-		private EventDispatcher _settingsGotSavedEventDispatcher;
+		private ScriptableFloatValue _musicVolumeScriptableFloatValue;
 		
-		private const string playerPrefsName = "settings";
+		[SerializeField] 
+		private ScriptableFloatValue _gameVolumeScriptableFloatValue;
 
-		private float _initialGameVolume;
-		private float _initialMusicVolume;
+		[SerializeField] 
+		private ScriptableBoolValue _isNightScriptableBoolValue;
+		
+		[SerializeField] 
+		private ScriptableBoolValue _isHardScriptableBoolValue;
+		
+		[SerializeField] 
+		private ScriptableBoolValue _isCrazyModeScriptableBoolValue;
+		
+		[SerializeField] 
+		private EventDispatcher _settingsGotSavedEventDispatcher;
+
+		private float _gameVolume;
+		private float _musicVolume;
+		private bool _isNight;
+		private bool _isHard;
+		private bool _isCrazy;
 
 		private void Awake() {
 			_applyButton.onClick.AddListener(OnApplyButtonClick);
@@ -38,17 +69,17 @@ namespace Game {
 		}
 
 		private void OnEnable() {
-			_audioMixer.GetFloat("MusicVolume", out _initialGameVolume);
-			_audioMixer.GetFloat("GameVolume", out _initialMusicVolume);
+			LoadFromScriptableObject();
+			SetDataOnUIComponents();
 		}
 		
 		private void OnCancelButtonClick() {
-			SetMusicVolume(_initialMusicVolume);
-			SetGameVolume(_initialGameVolume);
+			SetDataOnUIComponents();
 			ShowMenuScreen();
 		}
 		
 		private void OnApplyButtonClick() {
+			SaveToScriptableObject();
 			_settingsGotSavedEventDispatcher.Dispatch();
 			ShowMenuScreen();
 		}
@@ -62,13 +93,62 @@ namespace Game {
 		}
 
 		public void SetDifficultyLevel(bool isHard) {
-			
+			_isHard = isHard;
+			PlayClickClackSound(isHard);
 		}
+		
 		public void SetDayCycle(bool isNight) {
-			
+			_isNight = isNight;
+			PlayClickClackSound(isNight);
+		}
+		
+		public void SetMode(bool isCrazy) {
+			_isCrazy = isCrazy;
+			PlayClickClackSound(isCrazy);
+		}
+
+		private void PlayClickClackSound(bool isOn) {
+			if (isOn) {
+				_clickClackAudioSource.pitch = 1f;
+			}
+			else {
+				_clickClackAudioSource.pitch = 0.9f;
+			}
+			_clickClackAudioSource.Play();
+		}
+		
+		private void SaveToScriptableObject() {
+			_musicVolumeScriptableFloatValue.value = _musicVolumeSlider.value;
+			_gameVolumeScriptableFloatValue.value = _gameVolumeSlider.value;
+			_isHardScriptableBoolValue.value = _isHard;
+			_isNightScriptableBoolValue.value = _isNight;
+			_isCrazyModeScriptableBoolValue.value = _isCrazy;
+		}
+
+		private void LoadFromScriptableObject() {
+			_musicVolume = _musicVolumeScriptableFloatValue.value;
+			_gameVolume = _gameVolumeScriptableFloatValue.value;
+			_isHard = _isHardScriptableBoolValue.value;
+			_isNight = _isNightScriptableBoolValue.value;
+			_isCrazy = _isCrazyModeScriptableBoolValue.value;
+		}
+
+		private void SetDataOnUIComponents() {
+			SetMusicVolume(_musicVolume);
+			_musicVolumeSlider.value = _musicVolume;
+			SetGameVolume(_gameVolume);
+			_gameVolumeSlider.value = _gameVolume;
+			_isHardToggle.isOn = _isHardScriptableBoolValue.value;
+			_isNightToggle.isOn = _isNightScriptableBoolValue.value;
+			_isCrazyModeToggle.isOn = _isCrazyModeScriptableBoolValue.value;
 		}
 
 		private void ShowMenuScreen() {
+			StartCoroutine(WaitAndShowScreen());
+		}
+		
+		private IEnumerator WaitAndShowScreen() {
+			yield return new WaitForSeconds(0.1f);
 			UIManager.Instance.ShowMenuScreen();
 		}
 	}

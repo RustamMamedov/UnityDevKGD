@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections;
 using Events;
 using Game;
 using UnityEngine;
@@ -9,39 +9,38 @@ namespace UI {
     public class MenuScreen : MonoBehaviour {
 
         [SerializeField] 
-        private Button _startCasualModeButton;
-        
-        [SerializeField] 
-        private Button _startCrazyModeButton;
+        private Button _startGameModeButton;
         
         [SerializeField] 
         private Button _settingsButton;
         
         [SerializeField]
         private EventDispatcher _startGameMusicEventDispatcher;
-        
-        [SerializeField] 
-        private ScriptableBoolValue _crazyModeEnabled;
 
         private void Awake() {
-            _startCasualModeButton.onClick.AddListener(OnCasualModeButtonClick);
-            _startCrazyModeButton.onClick.AddListener(OnCrazyModeButtonClick);
+            _startGameModeButton.onClick.AddListener(OnPlayButtonClick);
             _settingsButton.onClick.AddListener(OnSettingsButtonClick);
         }
 
         private void OnCasualModeButtonClick() {
             _crazyModeEnabled.value = false;
+        }
+        
+        private void OnPlayButtonClick() {
             _startGameMusicEventDispatcher.Dispatch();
             UIManager.Instance.LoadGameplay();
         }
-        
-        private void OnCrazyModeButtonClick() {
-            _crazyModeEnabled.value = true;
-            _startGameMusicEventDispatcher.Dispatch();
-            UIManager.Instance.LoadGameplay();
-        }
-        
+
         private void OnSettingsButtonClick() {
+            ShowSettingsScreen();
+        }
+        
+        private void ShowSettingsScreen() {
+            StartCoroutine(WaitAndShowScreen());
+        }
+		
+        private IEnumerator WaitAndShowScreen() {
+            yield return new WaitForSeconds(0.1f);
             UIManager.Instance.ShowSettingsScreen();
         }
     }

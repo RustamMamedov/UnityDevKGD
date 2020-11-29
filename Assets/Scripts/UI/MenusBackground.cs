@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Events;
+using Game;
 using UnityEngine;
 
 namespace UI {
@@ -17,13 +18,10 @@ namespace UI {
         private GameObject _nightLighting;
 
         [SerializeField] 
-        private bool _isNight;
+        private ScriptableBoolValue _isNight;
 
-        private void Awake() {
-            SetMenusBackgroundLighting();
-        }
-        
         private void OnEnable() {
+            SetMenusBackgroundLighting();
             _settingsGotSavedEventListener.OnEventHappened += SetMenusBackgroundLighting;
         }
         
@@ -32,8 +30,8 @@ namespace UI {
         }
 
         private void SetMenusBackgroundLighting() {
-            _dayLighting.SetActive(!_isNight);
-            _nightLighting.SetActive(_isNight);
+            _dayLighting.SetActive(!_isNight.value);
+            _nightLighting.SetActive(_isNight.value);
         }
     }
 }
