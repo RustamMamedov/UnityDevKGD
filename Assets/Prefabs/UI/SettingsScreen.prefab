@@ -1281,6 +1281,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5816787269363029486}
   - component: {fileID: 491145431182206538}
+  - component: {fileID: 4378080886903440807}
+  - component: {fileID: 6043953284818876330}
   m_Layer: 5
   m_Name: SettingsScreen
   m_TagString: Untagged
@@ -1325,6 +1327,37 @@ MonoBehaviour:
   _nightSlider: {fileID: 7239274798538447307}
   _applyButton: {fileID: 599370867986350328}
   _cancelButton: {fileID: 7713073935992415787}
+  _volumeAsset: {fileID: 11400000, guid: cfdab5754f1b6f2408753e25d7db7c70, type: 2}
+  _difficultAsset: {fileID: 11400000, guid: e540f7c3347837041b734ea3c0fdfc3d, type: 2}
+  _nightAsset: {fileID: 11400000, guid: 23e78be3bf8f81547873388da530998c, type: 2}
+  _settingsChangedDispatcher: {fileID: 6043953284818876330}
+  _volumeChangedDispatcher: {fileID: 4378080886903440807}
+--- !u!114 &4378080886903440807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154218273457700901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 681f397449d96d74c92b68fcf423d80c, type: 2}
+--- !u!114 &6043953284818876330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154218273457700901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: cd1f5306af2661d41958fdfd448f64cd, type: 2}
 --- !u!1 &4649024547007993355
 GameObject:
   m_ObjectHideFlags: 0
