@@ -16,7 +16,7 @@ namespace Game {
 
         private void Awake() {
             _light = GetComponent<Light>();
-            _light.range = _carSettings.lightDistance * 8;
+            _light.range = _carSettings.lightDistance;
         }
 
         private void OnDrawGizmosSelected() {

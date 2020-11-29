@@ -20,7 +20,7 @@ namespace Game {
         public int dodgeScore = 0;
 
         [FoldoutGroup("Lights", false)] 
-        [Range(1f, 5f)] 
+        [Range(1f, 40f)] 
         public float lightDistance;
         
         [FoldoutGroup("UI Render", false)]
