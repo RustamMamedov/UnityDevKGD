@@ -22,6 +22,9 @@ namespace UI {
         private GameObject _leaderBoardScreen;
 
         [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
         private MusicManager _musicManager;
         private void Awake() {
             
@@ -89,10 +92,16 @@ namespace UI {
             _leaderBoardScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderBoardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
