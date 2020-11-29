@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 525214183846469642}
   - component: {fileID: 525214183846469643}
   - component: {fileID: 18044960769306113}
+  - component: {fileID: 160739682206373108}
   m_Layer: 0
   m_Name: Save
   m_TagString: Untagged
@@ -50,6 +51,10 @@ MonoBehaviour:
   _currentScore: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
   _saveType: 0
   _maxRecords: 10
+  _settingsChangeEventListener: {fileID: 160739682206373108}
+  _volume: {fileID: 11400000, guid: 919e8030616264ab48c5fb06783cf57e, type: 2}
+  _mode: {fileID: 11400000, guid: 4a7c1a0a5c6dd4b349387875bb262252, type: 2}
+  _dayMode: {fileID: 11400000, guid: 4a7c1a0a5c6dd4b349387875bb262252, type: 2}
 --- !u!114 &525214183846469643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,3 +81,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: cbf09431d7c53484d898cf89f6015bfe, type: 2}
+--- !u!114 &160739682206373108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525214183846469641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 685107c23abca4a249ca0ca908fccfa2, type: 2}
