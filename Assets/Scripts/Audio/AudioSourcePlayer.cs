@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 namespace Audio {
 
@@ -9,6 +10,9 @@ namespace Audio {
 
         [SerializeField]
         private AudioSource _audioSource;
+
+        [SerializeField]
+        private Slider _volumeSlider;
 
         [Button]
         public void Play() {
@@ -22,7 +26,7 @@ namespace Audio {
 
         public void PlayMusic(float time) {
             Play();
-            StartCoroutine(MusicVolumeCoroutine(0.1f, 0.6f, time));
+            StartCoroutine(MusicVolumeCoroutine(0.001f, _volumeSlider.value, time));
         }
         public IEnumerator StopMusic(float time) {
             yield return StartCoroutine(MusicVolumeCoroutine(_audioSource.volume, 0f, time));
