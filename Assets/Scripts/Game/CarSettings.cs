@@ -19,8 +19,8 @@ namespace Game {
         [BoxGroup("Speed/Score")] public int dodgeScore2;
 
         [FoldoutGroup("Lights Distance")]
-        [Range(1, 5)]
-        public float lightDistance;
+        [Range(1, 60)]
+        public static float lightDistance;
 
         [FoldoutGroup("UI Render")]
         public GameObject renderCarPrefab;
