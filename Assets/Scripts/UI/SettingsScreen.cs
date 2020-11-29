@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game;
+using Events;
 namespace UI {
 
     public class SettingsScreen : MonoBehaviour {
@@ -33,6 +34,9 @@ namespace UI {
 
         [SerializeField]
         private Button _cancelButton;
+
+        [SerializeField]
+        private EventDispatcher _savedSettingsEventDispatcher;
 
         private const float VOLUME_DEFAULT = 0.5f;
         private const int DIFFICULT_DEFAULT = 0;
@@ -73,6 +77,7 @@ namespace UI {
             PlayerPrefs.SetFloat(DataKeys.VOLUME_KEY, _volumeSlider.value);
             PlayerPrefs.SetInt(DataKeys.DIFFICULT_KEY, _difficultyToggle.isOn == true ? 1 : 0);
             PlayerPrefs.SetInt(DataKeys.LIGHT_KEY, _lightToggle.isOn == true ? 1 : 0);
+            _savedSettingsEventDispatcher.Dispatch();
         }
 
         private void DifficultyToggle(bool value) {

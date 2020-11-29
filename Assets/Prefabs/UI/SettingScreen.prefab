@@ -774,6 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3518025925693686587}
   - component: {fileID: 6950062600579865493}
+  - component: {fileID: 2497787685593472632}
   m_Layer: 5
   m_Name: SettingScreen
   m_TagString: Untagged
@@ -828,6 +829,20 @@ MonoBehaviour:
   _SecondLightImage: {fileID: 1001361723661689010}
   _acceptButton: {fileID: 3518025925064704580}
   _cancelButton: {fileID: 3518025926308817364}
+  _savedSettingsEventDispatcher: {fileID: 2497787685593472632}
+--- !u!114 &2497787685593472632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518025925693686584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c0d313f8feacf49b9aad3f6c8fce70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 24a5fd2b56a66f9499b7a5635c3c92d1, type: 2}
 --- !u!1 &3518025925740040722
 GameObject:
   m_ObjectHideFlags: 0
