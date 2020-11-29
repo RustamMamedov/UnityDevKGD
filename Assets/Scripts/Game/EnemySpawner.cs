@@ -18,7 +18,10 @@ namespace Game {
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
-        private float _spawnCooldown;
+        private float _spawnCooldownEasy;
+
+        [SerializeField]
+        private float _spawnCooldownHard;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
@@ -34,8 +37,16 @@ namespace Game {
 
         private float _currentTimer;
 
+        private float _spawnCooldown;
+
         private List<GameObject> _cars = new List<GameObject>();
         private void OnEnable() {
+
+            if(PlayerPrefs.GetInt(DataKeys.DIFFICULT_KEY) == 0) {
+                _spawnCooldown = _spawnCooldownEasy;
+            } else {
+                _spawnCooldown = _spawnCooldownHard;
+            }
             SubscribeEvents();
         }
 
