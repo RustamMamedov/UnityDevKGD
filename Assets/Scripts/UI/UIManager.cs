@@ -74,7 +74,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();            
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
@@ -96,6 +96,7 @@ namespace UI {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
 
         private void Start() {
