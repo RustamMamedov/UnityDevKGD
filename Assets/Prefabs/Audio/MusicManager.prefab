@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3870101093292058749}
   - component: {fileID: 7978958360091076739}
+  - component: {fileID: 3243831167025505341}
+  - component: {fileID: 597296885367536030}
   m_Layer: 5
   m_Name: MusicManager
   m_TagString: Untagged
@@ -47,6 +49,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuMusicPlayer: {fileID: 7574306014847411958}
   _gameMusicPlayer: {fileID: 2504109934954938975}
+  _volumeChangedListener: {fileID: 3243831167025505341}
+  _settingsLoadedListener: {fileID: 597296885367536030}
+  _volumeAsset: {fileID: 11400000, guid: cfdab5754f1b6f2408753e25d7db7c70, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 7767bef07b78b5e4ba709c557e74c55e, type: 2}
+--- !u!114 &3243831167025505341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512658023512260247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 681f397449d96d74c92b68fcf423d80c, type: 2}
+--- !u!114 &597296885367536030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512658023512260247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: f7c4aadc94ecfc64bbef8474f8e41dbb, type: 2}
 --- !u!1001 &661487206318665227
 PrefabInstance:
   m_ObjectHideFlags: 0
