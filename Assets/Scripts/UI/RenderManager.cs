@@ -16,10 +16,12 @@ namespace UI {
         private Transform _carRootTransform;
 
         private void Awake() {
-            if (Instance == null) {
-                Instance = this;
+            if (Instance != null) {
+                Destroy(gameObject);
+                return;
             }
-
+            
+            Instance = this;
         }
 
         public RenderTexture Render(GameObject prefab, Vector3 cameraPosition, Quaternion cameraRotation) {
