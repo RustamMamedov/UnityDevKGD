@@ -2,23 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Game;
 
 namespace Audio {
 
     public class AudioSourcePlayer : MonoBehaviour {
 
         [SerializeField]
-        private AudioSource _audioSource;
+        public AudioSource audioSource;
+
+        [SerializeField]
+        private ScriptableFloatValue _soundVolume;
+
+        private void Start() {
+            _soundVolume.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
 
         [Button]
         public void Play() {
-            _audioSource.Play();
+            audioSource.Play();
         }
 
         [Button]
         public void Stop() {
-            _audioSource.Stop();
+            audioSource.Stop();
         }
+
+        private void Update() {
+            audioSource.volume = _soundVolume.value;
+        }
+
 
     }
 }
