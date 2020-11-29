@@ -10,9 +10,13 @@ namespace UI {
 
         [SerializeField] 
         private Button _playButton;
+
+        [SerializeField] 
+        private Button _settingsButton;
         
         private void Awake() {
             _playButton.onClick.AddListener(OnPlayButtonClick);
+            _settingsButton.onClick.AddListener(OnSettingsButtonClick);
         }
 
         private void OnDestroy() {
@@ -21,6 +25,10 @@ namespace UI {
 
         private void OnPlayButtonClick(){
             UIManager.Instance.LoadGameplay();
+        }
+
+        private void OnSettingsButtonClick() {
+            UIManager.Instance.ShowSettingsScreen();
         }
     }
 }
