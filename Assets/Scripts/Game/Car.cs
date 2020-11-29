@@ -23,6 +23,9 @@ namespace Game {
         
         [SerializeField]
         private List<Light> _carLights = new List<Light>();
+        
+        [SerializeField] 
+        protected ScriptableBoolValue _isNightScriptableBoolValue;
 
         #if UNITY_EDITOR
         public CarSettings CarSettings => _carSettings;
@@ -32,15 +35,20 @@ namespace Game {
 
         private void OnEnable() {
             SubscribeToEvents();
-            foreach (var carLight in _carLights) {
-                carLight.range = _carSettings.lightLenght;
-            }
+            SetCarLights();
         }
 
         protected virtual void OnDisable() {
             UnsubscribeFromEvents();
         }
 
+        protected virtual void SetCarLights() {
+            foreach (var carLight in _carLights) {
+                carLight.range = _carSettings.lightLenght;
+                carLight.enabled = _isNightScriptableBoolValue.value;
+            }               
+        }
+        
         protected virtual void Move() {
             if (_currentSpeed < _carSettings.maxSpeed) {
                 _currentSpeed += _carSettings.acceleration;

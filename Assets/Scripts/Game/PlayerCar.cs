@@ -31,6 +31,9 @@ namespace Game {
         [SerializeField] 
         private AudioSourcePlayer _dodgeSourcePlayer;
 
+        [SerializeField] 
+        private GameObject _backLights;
+
         private int _currentRoad;
         private bool _inDodge;
 
@@ -47,6 +50,11 @@ namespace Game {
         protected override void OnCarCollision() {
             base.OnCarCollision();
             _carCollisionSourcePlayer.Play();
+        }
+        
+        protected override void SetCarLights() {
+            base.SetCarLights();
+            _backLights.SetActive(_isNightScriptableBoolValue.value);
         }
 
         protected override void Move() {
