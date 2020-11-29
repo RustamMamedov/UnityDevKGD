@@ -18,9 +18,6 @@ namespace Game {
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
-        private float _spawnCooldown;
-
-        [SerializeField]
         private float _distanceToPlayerToSpawn;
 
         [SerializeField]
@@ -32,17 +29,31 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
         
+        [SerializeField] 
+        private ScriptableBoolValue _isHardScriptableBoolValue;
+        
         private float _currentTimer;
+        private float _spawnCooldown;
         private List<GameObject> _cars = new List<GameObject>();
 
         private void OnEnable() {
             SubscribeToEvents();
+            SetDifficulty();
         }
 
         private void OnDisable() {
             UnsubscribeToEvents();
         }
 
+        private void SetDifficulty() {
+            if (_isHardScriptableBoolValue.value) {
+                _spawnCooldown = 2f;
+            }
+            else {
+                _spawnCooldown = 5f;
+            }
+        }
+        
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
