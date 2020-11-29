@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game {
     
@@ -18,24 +20,42 @@ namespace Game {
         [ValidateInput(nameof(ValidateCarPrefabList))]
         private List<GameObject> _carPrefabs;
 
+        [FoldoutGroup("Spawner settings")]
         [SerializeField] 
-        private float _spawnCooldown;
+        private float _easySpawnCooldown;
 
+        [FoldoutGroup("Spawner settings")]
+        [SerializeField] 
+        private float _hardSpawnCooldown;
+
+        [FoldoutGroup("Spawner settings")]
         [SerializeField]
         private float _distanceToPlayerToSpawn;
         
+        [FoldoutGroup("Spawner settings")]
         [SerializeField]
         private float _distanceToPlayerToDestroy;
-
+        
+        [FoldoutGroup("Assets")]
         [SerializeField] 
         private ScriptableFloatValue _playerPositionZ;
-
+        
+        [FoldoutGroup("Assets")]
         [SerializeField] 
         private ScriptableFloatValue _roadWidth;
 
+        [FoldoutGroup("Assets")]
+        [SerializeField] 
+        private ScriptableBoolValue _difficultySetting;
+
         private float _currentTimer;
+        private float _spawnCooldown;
         
         private List<GameObject> _cars = new List<GameObject>();
+
+        private void Awake() {
+            _spawnCooldown = _difficultySetting.value ? _hardSpawnCooldown : _easySpawnCooldown;
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
