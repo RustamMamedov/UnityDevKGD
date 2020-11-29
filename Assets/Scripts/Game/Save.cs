@@ -82,11 +82,9 @@ namespace Game {
                 date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
                 score = _currentScore.value.ToString()
             };
-            if (Int32.Parse(newRecord.score) == 0) {
-                _gameGotSavedEventDispatcher.Dispatch();
-                return;
+            if (Int32.Parse(newRecord.score) != 0) {
+                _saveDatas.Add(newRecord);
             }
-            _saveDatas.Add(newRecord);
             SortListAndLeaveTenEntries();
             
             if (_saveType == SaveType.PlayerPrefs) {
