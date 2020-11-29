@@ -21,7 +21,15 @@ namespace Game {
         private GameObject _carPrefab;
 
         [SerializeField]
+        private ScriptableIntValue _difficultValue;
+
         private float _spawnCooldown;
+
+        [SerializeField]
+        private float _spawnCooldownEasyDifficult;
+
+        [SerializeField]
+        private float _spawnCooldownHardDifficult;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
@@ -59,6 +67,15 @@ namespace Game {
         private void OnEnable() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
+         
+            switch (_difficultValue.value) {
+                case 0:
+                    _spawnCooldown = _spawnCooldownEasyDifficult;
+                    break;
+                case 1:
+                    _spawnCooldown = _spawnCooldownHardDifficult;
+                    break;
+            }
         }
 
         private void OnDisable() {
