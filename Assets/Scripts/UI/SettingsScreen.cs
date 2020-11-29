@@ -53,10 +53,12 @@ namespace UI {
         private bool _oldNight;
 
         void Awake() {
-            Debug.Log("Awake");
-            SaveCurrentState();
             SubscribeToUiEvents();
             LoadUi();
+        }
+
+        private void OnEnable() {
+            SaveCurrentState();
         }
 
         private void SubscribeToUiEvents() {
@@ -66,7 +68,7 @@ namespace UI {
             _applyButton.onClick.AddListener(OnApplyButtonClick);
             _cancelButton.onClick.AddListener(OnCancelButtonClick);
         }
-        
+
         private void OnApplyButtonClick() {
             _settingsChangedDispatcher.Dispatch();
             UIManager.Instance.ShowMenuScreen();
@@ -76,6 +78,11 @@ namespace UI {
             _volumeAsset.value = _oldVolume;
             _difficultAsset.value = _oldDifficult;
             _nightAsset.value = _oldNight;
+            
+            LoadUi();
+            _volumeChangedDispatcher.Dispatch();
+            
+            UIManager.Instance.ShowMenuScreen();
         }
 
         private void LoadUi() {
@@ -92,6 +99,7 @@ namespace UI {
 
         private void OnVolumeSliderValueChanged(float value) {
             _volumeAsset.value = value;
+            _volumeChangedDispatcher.Dispatch();
         }
 
         private void OnDifficultySliderValueChanged(float value) {
