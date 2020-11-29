@@ -48,10 +48,6 @@ namespace Game {
 
         public static List<SaveData> SavedDatas => _savedDatas;
 
-        private const string RECORDS_KEY = "record";
-    
-       
-
         private static int _currentRecordPos;
 
         public static int CurrentRecordPos => _currentRecordPos;
@@ -112,18 +108,18 @@ namespace Game {
             });
         }
         private void LoadFromPlayerPrefs() {
-            if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
+            if (!PlayerPrefs.HasKey(DataKeys.RECORDS_KEY)) {
                 return;
             }
 
-            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
+            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(DataKeys.RECORDS_KEY));
             _savedDatas = wrapper.savedDatas;
         }
 
         private void SaveToPlayerPrefs() {
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
-            PlayerPrefs.SetString(RECORDS_KEY, json);
+            PlayerPrefs.SetString(DataKeys.RECORDS_KEY, json);
         }
 
         private void LoadFromFile() {
