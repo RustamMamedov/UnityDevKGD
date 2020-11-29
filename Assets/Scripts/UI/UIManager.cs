@@ -16,6 +16,8 @@ namespace UI {
 
         [SerializeField] private GameObject _leaderboardScreen;
 
+        [SerializeField] private GameObject _settingsScreen;
+
         [SerializeField]
         private MusicManager _musicManager;
 
@@ -41,20 +43,20 @@ namespace UI {
         public void LoadGameplay() {
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
-            
+
         }
 
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
-            _musicManager.PlayMenuMusic(); 
+            _musicManager.PlayMenuMusic();
             ShowMenuScreen();
         }
 
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
             StartCoroutine(LoadSceneCoroutine("Gameplay"));
-             _musicManager.PlayGameplayMusic(); 
+            _musicManager.PlayGameplayMusic();
             ShowGameScreen();
         }
 
@@ -85,10 +87,17 @@ namespace UI {
 
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+
+        }
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
     }
 }
