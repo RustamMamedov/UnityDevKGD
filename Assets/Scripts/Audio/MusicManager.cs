@@ -29,8 +29,6 @@ namespace Audio {
         private void Awake() {
             _volumeChangedListener.OnEventHappened += OnVolumeChangedBehaviour;
             _settingsLoadedListener.OnEventHappened += OnSettingsLoaded;
-
-            UpdateMixerVolume(0.0001f);
         }
 
         private void OnDestroy() {
