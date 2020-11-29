@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Audio {
 
@@ -14,6 +15,9 @@ namespace Audio {
 		private AudioSource _gameMusicPlayer;
 
 		[SerializeField] 
+		private AudioMixer _volumeMixer;
+
+		[SerializeField] 
 		private float _musicFadeTime;
 		
 		[SerializeField]
@@ -22,7 +26,7 @@ namespace Audio {
 		[SerializeField]
 		private EventListener _playGameMusicEventListener;
 
-		private void Awake() {
+		private void OnEnable() {
 			SubscribeToEvents();
 			PlayMenuMusic();
 		}
