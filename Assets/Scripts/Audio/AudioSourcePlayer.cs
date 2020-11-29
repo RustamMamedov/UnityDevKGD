@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Game;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Audio {
@@ -8,10 +9,14 @@ namespace Audio {
         [SerializeField]
         private AudioSource _audioSource;
 
+        [SerializeField]
+        private ScriptableFloatValue _volume;
+
         public bool IsPlaying => _audioSource.isPlaying;
 
         [Button]
         public void Play() {
+            SetVolume(_volume.value);
             _audioSource.Play();
         }
 

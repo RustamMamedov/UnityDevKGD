@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3455384666006438456}
   - component: {fileID: 3455384666006438457}
+  - component: {fileID: 3777080813588635593}
   m_Layer: 5
   m_Name: MusicManager
   m_TagString: Untagged
@@ -47,7 +48,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuMusicPlayer: {fileID: 1377638563278339505}
   _gameMusicPlayer: {fileID: 6496347364144562550}
-  _fadeTime: 2
+  _fadeTime: 1
+  _volumeChangeEventListener: {fileID: 3777080813588635593}
+  _volume: {fileID: 11400000, guid: 919e8030616264ab48c5fb06783cf57e, type: 2}
+--- !u!114 &3777080813588635593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455384666006438459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: c0c4b4eecae3d444996f71c401c981e8, type: 2}
 --- !u!1001 &3455384666434531624
 PrefabInstance:
   m_ObjectHideFlags: 0

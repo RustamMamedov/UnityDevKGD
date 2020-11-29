@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Events;
+using Game;
 using UnityEngine;
 
 namespace Audio {
@@ -14,7 +16,17 @@ namespace Audio {
         [SerializeField]
         private float _fadeTime = .3f;
 
+        [SerializeField]
+        private EventListener _volumeChangeEventListener;
+
+        [SerializeField]
+        private ScriptableFloatValue _volume;
+
         private AudioSourcePlayer _currentPlayer;
+
+        private void Awake() {
+            _volumeChangeEventListener.OnEventHappened += OnVolumeChange;
+        }
 
         public void PlayMenuMusic() {
             if (_menuMusicPlayer.IsPlaying) {
@@ -28,6 +40,10 @@ namespace Audio {
                 return;
             }
             StartCoroutine(FadeMusicTo(_gameMusicPlayer));
+        }
+
+        private void OnVolumeChange() {
+            _currentPlayer.SetVolume(_volume.value);
         }
 
         private IEnumerator FadeMusicTo(AudioSourcePlayer to) {
@@ -53,7 +69,7 @@ namespace Audio {
             var halfFadeTime = _fadeTime / 2f;
             while (timer < halfFadeTime) {
                 timer += Time.deltaTime;
-                var volume = Mathf.Lerp(0f, 1f, timer / halfFadeTime);
+                var volume = Mathf.Lerp(0f, _volume.value, timer / halfFadeTime);
                 to.SetVolume(volume);
                 yield return null;
             }
@@ -64,7 +80,7 @@ namespace Audio {
             var halfFadeTime = _fadeTime / 2f;
             while (timer < halfFadeTime) {
                 timer += Time.deltaTime;
-                var volume = Mathf.Lerp(1f, 0f, timer / halfFadeTime);
+                var volume = Mathf.Lerp(_volume.value, 0f, timer / halfFadeTime);
                 to.SetVolume(volume);
                 yield return null;
             }
