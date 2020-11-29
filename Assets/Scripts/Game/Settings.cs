@@ -17,6 +17,9 @@ namespace Game {
         [SerializeField]
         private ScriptableBoolValue _nightAsset;
 
+        [SerializeField] 
+        private EventDispatcher _settingsLoaded;
+
         private class SavedDataWrapper {
 
             public float volume;
@@ -27,9 +30,11 @@ namespace Game {
         private const string SETTINGS_KEY = "Settings";
 
         private void Awake() {
-            LoadFromPlayerPrefs();
-            
             _settingsChangedListener.OnEventHappened += OnSettingsChangedBehaviour;
+        }
+
+        private void Start() {
+            LoadFromPlayerPrefs();
         }
 
         private void OnDestroy() {
@@ -64,6 +69,9 @@ namespace Game {
             _volumeAsset.value = wrapper.volume;
             _difficultAsset.value = wrapper.difficult;
             _nightAsset.value = wrapper.night;
+            
+            Debug.Log("Settings loaded!");
+            _settingsLoaded.Dispatch();
         }
 
         private void OnSettingsChangedBehaviour() {
