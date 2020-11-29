@@ -29,11 +29,38 @@ namespace Game {
         private Light _lights2;
 
         [SerializeField]
+        private TrailRenderer _backLights1;
+
+        [SerializeField]
+        private TrailRenderer _backLights2;
+
+        [SerializeField]
         private ScriptableFloatValue _roadWidth;
+
+        [SerializeField]
+        private ScriptableIntValue _timeState;
+
 
         private void Start() {
             _lights1.range = _carSettings.lightDistance;
             _lights2.range = _carSettings.lightDistance;
+
+            switch (_timeState.value) {
+                case 0:
+                    _lights1.enabled = false;
+                    _lights2.enabled = false;
+                    _backLights1.enabled = false;
+                    _backLights2.enabled = false;
+
+                    break;
+                case 1:
+                    _lights1.enabled = true;
+                    _lights2.enabled = true;
+                    _backLights1.enabled = true;
+                    _backLights2.enabled = true;
+
+                    break;
+            }
         }
 
         protected override void SubscribeToEvents() {
