@@ -333,7 +333,6 @@ GameObject:
   - component: {fileID: 3661571889826312986}
   - component: {fileID: 2837447668571789551}
   - component: {fileID: 9048231808066262335}
-  - component: {fileID: 4932251634353908278}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Player
@@ -503,22 +502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 96867032c619943eea1a4ff26debb49d, type: 2}
---- !u!114 &4932251634353908278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590206702830092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f70b81bd229e84408954857c1bf0286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carSettings: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
-  _lights:
-  - {fileID: 4534778471479778156}
-  - {fileID: 1673241808187862710}
 --- !u!1 &8532591891969044
 GameObject:
   m_ObjectHideFlags: 0
@@ -5361,7 +5344,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
-  m_Range: 15
+  m_Range: 60
   m_SpotAngle: 90
   m_InnerSpotAngle: 5
   m_CookieSize: 10
@@ -5673,7 +5656,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
-  m_Range: 15
+  m_Range: 60
   m_SpotAngle: 90
   m_InnerSpotAngle: 5
   m_CookieSize: 10
