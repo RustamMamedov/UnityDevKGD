@@ -32,11 +32,11 @@ namespace UI {
 
         private void Awake() {
             CarDodgeViewsCreate();
-            _gameSavedEventListener.OnEventHappened += ShowLeaderboard;
+            _gameSavedEventListener.OnEventHappened += OnGameSaved;
         }
 
         private void OnEnable() {
-            StartCoroutine(EnemyCarRender());
+            StartCoroutine(InitCarDodgeViews());
         }
 
         private void OnDisable() {
@@ -57,14 +57,14 @@ namespace UI {
             }
         }
 
-        private IEnumerator EnemyCarRender() {
+        private IEnumerator InitCarDodgeViews() {
             for (int i = 0; i < _carSettings.Count; i++) {
                 _carDodgeViews[i].Init();
                 yield return new WaitForEndOfFrame();
             }
         }
 
-        private void ShowLeaderboard() {
+        private void OnGameSaved() {
             UIManager.Instance.ShowLeaderboardsScreen();
         }
     }
