@@ -16,12 +16,24 @@ namespace Game {
         private GameObject _roadPrefab;
 
         [SerializeField]
+        private GameObject _directionalLight;
+
+        [SerializeField]
         private int _initialRoadNumber = 10;
 
         [SerializeField]
         private int _roadLength = 12;
 
         private List<Transform> _roadTransforms;
+
+        private void Awake() {
+            if (PlayerPrefs.GetInt("SavedLight")==0) {
+                _directionalLight.SetActive(true);
+            }
+            else {
+                _directionalLight.SetActive(false);
+            }
+        }
 
         private void Start() {
 
