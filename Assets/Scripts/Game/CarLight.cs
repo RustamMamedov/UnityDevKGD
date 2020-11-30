@@ -9,7 +9,7 @@ namespace GameEditor {
 
         [SerializeField]
         private CarSettings _carSettings;
-    
+
         private void OnDrawGizmos() {
             var tempMatrix = Gizmos.matrix;
             Gizmos.color = _gizmosColor;

@@ -2,8 +2,8 @@
 using UnityEngine;
 using Events;
 using System.Collections.Generic;
-using UnityEngine.Experimental.GlobalIllumination;
 using Audio;
+using UI;
 
 namespace Game {
 
@@ -40,7 +40,18 @@ namespace Game {
         protected override void OnEnable() {
             if (_lights != null) {
                 foreach (Light light in _lights) {
-                    light.range = _carSettings.lightLength;
+                    if (Settings.Instance != null) {
+                        if (Settings.Instance.IsDay) {
+                            light.range = 0;
+                        }
+                        else {
+                            light.range = _carSettings.lightLength;
+
+                        }
+                    }
+                    else {
+                        light.range = _carSettings.lightLength;
+                    }
 
                 }
             }
