@@ -774,7 +774,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3518025925693686587}
   - component: {fileID: 6950062600579865493}
-  - component: {fileID: 2497787685593472632}
+  - component: {fileID: 3212239794340064447}
+  - component: {fileID: 4529289032321915593}
   m_Layer: 5
   m_Name: SettingScreen
   m_TagString: Untagged
@@ -821,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volumeSlider: {fileID: 3518025925572235089}
+  _volume: {fileID: 11400000, guid: 6f1ab78e6fdd2c64a8bd023c0739fa7a, type: 2}
   _difficultyToggle: {fileID: 1083533624535477695}
   _FirstDifficultyImage: {fileID: 224825839066037163}
   _SecondDifficultyImage: {fileID: 8221797169847390762}
@@ -829,8 +831,22 @@ MonoBehaviour:
   _SecondLightImage: {fileID: 1001361723661689010}
   _acceptButton: {fileID: 3518025925064704580}
   _cancelButton: {fileID: 3518025926308817364}
-  _savedSettingsEventDispatcher: {fileID: 2497787685593472632}
---- !u!114 &2497787685593472632
+  _updateEventListener: {fileID: 3212239794340064447}
+  _changeEventDispatcher: {fileID: 4529289032321915593}
+--- !u!114 &3212239794340064447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518025925693686584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dd6c8d7213508489552fc15ed6f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: fdaf82255ca7bb747bd0957df4315e65, type: 2}
+--- !u!114 &4529289032321915593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

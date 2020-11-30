@@ -12,6 +12,9 @@ namespace UI {
         private Slider _volumeSlider;
 
         [SerializeField]
+        private ScriptableFloatValue _volume;
+
+        [SerializeField]
         private Toggle _difficultyToggle;
 
         [SerializeField]
@@ -36,7 +39,10 @@ namespace UI {
         private Button _cancelButton;
 
         [SerializeField]
-        private EventDispatcher _savedSettingsEventDispatcher;
+        private EventListener _updateEventListener;
+
+        [SerializeField]
+        private EventDispatcher _changeEventDispatcher;
 
         private const float VOLUME_DEFAULT = 0.5f;
         private const int DIFFICULT_DEFAULT = 0;
@@ -50,10 +56,24 @@ namespace UI {
             _acceptButton.onClick.AddListener(Accept);
             _cancelButton.onClick.AddListener(Cancel);
         }
+
+        private void OnEnable() {
+            _updateEventListener.OnEventHappened += ChangeVolume;
+        }
+        private void OnDisable() {
+            ChangeVolume();
+            _updateEventListener.OnEventHappened -= ChangeVolume;
+        }
+
+        private void ChangeVolume() {
+            _volume.value = _volumeSlider.value;
+            _changeEventDispatcher.Dispatch();
+        }
         private void SetDefaultForFirstTime() {
             if (!PlayerPrefs.HasKey(DataKeys.VOLUME_KEY)) {
                 PlayerPrefs.SetFloat(DataKeys.VOLUME_KEY, VOLUME_DEFAULT);
                 _volumeSlider.value = VOLUME_DEFAULT;
+                _volume.value = _volumeSlider.value;
             }
 
             if (!PlayerPrefs.HasKey(DataKeys.DIFFICULT_KEY)) {
@@ -69,6 +89,7 @@ namespace UI {
 
         private void GetSettings() {
             _volumeSlider.value = PlayerPrefs.GetFloat(DataKeys.VOLUME_KEY);
+            _volume.value = _volumeSlider.value;
             _difficultyToggle.isOn = PlayerPrefs.GetInt(DataKeys.DIFFICULT_KEY) == 1;
             _lightToggle.isOn = PlayerPrefs.GetInt(DataKeys.LIGHT_KEY) == 1;
         }
@@ -77,7 +98,6 @@ namespace UI {
             PlayerPrefs.SetFloat(DataKeys.VOLUME_KEY, _volumeSlider.value);
             PlayerPrefs.SetInt(DataKeys.DIFFICULT_KEY, _difficultyToggle.isOn == true ? 1 : 0);
             PlayerPrefs.SetInt(DataKeys.LIGHT_KEY, _lightToggle.isOn == true ? 1 : 0);
-            _savedSettingsEventDispatcher.Dispatch();
         }
 
         private void DifficultyToggle(bool value) {
