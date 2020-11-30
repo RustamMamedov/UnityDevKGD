@@ -24,6 +24,18 @@ namespace Game {
         private float _dodgeDuration;
 
         [SerializeField]
+        private GameObject _leftLight;
+
+        [SerializeField]
+        private GameObject _rightLight;
+
+        [SerializeField]
+        private GameObject _rightBackLight;
+
+        [SerializeField]
+        private GameObject _leftBackLight;
+
+        [SerializeField]
         private Color _gizmosColor = Color.white;
 
         private MusicManager _musicManager;
@@ -33,6 +45,18 @@ namespace Game {
 
         private void Awake() {
             _musicManager = GameObject.FindObjectOfType<MusicManager>();
+            if (PlayerPrefs.GetInt("SavedLight") == 0) {
+                _leftLight.SetActive(false);
+                _rightLight.SetActive(false);
+                _rightBackLight.SetActive(false);
+                _leftBackLight.SetActive(false);
+            }
+            else {
+                _leftLight.SetActive(true);
+                _rightLight.SetActive(true);
+                _rightBackLight.SetActive(true);
+                _leftBackLight.SetActive(true);
+            }
         }
         protected override void SubscribeToEvents() {
 
