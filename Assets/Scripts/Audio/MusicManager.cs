@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Events;
+using Game;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -15,7 +16,13 @@ namespace Audio {
 		private AudioSource _gameMusicPlayer;
 
 		[SerializeField] 
-		private AudioMixer _volumeMixer;
+		private AudioMixer _audioMixer;
+		
+		[SerializeField] 
+		private ScriptableFloatValue _musicVolumeScriptableFloatValue;
+		
+		[SerializeField] 
+		private ScriptableFloatValue _gameVolumeScriptableFloatValue;
 
 		[SerializeField] 
 		private float _musicFadeTime;
@@ -29,6 +36,10 @@ namespace Audio {
 		private void OnEnable() {
 			SubscribeToEvents();
 			PlayMenuMusic();
+		}
+
+		private void Start() {
+			SetAudioMixersVolume();
 		}
 
 		private void OnDisable() {
@@ -57,6 +68,11 @@ namespace Audio {
 				StopMenuMusic();
 			}
 			StartCoroutine(ChangeVolumeMenuMusicCoroutine(true, _gameMusicPlayer, _gameMusicPlayer.volume, 1f));
+		}
+		
+		private void SetAudioMixersVolume() {
+			_audioMixer.SetFloat("MusicVolume", _musicVolumeScriptableFloatValue.value);
+			_audioMixer.SetFloat("GameVolume", _gameVolumeScriptableFloatValue.value);
 		}
 
 		public void StopMenuMusic() {
