@@ -11,13 +11,27 @@ namespace Game {
         [SerializeField]
         //[AssetOnly] - удаляет файлы почему-то
         private GameObject _roadPrefab;
+
         [SerializeField]
         private int _initialRoadNumber = 10;
+
         [SerializeField]
         private int _roadLength = 12;
+
+        [SerializeField]
+        private Light _derectionLight;
+
+        [SerializeField]
+        private ScriptableIntValue _timeMode;
+
         private List<Transform> _roadTransforms;
 
         private void Start() {
+            if (_timeMode.value == 1) {
+                _derectionLight.gameObject.SetActive(false);
+            }
+            else
+                _derectionLight.gameObject.SetActive(true);
             GenerateRoad();
         }
 
