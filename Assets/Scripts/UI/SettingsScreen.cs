@@ -24,6 +24,9 @@ namespace UI {
         private Button _hardModeButton;
 
         [SerializeField]
+        private Button _cancelButton;
+
+        [SerializeField]
         private Slider _volumeSlider;
 
         [SerializeField]
@@ -41,12 +44,23 @@ namespace UI {
         [SerializeField]
         private ScriptableBoolValue _isHard;
 
+        private bool _isDaySave;
+
+        private bool _isHardSave;
+
+        private string _lightLabelSave;
+
+        private string _gameModeLabelSave;
+
+        private List<float> _audioVolumeSave = new List<float>();
+
+
+
         private void Awake() {
 
-            
-            _audiosList[0].GetComponent<AudioSource>().volume = _audiosList[1].GetComponent<AudioSource>().volume;
-            
+            SettingsSaver();
 
+            _audiosList[0].GetComponent<AudioSource>().volume = _audiosList[1].GetComponent<AudioSource>().volume;
             _volumeSlider.value = _audiosList[1].GetComponent<AudioSource>().volume;
 
             if(_isHard.value) {
@@ -66,6 +80,7 @@ namespace UI {
             _nightButton.onClick.AddListener(OnNightButtonClick);
             _hardModeButton.onClick.AddListener(OnHardModeButtonClick);
             _easyModeButton.onClick.AddListener(OnEasyModeButtonClick);
+            _cancelButton.onClick.AddListener(OnCancelButtonClick);
             _volumeSlider.onValueChanged.AddListener(delegate {OnSliderValueChange();});
         }
 
@@ -102,8 +117,30 @@ namespace UI {
 
         }
 
+        private void OnCancelButtonClick() {
+            _isHard.value = _isHardSave;
+            _isDay.value = _isDaySave;
+            _lightLabel.text = _lightLabelSave;
+            _gameModeLabel.text = _gameModeLabelSave;
+
+            for(int i = 0; i < _audiosList.Count; i++) {
+                _audiosList[i].GetComponent<AudioSource>().volume = _audioVolumeSave[i];
+            }
+
+            UIManager.Instance.ShowMenuScreen();
+
+        }
+
         private void SettingsSaver() {
-            
+            _isHardSave = _isHard.value;
+            _isDaySave = _isDay.value;
+            _lightLabelSave = _lightLabel.text;
+            _gameModeLabelSave = _gameModeLabel.text;
+
+            for(int i = 0; i < _audiosList.Count; i++) {
+                _audioVolumeSave.Add(_audiosList[i].GetComponent<AudioSource>().volume);
+            }
+
         }
     }
 }
