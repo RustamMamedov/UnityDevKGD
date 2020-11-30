@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5307367483670443030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031603475383926214}
+  - component: {fileID: 2851801511096262845}
+  - component: {fileID: -7703719670417899491}
+  m_Layer: 0
+  m_Name: SettingsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031603475383926214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5307367483670443030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.122818, y: 16.272114, z: -7.186275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2851801511096262845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5307367483670443030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b83a7d07147467a86aed7d9601c799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicVolumeScriptableFloatValue: {fileID: 11400000, guid: 6abeb09546a86a4e49a9f28cf00c8bd6,
+    type: 2}
+  _gameVolumeScriptableFloatValue: {fileID: 11400000, guid: 6897de246c5fda91aa56452bc997baa0,
+    type: 2}
+  _isNightScriptableBoolValue: {fileID: 11400000, guid: a150ac05b44c870cda837a0611267c30,
+    type: 2}
+  _isHardScriptableBoolValue: {fileID: 11400000, guid: bf38a74dc684b81349214cc4bdd948d7,
+    type: 2}
+  _isCrazyModeScriptableBoolValue: {fileID: 11400000, guid: 7763c901043d4f77090ec9056be79d6b,
+    type: 2}
+  _audioMixer: {fileID: 24100000, guid: c528bba778b0b6b8cbc934da48860164, type: 2}
+  _settingsGotSavedEventListener: {fileID: -7703719670417899491}
+--- !u!114 &-7703719670417899491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5307367483670443030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fb7273f5521343b6970432ef5215b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 465d9ef1701970f81885dee3a5d20d53, type: 2}
