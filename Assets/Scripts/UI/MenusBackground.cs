@@ -21,8 +21,11 @@ namespace UI {
         private ScriptableBoolValue _isNight;
 
         private void OnEnable() {
-            SetMenusBackgroundLighting();
             _settingsGotSavedEventListener.OnEventHappened += SetMenusBackgroundLighting;
+        }
+        
+        private void Start() {
+            SetMenusBackgroundLighting();
         }
         
         private void OnDisable() {
