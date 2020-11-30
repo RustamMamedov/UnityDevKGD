@@ -1,4 +1,5 @@
 ﻿using Events;
+using Managers;
 using Sirenix.OdinInspector;
 using UnityEditor.VersionControl;
 using UnityEngine;
@@ -43,19 +44,25 @@ namespace UI {
         [SerializeField]
         private Button _okButton;
 
-        [BoxGroup("Components")]
+        [BoxGroup("Event dispatchers")]
         [SerializeField]
         private EventDispatcher _volumeChangedDispatcher;
+
+        [BoxGroup("Event dispatchers")]
+        [SerializeField]
+        private EventDispatcher _daytimeChangedDispatcher;
+
+        [BoxGroup("Event dispatchers")]
+        [SerializeField]
+        private EventDispatcher _difficultyChangedDispatcher;
 
 
         // Life cycle.
 
         private void Start() {
-            _volumeSlider.value = _volumeValue.value;
+            ResetShowed();
             _volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
-            _daytimeSlider.SetChoice(_daytimeValue.value);
             _daytimeSlider.ChoiceMade += OnDaytimeChosen;
-            _difficultySlider.SetChoice(_difficultyValue.value);
             _difficultySlider.ChoiceMade += OnDifficultyChosen;
             _cancelButton.onClick.AddListener(OnCancel);
             _okButton.onClick.AddListener(OnApply);
@@ -71,32 +78,32 @@ namespace UI {
 
         private void OnDaytimeChosen(int daytime) {
             _daytimeValue.value = daytime;
+            _daytimeChangedDispatcher.Dispatch();
         }
 
         private void OnDifficultyChosen(int difficulty) {
             _difficultyValue.value = difficulty;
+            _difficultyChangedDispatcher.Dispatch();
         }
 
         private void OnCancel() {
-            Revert();
+            SettingsManager.Instance.Revert();
+            ResetShowed();
             Close();
         }
 
         private void OnApply() {
-            Save();
+            SettingsManager.Instance.Save();
             Close();
         }
 
 
         // Support methods.
 
-        private void Revert() {
-            //
-            _volumeChangedDispatcher.Dispatch();
-        }
-
-        private void Save() {
-            //
+        private void ResetShowed() {
+            _volumeSlider.value = _volumeValue.value;
+            _daytimeSlider.SetChoice(_daytimeValue.value);
+            _difficultySlider.SetChoice(_difficultyValue.value);
         }
 
         private void Close() {
