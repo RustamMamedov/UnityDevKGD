@@ -13,8 +13,10 @@ namespace Audio {
         [SerializeField]
         private EventListener _volumeChangeEvent;
 
-        [SerializeField]
-        private float startVolume;
+        private float _startVolume;
+
+        private float _changedVolume;
+
         [Button]
         public void Play() {
             _audioSource.Play();
@@ -27,20 +29,28 @@ namespace Audio {
         }
 
         private void Awake() {
+            _changedVolume = 1;
             _volumeChangeEvent.OnEventHappened += OnGlobalVolumeChanged;
-            startVolume = _audioSource.volume;
+            _startVolume = _audioSource.volume;
             if(Settings.Instance!=null) {
-                _audioSource.volume = startVolume * Settings.Instance.GlobalVolume;
+                _audioSource.volume = _startVolume * Settings.Instance.GlobalVolume;
             }
         }
         
         void OnGlobalVolumeChanged() {
-            _audioSource.volume = startVolume * Settings.Instance.GlobalVolume;
+            if(_changedVolume==0) {
+                _audioSource.volume = 0;
+
+            }
+            else {
+                _audioSource.volume = _startVolume * Settings.Instance.GlobalVolume;
+
+            }
         }
 
         public void SetAudioSourceVolume(float volume) {
             _audioSource.volume = volume;
-            startVolume = volume;
+            _changedVolume = volume;
         }
         public float GetAudioSourceVolume() {
             return _audioSource.volume;
