@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SettingsScreen : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace UI {
 
-    // Update is called once per frame
-    void Update()
-    {
+    public class SettingsScreen : MonoBehaviour {
         
+        [SerializeField]
+        private Button _okButton;
+
+
+        private void Awake() {
+            _okButton.onClick.AddListener(OnOkButtonClick);
+        }
+
+        private void OnOkButtonClick() {
+            UIManager.Instance.ShowMenuScreen();
+        }
+
+
+
     }
 }
