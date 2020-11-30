@@ -7,9 +7,6 @@ namespace Game {
 
     public class EnemySpawner : MonoBehaviour {
 
-        [HideInInspector]
-        public EnemyCarToDodge _dodgedCar;
-
         [SerializeField]
         private EventListener _updateEventListener;
 
@@ -24,7 +21,13 @@ namespace Game {
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
         [SerializeField]
-        private float _spawnCooldown;
+        private float _spawnCooldown = 0;
+
+        [SerializeField]
+        private float _cooldownForEasyMode = 7f;
+
+        [SerializeField]
+        private float _cooldownForHardMode = 3f;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
@@ -45,6 +48,11 @@ namespace Game {
         private List<GameObject> _cars = new List<GameObject>();
 
         private void OnEnable() {
+            if (PlayerPrefs.GetInt(DataKeys.DIFFICULT_KEY) == 0) {
+                _spawnCooldown = _cooldownForEasyMode;
+            } else {
+                _spawnCooldown = _cooldownForHardMode;
+            }
             SubscribeToEvents();
         }
 
@@ -66,7 +74,6 @@ namespace Game {
         }
 
         private void UpdateBehaviour() {
-            DodgeCheck();
             HandleCarsBehindPlayer();
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
@@ -81,16 +88,6 @@ namespace Game {
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = Instantiate(_carPrefabs[enemyCarIndex], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
-            _dodgedCar.currentCar = car.gameObject;
-        }
-
-        private void DodgeCheck() {
-            if(_dodgedCar.currentCar == null) {
-                return;
-            }
-            if(Mathf.Abs(_dodgedCar.currentCar.transform.position.z - _playerPositionZ.value) < _distanceToDodge) {
-                _carDodgeDispatcher.Dispatch();
-            }
         }
 
         private void HandleCarsBehindPlayer() {
