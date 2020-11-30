@@ -3355,6 +3355,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _okButton: {fileID: 1655048240}
+  _dayButton: {fileID: 1455819143}
+  _nightButton: {fileID: 764646060}
+  _lightLabel: {fileID: 2143205612}
+  _isDay: {fileID: 11400000, guid: f9d81be40e9224735895dd148dfeb8a4, type: 2}
 --- !u!1 &1832280894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,7 +3706,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 - \u0434\u0435\u043D\u044C"
+  m_Text: "\u041E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435"
 --- !u!222 &2143205613
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4632,6 +4636,17 @@ PrefabInstance:
       propertyPath: _settingsButton
       value: 
       objectReference: {fileID: 1784260639}
+    - target: {fileID: 8267544226849715587, guid: 408602d4e07ed45edae163306641dfb2,
+        type: 3}
+      propertyPath: _isDay
+      value: 
+      objectReference: {fileID: 11400000, guid: f9d81be40e9224735895dd148dfeb8a4,
+        type: 2}
+    - target: {fileID: 8267544226849715587, guid: 408602d4e07ed45edae163306641dfb2,
+        type: 3}
+      propertyPath: _lightLabel
+      value: 
+      objectReference: {fileID: 2143205612}
     - target: {fileID: 8763459953441212760, guid: 408602d4e07ed45edae163306641dfb2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
