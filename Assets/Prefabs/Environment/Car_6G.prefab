@@ -464,6 +464,10 @@ MonoBehaviour:
   _roadWidth: {fileID: 11400000, guid: 2047edd878a18e54994d83fc79cd2943, type: 2}
   _playerPositionZ: {fileID: 11400000, guid: 2adcbb3178be5774dbbc0ab5be56caef, type: 2}
   _dodgeDuration: 0.3
+  _leftLight: {fileID: 7701164586852518564}
+  _rightLight: {fileID: 4205793364833834984}
+  _rightBackLight: {fileID: 2341349819076621123}
+  _leftBackLight: {fileID: 282320516887428235}
   _gizmosColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1402615507679023327
 MonoBehaviour:
@@ -515,12 +519,12 @@ GameObject:
   - component: {fileID: 8980090093638546105}
   - component: {fileID: 5290773991693873707}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: LeftBackTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8980090093638546105
 Transform:
   m_ObjectHideFlags: 0
@@ -687,12 +691,12 @@ GameObject:
   - component: {fileID: 5268543053944383690}
   - component: {fileID: 1094825923931690606}
   m_Layer: 0
-  m_Name: Trail (1)
+  m_Name: RightBackTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5268543053944383690
 Transform:
   m_ObjectHideFlags: 0
@@ -10416,12 +10420,12 @@ GameObject:
   - component: {fileID: 5883920664537865632}
   - component: {fileID: 4750376341396420871}
   m_Layer: 0
-  m_Name: Spot Light (1)
+  m_Name: Right Spot Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2768119189145764678
 Transform:
   m_ObjectHideFlags: 0
@@ -10524,12 +10528,12 @@ GameObject:
   - component: {fileID: 4950303100505672937}
   - component: {fileID: 2003677330846033882}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Left Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8214758543668720861
 Transform:
   m_ObjectHideFlags: 0
