@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Events;
+using Game;
 
 namespace Audio {
 
@@ -23,11 +24,14 @@ namespace Audio {
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
+        [SerializeField]
+        private ScriptableFloatValue _volume;
+
         private void OnEnable() {
             _carDodgedEventListener.OnEventHappened += OnCarDodged;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
         }
-
+        
         private void OnCarDodged() {
             _dodged.Play();
         }
