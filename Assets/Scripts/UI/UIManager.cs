@@ -28,12 +28,19 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
 
+        [SerializeField]
+        private GameObject _settingsScreen;
+
         //private string _currentSceneName = "Gameplay";
 
         public void ShowMenuScreen(){
             HideAllScreens();
             _menuScreen.SetActive(true);
             _musicManager.PlayMenuMusic();
+        }
+
+        public void ShowSettingsScreen() {
+            _settingsScreen.SetActive(true);
         }
 
         public void ShowGameScreen(){
@@ -49,6 +56,7 @@ namespace UI {
         public void HideAllScreens(){
             _gameScreen.SetActive(false);
             _menuScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
         }
 
