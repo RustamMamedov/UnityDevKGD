@@ -8,8 +8,20 @@ namespace Game {
 
         [SerializeField]
         private Car _car;
+
         [SerializeField]
         private Light _light;
+
+        [SerializeField]
+        private ScriptableIntValue _timeMode;
+
+        private void Awake() {
+            if (_timeMode.value == 0) {
+                gameObject.SetActive(false);
+            }
+            else
+                gameObject.SetActive(true);
+        }
 
         private void OnDrawGizmos() {
             //Gizmos.color = _colorLight;
