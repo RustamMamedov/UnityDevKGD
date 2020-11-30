@@ -16,6 +16,10 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardsScreen;
 
+        [SerializeField]
+        private GameObject _optionScreen;
+
+
         public static UIManager Instance;
 
         [SerializeField]
@@ -93,10 +97,16 @@ namespace UI {
             _leaderboardsScreen.SetActive(true);
         }
 
+        public void ShowOptionScreen() {
+            HideAllScreens();
+            _optionScreen.SetActive(true);
+        }
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardsScreen.SetActive(false);
+            _optionScreen.SetActive(false);
         }
 
 #endregion Show\Hide
