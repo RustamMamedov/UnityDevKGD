@@ -21,10 +21,6 @@ namespace UI {
             _startGameModeButton.onClick.AddListener(OnPlayButtonClick);
             _settingsButton.onClick.AddListener(OnSettingsButtonClick);
         }
-
-        private void OnCasualModeButtonClick() {
-            _crazyModeEnabled.value = false;
-        }
         
         private void OnPlayButtonClick() {
             _startGameMusicEventDispatcher.Dispatch();
