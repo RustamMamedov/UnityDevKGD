@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Events;
 using UnityEngine;
 
@@ -24,8 +25,29 @@ namespace Game {
         [SerializeField]
         private Color _gizmosColor = Color.white;
 
+        [SerializeField]
+        private Light _directionalLight;
+
+        [SerializeField]
+        private List<Light> _lights = new List<Light>();
+
         private int _currentRoad;
         private bool _inDodge;
+
+        private void Awake() {
+            if (PlayerPrefs.GetInt("Light").Equals(0)) {
+                _directionalLight.enabled = true;
+                foreach (var light in _lights) {
+                    light.enabled = false;
+                }
+            }
+            else {
+                _directionalLight.enabled = false;
+                foreach (var light in _lights) {
+                    light.enabled = true;
+                }
+            }
+        }
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
