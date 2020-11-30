@@ -46,17 +46,9 @@ namespace UI {
         }
 
         private void OnEnable() {
-
-            if (Save.SavedSettings != null) {
-                _diff.value = Save.SavedSettings.diff;
-                _volume.value = Save.SavedSettings.volumeValue;
-                _time.value = Save.SavedSettings.time;
-            }
-            else {
-                _timeCurrent.value = _time.value;
-                _diffCurrent.value = _diff.value;
-                _volumeCurrent.value = _volume.value;
-            }
+            _time.value = _timeCurrent.value;
+            _diff.value = _diffCurrent.value;
+            _volume.value = _volumeCurrent.value;
         }
 
         private void OnChangedVolume() {

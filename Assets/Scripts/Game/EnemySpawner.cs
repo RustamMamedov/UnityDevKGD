@@ -40,6 +40,12 @@ namespace Game {
 
         private void OnEnable() {
             SubscribeToEvents();
+            if (_diffCurrent.value == 1) {
+                _spawnCooldown = 2f;
+            }
+            else {
+                _spawnCooldown = 5f;
+            }
         }
 
         private void OnDisable() {
@@ -61,13 +67,6 @@ namespace Game {
         }
 
         private void UpdateBehaviour() {
-
-            if (_diffCurrent) {
-                _spawnCooldown = 2f;
-            }
-            else {
-                _spawnCooldown = 5f;
-            }
 
             HandleCarsBehindPlayer();
 

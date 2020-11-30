@@ -11,13 +11,6 @@ namespace Game {
     public class Save : MonoBehaviour {
 
         [Serializable]
-        public class SavedSetting {
-            public float volumeValue;
-            public int time;
-            public int diff;
-        }
-
-        [Serializable]
         public class SaveData {
 
             public string date;
@@ -28,7 +21,6 @@ namespace Game {
         private class SavedDataWrapper {
 
             public List<SaveData> saveDatas;
-            public SavedSetting savedSetting;
         }
 
         private enum SaveType {
@@ -37,20 +29,9 @@ namespace Game {
             File,
         }
 
-        [SerializeField]
-        private ScriptableIntValue _time;
-
-        [SerializeField]
-        private ScriptableIntValue _diff;
-
-        [SerializeField]
-        private ScriptableFloatValue _volume;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
-
-        [SerializeField]
-        private EventListener _settingsSavedListener;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
@@ -65,15 +46,12 @@ namespace Game {
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
-        private static SavedSetting _saveSettings;
-        public static SavedSetting SavedSettings => _saveSettings;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            _saveSettings = new SavedSetting();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
@@ -84,29 +62,10 @@ namespace Game {
 
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
-            _settingsSavedListener.OnEventHappened += OnSettingsSave;
         }
 
         private void OnDisable() {
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
-            _settingsSavedListener.OnEventHappened -= OnSettingsSave;
-        }
-
-        private void OnSettingsSave() {
-            var Settings = new SavedSetting {
-                volumeValue = _volume.value,
-                diff = _diff.value,
-                time = _time.value,
-            };
-
-            _saveSettings = Settings;
-
-            if (_saveType == SaveType.PlayerPrefs) {
-                SaveToPlayerPrefs();
-            }
-            else {
-                SaveToFile();
-            }
         }
 
         private void OnCarCollision() {
@@ -179,7 +138,6 @@ namespace Game {
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
                 saveDatas = _saveDatas,
-                savedSetting = _saveSettings
             };
             return wrapper;
         }
@@ -199,8 +157,6 @@ namespace Game {
             using(FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
                 var wrapper = (SavedDataWrapper) binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
-                _saveDatas = wrapper.saveDatas;
-                _saveSettings = wrapper.savedSetting;
             }
             Debug.Log(_saveDatas.Count);
         }

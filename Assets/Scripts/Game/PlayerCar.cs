@@ -36,11 +36,22 @@ namespace Game {
         [SerializeField]
         private GameObject _pointLightNight;
 
-        [SerializeField]
-        private GameObject _globalLight;
 
         private int _currentRoad;
         private bool _inDodge;
+
+        private void Awake() {
+            if (_timeCurrent.value == 1) {
+                _carLightR.SetActive(true);
+                _carLightL.SetActive(true);
+                _pointLightNight.SetActive(true);
+            }
+            else {
+                _carLightR.SetActive(false);
+                _carLightL.SetActive(false);
+                _pointLightNight.SetActive(false);
+            }
+        }
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
@@ -52,22 +63,6 @@ namespace Game {
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
         }
 
-        protected override void UpdateBehaviour() {
-            base.UpdateBehaviour();
-            if (_timeCurrent.value == 1) {
-                _carLightR.SetActive(true);
-                _carLightL.SetActive(true);
-                _pointLightNight.SetActive(true);
-                _globalLight.SetActive(false);
-            }
-            else {
-                _carLightR.SetActive(false);
-                _carLightL.SetActive(false);
-                _pointLightNight.SetActive(false);
-                _globalLight.SetActive(true);
-            }
-            
-        }
 
         protected override void Move() {
             base.Move();
