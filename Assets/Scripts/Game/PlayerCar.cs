@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Events;
-using UI;
-using UnityEngine.Experimental.GlobalIllumination;
+using System.Collections.Generic;
 using Audio;
+using UI;
 
 namespace Game {
 
@@ -34,16 +33,34 @@ namespace Game {
         [SerializeField]
         private AudioSourcePlayer _onCarCollisionSound;
 
+
         private int _currentRoad;
         private bool _inDodge;
 
         protected override void OnEnable() {
-            if(_lights != null) {
-                foreach(Light light in _lights) {
-                    light.range = _carSettings.lightLength;
+            if (_lights != null) {
+                foreach (Light light in _lights) {
+                    if (Settings.Instance != null) {
+                        if (Settings.Instance.IsDay) {
+                            light.range = 0;
+                        }
+                        else {
+                            light.range = _carSettings.lightLength;
+
+                        }
+                    }
+                    else {
+                        light.range = _carSettings.lightLength;
+                    }
+
                 }
             }
             base.OnEnable();
+        }
+
+        protected override void OnCarCollision() {
+            _onCarCollisionSound.Play();
+            base.OnCarCollision();
         }
 
         protected override void SubscribeToEvents() {
@@ -70,10 +87,6 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
-        protected override void OnCarCollision() {
-            _onCarCollisionSound.Play();
-            base.OnCarCollision();
-        }
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
@@ -99,3 +112,5 @@ namespace Game {
         }
     }
 }
+
+
