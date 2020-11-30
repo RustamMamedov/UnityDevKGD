@@ -28,6 +28,9 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
 
+        [SerializeField]
+        private GameObject _settingsScreen;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -91,9 +94,15 @@ namespace UI {
             _leaderboardsScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            //HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
             _leaderboardsScreen.SetActive(false);
         }
     }
