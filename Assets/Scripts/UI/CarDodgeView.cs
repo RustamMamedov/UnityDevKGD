@@ -20,6 +20,9 @@ namespace UI {
         [SerializeField]
         private ScriptableIntValue _dodgedScore;
 
+        [SerializeField]
+        private Text _scoreForEnemyCar;
+
         private void OnEnable() {
             Init();
             SubscribeToEvents();
@@ -36,6 +39,8 @@ namespace UI {
         }
 
         private void CarDodged() {
+            _scoreForEnemyCar.text = _dodgedScore.value.ToString();
+
             Debug.Log(_dodgedScore.value);
             if (_dodgedScore.value == 10) {
                 _carImage.texture = RenderManager.Instance.Render(_carSettings[0].renderCarPrefab, _carSettings[0].renderCameraFOV);
