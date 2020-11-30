@@ -7,26 +7,31 @@ namespace Audio {
 
         [SerializeField]
         private AudioSoursePlayer _menuMusicPlayer;
+
         [SerializeField]
         private AudioSoursePlayer _gameMusicPlayer;
 
         [SerializeField]
-        [Range(0f, 1f)]
-        private float _maxVolume;
+        private ScriptableFloatValue _volume;
 
         [SerializeField]
         private float _transitionTime;
+
+        private void Awake() {
+            _volume.value = 0.5f;
+        }
+
         public void PlayMenuMusic() {
             _menuMusicPlayer.Play();
-            StartCoroutine(_menuMusicPlayer.VolumeCorotuine(0f, _maxVolume, _transitionTime));
-            StartCoroutine(_gameMusicPlayer.VolumeCorotuine(_maxVolume, 0f, _transitionTime));
+            StartCoroutine(_menuMusicPlayer.VolumeCorotuine(0f, _volume.value*0.5f, _transitionTime));
+            StartCoroutine(_gameMusicPlayer.VolumeCorotuine(_volume.value * 0.5f, 0f, _transitionTime));
             
         }
 
         public void PlayGameMusic() {
             _gameMusicPlayer.Play();
-            StartCoroutine(_menuMusicPlayer.VolumeCorotuine(_maxVolume, 0f, _transitionTime));
-            StartCoroutine(_gameMusicPlayer.VolumeCorotuine(0f, _maxVolume, _transitionTime));
+            StartCoroutine(_menuMusicPlayer.VolumeCorotuine(_volume.value * 0.5f, 0f, _transitionTime));
+            StartCoroutine(_gameMusicPlayer.VolumeCorotuine(0f, _volume.value * 0.5f, _transitionTime));
             
         }
 
