@@ -23,10 +23,15 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
         private MusicManager _musicManager;
 
         [SerializeField]
         private EventListener _scoreSavedEventListener;
+
+
 
         private void Start() {
             ShowMenuScreen();
@@ -90,7 +95,6 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
@@ -103,7 +107,13 @@ namespace UI {
             _leaderboardScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void HideAllScreens() {
+            _settingsScreen.SetActive(false);
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
