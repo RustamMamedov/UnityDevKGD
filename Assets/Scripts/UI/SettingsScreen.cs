@@ -79,11 +79,13 @@ namespace UI {
             if (!PlayerPrefs.HasKey(DataKeys.DIFFICULT_KEY)) {
                 PlayerPrefs.SetFloat(DataKeys.DIFFICULT_KEY, DIFFICULT_DEFAULT);
                 _difficultyToggle.isOn = (DIFFICULT_DEFAULT == 1);
+                DifficultyToggle(_difficultyToggle.isOn);
             }
 
             if (!PlayerPrefs.HasKey(DataKeys.LIGHT_KEY)) {
                 PlayerPrefs.SetFloat(DataKeys.LIGHT_KEY, LIGHT_DEFAULT);
                 _lightToggle.isOn = (LIGHT_DEFAULT == 1);
+                LightToggle(_lightToggle.isOn);
             }
         }
 
@@ -91,7 +93,9 @@ namespace UI {
             _volumeSlider.value = PlayerPrefs.GetFloat(DataKeys.VOLUME_KEY);
             _volume.value = _volumeSlider.value;
             _difficultyToggle.isOn = PlayerPrefs.GetInt(DataKeys.DIFFICULT_KEY) == 1;
+            DifficultyToggle(_difficultyToggle.isOn);
             _lightToggle.isOn = PlayerPrefs.GetInt(DataKeys.LIGHT_KEY) == 1;
+            LightToggle(_lightToggle.isOn);
         }
 
         private void SetSettings() {
