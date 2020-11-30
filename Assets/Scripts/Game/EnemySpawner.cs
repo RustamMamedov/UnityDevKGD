@@ -34,6 +34,16 @@ namespace Game {
 
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
+        private float _easySpawnCooldown = 4f;
+        private float _hardSpawnCooldown = 1f;
+
+        private void Awake() {
+            if (PlayerPrefs.GetInt("Difficulty").Equals(0)) {
+                _spawnCooldown = _easySpawnCooldown;
+            } else {
+                _spawnCooldown = _hardSpawnCooldown;
+            }
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
