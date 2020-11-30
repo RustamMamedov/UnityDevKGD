@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -48,6 +48,9 @@ namespace Game {
         
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
+
+        [SerializeField] 
+        private ScriptableBoolValue _isHardScriptableBoolValue;
         
         private string _filePath;
         private static List<SaveData> _saveDatas;
@@ -56,10 +59,19 @@ namespace Game {
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
-            if (_crazyModeEnabled.value) {
-                _filePath = Path.Combine(Application.persistentDataPath, "crazyData.txt");
-            } else {
-                _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
+            if (_isHardScriptableBoolValue.value) {
+                if (_crazyModeEnabled.value) {
+                    _filePath = Path.Combine(Application.persistentDataPath, "hardCrazyData.txt");
+                } else {
+                    _filePath = Path.Combine(Application.persistentDataPath, "hardData.txt");
+                }
+            }
+            else {
+                if (_crazyModeEnabled.value) {
+                    _filePath = Path.Combine(Application.persistentDataPath, "easyCrazyData.txt");
+                } else {
+                    _filePath = Path.Combine(Application.persistentDataPath, "easyData.txt");
+                }
             }
             
             if (_saveType == SaveType.PlayerPrefs) {
