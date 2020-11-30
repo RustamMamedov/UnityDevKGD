@@ -11,12 +11,21 @@ namespace UI {
 
         [SerializeField]
         private Button _playButtom;
+
+        [SerializeField]
+        private Button _optionsButtom;
+
         private void Awake() {
             _playButtom.onClick.AddListener(OnPlayButtonClick);
+            _optionsButtom.onClick.AddListener(OnOptionsButtonClick);
         }
 
         private void OnPlayButtonClick() {
             _uIManager.LoadGameplay();
+        }
+
+        private void OnOptionsButtonClick() {
+            _uIManager.ShowOptionScreen();
         }
 
 
