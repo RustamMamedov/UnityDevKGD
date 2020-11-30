@@ -4,6 +4,7 @@ using UnityEngine;
 using Events;
 using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
+using static UI.SettingsScreen;
 
 namespace Game {
 
@@ -13,10 +14,16 @@ namespace Game {
 
         [SerializeField] private EventListener _carCollisionListener;
 
-        [SerializeField] [ValidateInput(nameof(ValidateListItems))]
+        [SerializeField]
+        [ValidateInput(nameof(ValidateListItems))]
         private List<GameObject> _carPrefabs;
 
         [SerializeField] private float _spawnCooldown;
+
+        [SerializeField] private float _spawnCooldownEasy;
+
+        [SerializeField] private float _spawnCooldownHard;
+
 
         [SerializeField] private float _distanceToPlayerToSpawn;
 
@@ -29,6 +36,25 @@ namespace Game {
         private List<GameObject> _cars = new List<GameObject>();
 
         private float _currentTimer = 0f;
+
+        private const string RECORDS_KEY = "settings";
+
+
+        [Serializable]
+        private class SavedDataWrapper {
+            public SaveData savedData;
+        }
+        private static SaveData _saveData;
+
+
+        private void Awake() {
+            LoadFromPlayerPrefs();
+             if(_saveData.difficult == 1) { 
+                _spawnCooldown = _spawnCooldownEasy; 
+            } else { 
+                _spawnCooldown = _spawnCooldownHard; 
+            } 
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -94,6 +120,12 @@ namespace Game {
             }
 
             return true;
+        }
+
+        private void LoadFromPlayerPrefs() {
+            var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
+            _saveData = wrapper.savedData;
+
         }
 
     }
