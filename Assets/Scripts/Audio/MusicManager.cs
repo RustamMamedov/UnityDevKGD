@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Game;
 
 namespace Audio {
 
@@ -10,16 +11,19 @@ namespace Audio {
         [SerializeField]
         private AudioSourcePlayer _gameMusicPlayer;
 
+        [SerializeField]
+        private ScriptableFloatValue _volume;
+
         public void PlayMenuMusic() {
             _menuMusicPlayer.Play();
-            StartCoroutine(_gameMusicPlayer.AudioCoroutine(0.14f, 0f, 2f));
-            StartCoroutine(_menuMusicPlayer.AudioCoroutine(0f, 0.14f, 2f));
+            StartCoroutine(_gameMusicPlayer.AudioCoroutine(_volume.value, 0f, 2f));
+            StartCoroutine(_menuMusicPlayer.AudioCoroutine(0f, _volume.value, 2f));
         }
 
         public void PlayGameMusic() {
             _gameMusicPlayer.Play();
-            StartCoroutine(_gameMusicPlayer.AudioCoroutine(0f, 0.14f, 2f));
-            StartCoroutine(_menuMusicPlayer.AudioCoroutine(0.14f, 0f, 2f));
+            StartCoroutine(_gameMusicPlayer.AudioCoroutine(0f, _volume.value, 2f));
+            StartCoroutine(_menuMusicPlayer.AudioCoroutine(_volume.value, 0f, 2f));
         }
     }
 }
