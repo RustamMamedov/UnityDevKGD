@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Events;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -13,8 +12,6 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionListener;
 
-
-        [InfoBox("Value is invalid for Car Prefabs",InfoMessageType.Error,"RepeatPref")]
         [SerializeField]
         private List<GameObject> _carPrefabs;
 
@@ -33,20 +30,11 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableIntValue _difficult;
+
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
-
-        private bool RepeatPref() {
-            bool flag = false;
-            for (int i = 0; i < _carPrefabs.Count - 1; i++) {
-                for (int j = i + 1; j < _carPrefabs.Count; j++) {
-                    if (_carPrefabs[i] == _carPrefabs[j]) {
-                        flag = true;
-                    }
-                }
-            }
-            return flag;
-        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -72,8 +60,13 @@ namespace Game {
 
         private void UpdateBehaviour() {
             HandleCarsBehindPlayer();
+            if (_difficult.value == 0) {
+                _currentTimer += Time.deltaTime;
+            }
+            else {
+                _currentTimer += 2 * Time.deltaTime;
+            }
 
-            _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
                 return;
             }
