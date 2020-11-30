@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5823755129166867197}
   - component: {fileID: 5823755129166867198}
+  - component: {fileID: 8287335402704721138}
   m_Layer: 0
   m_Name: Rewarder
   m_TagString: Untagged
@@ -44,3 +45,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentScore: {fileID: 11400000, guid: df4120cc7ad58074a8d7789a7a7cc08e, type: 2}
+  _scoreToAdd: {fileID: 11400000, guid: 238f9c7117515714089f4061256d7d4f, type: 2}
+  _carDodgeListener: {fileID: 8287335402704721138}
+--- !u!114 &8287335402704721138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823755129166867199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fd61aa14d845d418fb3e5dbf899825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: ff603271d51f4ea4e872fc8b89ae3ad8, type: 2}
