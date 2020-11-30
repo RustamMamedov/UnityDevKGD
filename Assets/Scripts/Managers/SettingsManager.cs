@@ -61,7 +61,7 @@ namespace Managers {
         // Life cycle.
 
         private void Start() {
-            LoadFromPlayerPrefs(out var _settings);
+            LoadFromPlayerPrefs(out _settings);
             if (_settings == null) {
                 Save();
             } else {
