@@ -12,7 +12,7 @@ namespace UI {
         private EventListener _carDodgeEventListener;
 
         [SerializeField]
-        private EnemyCarToDodge _carDodged;
+        private ScriptableStringValue _carDodgeName;
 
         [SerializeField]
         private List<CarSettings> _carSettings = new List<CarSettings>();
@@ -30,9 +30,7 @@ namespace UI {
         private void DodgeCounter() {
             if(_canSetScore == true) {
                 for (int i = 0; i < _carSettings.Count; i++) {
-                    var name = _carDodged.currentCar.name.Trim(new char[] { '(', 'C', 'l', 'o', 'n', 'e', ')' });
-                    if (_carSettings[i].name == name) {
-                        Debug.Log(name);
+                    if (_carSettings[i].name == _carDodgeName.value) {
                         _carDodgeViews[i].DodgeCounter();
                         StartCoroutine(CoolDown());
                         
