@@ -4,7 +4,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Events;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace Game {
 
@@ -24,7 +23,7 @@ namespace Game {
         }
 
         private enum SaveType {
-            
+
             PlayerPrefs,
             File,
         }
@@ -38,12 +37,9 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _currentScore;
 
-        
-        [InfoBox("PlayerPrefs", "saveTypePlayerPrefs")]
-        [InfoBox("@ getFilePath()", "saveTypePlayerFile")]
         [SerializeField]
         private SaveType _saveType;
-        
+
         [SerializeField]
         private int _maxRecords = 10;
 
@@ -55,38 +51,14 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
-        
-
-        private bool saveTypePlayerPrefs() {
-            if (_saveType == SaveType.PlayerPrefs) {
-                return true;
-            }
-            return false;
-        }
-
-        private bool saveTypePlayerFile() {
-            if (_saveType == SaveType.File) {
-                return true;
-            }
-            return false;
-        }
-
-        private string getFilePath() {
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            return _filePath;
-        }
-
 
         private void Awake() {
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
-                
             } else {
                 LoadFromFile();
-                
             }
         }
 
