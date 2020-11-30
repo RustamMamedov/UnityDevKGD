@@ -10118,6 +10118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8533592947529122084}
   - component: {fileID: 1715085028058672078}
+  - component: {fileID: 2625478596063542126}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -10200,6 +10201,18 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2625478596063542126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872442274808764889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa9505eb7039854f95ac597c90f1641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7093761289000684883
 GameObject:
   m_ObjectHideFlags: 0
@@ -10328,6 +10341,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &5509997968486006363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256824261201526673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: ee53d92fa1733544fbe96867b50497d2, type: 2}
 --- !u!1 &8792099260114042495
 GameObject:
   m_ObjectHideFlags: 0
@@ -10708,6 +10734,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0626e1ce6d817450e86922878d1b53e4, type: 3}
+--- !u!1 &8256824261201526673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4587755663123458300, guid: 0626e1ce6d817450e86922878d1b53e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5565563606251919213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6509207183674539215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1687024597899914146, guid: 0626e1ce6d817450e86922878d1b53e4,
@@ -10720,7 +10752,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5565563606251919213}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8256824261201526673}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a4fe985202ba441cba7c43c4a40d00e, type: 3}

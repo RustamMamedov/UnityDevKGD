@@ -2,6 +2,7 @@
 using Events;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UI;
 
 namespace Game {
 
@@ -21,6 +22,9 @@ namespace Game {
         private float _spawnCooldown;
 
         [SerializeField]
+        private float _hardSpawnCooldown;
+
+        [SerializeField]
         private float _distanceToPlayerToSpawn;
 
         [SerializeField]
@@ -35,9 +39,19 @@ namespace Game {
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 
+
+
+        private void Awake() {
+            if (Settings.Instance != null) {
+                if (!Settings.Instance.IsEasy) {
+                    _spawnCooldown = _hardSpawnCooldown;
+                }
+            }
+        }
+
         private bool ValidateCarPrefabsList(List<GameObject> carPrefabs) {
             for (int i = 0; i < carPrefabs.Count - 1; i++) {
-                for (int j = i+1; j < carPrefabs.Count; j++) {
+                for (int j = i + 1; j < carPrefabs.Count; j++) {
                     if (carPrefabs[i] == carPrefabs[j]) {
                         return false;
                     }
@@ -83,6 +97,7 @@ namespace Game {
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var randomCar = Random.Range(0, _carPrefabs.Count);
+
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = Instantiate(_carPrefabs[randomCar], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
