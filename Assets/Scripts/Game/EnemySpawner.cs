@@ -10,12 +10,19 @@ namespace Game {
 
         // Fields.
 
+        [BoxGroup("Event listeners")]
         [SerializeField]
         private EventListener _updateEventListener;
 
+        [BoxGroup("Event listeners")]
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
+        [BoxGroup("Event listeners")]
+        [SerializeField]
+        private EventListener _difficultyChangedEventListener;
+
+        [BoxGroup("Spawn properties")]
         [ValidateInput(nameof(ValidateEnemyPrefabs), "Multiple prefabs in the list are the same!", InfoMessageType.Error)]
         [SerializeField]
         private List<GameObject> _enemyPrefabs;
@@ -24,27 +31,46 @@ namespace Game {
             return new HashSet<GameObject>(enemyPrefabs).Count == enemyPrefabs.Count;
         }
 
-        [SerializeField]
-        private float _spawnCooldown;
-
-        [SerializeField]
-        private float _spawnDistance;
-
-        [SerializeField]
-        private float _despawnDistance;
-
+        [BoxGroup("Scriptable values")]
         [SerializeField]
         private ScriptableFloatValue _playerPositionZValue;
 
+        [BoxGroup("Scriptable values")]
         [SerializeField]
         private ScriptableFloatValue _laneWidth;
 
+        [BoxGroup("Scriptable values")]
+        [SerializeField]
+        private ScriptableIntValue _difficultyValue;
+
+        [BoxGroup("Spawn properties")]
+        [SerializeField]
+        private float _normalSpawnCooldown;
+
+        [BoxGroup("Spawn properties")]
+        [SerializeField]
+        private float _hardSpawnCooldown;
+
+        [BoxGroup("Spawn properties")]
+        [SerializeField]
+        private float _spawnDistance;
+
+        [BoxGroup("Spawn properties")]
+        [SerializeField]
+        private float _despawnDistance;
+
         private float _currentTimer = 0;
+
+        private float _spawnCooldown;
 
         private List<GameObject> _cars = new List<GameObject>();
 
 
         // Life cycle.
+
+        private void Awake() {
+            UpdateCooldown();
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -60,11 +86,13 @@ namespace Game {
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
+            _difficultyChangedEventListener.OnEventHappened += UpdateCooldown;
         }
 
         private void UnsubscribeFromEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
+            _difficultyChangedEventListener.OnEventHappened -= UpdateCooldown;
         }
 
         private void UpdateBehaviour() {
@@ -78,6 +106,15 @@ namespace Game {
 
         private void OnCarCollision() {
             UnsubscribeFromEvents();
+        }
+
+        private void UpdateCooldown() {
+            int difficulty = _difficultyValue.value;
+            if (difficulty == 0) {
+                _spawnCooldown = _normalSpawnCooldown;
+            } else {
+                _spawnCooldown = _hardSpawnCooldown;
+            }
         }
 
 

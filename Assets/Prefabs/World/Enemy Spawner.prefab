@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6418328452654386672}
   - component: {fileID: 6418328452654386675}
   - component: {fileID: 6418328452654386674}
+  - component: {fileID: 6967422688613195162}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -47,16 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updateEventListener: {fileID: 6418328452654386675}
   _carCollisionEventListener: {fileID: 6418328452654386674}
+  _difficultyChangedEventListener: {fileID: 6967422688613195162}
   _enemyPrefabs:
   - {fileID: 5611843088304282186, guid: 5f66eb77d31d0f142b48b622ff8e7e48, type: 3}
   - {fileID: 8819217049264406506, guid: c3034b71272715749bf2977feb7e9ce1, type: 3}
   - {fileID: 2446454645536580798, guid: a0e66312db22564438efe5add5aef030, type: 3}
-  _spawnCooldown: 3
-  _spawnDistance: 150
-  _despawnDistance: 10
   _playerPositionZValue: {fileID: 11400000, guid: 5a87e43d0a7d12d469b0cfd0f7853e2a,
     type: 2}
   _laneWidth: {fileID: 11400000, guid: 6dd616edb754d574ba78b6d26ee1a451, type: 2}
+  _difficultyValue: {fileID: 11400000, guid: df263670fe79cc7409c4f7a7dcd080bb, type: 2}
+  _normalSpawnCooldown: 2.5
+  _hardSpawnCooldown: 1
+  _spawnDistance: 150
+  _despawnDistance: 10
 --- !u!114 &6418328452654386675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,3 +87,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _listenedEvent: {fileID: 11400000, guid: fc70b07189c00974489b13059566f736, type: 2}
+--- !u!114 &6967422688613195162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418328452654386676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f28e681eeb06c48891c9472e3e2844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listenedEvent: {fileID: 11400000, guid: e3beb3ef856dace41ad3ee24939755a6, type: 2}
