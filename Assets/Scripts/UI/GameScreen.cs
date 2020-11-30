@@ -14,6 +14,7 @@ namespace UI {
         private Light _light;
 
         public IEnumerator CarDodgeViewsCoroutine() {
+            _light.enabled = true;
             for (int i=0; i<_carDodgeViewsList.Count; i++) {
                 _carDodgeViewsList[i].Init();
                 yield return new WaitForEndOfFrame();
