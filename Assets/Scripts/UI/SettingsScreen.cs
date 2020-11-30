@@ -1,4 +1,6 @@
-﻿using Game;
+﻿using System.Collections; 
+using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,10 +24,16 @@ namespace UI {
         private Button _hardModeButton;
 
         [SerializeField]
+        private Slider _volumeSlider;
+
+        [SerializeField]
         private Text _lightLabel;
 
         [SerializeField]
         private Text _gameModeLabel;
+
+        [SerializeField]
+        private List<GameObject> _audiosList = new List<GameObject>();
 
         [SerializeField]
         private ScriptableBoolValue _isDay;
@@ -34,6 +42,12 @@ namespace UI {
         private ScriptableBoolValue _isHard;
 
         private void Awake() {
+
+            
+            _audiosList[0].GetComponent<AudioSource>().volume = _audiosList[1].GetComponent<AudioSource>().volume;
+            
+
+            _volumeSlider.value = _audiosList[1].GetComponent<AudioSource>().volume;
 
             if(_isHard.value) {
                 _gameModeLabel.text = "Сложность - сложно";
@@ -52,6 +66,7 @@ namespace UI {
             _nightButton.onClick.AddListener(OnNightButtonClick);
             _hardModeButton.onClick.AddListener(OnHardModeButtonClick);
             _easyModeButton.onClick.AddListener(OnEasyModeButtonClick);
+            _volumeSlider.onValueChanged.AddListener(delegate {OnSliderValueChange();});
         }
 
         private void OnOkButtonClick() {
@@ -79,5 +94,16 @@ namespace UI {
             _gameModeLabel.text = "Сложность - сложно";
         }
 
+        private void OnSliderValueChange() {
+            
+            for(int i = 0; i < _audiosList.Count; i++) {
+                _audiosList[i].GetComponent<AudioSource>().volume = _volumeSlider.value;
+            }
+
+        }
+
+        private void SettingsSaver() {
+            
+        }
     }
 }
