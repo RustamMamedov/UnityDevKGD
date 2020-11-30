@@ -88,7 +88,8 @@ namespace UI {
         }
 
         public void ShowSettingsScreen() {
-            HideAllScreens();
+            _leaderboardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
             _settingsScreen.SetActive(true);
 
         }
