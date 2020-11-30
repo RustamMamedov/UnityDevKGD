@@ -32,14 +32,14 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
-
+    
+        private Settings _valueDificulty;
 
         private float _currentTimer; 
         private List<GameObject> _cars = new List<GameObject>();
 
         private void OnEnable() {
             SubscribeToEvents();
-
         }
 
         private void OnDisable() {
@@ -64,7 +64,6 @@ namespace Game {
             
             HandleCarsBehindPlayer();
             
-
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
                 return;
