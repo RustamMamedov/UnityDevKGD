@@ -26,7 +26,7 @@ namespace Audio {
 
         public void PlayMusic(float time) {
             Play();
-            StartCoroutine(MusicVolumeCoroutine(0.001f, _volumeSlider.value, time));
+            StartCoroutine(MusicVolumeCoroutine(0.001f, PlayerPrefs.GetFloat("Volume"), time));
         }
         public IEnumerator StopMusic(float time) {
             yield return StartCoroutine(MusicVolumeCoroutine(_audioSource.volume, 0f, time));
