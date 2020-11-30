@@ -32,6 +32,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableIntValue _diffCurrent;
+
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 
@@ -58,6 +61,14 @@ namespace Game {
         }
 
         private void UpdateBehaviour() {
+
+            if (_diffCurrent) {
+                _spawnCooldown = 2f;
+            }
+            else {
+                _spawnCooldown = 5f;
+            }
+
             HandleCarsBehindPlayer();
 
             _currentTimer += Time.deltaTime;
