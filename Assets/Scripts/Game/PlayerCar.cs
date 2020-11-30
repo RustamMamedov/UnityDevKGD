@@ -27,7 +27,6 @@ namespace Game {
 
         private int _currentRoad;
         private bool _inDodge;
-        private bool _canReward = true;
 
         protected override void SubScribeToEvents() {
             base.SubScribeToEvents();
@@ -59,11 +58,6 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
-        private IEnumerator RewardCoolDown() {
-            _canReward = false;
-            yield return new WaitForSeconds(1f);
-            _canReward = true;
-        }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
