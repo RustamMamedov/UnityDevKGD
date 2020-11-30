@@ -22,13 +22,13 @@ namespace UI {
             Instance = this;
         }
 
-        public RenderTexture Render(GameObject prefab, Vector3 cameraPos, Vector3 cameraRot) {
+        public RenderTexture Render(GameObject prefab, Vector3 cameraPosition, Vector3 cameraRotation) {
             var carInstance = Instantiate(prefab, _rootTransform);
             _texture = RenderTexture.GetTemporary(64, 64, 16);
             _texture.antiAliasing = 8;
             _texture.Create();
-            _renderCamera.transform.localPosition = cameraPos;
-            _renderCamera.transform.localRotation = Quaternion.Euler(cameraRot);
+            _renderCamera.transform.localPosition = cameraPosition;
+            _renderCamera.transform.localRotation = Quaternion.Euler(cameraRotation);
             _renderCamera.targetTexture = _texture;
             _renderCamera.Render();
             _renderCamera.targetTexture = null;

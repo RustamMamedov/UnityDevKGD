@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 324601448}
   - component: {fileID: 324601447}
+  - component: {fileID: 324601449}
   m_Layer: 0
   m_Name: Gameplay Light
   m_TagString: Untagged
@@ -213,6 +214,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &324601449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324601446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e993ca7ca7efd4ba309d2668cc71ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameplaylLight: {fileID: 324601446}
+  _carLight:
+  - {fileID: 521608145857639598}
+  - {fileID: 521608145857639599}
+  _valDay: {fileID: 11400000, guid: 7bc72ed72c902794183c8d9698fb856e, type: 2}
 --- !u!1001 &919115210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,6 +374,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d15840e0272c334989efc5ea7de4505, type: 3}
+--- !u!1 &521608145857639598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6505394403351150132, guid: 6d15840e0272c334989efc5ea7de4505,
+    type: 3}
+  m_PrefabInstance: {fileID: 521608145857639597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &521608145857639599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3046907512281969649, guid: 6d15840e0272c334989efc5ea7de4505,
+    type: 3}
+  m_PrefabInstance: {fileID: 521608145857639597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1549306016562825057
 PrefabInstance:
   m_ObjectHideFlags: 0

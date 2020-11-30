@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6887363805535231988}
   - component: {fileID: 1600805972794718788}
   m_Layer: 5
-  m_Name: TextEasy
+  m_Name: TextHard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Easy
+  m_Text: Hard
 --- !u!1 &353017142383037678
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4048488073465981999}
   - component: {fileID: 7297875657994187622}
   m_Layer: 5
-  m_Name: TextHard
+  m_Name: TextEasy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hard
+  m_Text: Easy
 --- !u!1 &867211238010426000
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 1788916243064875406}
   - component: {fileID: 4728517044477020420}
   m_Layer: 0
-  m_Name: SaveButton
+  m_Name: CancelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Save
+  m_Text: Cancel
 --- !u!1 &2750320325654106063
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 8235426035082537354}
   - component: {fileID: 1095098002969393127}
   m_Layer: 0
-  m_Name: CancelButton
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1626,7 +1626,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cancel
+  m_Text: Save
 --- !u!1 &5389598246294257137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,10 +1709,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5031523199645928890}
   m_HandleRect: {fileID: 8364495664351567464}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 4
+  m_MinValue: 0
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 3
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2266,11 +2266,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab171e601c2e214db6fcceb719cfb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volume: {fileID: 3461277126400605071}
-  _difficulty: {fileID: 5389598246294257137}
-  _timeDay: {fileID: 1230487442124112448}
   _saveButton: {fileID: 4690089570338581652}
   _cancelButton: {fileID: 8575227703895019096}
+  _volumeSlider: {fileID: 99742628464512580}
+  _difficultySlider: {fileID: 2293217372365181810}
+  _timeDaySlider: {fileID: 6822806195111072386}
+  _valDifficulty: {fileID: 11400000, guid: 373b1caf810f8374ab66495d92ef179e, type: 2}
+  _valDay: {fileID: 11400000, guid: 7bc72ed72c902794183c8d9698fb856e, type: 2}
   AudioMixer: {fileID: 24100000, guid: 73b5d71b05a392a47b97d705ad7a7664, type: 2}
 --- !u!1 &8990332039119781020
 GameObject:
