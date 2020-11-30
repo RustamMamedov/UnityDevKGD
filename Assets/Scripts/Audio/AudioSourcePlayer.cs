@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Game;
 
 
 namespace Audio {
@@ -12,6 +13,7 @@ namespace Audio {
 
         [Button]
         public void Play() {
+            _audioSource.volume = _volume.value;
             _audioSource.Play();
         }
 
@@ -19,6 +21,9 @@ namespace Audio {
         public void Stop() {
             _audioSource.Stop();
         }
+
+        [SerializeField]
+        private ScriptableFloatValue _volume;
 
         public IEnumerator Vol(float from, float to, float time) {
             float timer = 0f;

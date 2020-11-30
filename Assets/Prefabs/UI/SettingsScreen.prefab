@@ -1341,6 +1341,7 @@ MonoBehaviour:
   _illumination: {fileID: 11400000, guid: 062f14912fa670449962260dceea232c, type: 2}
   _accept: {fileID: 7619503338726846542}
   _cancel: {fileID: 8077946243471338105}
+  _uIManager: {fileID: 0}
 --- !u!1 &5108742479470629785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1723,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2195,7 +2196,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2407,6 +2408,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioSourcePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6128835461835395800, guid: 23fc5c14263f45d43a813e98b936b6ed,
+        type: 3}
+      propertyPath: _volume
+      value: 
+      objectReference: {fileID: 11400000, guid: 50e59451f87f77a4b879b990c87c0795,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23fc5c14263f45d43a813e98b936b6ed, type: 3}
 --- !u!4 &5784977002772746712 stripped
