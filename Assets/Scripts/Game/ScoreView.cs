@@ -18,28 +18,33 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
+        private bool _isBusy;
+
         private void Awake() {
             _update.OnEventHappened += UpdateBehaviour;
         }
 
         private void OnEnable() {
             _currentScoreScriptable.value = 0;
+            _currentScore = 0;
+            _scoreLabel.text = $"{_currentScore}";
+            _isBusy = false;
         }
 
         private void UpdateBehaviour() {
-            if (_currentScoreScriptable.value != _currentScore)
+            if ((_currentScoreScriptable.value > _currentScore)&&(!_isBusy))
                 StartCoroutine(SetScoreCoroutine(_currentScoreScriptable.value));
         }
 
         private IEnumerator SetScoreCoroutine(int score) {
-            while (_currentScore != score) {
+            _isBusy = true;
+            while (_currentScore < score) {
                 if(_currentScore< score) 
                     _currentScore++;
-                else
-                    _currentScore--;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
+            _isBusy = false;
         }
     }
 }
