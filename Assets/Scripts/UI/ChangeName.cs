@@ -24,5 +24,9 @@ namespace UI {
                 _text.text = _oneWord;
             }
         }
+
+        private void Awake() {
+            ChangeNameButton();
+        }
     }
 }
