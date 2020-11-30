@@ -22,28 +22,29 @@ namespace UI {
 
         private int _currentScore;
 
-        private bool isScoreChanging = false;
+        private bool _isScoreChanging = false;
 
         private void OnEnable() {
+            _isScoreChanging = false;
             _currentScore = _currentScoreValue.value;
             _scoreLabel.text = $"{_currentScore}";
             _eventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void UpdateBehaviour() {
-            if (_currentScoreValue.value > _currentScore && !isScoreChanging) {
+            if (_currentScoreValue.value > _currentScore && !_isScoreChanging) {
                 StartCoroutine(SetScoreCoroutine(_currentScoreValue.value));
             }
         }
 
         private IEnumerator SetScoreCoroutine(int newScore) {
-            isScoreChanging = true;
+            _isScoreChanging = true;
             while (_currentScore < newScore) {
                 _currentScore++;
                 _scoreLabel.text = $"{_currentScore}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
-            isScoreChanging = false;
+            _isScoreChanging = false;
         }
     }
 }
