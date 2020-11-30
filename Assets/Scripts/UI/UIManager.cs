@@ -23,7 +23,7 @@ namespace UI {
         private GameObject _leaderboardsScreen;
 
         [SerializeField]
-        private EventListener _carCollisionEventListener;
+        private MusicManager _musicManager;
 
         private void Awake() {
             if (Instance != null) {
@@ -40,11 +40,13 @@ namespace UI {
         }
 
         public void LoadMenu() {
+            _musicManager.PlayMenuMusic();
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
         public void LoadGameplay() {
+            _musicManager.PlayGameMusic();
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
@@ -71,6 +73,7 @@ namespace UI {
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {

@@ -50,11 +50,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuMusicPlayer: {fileID: 2137760744282435936}
-  _gameplayMusicPlayer: {fileID: 7154372163514289696}
+  _gameMusicPlayer: {fileID: 7154372163514289696}
   _carDodgeSoundPlayer: {fileID: 6700471160719624089}
   _carCollisionSoundPlayer: {fileID: 5352093875968586085}
   _carDodgeEventListener: {fileID: 3108455239072941743}
   _carCollisionEventListener: {fileID: 3664863375681711254}
+  _fadeTime: 2
 --- !u!114 &3108455239072941743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ PrefabInstance:
     - target: {fileID: 2233238360862296115, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2233238360862296124, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
@@ -492,7 +493,7 @@ PrefabInstance:
     - target: {fileID: 2233238360862296115, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
       propertyPath: m_Volume
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2233238360862296124, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}

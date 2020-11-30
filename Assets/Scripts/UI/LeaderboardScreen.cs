@@ -52,7 +52,6 @@ namespace UI {
         }
 
         private void OnMenuButtonClick() {
-            MusicManager.Instance.PlayMenuMusic();
             UIManager.Instance.LoadMenu();
         }
     }

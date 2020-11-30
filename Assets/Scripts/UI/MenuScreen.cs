@@ -14,7 +14,6 @@ namespace UI {
         }
 
         private void OnPlayButtonClick() {
-            MusicManager.Instance.PlayGameplayMusic();
             UIManager.Instance.LoadGameplay();
         }
     }
