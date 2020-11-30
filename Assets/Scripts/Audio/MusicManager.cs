@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Events;
+using Game;
 
 namespace Audio {
 
@@ -25,6 +26,12 @@ namespace Audio {
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
+        private EventListener _updateEventListener;
+
+        [SerializeField]
+        private ScriptableFloatValue _volume;
+
+        [SerializeField]
         private float _fadeTime = .3f;
 
         private AudioSourcePlayer _currentPlayer;
@@ -32,6 +39,14 @@ namespace Audio {
         private void Awake() {
             _carDodgeEventListener.OnEventHappened += OnCarDodge;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
+
+            SetVolume(_volume.value);
+            _currentPlayer = _menuMusicPlayer;
+            _menuMusicPlayer.Play();
+        }
+
+        private void Start() {
+            _updateEventListener.OnEventHappened += OnUpdate;
         }
 
         private void OnCarDodge() {
@@ -40,6 +55,10 @@ namespace Audio {
 
         private void OnCarCollision() {
             _carCollisionSoundPlayer.Play();
+        }
+
+        private void OnUpdate() {
+            SetVolume(_volume.value);
         }
 
         public void PlayMenuMusic() {
@@ -79,7 +98,7 @@ namespace Audio {
             var halfFadeTime = _fadeTime / 2f;
             while (timer < halfFadeTime) {
                 timer += Time.deltaTime;
-                var volume = Mathf.Lerp(0f, 1f, timer / halfFadeTime);
+                var volume = Mathf.Lerp(0f, _volume.value, timer / halfFadeTime);
                 to.SetVolume(volume);
                 yield return null;
             }
@@ -90,11 +109,18 @@ namespace Audio {
             var halfFadeTime = _fadeTime / 2f;
             while (timer < halfFadeTime) {
                 timer += Time.deltaTime;
-                var volume = Mathf.Lerp(1f, 0f, timer / halfFadeTime);
+                var volume = Mathf.Lerp(_volume.value, 0f, timer / halfFadeTime);
                 to.SetVolume(volume);
                 yield return null;
             }
             to.Stop();
+        }
+
+        public void SetVolume(float value) {
+            _menuMusicPlayer.SetVolume(value);
+            _gameMusicPlayer.SetVolume(value);
+            _carDodgeSoundPlayer.SetVolume(value);
+            _carCollisionSoundPlayer.SetVolume(value);
         }
     }
 }

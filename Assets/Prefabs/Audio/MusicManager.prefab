@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 240050218960936506}
   - component: {fileID: 3108455239072941743}
   - component: {fileID: 3664863375681711254}
+  - component: {fileID: 777995661649481140}
   m_Layer: 5
   m_Name: MusicManager
   m_TagString: Untagged
@@ -55,7 +56,9 @@ MonoBehaviour:
   _carCollisionSoundPlayer: {fileID: 5352093875968586085}
   _carDodgeEventListener: {fileID: 3108455239072941743}
   _carCollisionEventListener: {fileID: 3664863375681711254}
-  _fadeTime: 2
+  _updateEventListener: {fileID: 777995661649481140}
+  _volume: {fileID: 11400000, guid: 7963f338a272bf245a55efacdc45b435, type: 2}
+  _fadeTime: 3
 --- !u!114 &3108455239072941743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +85,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
+--- !u!114 &777995661649481140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240050218960936504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6047a6a1605264468ddbcc4a34a27d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 08b36a2ef2303c44e93cb271d1b26a37, type: 2}
 --- !u!1001 &240050218673092946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 2233238360862296115, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2233238360862296124, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
@@ -274,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 2233238360862296115, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2233238360862296124, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
@@ -376,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 2233238360862296115, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2233238360862296124, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
@@ -493,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 2233238360862296115, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2233238360862296124, guid: 6f2a2a6eef7f9ba4b8eeaa4e9742d451,
         type: 3}
