@@ -25,9 +25,6 @@ namespace Game {
 
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
-
-        [SerializeField] 
-        private AudioSourcePlayer _carDodgedSourcePlayer;
         
         private int _distanceToDodge = 40;
         private bool _enemyIsDodged = false;
@@ -57,7 +54,6 @@ namespace Game {
 
         private void AddScore() {
             if (_enemyIsDodged) {
-                _carDodgedSourcePlayer.Play();
                 _carDodgedEventDispatcher.Dispatch();
                 _currentScoreAsset.value += _carSettings.dodgeScore;
             }

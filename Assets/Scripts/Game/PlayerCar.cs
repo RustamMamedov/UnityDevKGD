@@ -30,7 +30,7 @@ namespace Game {
         
         [SerializeField] 
         private AudioSourcePlayer _dodgeSourcePlayer;
-
+        
         [SerializeField] 
         private GameObject _backLights;
 
@@ -62,7 +62,7 @@ namespace Game {
             _playerPositionZ.value = transform.position.z;
             _playerPositionX.value = transform.position.x;
         }
-
+        
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
             var canDodge = !_inDodge && nextRoad != _currentRoad; //&& _currentSpeed >= _carSettings.maxSpeed 

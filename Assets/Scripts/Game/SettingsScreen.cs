@@ -132,7 +132,7 @@ namespace Game {
 			_isNight = _isNightScriptableBoolValue.value;
 			_isCrazy = _isCrazyModeScriptableBoolValue.value;
 		}
-
+		
 		private void SetDataOnUIComponents() {
 			SetMusicVolume(_musicVolume);
 			_musicVolumeSlider.value = _musicVolume;
