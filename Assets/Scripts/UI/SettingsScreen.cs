@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using Events;
 using UnityEngine;
 using UnityEngine.UI;
+using Game;
 
 namespace UI {
 
@@ -9,8 +10,6 @@ namespace UI {
 
         [SerializeField]
         private Slider _volumeSlider;
-        [SerializeField]
-        private List<AudioSource> _audioSources;
 
         [SerializeField]
         private Toggle _difficultToggle;
@@ -27,9 +26,22 @@ namespace UI {
         [SerializeField]
         private GameObject _settingsScreen;
 
+        [SerializeField]
+        private ScriptableFloatValue _volumeValue;
+
         private float _sliderVolumeValue;
 
         private const string RECORDS_KEY = "settings";
+
+        [SerializeField]
+        private EventListener _updateEventListener;
+
+        [SerializeField]
+        private EventDispatcher _changeEventDispatcher;
+
+        private const float VOLUME_DEFAULT = 0.5f;
+        private const int DIFFICULT_DEFAULT = 1;
+        private const int LIGHT_DEFAULT = 1;
 
         [Serializable]
         public class SaveData {
@@ -48,13 +60,26 @@ namespace UI {
 
         private static SaveData _saveData;
 
-        private void Awake() {
-            LoadFromPlayerPrefs();
-            _saveButton.onClick.AddListener(Save);
+        private void OnEnable() {
+            _updateEventListener.OnEventHappened += SetSoundVolume;
+        }
+        private void OnDisable() {
+            SetSoundVolume();
+            _updateEventListener.OnEventHappened -= SetSoundVolume;
         }
 
-        private void SetSoundVolume() {
+        private void Awake() {
+            SaveForFirstTimeSettings();
+            LoadFromPlayerPrefs();
+            _saveButton.onClick.AddListener(Save);
+            _cancelButton.onClick.AddListener(Cancel);
+        }
 
+
+
+        private void SetSoundVolume() {
+            _volumeValue.value = _volumeSlider.value;
+            _changeEventDispatcher.Dispatch();
         }
 
         private SavedDataWrapper GetWrapper() {
@@ -76,6 +101,26 @@ namespace UI {
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
             _saveData = wrapper.savedData;
+
+            _volumeSlider.value = _saveData.volume;
+            _difficultToggle.isOn = IntToBool(_saveData.difficult);
+            _ligthToggle.isOn = IntToBool(_saveData.dayTime); 
+
+            Debug.Log($"{_saveData.volume}, {_saveData.difficult}, {_saveData.dayTime}");
+        }
+
+        private void SaveForFirstTimeSettings() {
+            if(PlayerPrefs.HasKey("settings")){
+                return;
+            }
+            var SettingsRecord = new SaveData {
+                volume = VOLUME_DEFAULT,
+                difficult = DIFFICULT_DEFAULT,
+                dayTime = LIGHT_DEFAULT
+            };
+
+            _saveData = SettingsRecord;
+            SaveToPlayerPrefs();
         }
 
         private void Save() {
@@ -88,16 +133,19 @@ namespace UI {
                 difficult = isDifficultToggleOn,
                 dayTime = isLightToggleOn
             };
+            _volumeValue.value = _volumeSlider.value;
 
             _saveData = SettingsRecord;
             SaveToPlayerPrefs();
-            UIManager.Instance.ShowMenuScreen();
+            _settingsScreen.SetActive(false);
         }
 
         private void Cancel() {
+             Debug.Log($"{_saveData.volume}, {_saveData.difficult}, {_saveData.dayTime}");
             _volumeSlider.value = _saveData.volume;
             _difficultToggle.isOn = IntToBool(_saveData.difficult);
             _ligthToggle.isOn = IntToBool(_saveData.dayTime);
+            _settingsScreen.SetActive(false);
         }
         private int IsON(Toggle toggle) {
 
