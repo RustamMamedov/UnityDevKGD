@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI {
@@ -7,9 +8,17 @@ namespace UI {
 
         [SerializeField]
         private Button _playButton;
+
+        [SerializeField]
+        private Button _settingsButton;
         private void Awake() {
 
             _playButton.onClick.AddListener(OnPlayButtonClick);
+            _settingsButton.onClick.AddListener(OnSettingsButtonClick);
+        }
+
+        private void OnSettingsButtonClick() {
+            UIManager.Instansce.ShowSettingsScreen();
         }
 
         private void OnPlayButtonClick() {
