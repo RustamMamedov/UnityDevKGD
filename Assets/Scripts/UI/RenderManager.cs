@@ -18,10 +18,15 @@ namespace UI {
         private RenderTexture _texture;
 
         private void Awake() {
+            if (Instance != null) {
+                Destroy(gameObject);
+                return;
+            }
             Instance = this;
         }
 
-        public RenderTexture Render(GameObject prefab) {
+        public RenderTexture Render(GameObject prefab, Transform cameraTransform) {
+            _renderCamera.transform.position = cameraTransform.position;
             var carInstance = Instantiate(prefab, _rootTransform);
             _texture = RenderTexture.GetTemporary(64, 64, 16);
             _texture.antiAliasing = 8;
@@ -32,8 +37,8 @@ namespace UI {
             Destroy(carInstance);
             return _texture;
         }
-        public IEnumerator RenderCoroutine(GameObject prefab, RawImage carImage) {
-            carImage.texture= Render(prefab);
+        public IEnumerator RenderCoroutine(GameObject prefab, RawImage carImage, Transform cameraTransform) {
+            carImage.texture= Render(prefab,cameraTransform);
             yield return null;
         }
         public void ReleaseTextures() {

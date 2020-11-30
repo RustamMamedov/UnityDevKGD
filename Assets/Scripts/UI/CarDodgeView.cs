@@ -30,7 +30,7 @@ namespace UI{
             Init();
         }
         public void Init() {
-            StartCoroutine(RenderManager.Instance.RenderCoroutine(_carSettings.renderCarPrefab, _carImage));
+            StartCoroutine(RenderManager.Instance.RenderCoroutine(_carSettings.renderCarPrefab, _carImage,_carSettings.renderCameraTransform));
         }
 
         public void UpdateBehaviour() {

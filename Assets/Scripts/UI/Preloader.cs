@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Game;
 
 namespace UI {
 
     public class Preloader : MonoBehaviour {
 
+        [SerializeField]
+        private ScriptableFloatValue __sceneLoadingValue;
         private void Start() {
             StartCoroutine(LoadMenuScene());
         }
@@ -13,7 +16,7 @@ namespace UI {
         private IEnumerator LoadMenuScene() {
             var asyncOperation = SceneManager.LoadSceneAsync("Menu");
             while (!asyncOperation.isDone) {
-                Debug.Log(asyncOperation.progress);
+                __sceneLoadingValue.value = asyncOperation.progress / .9f;
                 yield return null;
             }
         }
