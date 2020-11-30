@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c1bf8bdf2f0254b83c7205d7123b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _carDodgedViews: []
 --- !u!1 &7969470748329886707
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,9 +142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48b301b5feebc44c910e93baf135782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentScoreScriptable: {fileID: 0}
+  _currentScoreScriptable: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f,
+    type: 2}
   _update: {fileID: 7969470748329886705}
-  _scoreCountDelay: 0.1
+  _scoreCountDelay: 0.02
   _scoreLabel: {fileID: 7969470748354826040}
 --- !u!114 &7969470748329886705
 MonoBehaviour:
@@ -316,7 +318,7 @@ PrefabInstance:
     - target: {fileID: 5579532590511902093, guid: fbc793ca2dd23844aae9df829e524274,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 187
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 5579532590511902093, guid: fbc793ca2dd23844aae9df829e524274,
         type: 3}
@@ -441,7 +443,7 @@ PrefabInstance:
     - target: {fileID: 5579532590511902093, guid: fbc793ca2dd23844aae9df829e524274,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 187
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 5579532590511902093, guid: fbc793ca2dd23844aae9df829e524274,
         type: 3}
@@ -566,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 5579532590511902093, guid: fbc793ca2dd23844aae9df829e524274,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 187
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 5579532590511902093, guid: fbc793ca2dd23844aae9df829e524274,
         type: 3}
