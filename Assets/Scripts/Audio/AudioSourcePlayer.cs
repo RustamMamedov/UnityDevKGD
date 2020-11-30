@@ -1,6 +1,8 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
+using Game;
+using Events;
 
 namespace Audio {
 
@@ -8,6 +10,21 @@ namespace Audio {
 
         [SerializeField]
         private AudioSource _audioSource;
+
+        [SerializeField]
+        private ScriptableFloatValue _volumeSetting;
+
+        [SerializeField]
+        private EventListener _volumeChangeListener;
+
+        private void OnEnable() {
+            ChangeVolume();
+            _volumeChangeListener.OnEventHappened += ChangeVolume;
+        }
+
+        private void OnDisable() {
+            _volumeChangeListener.OnEventHappened -= ChangeVolume;
+        }
 
         [Button]
         public void Play() {
@@ -27,13 +44,17 @@ namespace Audio {
             StartCoroutine(StopGradually(requiredTime));
         }
 
+        private void ChangeVolume() {
+            _audioSource.volume = _volumeSetting.value;
+        }
+
         IEnumerator PlayGradually(float requiredTime) {
             Play();
-            yield return StartCoroutine(CoroutineMusicVolume(0f, 1f, requiredTime));
+            yield return StartCoroutine(CoroutineMusicVolume(0f, _volumeSetting.value, requiredTime));
         }
 
         IEnumerator StopGradually(float requiredTime) {
-            yield return StartCoroutine(CoroutineMusicVolume(1f, 0f, requiredTime));
+            yield return StartCoroutine(CoroutineMusicVolume(_volumeSetting.value, 0f, requiredTime));
             Stop();
         }
 
