@@ -14,9 +14,6 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
-        private EventDispatcher _carDodgeDispatcher;
-
-        [SerializeField]
         [ValidateInput(nameof(CarCheck))]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
@@ -31,9 +28,6 @@ namespace Game {
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
-
-        [SerializeField]
-        private int _distanceToDodge = 5;
 
         [SerializeField]
         private float _distanceToPlayerToDestroy;
