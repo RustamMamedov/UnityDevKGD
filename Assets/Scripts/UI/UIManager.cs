@@ -23,6 +23,9 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
+        private GameObject _SettingsScreen;
+
+        [SerializeField]
         private EventListener _carCollisionEventListener;
 
         [SerializeField]
@@ -89,6 +92,11 @@ namespace UI {
         public void ShowLeaderboardScreen() {
             HideAllScreens();
             _leaderboardScreen.SetActive(true);
+        }
+
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _SettingsScreen.SetActive(true);
         }
 
         public void HideAllScreens() {
