@@ -16,6 +16,9 @@ namespace UI {
         private GameObject _menuScreen;
 
         [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
         private GameObject _gameScreen;
 
         [SerializeField]
@@ -78,6 +81,11 @@ namespace UI {
             _menuScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
@@ -92,6 +100,7 @@ namespace UI {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardsScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
     }
 }
