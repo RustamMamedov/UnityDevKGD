@@ -149,7 +149,5 @@ namespace UI {
             GetSettings();
             UIManager.Instance.ShowMenuScreen();
         }
-
     }
-
 }

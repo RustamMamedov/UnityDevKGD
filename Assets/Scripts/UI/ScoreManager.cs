@@ -4,6 +4,7 @@ using UnityEngine;
 using Game;
 using Events;
 namespace UI {
+
     public class ScoreManager : MonoBehaviour {
 
         [SerializeField]

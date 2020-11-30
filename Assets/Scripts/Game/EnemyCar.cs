@@ -5,6 +5,7 @@ using Events;
 using UI;
 
 namespace Game {
+
     public class EnemyCar : Car {
 
         [SerializeField]
@@ -30,10 +31,6 @@ namespace Game {
                 _dodgeCarName.value = _carSettings.name;
                 _carDodgedEventDispatcher.Dispatch();
             }
-
         }
-
-        
     }
-
 }

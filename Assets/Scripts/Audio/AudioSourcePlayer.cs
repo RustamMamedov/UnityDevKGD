@@ -55,9 +55,7 @@ namespace Audio {
                 time += Time.deltaTime;
                 _audioSource.volume = Mathf.Lerp(_audioSource.volume, to, time / requiredTime);
                 yield return null;
-            }
-            
+            } 
         }
-
     }
 }
