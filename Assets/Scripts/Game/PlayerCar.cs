@@ -31,6 +31,9 @@ namespace Game {
         [SerializeField]
         private List<Light> _lights = new List<Light>();
 
+        [SerializeField]
+        private List<TrailRenderer> _trails = new List<TrailRenderer>();
+
         private int _currentRoad;
         private bool _inDodge;
 
@@ -40,11 +43,18 @@ namespace Game {
                 foreach (var light in _lights) {
                     light.enabled = false;
                 }
+
+                foreach (var trail in _trails) {
+                    trail.enabled = false;
+                }
             }
             else {
                 _directionalLight.enabled = false;
                 foreach (var light in _lights) {
                     light.enabled = true;
+                }
+                foreach (var trail in _trails) {
+                    trail.enabled = true;
                 }
             }
         }

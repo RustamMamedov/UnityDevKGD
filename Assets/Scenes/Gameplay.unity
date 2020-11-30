@@ -207,6 +207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1135894441318015148, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
+      propertyPath: _trails.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135894441318015148, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
       propertyPath: _dodgeDuration
       value: 1.5
       objectReference: {fileID: 0}
@@ -230,6 +235,16 @@ PrefabInstance:
       propertyPath: _directionalLight
       value: 
       objectReference: {fileID: 1179592996}
+    - target: {fileID: 1135894441318015148, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: _trails.Array.data[0]
+      value: 
+      objectReference: {fileID: 121649118}
+    - target: {fileID: 1135894441318015148, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: _trails.Array.data[1]
+      value: 
+      objectReference: {fileID: 121649117}
     - target: {fileID: 1417815176605617969, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
       propertyPath: m_RootOrder
@@ -355,6 +370,18 @@ PrefabInstance:
 --- !u!224 &121649116 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 36373232040276100, guid: 8952388f882d347438563c4e45e6ce50,
+    type: 3}
+  m_PrefabInstance: {fileID: 121649115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &121649117 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 2614215845966291529, guid: 8952388f882d347438563c4e45e6ce50,
+    type: 3}
+  m_PrefabInstance: {fileID: 121649115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &121649118 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 3443703704048897787, guid: 8952388f882d347438563c4e45e6ce50,
     type: 3}
   m_PrefabInstance: {fileID: 121649115}
   m_PrefabAsset: {fileID: 0}
