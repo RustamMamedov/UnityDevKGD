@@ -172,7 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carCollisionEventListener: {fileID: 397036223}
   _currentScore: {fileID: 11400000, guid: 626a83a8173b77e48ab707d2f63a58ef, type: 2}
-  _saveDispatcher: {fileID: 0}
   _saveType: 1
 --- !u!4 &397036225
 Transform:
@@ -248,6 +247,7 @@ MonoBehaviour:
   _roadCollisionEventListener: {fileID: 588641231}
   _roadPrefab: {fileID: 489200510171849154, guid: 4fa7824a621d72c419d77f7c478045eb,
     type: 3}
+  _directionalLight: {fileID: 2140044440}
   _initialRoadNumber: 10
   _roadLength: 12
 --- !u!108 &842968395 stripped
@@ -493,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &2140044441
 Light:
   m_ObjectHideFlags: 0
