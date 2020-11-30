@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
+//using UnityEditor.Build;
 using UnityEngine;
 using Game;
 
-[CreateAssetMenu(fileName ="Dodge",menuName ="New Dodge")]
-public class CarDodged : ScriptableObject
-{
-    [SerializeField] //отображение поля в юнити
-    private ScriptableIntValue totalScore;
-    public void Dodge(int dodgescore)
-    {
-        totalScore.value +=  dodgescore;
+namespace UI {
+
+    [CreateAssetMenu(fileName = "Dodge", menuName = "New Dodge")]
+    public class CarDodged : ScriptableObject {
+        [SerializeField] //отображение поля в юнити
+        private ScriptableIntValue totalScore;
+        public void Dodge(int dodgescore) {
+            totalScore.value += dodgescore;
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using Events;
 using Game;
-using Packages.Rider.Editor;
-using VSCodeEditor;
+//using Packages.Rider.Editor;
+//using VSCodeEditor;
 
 namespace UI {
     public class InputController : MonoBehaviour {

@@ -15,8 +15,6 @@ namespace UI {
 
         private RenderTexture _texture;
 
-        //private RenderTexture _texture;
-
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
