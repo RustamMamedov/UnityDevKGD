@@ -100,6 +100,7 @@ namespace UI {
         }
 
         public void HideAllScreens() {
+            _SettingsScreen.SetActive(false);
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
