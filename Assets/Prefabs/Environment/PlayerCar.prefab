@@ -361,8 +361,6 @@ Transform:
   - {fileID: 8363826543619799086}
   - {fileID: 5571639309587868396}
   - {fileID: 92076168114034535}
-  - {fileID: 5445981966829234597}
-  - {fileID: 5117214695740490049}
   - {fileID: 4675354391864923272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -542,12 +540,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865466403110677860}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.66, y: 1.07, z: -2.6}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -1.48, y: 0.20000005, z: -4.8059998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4526053454235962}
-  m_RootOrder: 10
+  m_Father: {fileID: 182450450073337827}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!96 &5266212248374543656
 TrailRenderer:
@@ -775,7 +773,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.831, y: 0.87, z: 2.206}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5445981966829234597}
   m_Father: {fileID: 4526053454235962}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -836,7 +835,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.49e-43, y: -0.0000000018622712, z: 8.49e-43, w: 0}
+  m_BoundingSphereOverride: {x: 8e-45, y: 0, z: 7.27e-43, w: 2.7e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -854,6 +853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _car: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
   _light: {fileID: 5967258475967094014}
+  _illumination: {fileID: 11400000, guid: 062f14912fa670449962260dceea232c, type: 2}
 --- !u!1 &4811275609705248824
 GameObject:
   m_ObjectHideFlags: 0
@@ -5636,7 +5636,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.82, y: 0.87, z: 2.206}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5117214695740490049}
   m_Father: {fileID: 4526053454235962}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -5697,7 +5698,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 4.6e-44, z: 5.332e-42, w: 5.9e-44}
+  m_BoundingSphereOverride: {x: -1, y: 8, z: 9, w: -10}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5715,6 +5716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _car: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
   _light: {fileID: 2400873438877605068}
+  _illumination: {fileID: 11400000, guid: 062f14912fa670449962260dceea232c, type: 2}
 --- !u!1 &5825736956757732638
 GameObject:
   m_ObjectHideFlags: 0
@@ -10493,12 +10495,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7094222820108362368}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.74, y: 1.07, z: -2.6}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 1.571, y: 0.20000005, z: -4.8059998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4526053454235962}
-  m_RootOrder: 9
+  m_Father: {fileID: 7606773354897068149}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!96 &6194289810265399967
 TrailRenderer:
@@ -10651,7 +10653,7 @@ PrefabInstance:
     - target: {fileID: 2039281209621961747, guid: 23fc5c14263f45d43a813e98b936b6ed,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2039281209621961747, guid: 23fc5c14263f45d43a813e98b936b6ed,
         type: 3}

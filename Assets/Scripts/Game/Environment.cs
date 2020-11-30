@@ -20,9 +20,21 @@ namespace Game {
         [SerializeField]
         private int _roadLength = 12;
 
+        [SerializeField]
+        private Light _light;
+
+        [SerializeField]
+        private ScriptableIntValue _illumination;
+
         private List<Transform> _roadTransform;
 
         private void Start() {
+            if (_illumination.value == 0) {
+                _light.gameObject.SetActive(true);
+            }
+            else {
+                _light.gameObject.SetActive(false);
+            }
             GenerateRoad();
         }
         protected void OnEnable() {
