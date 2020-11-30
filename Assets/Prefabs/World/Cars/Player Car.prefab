@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 1157444564000218275}
   - component: {fileID: 8507447272822366527}
   - component: {fileID: 2863075118492883088}
+  - component: {fileID: 4884169654625445163}
   - component: {fileID: 5080916760367173245}
   - component: {fileID: 2335358237928692788}
   m_Layer: 0
@@ -419,11 +420,16 @@ MonoBehaviour:
   _carCollisionListener: {fileID: 8507447272822366527}
   _carSettings: {fileID: 11400000, guid: 61576186afb141546a4e6fb9332c6119, type: 2}
   _touchEventListener: {fileID: 2863075118492883088}
+  _daytimeChangedListener: {fileID: 4884169654625445163}
   _touchSideValue: {fileID: 11400000, guid: 5a4b7e475bc46a944aea6340253090a1, type: 2}
   _dodgeDuration: 0.5
   _laneWidthValue: {fileID: 11400000, guid: 6dd616edb754d574ba78b6d26ee1a451, type: 2}
   _playerPositionZValue: {fileID: 11400000, guid: 5a87e43d0a7d12d469b0cfd0f7853e2a,
     type: 2}
+  _daytimeValue: {fileID: 11400000, guid: ddd04e4dc02f94448a2d4cc1296e791f, type: 2}
+  _nightOnlyObjects:
+  - {fileID: 6970953046466117746}
+  - {fileID: 5431026034260227998}
 --- !u!114 &1157444564000218275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +469,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _listenedEvent: {fileID: 11400000, guid: 39f6475c955d2694b9b90d42d3dcc623, type: 2}
+--- !u!114 &4884169654625445163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171640476597284588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f28e681eeb06c48891c9472e3e2844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listenedEvent: {fileID: 11400000, guid: d5891b7afba34c1418b3ae715db51af3, type: 2}
 --- !u!65 &5080916760367173245
 BoxCollider:
   m_ObjectHideFlags: 0

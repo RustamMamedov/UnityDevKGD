@@ -13,6 +13,9 @@ namespace Game {
         private EventListener _touchEventListener;
 
         [SerializeField]
+        private EventListener _daytimeChangedListener;
+
+        [SerializeField]
         private ScriptableIntValue _touchSideValue;
 
         [SerializeField]
@@ -24,6 +27,12 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZValue;
 
+        [SerializeField]
+        private ScriptableIntValue _daytimeValue;
+
+        [SerializeField]
+        private GameObject[] _nightOnlyObjects;
+
         private int _currentRoad = 0;
 
         // Dodge coroutine is made to be called by Move() method (i.e. on Update custom event),
@@ -32,16 +41,25 @@ namespace Game {
         private IEnumerator _currentDodge = null;
 
 
+        // Life cycle.
+
+        private void Start() {
+            UpdateNightOnlyObjects();
+        }
+
+
         // Event handling.
 
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
+            _daytimeChangedListener.OnEventHappened += UpdateNightOnlyObjects;
         }
 
         protected override void UnsubscribeFromEvents() {
             base.UnsubscribeFromEvents();
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            _daytimeChangedListener.OnEventHappened -= UpdateNightOnlyObjects;
         }
 
         private void OnPlayerTouch() {
@@ -49,6 +67,12 @@ namespace Game {
             bool canDodge = _currentDodge == null && CurrentSpeed >= CarSettings.maxSpeed && nextRoad != _currentRoad;
             if (canDodge) {
                 _currentDodge = MakeDodgeCoroutine(nextRoad);
+            }
+        }
+
+        private void UpdateNightOnlyObjects() {
+            foreach (var nightOnly in _nightOnlyObjects) {
+                nightOnly.SetActive(_daytimeValue.value == 1);
             }
         }
 
