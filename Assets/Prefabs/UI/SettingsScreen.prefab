@@ -1293,6 +1293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5108742479170422973}
+  - component: {fileID: 6393927887566635891}
   m_Layer: 5
   m_Name: SettingsScreen
   m_TagString: Untagged
@@ -1320,6 +1321,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6393927887566635891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108742479170422594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99151e8ccca2caa448dfc5be2eea2fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _volumeSlider: {fileID: 7809113526227762663}
+  _volume: {fileID: 11400000, guid: 50e59451f87f77a4b879b990c87c0795, type: 2}
+  _complexitySlider: {fileID: 5389391665066157303}
+  _complexity: {fileID: 11400000, guid: 0d0f8747eb9222940ae509cf51fd73de, type: 2}
+  _illuminationSlider: {fileID: 4090581776356481120}
+  _illumination: {fileID: 11400000, guid: 062f14912fa670449962260dceea232c, type: 2}
+  _accept: {fileID: 7619503338726846542}
+  _cancel: {fileID: 8077946243471338105}
 --- !u!1 &5108742479470629785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,7 +1444,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1

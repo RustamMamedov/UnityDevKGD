@@ -330,7 +330,7 @@ MonoBehaviour:
   _leaderboardScreen: {fileID: 1336714918}
   _endingSave: {fileID: 568432305}
   _musicManager: {fileID: 755953936}
-  _settingsScreen: {fileID: 0}
+  _settingsScreen: {fileID: 985391072}
 --- !u!4 &568432302
 Transform:
   m_ObjectHideFlags: 0
@@ -657,6 +657,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSourcePlayer: {fileID: 307067692}
+--- !u!1 &985391072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5108742479170422594, guid: 688e5124a96e75d469ea7e2098bbdcee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731685452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1130188567
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +879,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74e82478e7296d4faf778f6c0a33f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1288921974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6028341882656516430, guid: 0408770611ad84acb8fbc1797b7124bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3728316746745745210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &1328746851 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 6825934187159933095, guid: acb3e6de650de814da26476774ffaeae,
@@ -1045,6 +1063,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6393927887566635891, guid: 688e5124a96e75d469ea7e2098bbdcee,
+        type: 3}
+      propertyPath: _uIManager
+      value: 
+      objectReference: {fileID: 568432301}
     - target: {fileID: 6667288293287435145, guid: 688e5124a96e75d469ea7e2098bbdcee,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1278,6 +1301,11 @@ PrefabInstance:
       propertyPath: _uiManager
       value: 
       objectReference: {fileID: 568432301}
+    - target: {fileID: -7482735458228097497, guid: 0408770611ad84acb8fbc1797b7124bb,
+        type: 3}
+      propertyPath: _settingsButton
+      value: 
+      objectReference: {fileID: 1288921974}
     - target: {fileID: 202313595021093794, guid: 0408770611ad84acb8fbc1797b7124bb,
         type: 3}
       propertyPath: m_AnchorMax.y
