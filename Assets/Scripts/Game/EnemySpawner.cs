@@ -37,12 +37,18 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        public float _difficultyModifier;
+
         private float _currentTimer;
         private List<GameObject> _cars;
 
         private void OnEnable() {
 
             _cars = new List<GameObject>();
+            if(PlayerPrefs.GetInt("SavedDifficulty") != 0) {
+                _spawnCooldown = _spawnCooldown / _difficultyModifier;
+            }
             SubscribeToEvents();
         }
 
