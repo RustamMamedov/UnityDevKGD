@@ -33,11 +33,21 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableBoolValue _isHard;
+
         private List<GameObject> _cars = new List<GameObject>();
 
         private float _currentTimer;
 
         private void OnEnable() {
+            
+            if(_isHard.value) {
+                _spawnCoolDown = 2.5f;
+            } else {
+                _spawnCoolDown = 5f;
+            }
+
             SubscribeToEvents();
         }
 

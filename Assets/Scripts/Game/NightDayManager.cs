@@ -18,7 +18,6 @@ namespace Game {
         [SerializeField]
         private ScriptableBoolValue _isDay;
 
-
         private void OnEnable() {
             if (_isDay.value) {
                 _leftLight.SetActive(false);
