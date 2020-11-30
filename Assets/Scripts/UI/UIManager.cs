@@ -17,6 +17,8 @@ namespace UI {
 
         [SerializeField] private GameObject _leaderboardScreen;
 
+        [SerializeField] private GameObject _settingsScreen;
+
         [SerializeField]
         private MusicManager _musicManager;
 
@@ -85,6 +87,14 @@ namespace UI {
         public void ShowLeaderboardScreen() {
             HideAllScreens();
             _leaderboardScreen.SetActive(true);
+        }
+
+        public void ShowSettingsScreen() {
+            _settingsScreen.SetActive(true);
+        }
+
+        public void ShutDownSettingsScreen() {
+            _settingsScreen.SetActive(false);
         }
 
         public void HideAllScreens() {
