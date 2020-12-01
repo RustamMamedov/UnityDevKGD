@@ -29,6 +29,13 @@ namespace Game {
             }
         }
 
+        protected override void OnDisable() {
+            _dodged = false;
+            base.OnDisable();
+        }
+    
+
+
         protected override void UpdateBehaviour() {
             if (_playerPositionZ.value >= gameObject.transform.position.z && !_dodged) {
                 _dodged = true;

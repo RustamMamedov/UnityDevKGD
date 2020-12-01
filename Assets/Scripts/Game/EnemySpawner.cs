@@ -40,10 +40,9 @@ namespace Game {
         private int _listOfEnemyCarsSize; 
 
         private float _currentTimer;
-        [SerializeField]
 
         private List<GameObject> _cars = new List<GameObject>();
-        [SerializeField]
+        
         private List<GameObject> _listOfEnemyCars;
 
         private void Awake() {

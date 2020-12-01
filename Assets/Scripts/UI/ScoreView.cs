@@ -20,6 +20,7 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
+        [SerializeField]
         private int _currentScore;
         private bool _isBusy;
 
@@ -35,7 +36,7 @@ namespace UI {
 
         private void OnDisable() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
-
+            _isBusy = false;
         }
 
         private void UpdateBehaviour() {

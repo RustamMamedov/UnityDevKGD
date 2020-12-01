@@ -30,7 +30,7 @@ namespace Game {
             SubscribeToEvents();
         }
 
-        private void OnDisable() {
+        protected virtual void OnDisable() {
             UnsubscribeToEvents();
         }
 

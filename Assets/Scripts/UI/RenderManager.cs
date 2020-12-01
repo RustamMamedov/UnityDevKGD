@@ -10,6 +10,9 @@ namespace UI {
         private Camera _renderCamera;
 
         [SerializeField]
+        private GameObject _light;
+
+        [SerializeField]
         private Transform _rootTransform;
 
         private RenderTexture _texture;
@@ -23,6 +26,7 @@ namespace UI {
         }
 
         public RenderTexture Render(GameObject prefab, Vector3 cameraPosition, Vector3 cameraRotation) {
+            _light.SetActive(true);
             var carInstance = Instantiate(prefab, _rootTransform);
 
             _renderCamera.transform.localPosition = cameraPosition;
@@ -35,6 +39,8 @@ namespace UI {
             _renderCamera.Render();
             _renderCamera.targetTexture = null;
             Destroy(carInstance);
+            _light.SetActive(false);
+
             return _texture;
         }
 
