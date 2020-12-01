@@ -95,7 +95,7 @@ namespace UI {
         }
 
         public void ShowSettingsScreen() {
-            //HideAllScreens();
+            HideAllScreens();
             _settingsScreen.SetActive(true);
         }
 
