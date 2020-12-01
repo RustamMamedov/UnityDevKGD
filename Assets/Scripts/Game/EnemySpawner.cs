@@ -41,8 +41,10 @@ namespace Game {
 
         private float _currentTimer;
 
+        [SerializeField]
         private List<GameObject> _cars = new List<GameObject>();
-        
+
+        [SerializeField]
         private List<GameObject> _listOfEnemyCars;
 
         private void Awake() {
@@ -110,12 +112,12 @@ namespace Game {
             HandleCarsBehindPlayer();
 
             _currentTimer += Time.deltaTime;
-            if (_currentTimer < _spawnCooldown) {
-                return;
-            }
-            _currentTimer = 0f;
+            if (_currentTimer >= _spawnCooldown) {
 
+            _currentTimer = 0f;
             SpawnCar();
+            }
+
         }
 
         private void SpawnCar() {
@@ -129,9 +131,12 @@ namespace Game {
 
             var randomCarNum = Random.Range(0, _listOfEnemyCars.Count);
 
-            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            _listOfEnemyCars[randomCarNum].transform.position = position;
+            //var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            
+            _listOfEnemyCars[randomCarNum].transform.position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            Debug.Log(_playerPositionZ.value+"        "+ _listOfEnemyCars[randomCarNum].transform.position.z);
             _listOfEnemyCars[randomCarNum].transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+
             _listOfEnemyCars[randomCarNum].SetActive(true);
             _cars.Add(_listOfEnemyCars[randomCarNum]);
             _listOfEnemyCars.RemoveAt(randomCarNum);
