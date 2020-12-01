@@ -51,6 +51,7 @@ namespace UI {
             _oKButton.onClick.AddListener(SaveChange);
             _cancelButton.onClick.AddListener(RecoveryChange);
             _volume.value = .5f;
+            _timeLight.value = 0;
         }
     }
 }
