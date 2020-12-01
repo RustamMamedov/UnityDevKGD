@@ -2,13 +2,13 @@
 
 namespace Game {
 
-    public class CarLight : MonoBehaviour {
+    public class Daylight : MonoBehaviour {
 
         [SerializeField]
         private ScriptableBoolValue _dayTimeGame;
 
         private void OnEnable() {
-            if (_dayTimeGame.value) {
+            if (!_dayTimeGame.value) {
                 gameObject.SetActive(false);
             }
         }
