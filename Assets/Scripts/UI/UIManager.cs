@@ -40,6 +40,7 @@ namespace UI {
         }
 
         public void ShowSettingsScreen() {
+            HideAllScreens();
             _settingsScreen.SetActive(true);
         }
 
