@@ -12,29 +12,23 @@ namespace UI{
         [SerializeField]
         private EventListener _update;
 
-        [SerializeField]
-        private RawImage _carImage;
+        public RawImage carImage;
 
-        [SerializeField]
-        private CarSettings _carSettings;
+        public CarSettings carSettings;
 
         [SerializeField]
         private Text _scoreLabel;
 
         private int _score;
         private void OnEnable() {
-            _carSettings.dodgeScoreValue.value = 0;
+            carSettings.dodgeScoreValue.value = 0;
             _score = 0;
             _scoreLabel.text = _score.ToString();
             _update.OnEventHappened += UpdateBehaviour;
-            Init();
-        }
-        public void Init() {
-            StartCoroutine(RenderManager.Instance.RenderCoroutine(_carSettings.renderCarPrefab, _carImage,_carSettings.renderCameraTransform));
         }
 
         public void UpdateBehaviour() {
-            while (_score < _carSettings.dodgeScoreValue.value) {
+            while (_score < carSettings.dodgeScoreValue.value) {
                 _score++;
                 _scoreLabel.text = _score.ToString();
             }

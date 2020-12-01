@@ -17,7 +17,8 @@ namespace UI {
 
         [SerializeField]
         private AudioSourcePlayer _collisionPlayer;
-        private void OnEnable() {
+        private void OnEnable() { 
+            StartCoroutine(RenderManager.Instance.RenderCoroutine());
             SubscribeToEvents();
         }
         private void OnDisable() {

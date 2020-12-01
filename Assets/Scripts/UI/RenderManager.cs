@@ -15,6 +15,9 @@ namespace UI {
         [SerializeField]
         private Transform _rootTransform;
 
+        [SerializeField]
+        private List<GameObject> _carDodgeViews = new List<GameObject>();
+
         private RenderTexture _texture;
 
         private void Awake() {
@@ -37,9 +40,11 @@ namespace UI {
             Destroy(carInstance);
             return _texture;
         }
-        public IEnumerator RenderCoroutine(GameObject prefab, RawImage carImage, Transform cameraTransform) {
-            carImage.texture= Render(prefab,cameraTransform);
-            yield return null;
+        public IEnumerator RenderCoroutine() {
+            for (int i = 0; i < _carDodgeViews.Count; i++) {
+                _carDodgeViews[i].GetComponent<CarDodgeView>().carImage.texture = Render(_carDodgeViews[i].GetComponent<CarDodgeView>().carSettings.renderCarPrefab, _carDodgeViews[i].GetComponent<CarDodgeView>().carSettings.renderCameraTransform);
+                yield return null;
+            }
         }
         public void ReleaseTextures() {
             RenderTexture.ReleaseTemporary(_texture);
