@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6295184582735038446}
   - component: {fileID: 4698329874956299251}
+  - component: {fileID: 8068281372805971354}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -46,7 +47,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuAudioSourecePlayer: {fileID: 1990123927397720276}
-  _GamplayAudioSourecePlayer: {fileID: 7362717011144541117}
+  _gamplayAudioSourecePlayer: {fileID: 7362717011144541117}
+  _updateEventListener: {fileID: 8068281372805971354}
+  _timeAudio: 3
+  _valueSound: {fileID: 11400000, guid: 823cfdd7cdf28194ea082d00dabbd5ad, type: 2}
+--- !u!114 &8068281372805971354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073571988561565586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb824bb7ca623cb49a6d63c5f1bb6187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: b3a216ddb560e544b85cad1572ec9554, type: 2}
 --- !u!1001 &740219410454224175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +75,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MusicGameplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811609816174304912, guid: ac3ac5be8d5b949419142af500616e90,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
         type: 3}
@@ -82,7 +104,7 @@ PrefabInstance:
     - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
         type: 3}
       propertyPath: m_Volume
-      value: 0.232
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
         type: 3}
@@ -471,20 +493,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
+    - target: {fileID: 7811609816174304912, guid: ac3ac5be8d5b949419142af500616e90,
         type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
-    - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
-        type: 3}
-      propertyPath: m_Volume
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
         type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 475f4837af487ce4a9e68bb227455e4c, type: 3}
+    - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
+        type: 3}
       propertyPath: m_Pitch
-      value: 0.4
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 7811609816174304915, guid: ac3ac5be8d5b949419142af500616e90,
         type: 3}

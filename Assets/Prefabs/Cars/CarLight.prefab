@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606593f53e73f7149830fe3e50630421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lightCar: 1
   _settings: {fileID: 11400000, guid: c92d3b6994b340d4cb3b90137e5ace44, type: 2}
   _light: {fileID: 4367552616913045082}
   _constantLenghCar: 10
+  _lightSettings: {fileID: 11400000, guid: cba85c666594bd94fb4ddda12f3009a8, type: 2}
 --- !u!1 &6395704603587322549
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,13 +87,13 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6395704603587322549}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
-  m_Range: 10
+  m_Range: 50
   m_SpotAngle: 90
   m_InnerSpotAngle: 9
   m_CookieSize: 10

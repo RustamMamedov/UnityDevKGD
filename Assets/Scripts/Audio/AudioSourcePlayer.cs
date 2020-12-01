@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Game;
 
 namespace Audio {
 
@@ -15,8 +15,7 @@ namespace Audio {
         private float _minVolume = 0f;
 
         [SerializeField]
-        [Range(0f, 1f)]
-        private float _maxVolume = 1f;
+        private ScriptableFloatValue _maxVolume;
 
         [Button]
         public void Play() {
@@ -28,20 +27,28 @@ namespace Audio {
             _audioSourece.Stop();
         }
 
+        public void SetVolume() {
+            _audioSourece.volume=_maxVolume.Value; 
+        }
+
+        public void SetVolume(float volume) {
+            if (_audioSourece.isPlaying) _audioSourece.volume = volume;
+            _maxVolume.Value = volume;
+        }
+
         public IEnumerator PlayGradually(float timeAudio) {
             Play();
-            yield return StartCoroutine(CoroutineMusicVolume(_minVolume, _maxVolume, timeAudio));
+            yield return StartCoroutine(CoroutineMusicVolume(_minVolume, _maxVolume.Value, timeAudio));
         }
 
         public IEnumerator StopGradually(float timeAudio) {
-            yield return StartCoroutine(CoroutineMusicVolume(_maxVolume,_minVolume, timeAudio));
+            yield return StartCoroutine(CoroutineMusicVolume(_maxVolume.Value, _minVolume, timeAudio));
             Stop();
         }
 
         private IEnumerator CoroutineMusicVolume(float fromAlfa,float targetAlfa, float timeAudio) {
-            var time = 0f;
             _audioSourece.volume = fromAlfa;
-
+            var time = 0f;
             while (time < timeAudio) {
                 time += Time.deltaTime;
                 _audioSourece.volume = Mathf.Lerp(_audioSourece.volume, targetAlfa, time/ timeAudio);

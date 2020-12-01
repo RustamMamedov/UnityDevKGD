@@ -41,15 +41,16 @@ namespace Game {
         }
 
         protected override void OnCarDodged() {
+            _dodgedSound.SetVolume();
             _dodgedSound.Play();
         }
 
         protected override void OnCarCollision() {
+            _dodgedCollision.SetVolume();
             _dodgedCollision.Play();
             _saveDataEventDispatcher.Dispatch();
             base.OnCarCollision();
             if (UIManager.Instance != null) {
-                Debug.Log("nextScreen");
                 UIManager.Instance.LoadLeaderBoard();
             }
         }
@@ -90,18 +91,18 @@ namespace Game {
 
         //Gizmos для обозначения обьектов или каких либо диапазонов внутри редактора (информация для разработчика)
 
-        private void OnDrawGizmos() {
+        //private void OnDrawGizmos() {
             
-        }
+        //}
 
-        private void OnDrawGizmosSelected() {
-            Gizmos.color = Color.red;
+        //private void OnDrawGizmosSelected() {
+        //    Gizmos.color = Color.red;
 
             //Gizmos.DrawWireSphere(transform.position, 5f);
             //Gizmos.DrawIcon(transform.position + Vector3.up * 4f, "");
             //Gizmos.DrawFrustum(transform.position + transform.forward * 2, 15f, 10f, 50f, .5f);
             //var mesh = GetComponent<MeshFilter>().sharedMesh;
             //Gizmos.DrawWireMesh(mesh,0,transform.position+transform.forward*5,Quaternion.identity,Vector3.one);
-        }
+        //}
     }
 }

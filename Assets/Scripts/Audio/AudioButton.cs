@@ -15,12 +15,13 @@ namespace Audio {
 
         private void Awake() {
             _audioBuuton=GetComponent<Button>();
-            _audioBuuton.onClick.AddListener(()=> { _audioSourcePlayer.Play(); }); // (сюды параметры)=>{сюды тело метода}, ()-в этом случае безымянный
+            _audioBuuton.onClick.AddListener(OnClicButton); // (сюды параметры)=>{сюды тело метода}, ()-в этом случае безымянный
         }
 
-        //private void OnClicButton() {
-        //    _audioSource.Play();
-        //}
+        private void OnClicButton() {
+            _audioSourcePlayer.SetVolume();
+            _audioSourcePlayer.Play();
+        }
 
 
     }
