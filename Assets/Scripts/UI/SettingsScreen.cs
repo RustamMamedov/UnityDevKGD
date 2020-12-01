@@ -28,10 +28,10 @@ namespace UI {
         private ScriptableFloatValue _volume;
 
         [SerializeField]
-        private ScriptableBoolValue _gameMode;
+        private ScriptableBoolValue _hardGameMode;
 
         [SerializeField]
-        private ScriptableBoolValue _gameTime;
+        private ScriptableBoolValue _dayTimeGame;
 
         #region Toggles
 
@@ -81,7 +81,7 @@ namespace UI {
 
         private void AppleChanges() {
             _currentSettings.volume = _volumeSlider.value;
-            _currentSettings.gameMode = _easyModeToggle.isOn;
+            _currentSettings.gameMode = _hardModeToggle.isOn;
             _currentSettings.gameTime = _dayTimeToggle.isOn;
         }
 
@@ -94,8 +94,8 @@ namespace UI {
             if (!PlayerPrefs.HasKey(SETTINGS_KEY)) {
                 _currentSettings = new Settings {
                     volume = _volume.value,
-                    gameMode = _gameMode.value,
-                    gameTime = _gameTime.value,
+                    gameMode = _hardGameMode.value,
+                    gameTime = _dayTimeGame.value,
                 };
             } else {
                 var json = PlayerPrefs.GetString(SETTINGS_KEY);
@@ -108,18 +108,18 @@ namespace UI {
 
         private void SetGlobalValues() {
             _volume.value = _currentSettings.volume;
-            _gameMode.value = _currentSettings.gameMode;
-            _gameTime.value = _currentSettings.gameTime;
+            _hardGameMode.value = _currentSettings.gameMode;
+            _dayTimeGame.value = _currentSettings.gameTime;
         }
 
         private void SliderAndTogglesTuning() {
             _volumeSlider.value = _currentSettings.volume;
 
             if (_currentSettings.gameMode) {
-                _easyModeToggle.isOn = true;
+                _hardModeToggle.isOn = true;
             }
             else {
-                _hardModeToggle.isOn = true;
+                _easyModeToggle.isOn = true;
             }
 
             if (_currentSettings.gameTime) {
