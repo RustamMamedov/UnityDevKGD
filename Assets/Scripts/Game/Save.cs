@@ -14,6 +14,9 @@ namespace Game {
         //public static Save Instance;
 
         [SerializeField]
+        private bool _saveParametrsSettings;
+
+        [SerializeField]
         private EventListeners _saveResultEventListener;
 
         [Serializable]
@@ -89,33 +92,82 @@ namespace Game {
         }
 #endif
 
+        #region SaveParametrsSettings
+
+        [ShowIfGroup(nameof(_saveParametrsSettings))]
+        [BoxGroup(nameof(_saveParametrsSettings)+ "/Sattings")]
+        [SerializeField]
+        private ScriptableFloatValue _soundValue;
+
+        [BoxGroup(nameof(_saveParametrsSettings) + "/Sattings")]
+        [SerializeField]
+        private ScriptableIntValue _difficultyValue;
+
+        [BoxGroup(nameof(_saveParametrsSettings) + "/Sattings")]
+        [SerializeField]
+        private ScriptableIntValue _lightValue;
+
+        [Serializable]
+        public class SaveParametrs {
+
+            public string sound;
+            public string difficult;
+            public string light;
+        }
+
+        private static SaveParametrs _savedParametrs;
+
+        private const string Parametrs_Key = "parametrs";
+
+        [SerializeField]
+        private class SavedParametrsWrapper { 
+            public List<SaveParametrs> saveParametrs;
+        }
+
+        #endregion SaveParametrsSettings
+
         private void Awake() {
             //Instance = this;
             _savedData = new List<SaveData>();
+            _savedParametrs = new SaveParametrs();
             //Debug.Log(Application.persistentDataPath);
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-            if (_saveType == SaveType.PlayerPrefs) {
-                LoadFromPlayerPrefs();
+            if (!_saveParametrsSettings) {
+                if (_saveType == SaveType.PlayerPrefs) {
+                    LoadFromPlayerPrefs();
+                }
+                else {
+                    LoadFromFile();
+                }
             }
             else {
-                LoadFromFile();
+                LoadParametrs();
             }
         }
 
         private void OnEnable() {
             //_carCollisionEventListeners.OnEventHappened += OnCarCollison;
-            _saveResultEventListener.OnEventHappened += SaveFromCollision;
+            if (!_saveParametrsSettings) {
+                _saveResultEventListener.OnEventHappened += SaveFromCollision;
+            }
+            else {
+                _saveResultEventListener.OnEventHappened += SaveParametrsToPlayerPrefs;
+            }
             currentResult = null;
         }
 
         private void OnDisable() {
             //_carCollisionEventListeners.OnEventHappened -= OnCarCollison;
-            _saveResultEventListener.OnEventHappened -= SaveFromCollision;
+            if (!_saveParametrsSettings) {
+                _saveResultEventListener.OnEventHappened -= SaveFromCollision;
+            }
+            else {
+                _saveResultEventListener.OnEventHappened -= SaveParametrsToPlayerPrefs;
+            }
             _savedData.Clear();
         }
 
         private void SaveFromCollision() {
-            Debug.Log("SaveData");
             OnCarCollison();
         }
 
@@ -191,6 +243,35 @@ namespace Game {
                 _savedData = wrapper.saveDatas;
             }
             //Debug.Log(_savedData.Count);
+        }
+
+        private SavedParametrsWrapper GetWrapperParametrs() {
+            var list = new List<SaveParametrs>();
+            list.Add(_savedParametrs);
+            var wrapper = new SavedParametrsWrapper {
+                saveParametrs=list
+            };
+            return wrapper;
+        }
+
+        private void SaveParametrsToPlayerPrefs() {
+            _savedParametrs.difficult = $"{_difficultyValue.Value}";
+            _savedParametrs.sound = $"{_soundValue.Value}";
+            _savedParametrs.light = $"{_lightValue.Value}";
+            var wrapper = GetWrapperParametrs();
+            var json = JsonUtility.ToJson(wrapper);
+            PlayerPrefs.SetString(Parametrs_Key, json);
+        }
+
+        private void LoadParametrs() {
+            if (!PlayerPrefs.HasKey(Parametrs_Key)) {
+                return;
+            }
+            var wrapper = JsonUtility.FromJson<SavedParametrsWrapper>(PlayerPrefs.GetString(Parametrs_Key));
+            _savedParametrs = wrapper.saveParametrs[wrapper.saveParametrs.Count - 1];
+            _difficultyValue.Value = Int32.Parse(_savedParametrs.difficult);
+            _soundValue.Value = float.Parse(_savedParametrs.sound);
+            _lightValue.Value = Int32.Parse (_savedParametrs.light);
         }
     }
 }
