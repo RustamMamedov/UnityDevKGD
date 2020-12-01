@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using Events;
+﻿using Events;
+using System;
 using System.Linq;
+using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 
@@ -33,6 +34,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableBoolValue _hardGameMode;
+
         private bool CheckDuplicates() {
             return _carPrefabs.Distinct().Count() == _carPrefabs.Count;
         }
@@ -40,6 +44,11 @@ namespace Game {
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 
+        private void Awake() {
+            if (_hardGameMode.value) {
+                _spawnCooldown /= 2.5f;
+            }
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -78,8 +87,8 @@ namespace Game {
             if (_carPrefabs.Count == 0) {
                 return;
             }
-            var randomRoad = Random.Range(-1, 2);
-            var randomPrefabIndex = Random.Range(0, _carPrefabs.Count);
+            var randomRoad = UnityEngine.Random.Range(-1, 2);
+            var randomPrefabIndex = UnityEngine.Random.Range(0, _carPrefabs.Count);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = Instantiate(_carPrefabs[randomPrefabIndex], position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
