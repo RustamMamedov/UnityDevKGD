@@ -10,6 +10,8 @@ namespace Audio {
 
         [SerializeField]
         private AudioSource _audioSource;
+        [SerializeField]
+        private ScriptableFloatValue _volume;
 
         [Button]
         public void Play() {
@@ -21,9 +23,6 @@ namespace Audio {
         public void Stop() {
             _audioSource.Stop();
         }
-
-        [SerializeField]
-        private ScriptableFloatValue _volume;
 
         public IEnumerator Vol(float from, float to, float time) {
             float timer = 0f;
