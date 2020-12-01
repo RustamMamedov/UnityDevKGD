@@ -29,11 +29,20 @@ namespace UI {
         private int _currentDodgedNumber;
         private bool _isBusy;
 
+
+
         private void OnEnable() {
             _currentDodgedNumberValue.value = 0;
             _dodgedNumberLabel.text = "0";
             _currentDodgedNumber = 0;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
+
+
+        }
+
+        private void OnDisable() {
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _isBusy = false;
         }
 
         private void UpdateBehaviour() {
@@ -41,12 +50,8 @@ namespace UI {
                 StartCoroutine(SetScoreCoroutine(_currentDodgedNumberValue.value));
             }
         }
-        private void OnDisable() {
-            _updateEventListener.OnEventHappened -= UpdateBehaviour;
 
-        }
-
-        public IEnumerator SetScoreCoroutine(int score) {
+        private IEnumerator SetScoreCoroutine(int score) {
             _isBusy = true;
             while (_currentDodgedNumber < score) {
                 _currentDodgedNumber++;

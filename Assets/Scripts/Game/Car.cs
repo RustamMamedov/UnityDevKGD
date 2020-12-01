@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Game {
 
     public class Car : MonoBehaviour {
-        #region 1
+
+        #region  1
         [SerializeField]
         [Required]
         protected CarSettings _carSettings;
@@ -21,9 +22,21 @@ namespace Game {
 #endif
 
         protected float _currentSpeed;
-        #endregion 1
 
-        #region 2
+        #endregion  1
+
+        #region  3
+        protected virtual void OnEnable() {
+            SubscribeToEvents();
+        }
+
+        protected virtual void OnDisable() {
+            UnsubscribeToEvents();
+        }
+
+        #endregion  3
+
+        #region  2
         protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
@@ -35,27 +48,18 @@ namespace Game {
         }
 
         protected virtual void OnCarCollision() {
-          UnsubscribeToEvents();
+            UnsubscribeToEvents();
         }
 
         protected virtual void UpdateBehaviour() {
             Move();
         }
-        #endregion 2
+        #endregion  2
 
-        #region 3
-        protected virtual void OnEnable() {
-            SubscribeToEvents();
-        }
-        private void OnDisable() {
-            UnsubscribeToEvents();
-        }
-        #endregion 3
-
-        #region 4
+        #region  4
         protected virtual void Move() {
             if (_currentSpeed < _carSettings.maxSpeed) {
-                _currentSpeed += _carSettings.maxSpeed;
+                _currentSpeed += _carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
@@ -64,6 +68,7 @@ namespace Game {
         private void IncreaseDodgeScore() {
             _carSettings.dodgeScore++;
         }
-        #endregion 4
+
+        #endregion  4
     }
 }

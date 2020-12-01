@@ -20,17 +20,23 @@ namespace UI {
         [SerializeField]
         private Text _scoreLabel;
 
+        [SerializeField]
         private int _currentScore;
         private bool _isBusy;
 
-        private void Awake() {
-            _updateEventListener.OnEventHappened += UpdateBehaviour;
-        }
+
 
         private void OnEnable() {
             _currentScoreValue.value = 0;
             _scoreLabel.text = "0";
             _currentScore = 0;
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
+
+        }
+
+        private void OnDisable() {
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _isBusy = false;
         }
 
         private void UpdateBehaviour() {

@@ -47,7 +47,6 @@ namespace Audio {
             audioPlayer.Play();
             float time = 0;
             while (audioPlayer.GetAudioSourceVolume() < targetValue) {
-                Debug.Log("hello");
                 time += Time.deltaTime;
                 audioPlayer.SetAudioSourceVolume(Mathf.Lerp(0, targetValue, time / _musicFadeTime));
                 yield return null;

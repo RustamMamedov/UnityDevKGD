@@ -489,11 +489,6 @@ GameObject:
   - component: {fileID: 4294558538493172}
   - component: {fileID: 33270645349774678}
   - component: {fileID: 23031736005143114}
-  - component: {fileID: 6107701731117135840}
-  - component: {fileID: 596842293566547374}
-  - component: {fileID: 3997692783201657310}
-  - component: {fileID: 2573798464659482947}
-  - component: {fileID: 424114585888349427}
   m_Layer: 0
   m_Name: Car_21A
   m_TagString: Untagged
@@ -570,79 +565,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6107701731117135840
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524740451817992}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.1650534, y: 3.7515783, z: 10.823129}
-  m_Center: {x: -0.14283752, y: 2.0243964, z: 0.37946272}
---- !u!114 &596842293566547374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524740451817992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c50424f4e46ad4b8426900ff30ad4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _carSettings: {fileID: 11400000, guid: df687f6a2a71249db95cd3a1b71d83c6, type: 2}
-  _updateEventListener: {fileID: 2573798464659482947}
-  _carCollisionEventListener: {fileID: 424114585888349427}
-  _carCollisionEventDispatcher: {fileID: 3997692783201657310}
-  _currentScore: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
-  _dodgedEnemyCarsNumber: {fileID: 11400000, guid: 9d5a48f4f4141d545869c264cefb6418,
-    type: 2}
-  _playerPositionZ: {fileID: 11400000, guid: e2c332ba7a04a419788e653f6f7c118a, type: 2}
-  _dodgedSoundPlayer: {fileID: 8972774165762590725}
---- !u!114 &3997692783201657310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524740451817992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 156b0e333cb50c44abda5b39df79b235, type: 2}
---- !u!114 &2573798464659482947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524740451817992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
---- !u!114 &424114585888349427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524740451817992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 156b0e333cb50c44abda5b39df79b235, type: 2}
 --- !u!1 &1528675860601466
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +732,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4485059992272672}
+  - component: {fileID: 7119077063344298482}
+  - component: {fileID: 5918596723375335174}
+  - component: {fileID: 2417398290737000398}
+  - component: {fileID: 8347848454581386850}
+  - component: {fileID: 5234763790329294603}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -832,6 +759,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7119077063344298482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1650534, y: 3.7515783, z: 10.823129}
+  m_Center: {x: -0.14283752, y: 2.0243964, z: 0.37946272}
+--- !u!114 &5918596723375335174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c50424f4e46ad4b8426900ff30ad4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carSettings: {fileID: 11400000, guid: df687f6a2a71249db95cd3a1b71d83c6, type: 2}
+  _updateEventListener: {fileID: 5234763790329294603}
+  _carCollisionEventListener: {fileID: 8347848454581386850}
+  _carCollisionEventDispatcher: {fileID: 2417398290737000398}
+  _currentScore: {fileID: 11400000, guid: 441d3e624dd7247c399216fd3c16fd0f, type: 2}
+  _dodgedEnemyCarsNumber: {fileID: 11400000, guid: 9d5a48f4f4141d545869c264cefb6418,
+    type: 2}
+  _playerPositionZ: {fileID: 11400000, guid: e2c332ba7a04a419788e653f6f7c118a, type: 2}
+  _dodgeSoundPlayer: {fileID: 8972774165762590725}
+--- !u!114 &2417398290737000398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 156b0e333cb50c44abda5b39df79b235, type: 2}
+--- !u!114 &8347848454581386850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 156b0e333cb50c44abda5b39df79b235, type: 2}
+--- !u!114 &5234763790329294603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699544679643506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
 --- !u!1 &1878664431752172
 GameObject:
   m_ObjectHideFlags: 0

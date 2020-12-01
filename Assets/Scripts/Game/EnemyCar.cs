@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using Events;
 using Audio;
 
@@ -18,7 +19,7 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
-        private AudioSourcePlayer _dodgedSoundPlayer;
+        private AudioSourcePlayer _dodgeSoundPlayer;
 
         private bool _dodged = false;
 
@@ -28,12 +29,19 @@ namespace Game {
             }
         }
 
+        protected override void OnDisable() {
+            _dodged = false;
+            base.OnDisable();
+        }
+
+
+
         protected override void UpdateBehaviour() {
             if (_playerPositionZ.value >= gameObject.transform.position.z && !_dodged) {
                 _dodged = true;
                 _currentScore.value += _carSettings.dodgeScore;
                 _dodgedEnemyCarsNumber.value++;
-                _dodgedSoundPlayer.Play();
+                _dodgeSoundPlayer.Play();
             }
             base.UpdateBehaviour();
         }
