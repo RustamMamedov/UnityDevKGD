@@ -131,13 +131,14 @@ GameObject:
   m_Component:
   - component: {fileID: 76971903}
   - component: {fileID: 76971902}
+  - component: {fileID: 76971904}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &76971902
 Light:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76971901}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -213,6 +214,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 37.954002, y: 38.82, z: -1.733}
+--- !u!114 &76971904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76971901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606593f53e73f7149830fe3e50630421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lightCar: 0
+  _settings: {fileID: 0}
+  _light: {fileID: 76971902}
+  _constantLenghCar: 0
+  _lightSettings: {fileID: 11400000, guid: cba85c666594bd94fb4ddda12f3009a8, type: 2}
 --- !u!1001 &523909601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223,6 +241,11 @@ PrefabInstance:
     - target: {fileID: 1521879525, guid: 073f827e80788674ea7dd6b221bcba53, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673005589212838263, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1815005978566019035, guid: 073f827e80788674ea7dd6b221bcba53,
         type: 3}
@@ -309,10 +332,50 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3840365847379825644, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 7.2686454e+22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840365847379825644, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 689990.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840365847379825644, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0.000000010445644
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840365847379825644, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -5.109455e-27
+      objectReference: {fileID: 0}
     - target: {fileID: 5363437909459933305, guid: 073f827e80788674ea7dd6b221bcba53,
         type: 3}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881482122257009164, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 3e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881482122257009164, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881482122257009164, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881482122257009164, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5952462356564721550, guid: 073f827e80788674ea7dd6b221bcba53,
         type: 3}
@@ -328,6 +391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557090239350388396, guid: 073f827e80788674ea7dd6b221bcba53,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7563802773360754923, guid: 073f827e80788674ea7dd6b221bcba53,
         type: 3}
