@@ -19,6 +19,9 @@ namespace Game {
         [SerializeField]
         private List<GameObject> _carPrefabs;
 
+        [SerializeField]
+        private ScriptableIntValue _difficultyGame;
+
         private bool ValidationListEnemyCars(List<GameObject> carPrefabs) {
             for (int i = 0; i < carPrefabs.Count; i++) {
                 if (i != carPrefabs.LastIndexOf(carPrefabs[i])) {
@@ -46,6 +49,10 @@ namespace Game {
         private List<GameObject> _cars = new List<GameObject>();
 
         private float _currentTime;
+
+        private bool _spawn = false;
+
+        private int canEmptyRoad = -2;
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -76,14 +83,32 @@ namespace Game {
             if (_currentTime < _spawnCooldawn) {
                 return;
             }
+            if (!_spawn)
+            for (int i = 0; i < GetDifficultyGame(); i++) {
+                _spawn = true;
+                SpawnCar();
+            }
+            _spawn = false;
             _currentTime = 0;
-            SpawnCar();
+        }
+
+        private int GetDifficultyGame() {
+            if (_difficultyGame.Value == 0) {
+                _spawnCooldawn = 3;
+                return 1;
+            }
+            _spawnCooldawn = 1;
+            return 2;
         }
 
         private void SpawnCar() {
-            var randomCar= _carPrefabs[Random.Range(0, 3)];
+            var randomCar = _carPrefabs[Random.Range(0, 3)];
             var randomRoad = Random.Range(-1, 2);
-            var position = new Vector3(1f * randomRoad* _roadWidth.Value, 0f, _playerDistanseZ.Value+_distanceToPlaySpawn);
+            while (canEmptyRoad == randomRoad) {
+                randomRoad = Random.Range(-1, 2);
+            }
+            canEmptyRoad = randomRoad;
+            var position = new Vector3(1f * randomRoad * _roadWidth.Value, 0f, _playerDistanseZ.Value + _distanceToPlaySpawn);
             var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
         }
