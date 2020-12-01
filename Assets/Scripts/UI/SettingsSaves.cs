@@ -52,6 +52,7 @@ namespace UI {
             _cancel.onClick.AddListener(DiscardChanges);
             _volume.value = .5f;
             _illumination.value = 0;
+            _complexity.value = 0;
         }
     }
 }
