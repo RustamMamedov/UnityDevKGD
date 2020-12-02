@@ -21,10 +21,9 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
-        private enum SaveType{
+        public enum SaveType{
             PlayerPrefs,
             File
-
         }
 
         [SerializeField]
@@ -163,6 +162,17 @@ namespace Game {
             } else {
                 return Application.persistentDataPath + "/data.txt";
             }
+        }
+
+        [Button]
+        private void DeleteAllSaves() {
+            PlayerPrefs.DeleteAll();
+
+            if (!File.Exists(_filePath)) {
+                return;
+            }
+
+            File.Delete(_filePath);
         }
     }
 }
