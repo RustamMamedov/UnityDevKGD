@@ -12,10 +12,10 @@ namespace UI {
     public class SettingsScreen : MonoBehaviour {
 
         [Serializable]
-        public class Settings{
-            public float volume;
-            public float difficulty;
-            public float daytime;
+        public class Settings {
+            public float volume = 0.5f;
+            public float difficulty = 0f;
+            public float daytime = 0f;
         }
 
         [SerializeField]
@@ -46,7 +46,7 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
 
-        private Settings _settings;
+        private Settings _settings = new Settings();
         private const string RECORDS_KEY = "settings";
         private string _filePath;
 
@@ -60,6 +60,7 @@ namespace UI {
             }
 
             UpdateSliderValues();
+            UpdateMusicVolume(_settings.volume);
         }
 
         private void OnEnable() {
