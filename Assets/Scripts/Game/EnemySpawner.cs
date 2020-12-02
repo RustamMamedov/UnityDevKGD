@@ -41,6 +41,9 @@ namespace Game {
         private float _currentTimer = 0f;
         private List<GameObject> _cars = new List<GameObject>();
 
+        private Dictionary<string, Stack<GameObject>> _poolsDictionary = new Dictionary<string, Stack<GameObject>>();
+
+
         private void OnEnable() {
             if (PlayerPrefs.GetInt(DataKeys.DIFFICULT_KEY) == 0) {
                 _spawnCooldown = _cooldownForEasyMode;
@@ -80,17 +83,22 @@ namespace Game {
             var randomRoad = Random.Range(-1, 2);
             var enemyCarIndex = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[enemyCarIndex], position, Quaternion.Euler(0f, 180f, 0f));
+            var car = GetGameObjectFromPool(_carPrefabs[enemyCarIndex], position);
             _cars.Add(car);
         }
 
         private void HandleCarsBehindPlayer() {
             for(int i = _cars.Count - 1; i > -1; i--) {
                 if(_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
+                    PutGameObjectToPool(_cars[i]);
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        public void PutGameObjectToPool(GameObject car) {
+            _poolsDictionary[car.name].Push(car);
+            car.SetActive(false);
         }
 
         private bool CarCheck() {
@@ -103,6 +111,25 @@ namespace Game {
             }
             return true;
         }
+
+        public GameObject GetGameObjectFromPool(GameObject car, Vector3 spawnPos) {
+            if (!_poolsDictionary.ContainsKey(car.name)) {
+                _poolsDictionary[car.name] = new Stack<GameObject>();
+            }
+
+            GameObject result;
+
+            if (_poolsDictionary[car.name].Count > 0) {
+                result = _poolsDictionary[car.name].Pop();
+                result.transform.position = spawnPos;
+                result.SetActive(true);
+
+                return result;
+            }
+            result = Instantiate(car, spawnPos, Quaternion.Euler(0f, 180f, 0f));
+            result.name = car.name;
+
+            return result;
+        }
     }
 }
-
