@@ -16,7 +16,7 @@ namespace Game {
         private float _offset = 2f;
 
         private void Awake() {
-            _light.range = _carSettings.lightDistance * _offset;
+            _light.range = _carSettings.lightDistance * _offset * 10f;
         }
 
         private void OnDrawGizmos() {
