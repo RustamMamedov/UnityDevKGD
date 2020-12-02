@@ -15,23 +15,24 @@ namespace UI {
         private Text _scoreLabel;
 
         [SerializeField]
-        private Game.ScriptableIntValue currentScoreAsset;
+        private Game.ScriptableIntValue _currentScoreAsset;
 
         [SerializeField]
-        private Events.EventListener eventListener;
+        private Events.EventListener _eventListener;
 
         private void Awake() {
-            currentScoreAsset.value = 0;
-            eventListener.OnEventHappened += UpdateBehaviour;
+            _currentScoreAsset.value = 0;
+            _scoreLabel.text = _currentScoreAsset.value.ToString();
+            _eventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void OnDisable() {
-            currentScoreAsset.value = 0;
+            _currentScoreAsset.value = 0;
         }
         private void UpdateBehaviour() {
         
-            if (_currentScore < currentScoreAsset.value) {
-                StartCoroutine(SetScoreCoroutine(currentScoreAsset.value));
+            if (_currentScore < _currentScoreAsset.value) {
+                StartCoroutine(SetScoreCoroutine(_currentScoreAsset.value));
             }
                 
         }
