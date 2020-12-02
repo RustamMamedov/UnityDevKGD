@@ -18,6 +18,9 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
+        private EventListener _carDodgeEventListener;
+
+        [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
@@ -39,15 +42,21 @@ namespace Game {
         [SerializeField]
         private List<GameObject> _carPrefabs = new List<GameObject>();
 
+        private int _numberOfCarsInStack = 3;
+
         private float _currentTimer = 0f;
         private float _easyDifficultySpawnCooldown = 3f;
         private float _hardDifficultySpawnCooldown = 1f;
 
-        private List<GameObject> _cars = new List<GameObject>();
+        private Dictionary<CarSettings.CarType, Stack<GameObject>> _cars;
+        private Queue<GameObject> _spawnedCars;
 
         private void OnEnable() {
             SubscribeToEvents();
             SetDifficulty();
+            GeneratePool();
+
+            _spawnedCars = new Queue<GameObject>();
         }
 
         private void OnDisable() {
@@ -58,12 +67,14 @@ namespace Game {
             _gameSavedEventListener.OnEventHappened += SetDifficulty;
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
+            _carDodgeEventListener.OnEventHappened += HandleCarsBehindPlayer;
         }
 
         private void UnsubscribeToEvents() {
             _gameSavedEventListener.OnEventHappened -= SetDifficulty;
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
+            _carDodgeEventListener.OnEventHappened -= HandleCarsBehindPlayer;
         }
 
         private void SetDifficulty() {
@@ -78,7 +89,6 @@ namespace Game {
         }
 
         private void UpdateBehaviour() {
-            HandleCarsBehindPlayer();
 
             _currentTimer += Time.deltaTime;
 
@@ -91,20 +101,36 @@ namespace Game {
             SpawnCar();
         }
 
+        private void HandleCarsBehindPlayer() {
+            var car = _spawnedCars.Dequeue();
+            car.TryGetComponent<Car>(out var carScript);
+            car.SetActive(false);
+            _cars[carScript.carSettings.carType].Push(car);
+        }
+
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var randomCarIndex = Random.Range(0, 3);
             var position = new Vector3(randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[randomCarIndex], position, Quaternion.Euler(0f, 180f, 0f));
-            _cars.Add(car);
+
+            var car = _cars[(CarSettings.CarType) randomCarIndex].Pop();
+            car.transform.position = position;
+            car.SetActive(true);
+            _spawnedCars.Enqueue(car);
+
         }
 
-        private void HandleCarsBehindPlayer() {
-            foreach (GameObject car in _cars) {
-                if (_playerPositionZ.value - car.transform.position.z >= _distanceToPlayerToDestroy) {
-                    Destroy(car);
-                    _cars.Remove(car);
-                    break;
+        private void GeneratePool() {
+            _cars = new Dictionary<CarSettings.CarType, Stack<GameObject>>();
+
+            foreach (GameObject car in _carPrefabs) {
+                car.TryGetComponent<Car>(out var carScript);
+                _cars.Add(carScript.carSettings.carType, new Stack<GameObject>());
+
+                for (int i = 0; i < _numberOfCarsInStack; i++) {
+                    var spawnedCar = Instantiate(car, new Vector3(0, 0, -10), Quaternion.Euler(0, 180, 0));
+                    spawnedCar.SetActive(false);
+                    _cars[carScript.carSettings.carType].Push(spawnedCar);
                 }
             }
         }

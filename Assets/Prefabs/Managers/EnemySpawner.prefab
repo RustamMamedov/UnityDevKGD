@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 9163605481689851234}
   - component: {fileID: 9163605481689851245}
   - component: {fileID: 9163605481689851235}
+  - component: {fileID: 9163605479982891036}
+  - component: {fileID: 6523789195413874895}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -47,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updateEventListener: {fileID: 9163605481689851234}
-  _gameSavedEventListener: {fileID: 0}
+  _gameSavedEventListener: {fileID: 9163605479982891036}
   _carCollisionListener: {fileID: 9163605481689851245}
+  _carDodgeEventListener: {fileID: 6523789195413874895}
   _playerPositionZ: {fileID: 11400000, guid: 255e626d40c95d94eb3e0ba7797342a4, type: 2}
   _roadWidth: {fileID: 11400000, guid: cf56178cdad1b904c95d7c2d0c061c7d, type: 2}
   _spawnCooldown: 3
@@ -95,6 +98,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: c504471d56fdd0544b3de8867eded149, type: 2}
+--- !u!114 &9163605479982891036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163605481689851246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 9c725efe5dd37ce47b7662f627a0ba51, type: 2}
+--- !u!114 &6523789195413874895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163605481689851246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: c504471d56fdd0544b3de8867eded149, type: 2}
