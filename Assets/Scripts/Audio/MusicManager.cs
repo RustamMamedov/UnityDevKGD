@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace Audio {
 
-    public class MusicController : MonoBehaviour {
+    public class MusicManager : MonoBehaviour {
 
         [SerializeField]
         private AudioSourcePlayer _menuMusicPlayer;
@@ -18,6 +19,11 @@ namespace Audio {
         private float _maxMusicVolume;
 
         private string _currentScene;
+
+        public void SetVolume(float value) {
+            _maxMusicVolume = value;
+            _menuMusicPlayer.GetComponent<AudioSource>().volume = value;
+        }
 
         public void FadeIn(string sceneName) {
             _currentScene = sceneName;
