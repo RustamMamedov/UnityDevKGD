@@ -16,5 +16,9 @@ namespace Audio {
         public void Stop() {
             _audioSource.Stop();
         }
+
+        public void SetPitch(float value) {
+            _audioSource.pitch = value;
+        }
     }
 }
