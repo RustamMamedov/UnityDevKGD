@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8137773821821385474}
-  - component: {fileID: 8137773821821385475}
   - component: {fileID: 8137773821821385472}
+  - component: {fileID: 8137773821821385475}
   - component: {fileID: 8430083871137001629}
   m_Layer: 0
   m_Name: Save
@@ -33,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8137773821821385475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8137773821821385473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: e06c09baf5bf31e49a247ff5847b83eb, type: 2}
 --- !u!114 &8137773821821385472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +50,19 @@ MonoBehaviour:
   _currentScore: {fileID: 11400000, guid: a9a3882530ef9984d9f7f7ed03c7ae50, type: 2}
   _maxSaves: {fileID: 11400000, guid: e75bedcb5fad1664ab8eea5aaf5ef71e, type: 2}
   _saveType: 0
+--- !u!114 &8137773821821385475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137773821821385473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: e06c09baf5bf31e49a247ff5847b83eb, type: 2}
 --- !u!114 &8430083871137001629
 MonoBehaviour:
   m_ObjectHideFlags: 0
