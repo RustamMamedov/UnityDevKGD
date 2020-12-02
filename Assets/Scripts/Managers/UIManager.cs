@@ -13,7 +13,7 @@ namespace UI {
         private Fader _fader;
 
         [SerializeField]
-        private MusicController _musicManager;
+        private MusicManager _musicManager;
 
         [SerializeField]
         private GameObject _menuScreen;
@@ -23,6 +23,9 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardScreen;
+
+        [SerializeField]
+        private GameObject _settingsScreen;
 
         private void Awake() {
             if (Instance != null) {
@@ -89,10 +92,16 @@ namespace UI {
             _leaderboardScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
     }
 }
