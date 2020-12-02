@@ -6,6 +6,7 @@ using UI;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using Audio;
+using System.Linq;
 
 namespace Game {
 
@@ -64,10 +65,15 @@ namespace Game {
         [SerializeField]
         private List<GameObject> _carsToSpawn = new List<GameObject>();
 
+        //private Stack<GameObject> _carPool = new Stack<GameObject>();
+
+        private List<GameObject> _carPool = new List<GameObject>();
+
+
         private void OnEnable() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
-         
+
             switch (_difficultValue.value) {
                 case 0:
                     _spawnCooldown = _spawnCooldownEasyDifficult;
@@ -149,19 +155,40 @@ namespace Game {
             }
             _currentTimer = 0;
             SpawnCar();
+
         }
+
         private void SpawnCar() {
+
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
 
             var randomCarIndex = Random.Range(0, _carsToSpawn.Count);
             var car = Instantiate(_carsToSpawn[randomCarIndex], position, Quaternion.Euler(0, 180, 0));
 
+            _carPool.Add(car);
+            for (int i = 0; i < _carPool.Count ; i++) {
+                Debug.Log("assa");
+                if (car.name != _carPool[i].name) {
+                    _carPool.Add(car);
+                    Debug.Log("Added" + car.name);
+                }
+            }
+
+        
+      /*      foreach (var obj in _carPool) {
+                 Debug.Log(obj.name);
+            }
+*/
+
             _cars.Add(car);
             _onSpawnCar = true;
+            Debug.Log(_carPool.Count);
         }
 
+
         private void HandleCarsBehindPlayer() {
+
             for (int i = _cars.Count - 1; i > -1; i--) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     Destroy(_cars[i]);
