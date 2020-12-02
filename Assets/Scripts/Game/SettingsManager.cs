@@ -31,9 +31,9 @@ namespace Game {
         }
 
         private void ApplySettings() {
-            bool boolDaylightValue = !Convert.ToBoolean(_daytime.value);
+            bool boolDaylightValue = Convert.ToBoolean(_daytime.value);
 
-            if (boolDaylightValue) {
+            if (!boolDaylightValue) {
                 _sunLight.color = _daySunColor;
             } else {
                 _sunLight.color = _nightSunColor;
