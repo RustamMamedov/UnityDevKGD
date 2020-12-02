@@ -16,15 +16,10 @@ namespace UI {
 
         private IEnumerator LoadMenuScene() {
             var asyncOperation = SceneManager.LoadSceneAsync("Menu");
-            asyncOperation.allowSceneActivation = false;
             while (asyncOperation.progress < 0.9f) {
-                _sceneLoadValue.value = asyncOperation.progress;
+                _sceneLoadValue.value = asyncOperation.progress / 0.9f;
                 yield return null;
             }
-            _sceneLoadValue.value = 1f;
-
-            yield return new WaitForSeconds(2f);
-            asyncOperation.allowSceneActivation = true;
         }
     }
 }
