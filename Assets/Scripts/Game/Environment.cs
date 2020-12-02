@@ -15,10 +15,10 @@ namespace Game {
         private GameObject _roadPrefab;
 
         [SerializeField]
-        private int _roadLength = 12;
+        private int _roadLength = 60;
 
         [SerializeField]
-        private int _initialRoadNumber = 10;
+        private int _initialRoadNumber = 3;
 
         private List<Transform> _roadTransforms;
 
@@ -47,7 +47,7 @@ namespace Game {
 
         private void GenerateRoad() {
             _roadTransforms = new List<Transform>();
-            for (int i = 0; i < _initialRoadNumber + 1; i++) {
+            for (int i = 0; i <= _initialRoadNumber; i++) {
                 var position = new Vector3(0f, 0f, (i - 1) * _roadLength);
                 var road = Instantiate(_roadPrefab, position, Quaternion.identity);
                 _roadTransforms.Add(road.transform);
