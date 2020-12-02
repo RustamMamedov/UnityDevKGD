@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Audio;
+using Events;
 
 namespace UI {
 
@@ -13,6 +14,9 @@ namespace UI {
         private Fader _fader;
 
         [SerializeField]
+        private EventListener _updateEventListener;
+
+        [SerializeField]
         private GameObject _menuScreen;
 
         [SerializeField]
@@ -20,6 +24,9 @@ namespace UI {
 
         [SerializeField]
         private GameObject _leaderboardScreen;
+
+        [SerializeField]
+        private GameObject _settingsScreen;
 
         [SerializeField]
         private MusicManager _musicManager;
@@ -81,10 +88,22 @@ namespace UI {
             _leaderboardScreen.SetActive(true);
         }
 
+        public void SetSettings() {
+            _musicManager.SetVolume();
+        }
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+            _updateEventListener.OnEventHappened += SetSettings;
+        }
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
+            if (_settingsScreen.active) {
+                _settingsScreen.SetActive(false);
+                _updateEventListener.OnEventHappened -= SetSettings;
+            }
         }
     }
 }

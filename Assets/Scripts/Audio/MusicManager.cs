@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game;
 
 namespace Audio {
 
@@ -11,6 +12,9 @@ namespace Audio {
 
         [SerializeField]
         private AudioSourcePlayer _gameMusicPlayer;
+
+        [SerializeField]
+        private ScriptableFloatValue _currentVolume;
         public void PlayMenuMusic() {
             _menuMusicPlayer.Play();
             StartCoroutine(LoudMenuCoroutine());
@@ -20,13 +24,13 @@ namespace Audio {
             StartCoroutine(LoudGameCoroutine());
         }
         private IEnumerator LoudGameCoroutine() {
-            while (_gameMusicPlayer.GetComponentInParent<AudioSource>().volume < 1){
+            while (_gameMusicPlayer.GetComponentInParent<AudioSource>().volume < _currentVolume.value){
                 _gameMusicPlayer.GetComponentInParent<AudioSource>().volume += 0.1f;
                 yield return new WaitForSeconds(0.1f);
             }
         }
         private IEnumerator LoudMenuCoroutine() {
-            while (_menuMusicPlayer.GetComponentInParent<AudioSource>().volume < 1) {
+            while (_menuMusicPlayer.GetComponentInParent<AudioSource>().volume < _currentVolume.value) {
                 _menuMusicPlayer.GetComponentInParent<AudioSource>().volume += 0.1f;
                 yield return new WaitForSeconds(0.1f);
             }
@@ -44,6 +48,9 @@ namespace Audio {
                 yield return new WaitForSeconds(0.1f);
             }
             _gameMusicPlayer.Stop();
+        }
+        public void SetVolume() {
+            _menuMusicPlayer.GetComponentInParent<AudioSource>().volume = _currentVolume.value;
         }
     }
 }

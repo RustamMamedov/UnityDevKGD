@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using Game;
 using Sirenix.OdinInspector;
 
 namespace Game {
@@ -19,7 +20,7 @@ namespace Game {
         private List<GameObject> _carPrefab = new List<GameObject>();
 
         [SerializeField]
-        private float _spawnCooldown;
+        private ScriptableFloatValue _spawnCooldown;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
@@ -78,7 +79,7 @@ namespace Game {
         private void UpdateBehaviour() {
             HandleCarsBehindPlayer();
             _currentTimer += Time.deltaTime;
-            if (_currentTimer < _spawnCooldown) {
+            if (_currentTimer < _spawnCooldown.value) {
                 return;
             }
             _currentTimer = 0f;
