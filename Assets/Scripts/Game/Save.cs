@@ -11,17 +11,17 @@ namespace Game {
     public class Save : MonoBehaviour {
 
         [Serializable]
-        public class SaveData{
+        public class SaveData {
             public string date;
             public string score;
         }
 
         [Serializable]
-        public class SavedDataWrapper{
+        public class SavedDataWrapper {
             public List<SaveData> saveDatas;
         }
 
-        public enum SaveType{
+        public enum SaveType {
             PlayerPrefs,
             File
         }
