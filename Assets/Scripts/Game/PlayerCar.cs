@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Audio;
+using System.Collections.Generic;
 using Events;
 using System.Collections;
 
@@ -37,6 +37,12 @@ namespace Game {
         [SerializeField]
         private AudioSource _collideSound;
 
+        [SerializeField]
+        private List<Light> _carLights;
+
+        [SerializeField]
+        private List<GameObject> _lightTrails;
+
         private int _currentRoad;
         private bool _inDodge;
 
@@ -55,6 +61,11 @@ namespace Game {
         protected override void OnCarCollision() {
             _collideSound.Play();
             UnsubscribeToEvents();
+        }
+
+        protected override void Move() {
+            base.Move();
+            _playerPositionZ.value = transform.position.z;
         }
 
         private void OnPlayerTouch() {
@@ -89,11 +100,6 @@ namespace Game {
             _inDodge = false;
             _currentRoad = nextRoad;
         }
-
-        protected override void Move() {
-            base.Move();
-            _playerPositionZ.value = transform.position.z;
-        }
         
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
@@ -103,6 +109,16 @@ namespace Game {
             Gizmos.DrawFrustum(transform.position + transform.forward * 2, 45f, 15f, 50f, .5f);
             var mesh = GetComponent<MeshFilter>().sharedMesh;
             Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5, Quaternion.identity);
+        }
+
+        public void SetLightingState(bool newState) {
+            for (int i = 0; i < _carLights.Count; i++) {
+                _carLights[i].enabled = newState;
+            }
+
+            for (int i = 0; i < _lightTrails.Count; i++) {
+                _lightTrails[i].SetActive(newState);
+            }
         }
     }
 }
