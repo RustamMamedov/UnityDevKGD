@@ -32,6 +32,7 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        private int _difficulty;
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
 
@@ -66,12 +67,20 @@ namespace Game {
             }
             _currentTimer = 0f;
 
-            SpawnCar();
+            var usedRoad = -1;
+            var randomRoad = Random.Range(-1, 2);
+
+            for (int i = 0; i < Random.Range(1, 3); i++) {
+                while (randomRoad == usedRoad) {
+                    randomRoad = Random.Range(-1, 2);
+                }
+                usedRoad = randomRoad;
+                SpawnCar(randomRoad);
+            }
         }
 
-        private void SpawnCar() {
-            var randomRoad = Random.Range(-1, 2);
-            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+        private void SpawnCar(int road) {
+            var position = new Vector3(1f * road * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var randomCar = _carPrefabs[Random.Range(0, _carPrefabs.Count)];
             var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
 
@@ -100,6 +109,11 @@ namespace Game {
             }
 
             return isCorrect;
+        }
+
+        public void SetDifficulty(float difficulty) {
+            float difficultyCoefficient = 1f / (difficulty + 1);
+            _spawnCooldown *= difficultyCoefficient;
         }
     }
 }
