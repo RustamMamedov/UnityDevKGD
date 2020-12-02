@@ -13,7 +13,6 @@ namespace Audio {
         private Button _button;
         
         private void OnEnable() {
-            _button = GetComponent<Button>();
             _button.onClick.AddListener(OnButtonClick);
         }
 
