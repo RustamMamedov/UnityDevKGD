@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using Events;
 using UI;
 using Audio;
@@ -8,6 +9,21 @@ using Audio;
 namespace Game {
 
     public class PlayerCar : Car {
+
+        [SerializeField]
+        private Light _pointLight;
+
+        [SerializeField]
+        private CarSettings _settings;
+
+        [SerializeField]
+        private ScriptableIntValue _timeMode;
+
+        [SerializeField]
+        private GameObject _light;
+
+        [SerializeField]
+        private List<GameObject> _trails;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
@@ -35,8 +51,31 @@ namespace Game {
 
         private int _currentRoad;
         private bool _inDodge;
+        private float _pointRange;
+        private float _spotRange;
 
-        
+        private void Awake() {
+            if (_timeMode.value == 1) {
+                Debug.Log("log");
+                _pointRange = _pointLight.range;
+                _spotRange = _settings.lightLength;
+                _pointLight.range=0;
+                _settings.lightLength = 0;
+                for(int i = 0; i < _trails.Count; i++) {
+                    _trails[i].SetActive(false);
+                }
+                _light.SetActive(true);
+            }
+            else {
+                _pointLight.range = _pointRange;
+                _settings.lightLength = _spotRange;
+                for (int i = 0; i < _trails.Count; i++) {
+                    _trails[i].SetActive(true);
+                }
+                _light.SetActive(false);
+            }
+        }
+
         protected override void SubscribeToEvents() {
             _currentScore.value = 0;
             base.SubscribeToEvents();

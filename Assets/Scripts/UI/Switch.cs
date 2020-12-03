@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Audio;
+using Game;
 
 namespace UI {
-    public class Switch : MonoBehaviour, IPointerDownHandler {
+    public class Switch : MonoBehaviour {
 
         [SerializeField]
         private GameObject _switchImageOn;
@@ -14,38 +15,29 @@ namespace UI {
         [SerializeField]
         private GameObject _switchImageOff;
 
-        /*[SerializeField]
-        private AudioSourcePlayer _audio;*/
+        [SerializeField]
+        private Button _switchButton;
 
-        public delegate void Change(bool val);
-        public event Change change;
+        [SerializeField]
+        private ScriptableIntValue _modeValue;
 
-        private bool _isOn=true;
-        public  bool isOn=> _mode;
-        
-        private bool _mode=true;
 
-        private void OnEnable() {
-            SwitchMode(_isOn);
-            if (!_mode) {
-                SwitchMode(_isOn);
-                _mode = true;
-            }
+        private void Awake() {
+            MoveImage(_modeValue.value);
+            _switchButton.onClick.AddListener(SwitchMode);
         }
 
-        public void SwitchMode(bool val) {
-            if (val != _isOn) {
-                _isOn = val;
-                MoveImage(_isOn);
-               // _audio.Play();
-                if (change != null) {
-                    change(_isOn);
-                }
-                _mode = !_mode;
+        public void SwitchMode() {
+            if (_modeValue.value == 1) {
+                _modeValue.value = 0;
             }
+            else {
+                _modeValue.value = 1;
+            }
+            MoveImage(_modeValue.value);
         }
-        private void MoveImage(bool val) {
-            if (val) {
+        private void MoveImage(int val) {
+            if (val==1) {
                 _switchImageOff.SetActive(true);
                 _switchImageOn.SetActive(false);
             }
@@ -54,8 +46,6 @@ namespace UI {
                 _switchImageOn.SetActive(true);
             }
         }
-        public void OnPointerDown(PointerEventData eventData) {
-            SwitchMode(!_isOn);
-        }
+   
     }
 }

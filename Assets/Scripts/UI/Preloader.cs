@@ -10,6 +10,7 @@ namespace UI {
         [SerializeField]
         private ScriptableFloatValue __sceneLoadingValue;
         private void Start() {
+            SettingsScreen.Instance.SetSavedValues();
             StartCoroutine(LoadMenuScene());
         }
 
