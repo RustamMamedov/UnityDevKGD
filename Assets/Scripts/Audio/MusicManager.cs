@@ -8,8 +8,6 @@ namespace Audio {
 
     public class MusicManager : MonoBehaviour {
 
-        public static MusicManager Instance;
-
         [SerializeField]
         public AudioMixer _master;
 
@@ -43,13 +41,6 @@ namespace Audio {
         private AudioSourcePlayer _currentPlayer;
 
         private void Awake() {
-            if (Instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-
             _carDodgeEventListener.OnEventHappened += OnCarDodge;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
             _updateEventListener.OnEventHappened += OnUpdate;
