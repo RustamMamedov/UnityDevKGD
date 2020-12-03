@@ -12,7 +12,18 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _timeCurrent;
 
-        private void Awake() {
+        [SerializeField]
+        private EventListener _update;
+
+        private void OnEnable() {
+            _update.OnEventHappened += UpdateBehaviour;
+        }
+
+        private void UpdateBehaviour() {
+            DayLightActivity();
+        }
+
+        private void DayLightActivity() {
             if (_timeCurrent.value == 1) {
                 _globalLight.SetActive(false);
             }
