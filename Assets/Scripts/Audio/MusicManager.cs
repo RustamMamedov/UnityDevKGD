@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Game;
 
 namespace Audio {
 
@@ -21,6 +22,9 @@ namespace Audio {
         [SerializeField]
         [Range(0f,1f)]
         private float _maxVolume;
+
+        [SerializeField]
+        private ScriptableFloatValue _volume;
 
         public void PlayMenuMusic() {
             //_menuMusicPlayer.Play();
