@@ -1,23 +1,70 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using Events;
+using Game;
 
 namespace UI {
 
     public class GameScreen : MonoBehaviour {
 
+        [SerializeField]
+        private EventListener _gameSavedEventListener;
 
-	[SerializeField]
-	private EventListener _saveEventListener;
+        [SerializeField]
+        private GameObject _carDodgeViewPrefab;
 
-	private void Awake() {
-	    _saveEventListener.OnEventHappend += OnGameSaved;
-	}
+        [SerializeField]
+        private Transform _carDodgeViewParent;
 
-	private void OnGameSaved() {
-	    UIManager.Instance.ShowLeaderboardScreen();
-	}
+        [SerializeField]
+        [ValidateInput(nameof(CheckDuplicates), "Duplicate added.")]
+        private List<CarSettings> _carSettings;
 
+        private CarDodgeView[] _carDodgeViews;
+
+        private bool CheckDuplicates() {
+            return _carSettings.Distinct().Count() == _carSettings.Count;
+        }
+
+        private void Awake() {
+            CarDodgeViewsCreate();
+            _gameSavedEventListener.OnEventHappend += OnGameSaved;
+        }
+
+        private void OnEnable() {
+            StartCoroutine(InitCarDodgeViews());
+        }
+
+        private void OnDisable() {
+            for (int i = 0; i < _carDodgeViews.Length; i++) {
+                RenderManager.Instance.ReleaseTextures();
+            }
+        }
+
+        private void CarDodgeViewsCreate() {
+            _carDodgeViews = new CarDodgeView[_carSettings.Count];
+            for (int i = 0; i < _carDodgeViews.Length; i++) {
+
+                var clone = Instantiate(_carDodgeViewPrefab, _carDodgeViewParent);
+                var carDodgeView = clone.GetComponent<CarDodgeView>();
+                carDodgeView.SetCarSettings(_carSettings[i]);
+
+                _carDodgeViews[i] = carDodgeView;
+            }
+        }
+
+        private IEnumerator InitCarDodgeViews() {
+            for (int i = 0; i < _carSettings.Count; i++) {
+                _carDodgeViews[i].Init();
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        private void OnGameSaved() {
+            UIManager.Instance.ShowLeaderboardScreen();
+        }
     }
 }
