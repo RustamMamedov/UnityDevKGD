@@ -1,39 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Events;
-using UI;
-
 
 namespace Game {
-
     public class EnemyCar : Car {
 
         [SerializeField]
-        private EventDispatcher _carTriggerEventDispatcher;
+        private EventDispatcher _carCollisionEventDispatcher;
 
         [SerializeField]
-        private ScriptableIntValue _currentScore;
+        private EventDispatcher _carDodgedEventDispatcher;
 
         [SerializeField]
-        private ScriptableFloatValue _playerPositionZ;
+        private ScriptableIntValue _dodgedScore;
 
         [SerializeField]
-        private BoxCollider _boxColliderEnemy;
-        private bool _dodged = false;
-
-
-        protected override void UpdateBehaviour() {
-            if (_playerPositionZ.value >= gameObject.transform.position.z - _boxColliderEnemy.size.z && !_dodged)   {
-                _currentScore.value += _carSettings.dodgeScore;
-                _dodged = true;
-            }
-            base.UpdateBehaviour();
-        }
+        private ScriptableIntValue _typePassedCar;
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                _carTriggerEventDispatcher.Dispatch();
+                _carCollisionEventDispatcher.Dispatch();
+            }
+        }
+
+        private void OnTriggerExit(Collider other) {
+            if (other.CompareTag("PlayerDodged")) {
+                _dodgedScore.value = _carSettings.dodgeScore;
+                _typePassedCar.value = (int)_carSettings.enemyType;
+                _carDodgedEventDispatcher.Dispatch();
             }
         }
     }
