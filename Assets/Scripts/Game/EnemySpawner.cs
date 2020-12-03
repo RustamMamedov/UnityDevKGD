@@ -34,6 +34,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableIntValue _complexity;
+
         private List<GameObject> _cars = new List<GameObject>();
 
         private float _currentTime;
@@ -86,6 +89,17 @@ namespace Game {
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerDistanseZ.value + _distanceToPlaySpawn);
             var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
             _cars.Add(car);
+            if (_complexity.value == 1) {
+                if (Random.Range(0, 2) % 2 == 0) {
+                    int randomRoad2;
+                    do {
+                        randomRoad2 = Random.Range(-1, 2);
+                    } while (randomRoad == randomRoad2);
+                    var position2 = new Vector3((float)randomRoad2 * _roadWidth.value, 0f, _playerDistanseZ.value + _distanceToPlaySpawn + Random.Range(-_distanceToPlaySpawn * 0.4f, _distanceToPlaySpawn * 0.4f));
+                    var car2 = Instantiate(_carPrefabs[Random.Range(0, _carPrefabs.Count)], position2, Quaternion.Euler(0f, 180f, 0f));
+                    _cars.Add(car2);
+                }
+            }
         }
 
         private void HendleCarBehaindPlayer() {
