@@ -14,14 +14,10 @@ namespace UI {
 
         private IEnumerator LoadMenuScene() {
             var asyncOperation = SceneManager.LoadSceneAsync("Menu");
-            asyncOperation.allowSceneActivation = false;
-            while (asyncOperation.progress < 0.9f) {
-                _screenFloatValue.value = asyncOperation.progress;
+            while (!asyncOperation.isDone) {
+                _screenFloatValue.value = asyncOperation.progress / .9f;
                 yield return null;
             }
-            _screenFloatValue.value = 1f;
-            yield return new WaitForSeconds(2f);
-            asyncOperation.allowSceneActivation = true;
         }
     }
 }
