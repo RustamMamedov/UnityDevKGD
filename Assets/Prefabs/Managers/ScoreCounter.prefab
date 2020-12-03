@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4552463674924995549
+--- !u!1 &7045019250364437324
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4552463674924995550}
-  - component: {fileID: 4552463674924995551}
-  - component: {fileID: 4552463674924995548}
-  - component: {fileID: 7682230053280111924}
+  - component: {fileID: 4764390479013675648}
+  - component: {fileID: 2171367970091157393}
+  - component: {fileID: 2541841504578547851}
   m_Layer: 0
-  m_Name: Saves
+  m_Name: ScoreCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4552463674924995550
+--- !u!4 &4764390479013675648
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4552463674924995549}
+  m_GameObject: {fileID: 7045019250364437324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 87}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,45 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4552463674924995551
+--- !u!114 &2171367970091157393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4552463674924995549}
+  m_GameObject: {fileID: 7045019250364437324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5218beace54494093b48544238aebbe7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ea35d1b3f48746889840598f56397e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveType: 1
-  _carCollisionEventListener: {fileID: 4552463674924995548}
-  _gameSavedEventDispatcher: {fileID: 7682230053280111924}
+  _carDodgedEventListener: {fileID: 2541841504578547851}
+  _dodgeScore: {fileID: 11400000, guid: ca244862609c44882bb07bd1e74af846, type: 2}
   _currentScore: {fileID: 11400000, guid: 2c1584f8289ae304a8569d5279ccfae8, type: 2}
---- !u!114 &4552463674924995548
+--- !u!114 &2541841504578547851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4552463674924995549}
+  m_GameObject: {fileID: 7045019250364437324}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37b27347a8844dc4aba84ca0ba8fce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: c9bb81aa9057c47bf8b6518905abac77, type: 2}
---- !u!114 &7682230053280111924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4552463674924995549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f33b0bd93f04d2390dd9fc9fc30fde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: a40440466aa5741b499bf85418c3863e, type: 2}
+  _someEvent: {fileID: 11400000, guid: 379208a482be74233834d605b75c0697, type: 2}

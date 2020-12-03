@@ -25,8 +25,6 @@ namespace Game {
             public List<SaveData> saveDatas;
         }
 
-        [InfoBox("PlayerPrefs", "isSaveTypePlayerPrefs")]
-        [InfoBox("/Users/anastasialutovinova/Library/Application Support/DefaultCompany/UnityDev2020/data.txt", "isSaveTypeFile")]
         private enum SaveType {
 
             PlayerPrefs,
@@ -34,10 +32,14 @@ namespace Game {
         }
 
         [SerializeField]
+        [InfoBox("@GetMessageForSaveType()", InfoMessageType.Info)]
         private SaveType _saveType;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+        [SerializeField]
+        private EventDispatcher _gameSavedEventDispatcher;
 
         [SerializeField]
         private ScriptableIntValue _currentScore;
@@ -47,6 +49,14 @@ namespace Game {
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+
+        private string GetMessageForSaveType() {
+            if (_saveType == SaveType.File) {
+                return String.Concat(UnityEngine.Application.persistentDataPath, Path.AltDirectorySeparatorChar, "data.txt");
+            }
+
+            return "PlayerPrefs";
+        }
 
         private bool isSaveTypePlayerPrefs() {
             return _saveType == SaveType.PlayerPrefs;
@@ -89,6 +99,8 @@ namespace Game {
             } else {
                 SaveToFile();
             }
+
+            _gameSavedEventDispatcher.Dispatch();
         }
        
         private void AddNewRecord(SaveData newRecord) {
@@ -136,7 +148,6 @@ namespace Game {
                 var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
                 _saveDatas = wrapper.saveDatas;
             }
-            Debug.Log(_saveDatas.Count);
         }
 
         private void SaveToFile() {
