@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using System;
+using Audio;
 using Game;
 
 namespace UI {
@@ -28,10 +29,10 @@ namespace UI {
         private ScriptableFloatValue _volume;
 
         [SerializeField]
-        private ScriptableBoolValue _hardGameMode;
+        private ScriptableBoolValue _gameMode;
 
         [SerializeField]
-        private ScriptableBoolValue _dayTimeGame;
+        private ScriptableBoolValue _gameTime;
 
         #region Toggles
 
@@ -49,10 +50,11 @@ namespace UI {
 
         #endregion Toggles
 
-        private Settings _currentSettings;
         private const string SETTINGS_KEY = "Settings";
+        private float _lastVolumeValue;
 
         private void Awake() {
+            _lastVolumeValue = _volume.value;
             _okButton.onClick.AddListener(OnOkButtonClick);
             _resumeButton.onClick.AddListener(OnResumeButtonClick);
             _volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
@@ -66,7 +68,6 @@ namespace UI {
 
         private void OnOkButtonClick() {
             AppleChanges();
-            SetGlobalValues();
             UIManager.Instance.ShowMenuScreen();
         }
 
@@ -80,59 +81,68 @@ namespace UI {
         }
 
         private void AppleChanges() {
-            _currentSettings.volume = _volumeSlider.value;
-            _currentSettings.gameMode = _hardModeToggle.isOn;
-            _currentSettings.gameTime = _dayTimeToggle.isOn;
+            _lastVolumeValue = _volume.value;
+
+            _volume.value = _volumeSlider.value;
+            _gameMode.value = _hardModeToggle.isOn;
+            _gameTime.value = _dayTimeToggle.isOn;
         }
 
         private void CanselChanges() {
-            SliderAndTogglesTuning();
-            _volume.value = _currentSettings.volume;
+            TogglesTuning();
+            _volume.value = _lastVolumeValue;
+            SliderTuning();
         }
 
-        private void LoadSettings() {
-            if (!PlayerPrefs.HasKey(SETTINGS_KEY)) {
-                _currentSettings = new Settings {
-                    volume = _volume.value,
-                    gameMode = _hardGameMode.value,
-                    gameTime = _dayTimeGame.value,
-                };
-            } else {
-                var json = PlayerPrefs.GetString(SETTINGS_KEY);
-                _currentSettings = JsonUtility.FromJson<Settings>(json);
-            }
-
-            SetGlobalValues();
-            SliderAndTogglesTuning();
-        }
-
-        private void SetGlobalValues() {
-            _volume.value = _currentSettings.volume;
-            _hardGameMode.value = _currentSettings.gameMode;
-            _dayTimeGame.value = _currentSettings.gameTime;
-        }
-
-        private void SliderAndTogglesTuning() {
-            _volumeSlider.value = _currentSettings.volume;
-
-            if (_currentSettings.gameMode) {
+        private void TogglesTuning() {
+            if (_gameMode.value) {
                 _hardModeToggle.isOn = true;
-            }
-            else {
+            } else {
                 _easyModeToggle.isOn = true;
             }
 
-            if (_currentSettings.gameTime) {
+            if (_gameTime.value) {
                 _dayTimeToggle.isOn = true;
-            }
-            else {
+            } else {
                 _nightTimeToggle.isOn = true;
             }
         }
 
+        private void SliderTuning() {
+            _volumeSlider.value = _volume.value;
+        }
+
+        private void LoadSettings() {
+            if (PlayerPrefs.HasKey(SETTINGS_KEY)) {
+                var json = PlayerPrefs.GetString(SETTINGS_KEY);
+                var settings = JsonUtility.FromJson<Settings>(json);
+                SetGlobalValues(settings);
+            }
+
+            TogglesTuning();
+            SliderTuning();
+        }
+
+        private void SetGlobalValues(Settings settings) {
+            _volume.value = settings.volume;
+            _gameMode.value = settings.gameMode;
+            _gameTime.value = settings.gameTime;
+        }
+
         private void SaveSettings() {
-            var json = JsonUtility.ToJson(_currentSettings);
+            var settings = GetCurrentSettings();
+            var json = JsonUtility.ToJson(settings);
             PlayerPrefs.SetString(SETTINGS_KEY, json);
+        }
+
+        private Settings GetCurrentSettings() {
+            Settings settings = new Settings {
+                volume = _volume.value,
+                gameMode = _gameMode.value,
+                gameTime = _gameTime.value,
+            };
+
+            return settings;
         }
     }
 }
