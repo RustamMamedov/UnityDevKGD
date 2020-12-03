@@ -24,6 +24,9 @@ namespace UI {
         private EventListeners _saveDataEventListeners;
 
         [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
         private MusicManager _musicManager;
 
         private void Awake() {
@@ -78,6 +81,11 @@ namespace UI {
             //_musicManager.PlayMenuMusic();
         }
 
+        public void ShowSettingScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void ShowGameScreen() {
             HideAllScreens();
             _gameScreen.SetActive(true);
@@ -91,6 +99,7 @@ namespace UI {
         public void HideAllScreens() {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
             _leaderBoardScreen.SetActive(false);
         }
     }
