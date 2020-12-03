@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Audio;
 using UnityEngine;
 using UnityEngine.UI;
-using UI;
-
 
 namespace UI {
 
@@ -17,7 +14,7 @@ namespace UI {
         }
 
         private void OnPlayButtonClick() {
-            UIManager.Instance.LoadGamePlay();
+            UIManager.Instance.LoadGameplay();
         }
 
     }
