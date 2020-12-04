@@ -43,9 +43,6 @@ namespace Game {
         private void GenerateRoad() {
             _roadTransforms = new List<Transform>();
             for (int i = 0; i < _initialRoadNumber + 1; i++) {
-                //var position = new Vector3(0f, 0f, (i - 1) * _roadLength);
-                //var road = Instantiate(_roadPrefab, position, Quaternion.identity);
-                //_roadTransforms.Add(road.transform);
                 var road = GetRoadFromStack();
                 var position = new Vector3(0f, 0f, (i - 1) * _roadLength);
                 road.position = position;
@@ -54,7 +51,6 @@ namespace Game {
         }
 
         private GameObject CreateRoad() {
-            //var position = new Vector3(0f, 0f, (index - 1) * _roadLength);
             var road = Instantiate(_roadPrefab, Vector3.zero, Quaternion.identity);
             road.SetActive(false);
             return road;
@@ -82,7 +78,6 @@ namespace Game {
         }
 
         private void HandleRoadCollision() {
-            //MoveFirstRoadPart();
             MoveRoadToStack();
             CreateLastPartOfRoad();
         }
@@ -98,13 +93,5 @@ namespace Game {
             road.position = new Vector3(0f, 0f, _roadTransforms[_roadTransforms.Count - 1].position.z + _roadLength);
             _roadTransforms.Add(road);
         }
-
-        private void MoveFirstRoadPart() {
-            var firstRoadPart = _roadTransforms[0];
-            _roadTransforms.RemoveAt(0);
-            firstRoadPart.position = new Vector3(0f, 0f, _roadTransforms[_roadTransforms.Count - 1].position.z + _roadLength);
-            _roadTransforms.Add(firstRoadPart);
-        }
-
     }
 }
