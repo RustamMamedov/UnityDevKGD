@@ -11,14 +11,12 @@ namespace Game {
 
         [SerializeField]
         [Required]
-        public CarSettings _carSettings;
+        protected CarSettings _carSettings;
+        public CarSettings CarSettings => _carSettings;
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
-#if UNITY_EDITOR
-        public CarSettings CarSettings => _carSettings;
-#endif
 
         protected float _currentSpeed;
 
