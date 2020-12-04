@@ -62,6 +62,7 @@ namespace UI {
 
         private void Awake() {
             LoadFromPlayerPrefs();
+            _volumeSlider.value = 0.5f;
             _applyButton.onClick.AddListener(OnApplyButtonClick);
             _cancelButton.onClick.AddListener(OnCancelButtonClick);
             _volumeSlider.onValueChanged.AddListener(delegate { SetVolume(); });
