@@ -52,6 +52,8 @@ namespace Game {
         private float _spawnCooldown;
         
         private List<GameObject> _cars = new List<GameObject>();
+        
+        private Dictionary<string, Stack<GameObject>> _poolMap = new Dictionary<string, Stack<GameObject>>();
 
         private void Awake() {
             _spawnCooldown = _difficultySetting.value ? _hardSpawnCooldown : _easySpawnCooldown;
@@ -97,14 +99,44 @@ namespace Game {
                 _playerPositionZ.value + _distanceToPlayerToSpawn);
 
             var randomCarPrefab = _carPrefabs[Random.Range(0, _carPrefabs.Count)];
-            var car = Instantiate(randomCarPrefab, position, Quaternion.Euler(0f, 180f, 0f));
+            var car = GetCarFromPool(randomCarPrefab, position);
             _cars.Add(car);
+        }
+
+        private GameObject GetCarFromPool(GameObject car, Vector3 spawnPosition) {
+            if (!_poolMap.ContainsKey(car.name)) {
+                _poolMap.Add(car.name, new Stack<GameObject>());
+            }
+
+            var carStack = _poolMap[car.name];
+            GameObject nextCar;
+
+            if (carStack.Count > 0) {
+                nextCar = carStack.Pop();
+                nextCar.transform.position = spawnPosition;
+                nextCar.SetActive(true);
+            } else {
+                nextCar = Instantiate(car, spawnPosition, Quaternion.Euler(0, 180f, 0));
+                nextCar.name = car.name;
+            }
+            
+            return nextCar;
+        }
+
+        private void MoveCarToPool(GameObject car) {
+    
+            if (!_poolMap.ContainsKey(car.name)) {
+                _poolMap.Add(car.name, new Stack<GameObject>());
+            }
+            
+            _poolMap[car.name].Push(car);
+            car.SetActive(false);
         }
 
         private void HandleCarsBehindPlayer() {
             for (int i = _cars.Count - 1; i > -1; --i) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
+                    MoveCarToPool(_cars[i]);
                     _cars.RemoveAt(i);
                 }
             }

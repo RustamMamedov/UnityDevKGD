@@ -25,6 +25,12 @@ namespace Game {
 
         private bool _isCarDodged = false;
 
+        protected override void OnEnable() {
+            base.OnEnable();
+            _isCarDodged = false;
+        }
+        
+
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _collisionTriggerED.Dispatch();
