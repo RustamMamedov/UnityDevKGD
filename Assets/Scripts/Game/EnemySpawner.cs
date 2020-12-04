@@ -34,6 +34,7 @@ namespace Game {
 
         private float _currentTimer;
         private List<GameObject> _cars = new List<GameObject>();
+        private Dictionary<int, Stack<GameObject>> _enemyCarsPool;
         private float _easySpawnCooldown = 4f;
         private float _hardSpawnCooldown = 1f;
 
@@ -43,6 +44,7 @@ namespace Game {
             } else {
                 _spawnCooldown = _hardSpawnCooldown;
             }
+            GeneratePool();
         }
 
         private void OnEnable() {
@@ -82,14 +84,14 @@ namespace Game {
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_enemyCars[Random.Range(0, _enemyCars.Count)], position, Quaternion.Euler(0f, 180f, 0f));
+            var car = GetCarFromStack(_enemyCars[Random.Range(0, _enemyCars.Count)], position);
             _cars.Add(car);
         }
 
         private void HandleCarsBehindPlayer() {
             for (int i = _cars.Count - 1; i > -1; i--) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
+                    PutCarToStack(_cars[i]);
                     _cars.RemoveAt(i);
                 }
             }
@@ -104,6 +106,31 @@ namespace Game {
                 }
             }
             return isTrue;
+        }
+
+        private void GeneratePool() {
+            _enemyCarsPool = new Dictionary<int, Stack<GameObject>>();
+            foreach (GameObject enemyCar in _enemyCars) {
+                _enemyCarsPool[enemyCar.GetComponent<EnemyCar>().CarSettings.dodgeCarId] = new Stack<GameObject>();
+            }
+        }
+
+        public void PutCarToStack(GameObject enemyCarToStack) {
+            _enemyCarsPool[enemyCarToStack.GetComponent<EnemyCar>().CarSettings.dodgeCarId].Push(enemyCarToStack);
+            enemyCarToStack.SetActive(false);
+        }
+
+        public GameObject GetCarFromStack(GameObject enemyCarPrefab, Vector3 position) {
+            GameObject enemyCarToSpawn;
+            if (_enemyCarsPool[enemyCarPrefab.GetComponent<EnemyCar>().CarSettings.dodgeCarId].Count == 0) {
+                enemyCarToSpawn = Instantiate(enemyCarPrefab, position, Quaternion.Euler(0f, 180f, 0f));
+                return enemyCarToSpawn;
+            } else {
+                enemyCarToSpawn = _enemyCarsPool[enemyCarPrefab.GetComponent<EnemyCar>().CarSettings.dodgeCarId].Pop();
+                enemyCarToSpawn.transform.position = position;
+                enemyCarToSpawn.SetActive(true);
+                return enemyCarToSpawn;
+            }
         }
     }
 }
