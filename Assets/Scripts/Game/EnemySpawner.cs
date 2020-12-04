@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Events;
-using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Game {
 
@@ -36,19 +36,22 @@ namespace Game {
         [SerializeField]
         private ScriptableBoolValue _isHard;
 
+        private List<GameObject> _carsPool = new List<GameObject>();
+
         private List<GameObject> _cars = new List<GameObject>();
 
         private float _currentTimer;
 
         private void OnEnable() {
-            
-            if(_isHard.value) {
+
+            if (_isHard.value) {
                 _spawnCoolDown = 2.5f;
             } else {
                 _spawnCoolDown = 5f;
             }
 
             SubscribeToEvents();
+            AddCarsInPool();
         }
 
         private void OnDisable() {
@@ -72,29 +75,40 @@ namespace Game {
         private void UpdateBehaviour() {
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCoolDown) {
+                HandleCarsBehindPlayer();
                 return;
             }
 
             _currentTimer = 0f;
 
             SpawnCar();
-            HandleCarsBehindPlayer();
+        }
+
+        private void AddCarsInPool() {
+            for (int i = 0; i < _carPrefab.Count; i++) {
+                var car = Instantiate(_carPrefab[i]);
+                car.SetActive(false);
+                _carsPool.Add(car);
+            }
         }
 
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
             var randomEnemy = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayer);
-            var car = Instantiate(_carPrefab[randomEnemy], position, Quaternion.Euler(0f, 180f, 0f));
-            PlayerCar.DodgeScore = car.GetComponent<EnemyCar>().GetCarDodgeScore();
-            _cars.Add(car);
+            _cars.Add(_carsPool[randomEnemy]);
+            PlayerCar.DodgeScore = _carsPool[randomEnemy].GetComponent<EnemyCar>().GetCarDodgeScore();
+            _cars[0].SetActive(true);
+            _cars[0].transform.position = position;
+            _cars[0].transform.rotation = Quaternion.Euler(0, 180, 0);
+
         }
 
         private void HandleCarsBehindPlayer() {
             for (int i = _cars.Count - 1; i > -1; i--) {
-                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToDestroy) {
-                    Destroy(_cars[i]);
-                    _cars.Remove(_cars[i]);
+                if (_playerPositionZ.value - _cars[0].transform.position.z > _distanceToDestroy) {
+                    _cars[0].SetActive(false);
+                    _cars.Remove(_cars[0]);
                     PlayerCar.CanAddScore = true;
                     EnemyCar.EnemyPositionZ = 0;
                 }
@@ -102,15 +116,15 @@ namespace Game {
         }
 
         private bool ValidateCarPrefab() {
-            
+
             for (int i = 0; i < _carPrefab.Count - 1; i++) {
-            
+
                 for (int j = i + 1; j < _carPrefab.Count; j++) {
-            
-                    if(_carPrefab[i] == _carPrefab[j]) {
+
+                    if (_carPrefab[i] == _carPrefab[j]) {
                         return false;
                     }
-            
+
                 }
             }
 
