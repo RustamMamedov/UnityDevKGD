@@ -70,6 +70,7 @@ namespace Game {
         #region region3
         private void OnEnable() { 
             SubscribeToEvents();
+            _dodged = false;
         }
 
         private void OnDisable() {
