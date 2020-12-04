@@ -47,6 +47,7 @@ namespace UI {
         }
 
         public void LoadGameplay() {
+            _musicManager.StopMenuMusic();
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
@@ -98,7 +99,6 @@ namespace UI {
         public void HideAllScreens() {
 
             if (_menuScreen.activeSelf == true) {
-                _musicManager.StopMenuMusic();
                 _menuScreen.SetActive(false);
             }
             if (_gameScreen.activeSelf == true) {
