@@ -21,7 +21,7 @@ namespace Game {
         private int _initialStackRoadNumber = 5;
 
         [SerializeField]
-        private int _roadLength = 12;
+        private int _roadLength;
 
         private List<Transform> _roadTransforms;
         private Stack<Transform> _roadStack;
@@ -41,7 +41,7 @@ namespace Game {
 
         private void HandleRoadCollision() {
             MoveRoadToStack();
-            CreateLastPartofRoad();
+            CreateLastPartOfRoad();
         }
 
         private void GeneratePool() {
@@ -70,15 +70,20 @@ namespace Game {
             _roadTransforms.RemoveAt(0);
             SetRoadToStack(firstRoadPart);
         }
+        
+        private void SetRoadToStack(Transform road) {
+            road.gameObject.SetActive(false);
+            _roadStack.Push(road);
+        }
 
-        private void CreateLastPartofRoad() {
+        private void CreateLastPartOfRoad() {
             var road = GetRoadFromStack();
 
             road.position = new Vector3(0f, 0f, _roadTransforms[_roadTransforms.Count - 1].position.z + _roadLength);
             _roadTransforms.Add(road);
         }
 
-        private GameObject CreateRoad(){
+        private GameObject CreateRoad() {
             var road = Instantiate(_roadPrefab, Vector3.zero, Quaternion.identity);
             road.SetActive(false);
 
@@ -93,11 +98,6 @@ namespace Game {
             var road = _roadStack.Pop();
             road.gameObject.SetActive(true);
             return road;
-        }
-
-        private void SetRoadToStack(Transform road) {
-            road.gameObject.SetActive(false);
-            _roadStack.Push(road);
         }
     }
 }
