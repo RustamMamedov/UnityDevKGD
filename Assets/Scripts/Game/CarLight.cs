@@ -13,7 +13,7 @@ namespace Game {
         private Light _carLight;
 
         private void Awake() {
-            _carLight.range = 15 * _playerCar.CarSettings.carLightDistance;
+            _carLight.range = 15 * _playerCar._carSettings.carLightDistance;
         }
     }
 }
