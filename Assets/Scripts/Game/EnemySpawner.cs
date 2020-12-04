@@ -65,11 +65,19 @@ namespace Game {
 
         private List<GameObject> _cars = new List<GameObject>();
 
+        private Dictionary<GameObject, int> _carToPoolIndex = new Dictionary<GameObject, int>();
+
+        private Stack<GameObject>[] _carPool;
+
 
         // Life cycle.
 
         private void Awake() {
             UpdateCooldown();
+            _carPool = new Stack<GameObject>[_enemyPrefabs.Count];
+            for (int i = 0; i < _carPool.Length; ++i) {
+                _carPool[i] = new Stack<GameObject>();
+            }
         }
 
         private void OnEnable() {
@@ -124,19 +132,31 @@ namespace Game {
             if (_enemyPrefabs.Count == 0) {
                 return;
             }
+            int randomEnemy = Random.Range(0, _enemyPrefabs.Count);
             int randomRoad = Random.Range(-1, 2);
             var position = new Vector3(randomRoad * _laneWidth.value, 0f, _playerPositionZValue.value + _spawnDistance);
-            int randomEnemy = Random.Range(0, _enemyPrefabs.Count);
-            var car = Instantiate(_enemyPrefabs[randomEnemy], position, Quaternion.Euler(0, 180, 0), transform);
+            GameObject car;
+            if (_carPool[randomEnemy].Count == 0) {
+                car = Instantiate(_enemyPrefabs[randomEnemy], position, Quaternion.Euler(0, 180, 0), transform);
+                _carToPoolIndex[car] = randomEnemy;
+            } else {
+                car = _carPool[randomEnemy].Pop();
+                car.transform.position = position;
+                car.SetActive(true);
+            }
             _cars.Add(car);
         }
 
         private void HandleDespawnableCars() {
             for (int i = _cars.Count - 1; i >= 0; --i) {
-                if (_playerPositionZValue.value - _cars[i].transform.position.z >= _despawnDistance) {
-                    Destroy(_cars[i]);
-                    _cars.RemoveAt(i);
+                if (_playerPositionZValue.value - _cars[i].transform.position.z < _despawnDistance) {
+                    continue;
                 }
+                var car = _cars[i];
+                _cars.RemoveAt(i);
+                car.SetActive(false);
+                var poolIndex = _carToPoolIndex[car];
+                _carPool[poolIndex].Push(car);
             }
         }
 

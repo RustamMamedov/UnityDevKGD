@@ -26,6 +26,11 @@ namespace Game {
 
         // Life cycle.
 
+        protected override void OnEnable() {
+            base.OnEnable();
+            _dodged = false;
+        }
+
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionDispatcher.Dispatch();
