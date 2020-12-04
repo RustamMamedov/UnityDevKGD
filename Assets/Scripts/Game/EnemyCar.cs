@@ -26,8 +26,12 @@ namespace Game {
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
         
-        private const int _distanceToPlayerToDestroy = 10;
-        private int _distanceToDodge = 40;
+        [SerializeField] 
+        private int _distanceToPlayerToDestroy;
+        
+        [SerializeField] 
+        private int _distanceToDodge;
+        
         private bool _enemyIsDodged = false;
         private bool _mathShouldBeDone = true;
 
