@@ -14,12 +14,11 @@ namespace Game {
         [AssetsOnly]
         private GameObject _roadPrefab;
 
+        [SerializeField]
+        private int _initialRoadNumber = 3;
 
         [SerializeField]
-        private int _initialRoadNumber = 10;
-
-        [SerializeField]
-        private int _roadLength = 12;
+        private int _roadLength = 60;
 
         private List<Transform> _roadTransforms;
 
