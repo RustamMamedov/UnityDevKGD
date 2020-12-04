@@ -49,16 +49,17 @@ namespace Game {
         [SerializeField]
         private AudioSourcePlayer _dodgePlayer;
 
+        [SerializeField]
+        private ScriptableFloatValue _pointRange;
+
+        [SerializeField]
+        private ScriptableFloatValue _spotRange;
+
         private int _currentRoad;
         private bool _inDodge;
-        private float _pointRange;
-        private float _spotRange;
 
         private void Awake() {
             if (_timeMode.value == 1) {
-                Debug.Log("log");
-                _pointRange = _pointLight.range;
-                _spotRange = _settings.lightLength;
                 _pointLight.range=0;
                 _settings.lightLength = 0;
                 for(int i = 0; i < _trails.Count; i++) {
@@ -67,8 +68,8 @@ namespace Game {
                 _light.SetActive(true);
             }
             else {
-                _pointLight.range = _pointRange;
-                _settings.lightLength = _spotRange;
+                _pointLight.range = _pointRange.value;
+                _settings.lightLength = _spotRange.value;
                 for (int i = 0; i < _trails.Count; i++) {
                     _trails[i].SetActive(true);
                 }
