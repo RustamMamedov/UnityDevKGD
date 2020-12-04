@@ -14,10 +14,10 @@ namespace Game {
         private GameObject _roadPrefab;
 
         [SerializeField]
-        private int _initialRoadNumber = 10;
+        private int _initialRoadNumber;
 
         [SerializeField]
-        private int _roadLength = 12;
+        private int _roadLength;
 
         private List<Transform> _roadTransforms;
 
@@ -41,7 +41,7 @@ namespace Game {
                 var road = Instantiate(_roadPrefab, positon, Quaternion.identity);
                 _roadTransforms.Add(road.transform);
             }
-            _roadPrefab.SetActive(false);
+          //  _roadPrefab.SetActive(false);
         }
 
         private void HandleRoadCollsion() {
