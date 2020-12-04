@@ -40,6 +40,36 @@ namespace Game {
         private const string RECORDS_KEY = "settings";
 
 
+        private Dictionary<string, Stack<GameObject>> _carPool = new Dictionary<string, Stack<GameObject>>();
+
+        public GameObject GetGameObjectFromPool(GameObject car) {
+            if (!_carPool.ContainsKey(car.name)) {
+                _carPool[car.name] = new Stack<GameObject>();
+            }
+
+            GameObject spawnCar;
+
+            if (_carPool[car.name].Count == 0) {
+                _carPool[car.name].Push(CreateCar(car));
+            }
+            spawnCar = _carPool[car.name].Pop();
+            spawnCar.name = car.name;
+            spawnCar.SetActive(true);
+            return spawnCar;
+        }
+
+        private GameObject CreateCar(GameObject car) {
+            var enemyCar = Instantiate(car, Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+            enemyCar.SetActive(false);
+            return enemyCar;
+        }
+
+        public void PutGameObjectToPool(GameObject car) {
+            _carPool[car.name].Push(car);
+            car.SetActive(false);
+        }
+
+
         [Serializable]
         private class SavedDataWrapper {
             public SaveData savedData;
@@ -49,11 +79,11 @@ namespace Game {
 
         private void Awake() {
             LoadFromPlayerPrefs();
-             if(_saveData.difficult == 1) { 
-                _spawnCooldown = _spawnCooldownEasy; 
-            } else { 
-                _spawnCooldown = _spawnCooldownHard; 
-            } 
+            if (_saveData.difficult == 1) {
+                _spawnCooldown = _spawnCooldownEasy;
+            } else {
+                _spawnCooldown = _spawnCooldownHard;
+            }
         }
 
         private void OnEnable() {
@@ -97,14 +127,15 @@ namespace Game {
             var randomCar = Random.Range(0, _carPrefabs.Count);
             var position = new Vector3(randomRoad * 1f * _roadWidth.value, 0,
                 _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[randomCar], position, Quaternion.Euler(0, 180, 0));
+            var car = GetGameObjectFromPool(_carPrefabs[randomCar]);
+            car.transform.position = position;
             _cars.Add(car);
         }
 
         private void HandleCarsBehindPlayers() {
             for (int i = _cars.Count - 1; i > -1; i--) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerDestroy) {
-                    Destroy(_cars[i]);
+                    PutGameObjectToPool(_cars[i]);
                     _cars.RemoveAt(i);
                 }
             }
