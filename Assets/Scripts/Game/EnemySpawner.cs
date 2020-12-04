@@ -76,7 +76,7 @@ namespace Game {
         }
 
         private GameObject GetFromPool(string tag, Vector3 position, Quaternion rotation) {
-            if (!_poolDictionary.ContainsKey(tag)) {
+            if (!_poolDictionary.ContainsKey(tag) || _poolDictionary[tag].Peek().activeSelf) {
                 return null;
             }
 
@@ -112,8 +112,6 @@ namespace Game {
         }
 
         private void UpdateBehaviour() {
-            HandleCarsBehindPlayer();
-
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
                 return;
@@ -129,18 +127,8 @@ namespace Game {
             var tag = _pools[randomCar].tag;
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = GetFromPool(tag, position, Quaternion.Euler(0f, 180f, 0f));
-            car.SetActive(true);
-        }
-
-        private void HandleCarsBehindPlayer() {
-            foreach (var pool in _pools) {
-                var tag = pool.tag;
-                for (int i = _poolDictionary.Count - 1; i > -1; i--) {
-                    var car = _poolDictionary[tag].Peek();
-                    if (_playerPositionZ.value - car.transform.position.z > _distanceToPlayerToDestroy) {
-                        car.SetActive(false);
-                    }
-                }
+            if (car != null) {
+                car.SetActive(true);
             }
         }
 

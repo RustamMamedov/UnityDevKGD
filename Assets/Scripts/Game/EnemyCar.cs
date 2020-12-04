@@ -26,6 +26,7 @@ namespace Game {
         [SerializeField] 
         private ScriptableBoolValue _crazyModeEnabled;
         
+        private const int _distanceToPlayerToDestroy = 10;
         private int _distanceToDodge = 40;
         private bool _enemyIsDodged = false;
         private bool _mathShouldBeDone = true;
@@ -52,6 +53,12 @@ namespace Game {
             }
         }
 
+        private void CheckIfBehindPlayer() {
+            if (_playerPositionZ.value - gameObject.transform.position.z > _distanceToPlayerToDestroy) {
+                gameObject.SetActive(false);
+            }
+        }
+        
         private void AddScore() {
             if (_enemyIsDodged) {
                 _carDodgedEventDispatcher.Dispatch();
@@ -62,6 +69,7 @@ namespace Game {
         protected override void Move() {
             base.Move();
             CheckIfDodged();
+            CheckIfBehindPlayer();
         }
 
         protected override void OnDisable() {
