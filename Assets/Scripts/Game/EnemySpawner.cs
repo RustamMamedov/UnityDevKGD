@@ -37,17 +37,31 @@ namespace Game {
         [SerializeField]
         private ScriptableBoolValue _hardGameMode;
 
+        [SerializeField]
+        private int _initialPoolNumber = 1;
+
+        private enum CarType {
+            FAMILY_CAR,
+            TRACK,
+            SUV,
+        }
+
+        private List<(CarType type, GameObject car)> _cars = new List<(CarType, GameObject)>();
+        private Dictionary<CarType, Stack<GameObject>> _stack;
+        private float _currentTimer;
+
         private bool CheckDuplicates() {
             return _carPrefabs.Distinct().Count() == _carPrefabs.Count;
         }
-
-        private float _currentTimer;
-        private List<GameObject> _cars = new List<GameObject>();
 
         private void Awake() {
             if (_hardGameMode.value) {
                 _spawnCooldown /= 2.5f;
             }
+        }
+
+        private void Start() {
+            GeneratePool();
         }
 
         private void OnEnable() {
@@ -83,24 +97,57 @@ namespace Game {
             SpawnCar();
         }
 
-        private void SpawnCar() {
-            if (_carPrefabs.Count == 0) {
-                return;
+        private void GeneratePool() {
+            _stack = new Dictionary<CarType, Stack<GameObject>> {
+                [CarType.FAMILY_CAR] = new Stack<GameObject>(),
+                [CarType.TRACK] = new Stack<GameObject>(),
+                [CarType.SUV] = new Stack<GameObject>(),
+            };
+            for (int i = 0; i < _initialPoolNumber; i++) {
+                _stack[CarType.FAMILY_CAR].Push(CreateCar(CarType.FAMILY_CAR));
+                _stack[CarType.TRACK].Push(CreateCar(CarType.TRACK));
+                _stack[CarType.SUV].Push(CreateCar(CarType.SUV));
             }
-            var randomRoad = UnityEngine.Random.Range(-1, 2);
-            var randomPrefabIndex = UnityEngine.Random.Range(0, _carPrefabs.Count);
-            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[randomPrefabIndex], position, Quaternion.Euler(0f, 180f, 0f));
-            _cars.Add(car);
+        }
+
+        private GameObject CreateCar(CarType type) {
+            var car = Instantiate(_carPrefabs[(int)type], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+            car.SetActive(false);
+            return car;
+        }
+
+        private void SpawnCar() {
+            var type = (CarType)UnityEngine.Random.Range(0, _carPrefabs.Count);
+            var car = GetCarFromPool(type);
+
+            var road = UnityEngine.Random.Range(-1, 2);
+            var position = new Vector3(1f * road * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            car.transform.position = position;
+
+            _cars.Add((type, car));
         }
 
         private void HandleCarsBehindPlayer() {
-            for (int i = _cars.Count - 1; i > -1; --i) {
-                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
+            for (int i = _cars.Count - 1; i >= 0; i--) {
+                if (_playerPositionZ.value - _cars[i].car.transform.position.z > _distanceToPlayerToDestroy) {
+                    SetCarToPool(_cars[i].type, _cars[i].car);
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private GameObject GetCarFromPool(CarType type) {
+            if (_stack[type].Count == 0) {
+                _stack[type].Push(CreateCar(type));
+            }
+            var car = _stack[type].Pop();
+            car.SetActive(true);
+            return car;
+        }
+
+        private void SetCarToPool(CarType type, GameObject car) {
+            car.SetActive(false);
+            _stack[type].Push(car);
         }
     }
 }
