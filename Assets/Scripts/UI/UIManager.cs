@@ -26,6 +26,9 @@ namespace UI {
         private GameObject _leaderboardScreen;
 
         [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
         private MusicManager _musicManager;
 
         [SerializeField]
@@ -111,6 +114,11 @@ namespace UI {
             _leaderboardScreen.SetActive(true);
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void HideAllScreens() {
 
             if (_menuScreen.activeSelf == true) {
@@ -123,6 +131,9 @@ namespace UI {
             }
             if (_leaderboardScreen.activeSelf == true) {
                 _leaderboardScreen.SetActive(false);
+            }
+            if (_settingsScreen.activeSelf == true) {
+                _settingsScreen.SetActive(false);
             }
         }
 
