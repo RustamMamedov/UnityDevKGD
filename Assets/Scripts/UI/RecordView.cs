@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI {
@@ -11,7 +9,7 @@ namespace UI {
         private Text _place;
 
         [SerializeField]
-        private Text _date;
+        private Text _data;
 
         [SerializeField]
         private Text _score;
@@ -19,18 +17,11 @@ namespace UI {
         [SerializeField]
         private Image _imageNewScore;
 
-        public void SetData(int place, string date, string score) {
-            _place.text = place.ToString();
-            _date.text = date;
+        public void SetData(int place, string data, string score, bool isCurrentRide) {
+            _place.text = $"{place}";
+            _data.text = data;
             _score.text = score;
-        }
-
-        public void MarkRecord() {
-            _imageNewScore.gameObject.SetActive(true);
-        }
-
-        public void UnmarkRecord() {
-            _imageNewScore.gameObject.SetActive(false);
+            _imageNewScore.enabled = isCurrentRide;
         }
     }
 }

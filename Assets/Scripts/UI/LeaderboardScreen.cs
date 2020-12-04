@@ -1,58 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Game;
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
-using Game;
 
 namespace UI {
+
     public class LeaderboardScreen : MonoBehaviour {
 
         [SerializeField]
         private Button _menuButton;
 
         [SerializeField]
-        private GameObject _leaderboardTable;
+        private Transform _resultViewParent;
 
         [SerializeField]
-        private GameObject _resultView;
+        private RecordView _resultViewPrefab;
+
+        [SerializeField]
+        private ScriptableIntValue _indexLast;
+
+        private RecordView[] _recordViews;
 
         private void Awake() {
             _menuButton.onClick.AddListener(OnMenuButtonClick);
         }
 
         private void OnEnable() {
-            UpdateRecords();
+            CreateTable();
         }
 
         private void OnDisable() {
-            ClearRecords();
+            DeleteTable();
         }
 
-        private void UpdateRecords() {
-            var place = 1;
+        private void CreateTable() {
+            _recordViews = new RecordView[Save.SavedDatas.Count];
+            for (int i = 0; i < _recordViews.Length; i++) {
 
-            if (Save.SavedDatas != null) {
-                foreach (Save.SaveData save in Save.SavedDatas) {
-                    var recordView = Instantiate(_resultView, _leaderboardTable.transform);
-                    var recordViewComponent = recordView.GetComponent<RecordView>();
-                    recordViewComponent.SetData(place, save.date, save.score);
+                var recordView = Instantiate(_resultViewPrefab, _resultViewParent);
+                recordView.SetData(i + 1, Save.SavedDatas[i].date, Save.SavedDatas[i].score, _indexLast.value == i);
 
-                    if (save.newScore) {
-                        recordViewComponent.MarkRecord();
-                    } else {
-                        recordViewComponent.UnmarkRecord();
-                    }
-                    place++;
-                }
+                _recordViews[i] = recordView;
             }
         }
 
-        private void ClearRecords() {
-            for (int i = _leaderboardTable.transform.childCount - 1; i >= 0; i--) {
-                var recordView = _leaderboardTable.transform.GetChild(i);
-                recordView.SetParent(null, false);
-                Destroy(recordView.gameObject);
+        private void DeleteTable() {
+            for (int i = _recordViews.Length - 1; i >= 0; i--) {
+                Destroy(_recordViews[i].gameObject);
             }
+            _recordViews = null;
         }
 
         private void OnMenuButtonClick() {

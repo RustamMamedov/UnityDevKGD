@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Events;
 using UnityEngine;
-using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Sirenix.OdinInspector;
@@ -16,7 +15,6 @@ namespace Game {
 
             public string date;
             public string score;
-            public bool newScore;
         }
 
         [Serializable]
@@ -26,29 +24,29 @@ namespace Game {
         }
 
         private enum SaveType {
-
             PlayerPrefs,
             File,
         }
 
         [SerializeField]
-        [InfoBox("@GetMessageForSaveType()", InfoMessageType.Info)]
-        private SaveType _saveType;
-
-        [SerializeField]
-        private EventListener _carCollisionEventListener;
-
-        [SerializeField]
         private EventDispatcher _gameSavedEventDispatcher;
 
         [SerializeField]
+        [InfoBox("@GetMessageForSaveType()", InfoMessageType.Info)]
+        
+        private SaveType _saveType;
+        [SerializeField]
         private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private EventListener _carCollisionEventListener;
 
         private static List<SaveData> _saveDatas;
         public static List<SaveData> SavedDatas => _saveDatas;
 
         private const string RECORDS_KEY = "records";
         private string _filePath;
+
 
         private string GetMessageForSaveType() {
             if (_saveType == SaveType.File) {
@@ -58,25 +56,23 @@ namespace Game {
             return "PlayerPrefs";
         }
 
-        private bool isSaveTypePlayerPrefs() {
-            return _saveType == SaveType.PlayerPrefs;
-        }
+        [SerializeField]
+        private int _countResultView;
 
-        private bool isSaveTypeFile() {
-            return _saveType == SaveType.File;
-        }
+        [SerializeField]
+        private ScriptableIntValue _indexLast;
 
         private void Awake() {
+            _indexLast.value = -1;
             _saveDatas = new List<SaveData>();
             _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-
             if (_saveType == SaveType.PlayerPrefs) {
                 LoadFromPlayerPrefs();
             } else {
                 LoadFromFile();
             }
         }
-    
+
         private void OnEnable() {
             _carCollisionEventListener.OnEventHappend += OnCarCollision;
         }
@@ -86,34 +82,44 @@ namespace Game {
         }
 
         private void OnCarCollision() {
-            var newRecord = new SaveData {
-                date = DateTime.Now.ToString("MM/dd/yyyy HH:mm "),
-                score = _currentScore.value.ToString(),
-                newScore = true,
-            };
-
-            AddNewRecord(newRecord);
-
-            if (_saveType == SaveType.PlayerPrefs) {
-                SaveToPlayerPrefs();
-            } else {
-                SaveToFile();
+            if (CurrentScoreIsNewRecord()) {
+                AddNewRecord();
+                if (_saveType == SaveType.PlayerPrefs) {
+                    SaveToPlayerPrefs();
+                } else {
+                    SaveToFile();
+                }
             }
-
             _gameSavedEventDispatcher.Dispatch();
         }
-       
-        private void AddNewRecord(SaveData newRecord) {
-            foreach (SaveData save in _saveDatas) {
-                save.newScore = false;
+
+        private bool CurrentScoreIsNewRecord() {
+            if (_saveDatas.Count < _countResultView) {
+                return true;
             }
+            var lastScoreInTop = Int32.Parse(_saveDatas[_saveDatas.Count - 1].score);
+            return _currentScore.value >= lastScoreInTop;
+        }
+
+        private void AddNewRecord() {
+            var newRecord = new SaveData {
+                date = DateTime.Now.ToString("MM/dd/yyyy HH:mm"),
+                score = _currentScore.value.ToString()
+            };
 
             _saveDatas.Add(newRecord);
-            _saveDatas = _saveDatas.OrderByDescending(save => Int32.Parse(save.score)).ToList<SaveData>();
+            _saveDatas.Sort((res1, res2) => (Int32.Parse(res2.score)).CompareTo(Int32.Parse(res1.score)));
+            _indexLast.value = _saveDatas.IndexOf(newRecord);
 
-            if (_saveDatas.Count > 10) {
+            if (_saveDatas.Count > _countResultView)
                 _saveDatas.RemoveAt(_saveDatas.Count - 1);
-            }
+        }
+
+        private SavedDataWrapper GetWrapper() {
+            var wrapper = new SavedDataWrapper {
+                saveDatas = _saveDatas
+            };
+            return wrapper;
         }
 
         private void LoadFromPlayerPrefs() {
@@ -123,13 +129,6 @@ namespace Game {
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
             _saveDatas = wrapper.saveDatas;
-        }
-
-        private SavedDataWrapper GetWrapper() {
-            var wrapper = new SavedDataWrapper {
-                saveDatas = _saveDatas
-            };
-            return wrapper;
         }
 
         private void SaveToPlayerPrefs() {
