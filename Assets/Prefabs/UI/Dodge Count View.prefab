@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5191279923485823102}
   - component: {fileID: 5191279923485823103}
   - component: {fileID: 2663477937290529131}
+  - component: {fileID: 3267014468350130142}
   m_Layer: 5
   m_Name: Dodge Count View
   m_TagString: Untagged
@@ -168,9 +169,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carSettings: {fileID: 0}
+  _updateEventListener: {fileID: 3267014468350130142}
   _icon: {fileID: 8492865253846300195}
   _iconTextureSize: 96
   _text: {fileID: 5191279922565780453}
+--- !u!114 &3267014468350130142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191279923485823097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f28e681eeb06c48891c9472e3e2844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listenedEvent: {fileID: 11400000, guid: 9658611bdbdcd1c48b217e631ae9d7e2, type: 2}
 --- !u!1 &8650858484219396297
 GameObject:
   m_ObjectHideFlags: 0

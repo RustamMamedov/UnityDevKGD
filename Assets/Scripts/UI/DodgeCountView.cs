@@ -1,4 +1,5 @@
-﻿using Game;
+﻿using Events;
+using Game;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace UI {
         private CarSettings _carSettings;
 
         [SerializeField]
+        private EventListener _updateEventListener;
+
+        [SerializeField]
         private RawImage _icon;
 
         [SerializeField]
@@ -29,14 +33,22 @@ namespace UI {
 
         // Life cycle.
 
+        private void OnEnable() {
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
+        }
+
         public void Start() {
             _renderTexture = RenderManager.Instance.Render(
                 _carSettings.renderableCarPrefab, _carSettings.renderDistance, _iconTextureSize, _iconTextureSize);
             _icon.texture = _renderTexture;
         }
 
-        private void Update() {
+        private void UpdateBehaviour() {
             _text.text = _carSettings.dodgesCountValue.value.ToString();
+        }
+
+        private void OnDisable() {
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
         }
 
         private void OnDestroy() {
