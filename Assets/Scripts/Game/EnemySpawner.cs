@@ -43,6 +43,9 @@ namespace Game {
         private float _currentTimer;
         private List<GameObject> _cars;
 
+        private Dictionary<string, Stack<GameObject>> _dictionaryForPool = new Dictionary<string, Stack<GameObject>>();
+
+
         private void OnEnable() {
 
             _cars = new List<GameObject>();
@@ -68,7 +71,32 @@ namespace Game {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
         }
-        
+
+        private GameObject TakeGameObjectFromPool(GameObject car, Vector3 spawnPosition) {
+            if (!_dictionaryForPool.ContainsKey(car.name)) {
+                _dictionaryForPool[car.name] = new Stack<GameObject>();
+                Debug.Log(_dictionaryForPool);
+            }
+
+            GameObject carToSpawn;
+
+            if (_dictionaryForPool[car.name].Count > 0) {
+                carToSpawn = _dictionaryForPool[car.name].Pop();
+                carToSpawn.transform.position = spawnPosition;
+                carToSpawn.SetActive(true);
+                return carToSpawn;
+            }
+
+            carToSpawn = Instantiate(car, spawnPosition, Quaternion.Euler(0, 180f, 0));
+            carToSpawn.name = car.name;
+            return carToSpawn;
+        }
+
+        private void AddGameObjectToPool(GameObject car) {
+            _dictionaryForPool[car.name].Push(car);
+            car.SetActive(false);
+        }
+
         private void OnCarCollision() {
 
             UnsubscribeToEvents();
@@ -90,9 +118,9 @@ namespace Game {
         private void SpawnCar() {
 
             var randomRoad = Random.Range(-1,2);
-            var carIndex = Random.Range(0,3);
+            var carIndex = Random.Range(0,_carPrefabs.Count);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[carIndex], position, Quaternion.Euler(0f, 180f, 0f));
+            var car = TakeGameObjectFromPool(_carPrefabs[carIndex],position);
             _cars.Add(car);
         }
 
@@ -100,7 +128,7 @@ namespace Game {
 
             for (int i = _cars.Count - 1; i > - 1; i--) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]); 
+                    AddGameObjectToPool(_cars[i]);
                     _cars.RemoveAt(i);
                     
                 }
