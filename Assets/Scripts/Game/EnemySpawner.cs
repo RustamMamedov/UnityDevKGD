@@ -1,11 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game {
 
     public class EnemySpawner : MonoBehaviour {
+
+        [Serializable]
+        public class Pool {
+
+            public string tag;
+            public GameObject prefab;
+            public int size;
+        }
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -14,8 +24,8 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [ValidateInput(nameof(ListHasDuplicates), "List has duplicates")]
-        [SerializeField]
-        private List<GameObject> _carPrefabs = new List<GameObject>();
+        [SerializeField] 
+        private List<Pool> _pools;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
@@ -34,20 +44,53 @@ namespace Game {
         
         private float _currentTimer;
         private float _spawnCooldown;
-        private List<GameObject> _cars = new List<GameObject>();
-
+        private Dictionary<string, Queue<GameObject>> _poolDictionary;
+        
         private void OnEnable() {
             SubscribeToEvents();
             SetDifficulty();
         }
 
+        private void Start() {
+            GeneratePool();
+        }
+        
         private void OnDisable() {
             UnsubscribeToEvents();
         }
+        
+        public void GeneratePool() {
+            _poolDictionary = new Dictionary<string, Queue<GameObject>>();
+            
+            foreach (var pool in _pools) {
+                Queue<GameObject> objectPool = new Queue<GameObject>();
+                
+                for (int i = 0; i < pool.size; i++) {
+                    var obj = Instantiate(pool.prefab);
+                    obj.SetActive(false);
+                    objectPool.Enqueue(obj);
+                }
+                
+                _poolDictionary.Add(pool.tag, objectPool);
+            }
+        }
 
+        private GameObject GetFromPool(string tag, Vector3 position, Quaternion rotation) {
+            if (!_poolDictionary.ContainsKey(tag)) {
+                return null;
+            }
+
+            var objectToSpawn = _poolDictionary[tag].Dequeue();
+            objectToSpawn.transform.position = position;
+            objectToSpawn.transform.rotation = rotation;
+            
+            _poolDictionary[tag].Enqueue(objectToSpawn);
+            return objectToSpawn;
+        }
+        
         private void SetDifficulty() {
             if (_isHardScriptableBoolValue.value) {
-                _spawnCooldown = 2f;
+                _spawnCooldown = 1f;
             }
             else {
                 _spawnCooldown = 5f;
@@ -82,28 +125,31 @@ namespace Game {
 
         private void SpawnCar() {
             var randomRoad = Random.Range(-1, 2);
-            var randomCar = Random.Range(0, _carPrefabs.Count);
-            var _carPrefab = _carPrefabs[randomCar];
+            var randomCar = Random.Range(0, _pools.Count);
+            var tag = _pools[randomCar].tag;
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefab, position, Quaternion.Euler(0f, 180f, 0f));
-            _cars.Add(car);
+            var car = GetFromPool(tag, position, Quaternion.Euler(0f, 180f, 0f));
+            car.SetActive(true);
         }
 
         private void HandleCarsBehindPlayer() {
-            for (int i = _cars.Count - 1; i > -1; i--) {
-                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
-                    _cars.RemoveAt(i);
+            foreach (var pool in _pools) {
+                var tag = pool.tag;
+                for (int i = _poolDictionary.Count - 1; i > -1; i--) {
+                    var car = _poolDictionary[tag].Peek();
+                    if (_playerPositionZ.value - car.transform.position.z > _distanceToPlayerToDestroy) {
+                        car.SetActive(false);
+                    }
                 }
             }
         }
 
-        private bool ListHasDuplicates(List<GameObject> list) {
+        private bool ListHasDuplicates(List<Pool> list) {
             var hasDuplicates = false;
 
-            var set = new HashSet<GameObject>();
-            foreach (var car in list) {
-                if (!set.Add(car)) {
+            var set = new HashSet<Pool>();
+            foreach (var pool in list) {
+                if (!set.Add(pool)) {
                     hasDuplicates = true;
                     break;
                 }
