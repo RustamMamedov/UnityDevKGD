@@ -18,18 +18,11 @@ namespace UI {
 	}
 
 	private IEnumerator LoadMenuScene() {
-
 	    var asyncOperation = SceneManager.LoadSceneAsync("Menu");
-	    asyncOperation.allowSceneActivation = false;
-	    while (asyncOperation.progress < .9f) {
+	    while (!asyncOperation.isDone) {
 		_sceneLoadingValue.value = asyncOperation.progress;
 		yield return null;
 	    }
-
-	    _sceneLoadingValue.value = 1f;
-
-	    yield return new WaitForSeconds(2f);
-	    asyncOperation.allowSceneActivation = true;
 	}
     }
 }
