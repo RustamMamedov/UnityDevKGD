@@ -36,6 +36,10 @@ namespace Game {
                 CarDodgedHandler();
         }
 
+        public void SetActive() {
+            _isCarDodged = false;
+        }
+
         private void CarDodgedHandler() {
             if (!_isCarDodged) {
                 if (transform.position.z < _playerPositionZValue.value - _enemyCarBC.size.z + 1) {
