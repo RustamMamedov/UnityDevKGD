@@ -2,6 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Audio;
+using UI;
+using Game;
+using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 namespace UI {
 
@@ -24,6 +28,18 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
 
+        [SerializeField]
+        private ScriptableIntValue _currentScore;
+
+        [SerializeField]
+        private ScriptableIntValue[] _currentScoreCar;
+
+        [SerializeField]
+        private Text[] _scoreText;
+
+        [SerializeField]
+        private Text _score;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -44,6 +60,14 @@ namespace UI {
         }
 
         public void LoadGameplay() {
+            _currentScore.value = 0;
+            _score.text = "0";
+            _currentScoreCar[0].value = 0;
+            _currentScoreCar[1].value = 0;
+            _currentScoreCar[2].value = 0;
+            _scoreText[0].text = "0";
+            _scoreText[1].text = "0";
+            _scoreText[2].text = "0";
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
