@@ -26,7 +26,7 @@ namespace Game {
         
         
 #region LifeCycle
-        private void OnEnable() {
+        protected virtual void OnEnable() {
             SubscribeToEvents();
         }
 
