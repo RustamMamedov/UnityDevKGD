@@ -37,7 +37,6 @@ namespace UI {
 #endif
 
             _touchSide.value = touchPosition.x > Screen.width * 0.5 ? 1 : -1;
-            Debug.Log($"_touchSideValue{_touchSide.value}");
             _touchEventDispatcher.Dispatch();
             _touchSide.value = 0;
         }

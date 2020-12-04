@@ -43,7 +43,6 @@ namespace UI {
             while(_currentScoreView < newScore) {
                 _currentScoreView++;
                 _scoreLabel.text = $"{_currentScoreView}";
-                Debug.Log(_currentScoreView);
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
             isScoreChanging = false;

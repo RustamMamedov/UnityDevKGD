@@ -23,7 +23,6 @@ namespace Game {
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
-                Debug.Log("Crashed with: " + transform.name);
             }
 
             if (other.CompareTag("PlayerDodge")) {
