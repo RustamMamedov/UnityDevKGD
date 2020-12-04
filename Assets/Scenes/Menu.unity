@@ -154,6 +154,7 @@ MonoBehaviour:
   _menuScreen: {fileID: 301847198041842670}
   _gameScreen: {fileID: 8094019299644504325}
   _leaderboardScreen: {fileID: 963392243}
+  _settingsScreen: {fileID: 2055334307}
   _musicManager: {fileID: 1125902667}
   _currentScore: {fileID: 11400000, guid: 5dd6517f7ad111f4ca62cb29aa8a82b8, type: 2}
   _currentScoreCar:
@@ -1133,6 +1134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2055334307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7893637346968703942, guid: 2a864ad147a0fa940be0ee6dc663bf53,
+    type: 3}
+  m_PrefabInstance: {fileID: 3233797828851283919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2138521297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,6 +1289,11 @@ PrefabInstance:
       propertyPath: _scoreText.Array.data[2]
       value: 
       objectReference: {fileID: 913595315}
+    - target: {fileID: 521385157711673535, guid: 0408770611ad84acb8fbc1797b7124bb,
+        type: 3}
+      propertyPath: _settingsButton
+      value: 
+      objectReference: {fileID: 301847198041842671}
     - target: {fileID: 1191235672011936275, guid: 0408770611ad84acb8fbc1797b7124bb,
         type: 3}
       propertyPath: _audioSourcePlayer
@@ -1416,6 +1428,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 301847198041842669}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &301847198041842671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3324264227461739703, guid: 0408770611ad84acb8fbc1797b7124bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 301847198041842669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &597247755328742911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1646,6 +1670,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SettingsScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7893637346968703942, guid: 2a864ad147a0fa940be0ee6dc663bf53,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a864ad147a0fa940be0ee6dc663bf53, type: 3}
