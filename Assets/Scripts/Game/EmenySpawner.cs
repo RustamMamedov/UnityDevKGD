@@ -108,7 +108,6 @@ namespace Game {
                 Stack<GameObject> empty=new Stack<GameObject>();   
                 _carStacks.Add(empty);
                 for (int j = 0; j < _startedCountStack; j++) {
-                    Debug.Log(_carsPrefab[i]);
                     PutInStack(CreateCar(_carsPrefab[i]),i);
                 }
             }
@@ -156,7 +155,7 @@ namespace Game {
             var car = GetFromStack(carStack1);
             car.transform.position = position;
             _cars.Add(new CarAndType(car, carStack1));
-            if ((_gameMode.value == 1)/*&& (Random.Range(0, 2) == 0)*/) {
+            if ((_gameMode.value == 1)&& (Random.Range(0, 2) == 0)) {
                 var rand = Random.Range(1, 3);
                 int randomRoad2= randomRoad == 0? rand * 2 - 3: randomRoad * (1 - rand);
                 var position2 = new Vector3((float)randomRoad2 * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn + Random.Range(-_distanceToPlayerToSpawn * 0.4f, _distanceToPlayerToSpawn * 0.4f));
