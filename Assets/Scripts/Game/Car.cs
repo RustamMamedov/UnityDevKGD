@@ -29,11 +29,11 @@ namespace Game {
 
         // Life cycle.
 
-        private void OnEnable() {
+        protected virtual void OnEnable() {
             SubscribeToEvents();
         }
 
-        private void OnDisable() {
+        protected virtual void OnDisable() {
             UnsubscribeFromEvents();
         }
 
