@@ -27,6 +27,9 @@ namespace Game {
         private float _distanceToPlayerToDestroy;
 
         [SerializeField]
+        private int _maxCarsInStack = 3;
+
+        [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
@@ -34,7 +37,15 @@ namespace Game {
 
         private int _difficulty;
         private float _currentTimer;
-        private List<GameObject> _cars = new List<GameObject>();
+        private List<List<Transform>> _cars = new List<List<Transform>>();
+        private List<Stack<Transform>> _carStacks = new List<Stack<Transform>>();
+
+        private void Start() {
+            for (int i = 0; i < _carPrefabs.Count; i++) {
+                GenerateCarPool(_carPrefabs[i]);
+                _cars.Add(new List<Transform>());
+            }
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -54,6 +65,12 @@ namespace Game {
             _carCollisionListener.OnEventHappened -= OnCarCollision;
         }
 
+        public void SetDifficulty(float difficulty) {
+            float difficultyCoefficient = 1f / (difficulty + 1);
+            _spawnCooldown *= difficultyCoefficient;
+            _maxCarsInStack += ((int) difficulty * 2);
+        }
+
         private void OnCarCollision() {
             UnsubscribeToEvents();
         }
@@ -67,7 +84,11 @@ namespace Game {
             }
             _currentTimer = 0f;
 
-            var usedRoad = -1;
+            AddNewCar();
+        }
+
+        private void AddNewCar() {
+            var usedRoad = -2;
             var randomRoad = Random.Range(-1, 2);
 
             for (int i = 0; i < Random.Range(1, 3); i++) {
@@ -75,25 +96,61 @@ namespace Game {
                     randomRoad = Random.Range(-1, 2);
                 }
                 usedRoad = randomRoad;
+
                 SpawnCar(randomRoad);
             }
         }
 
         private void SpawnCar(int road) {
-            var position = new Vector3(1f * road * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var randomCar = _carPrefabs[Random.Range(0, _carPrefabs.Count)];
-            var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
+            var carIndex = Random.Range(0, _carPrefabs.Count);
+            var car = GetCarFromStack(carIndex);
 
-            _cars.Add(car);
+            car.position = new Vector3(1f * road * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            _cars[carIndex].Add(car);
         }
 
         private void HandleCarsBehindPlayer() {
-            for (int i = _cars.Count - 1; i > -1; i--) {
-                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
-                    _cars.RemoveAt(i);
+            for (int i = 0; i < _cars.Count; i++) {
+                for (int j = _cars[i].Count - 1; j > -1; j--) {
+                    if (_playerPositionZ.value - _cars[i][j].transform.position.z > _distanceToPlayerToDestroy) {
+                        SetCarToStack(i, _cars[i][j]);
+                        _cars[i].RemoveAt(j);
+                    }
                 }
             }
+        }
+
+        private void SetCarToStack(int index, Transform car) {
+            car.gameObject.SetActive(false);
+            _carStacks[index].Push(car);
+        }
+
+        private void GenerateCarPool(GameObject carPrefab) {
+            var carStack = new Stack<Transform>();
+
+            for (int i = 0; i < _maxCarsInStack; i++) {
+                carStack.Push(CreateCar(carPrefab).transform);
+            }
+
+            _carStacks.Add(carStack);
+        }
+
+        private Transform GetCarFromStack(int index) {
+            if (_carStacks[index].Count == 0) {
+                _carStacks[index].Push(CreateCar(_carPrefabs[index]).transform);
+            }
+
+            var car = _carStacks[index].Pop();
+            car.gameObject.SetActive(true);
+
+            return car;
+        }
+
+        private GameObject CreateCar(GameObject carPrefab) {
+            var car = Instantiate(carPrefab, Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+            car.SetActive(false);
+
+            return car;
         }
 
         private bool ValidatePrefabs() {
@@ -109,11 +166,6 @@ namespace Game {
             }
 
             return isCorrect;
-        }
-
-        public void SetDifficulty(float difficulty) {
-            float difficultyCoefficient = 1f / (difficulty + 1);
-            _spawnCooldown *= difficultyCoefficient;
         }
     }
 }
