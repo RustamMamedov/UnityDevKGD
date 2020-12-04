@@ -248,8 +248,9 @@ MonoBehaviour:
   _roadPrefab: {fileID: 489200510171849154, guid: 4fa7824a621d72c419d77f7c478045eb,
     type: 3}
   _directionalLight: {fileID: 2140044440}
-  _initialRoadNumber: 10
-  _roadLength: 12
+  _initialRoadNumber: 3
+  _initialStackRoadNumber: 3
+  _roadLength: 60
 --- !u!108 &842968395 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5883920664537865632, guid: 8952388f882d347438563c4e45e6ce50,
@@ -873,6 +874,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716652142058707023, guid: 92d23f39f685e6c47a2e6a5cb92a001a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92d23f39f685e6c47a2e6a5cb92a001a, type: 3}
