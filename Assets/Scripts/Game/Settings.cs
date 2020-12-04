@@ -56,8 +56,6 @@ namespace Game {
             
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(SETTINGS_KEY, json);
-            
-            Debug.Log("Json: " + json);
         }
         
         private void LoadFromPlayerPrefs() {
@@ -70,7 +68,6 @@ namespace Game {
             _difficultAsset.value = wrapper.difficult;
             _nightAsset.value = wrapper.night;
             
-            Debug.Log("Settings loaded!");
             _settingsLoaded.Dispatch();
         }
 

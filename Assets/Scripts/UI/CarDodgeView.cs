@@ -44,7 +44,6 @@ namespace UI {
             if (String.IsNullOrEmpty(_carDodgedName.value)) {
                 return;
             }
-            Debug.Log(_carDodgedName.value);
 
             if (_carSettings.name == _carDodgedName.value) {
                 _carCounterText.text = $"{++_carCounter}";

@@ -129,7 +129,6 @@ namespace Game {
             }
             
             _dataSavedEventDispatcher.Dispatch();
-            Debug.Log(_saveDatas.Count + " count");
         }
 #endregion
 
@@ -201,8 +200,6 @@ namespace Game {
             
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
-            
-            Debug.Log("Json: " + json);
         }
 
         private void LoadFromFile() {
