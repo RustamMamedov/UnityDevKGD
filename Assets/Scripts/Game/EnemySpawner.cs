@@ -119,7 +119,6 @@ namespace Game {
                     var distanceToSpawnedCar = _cars[0].transform.position.z - _playerPositionZ.value;
 
                     if (distanceToSpawnedCar < _distanceToCountScore && _scoreCountAllow) {
-                        Debug.Log("3");
                         var scoreLabel = UIManager.Instance.GameScreen.transform.GetChild(0).GetChild(0).GetComponent<Text>();
 
                         var enemyCar = _cars[0].GetComponent<EnemyCar>();
