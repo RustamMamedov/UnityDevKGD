@@ -93,7 +93,7 @@ namespace Game {
         }
 
         private void SpawnCar() {
-            if (_cars.Count < 12) {
+            if (_cars.Count < _initialStackCarNumber) {
                 var car = GetCarFromStack();
                 _cars.Add(car);
             }
