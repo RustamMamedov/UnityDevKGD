@@ -13,7 +13,7 @@ namespace Audio {
         private AudioSoursePlayer _gameMusicPlayer;
 
 
-        private AudioSource menuPlayer => _menuMusicPlayer._audioSourse;
+        public AudioSource menuPlayer => _menuMusicPlayer._audioSourse;
         private AudioSource gamePlayer => _gameMusicPlayer._audioSourse;
 
         public void PlayMenuMusic() {

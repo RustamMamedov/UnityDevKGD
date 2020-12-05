@@ -43,6 +43,9 @@ namespace UI {
         [SerializeField]
         private Text _score;
 
+        [SerializeField]
+        private ScriptableFloatValue _music;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -97,10 +100,9 @@ namespace UI {
         }
 
         public void ShowMenuScreen() {
-            HideAllScreens();
-            _menuScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();
-
+                HideAllScreens();
+                _menuScreen.SetActive(true);
+                _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
@@ -117,6 +119,7 @@ namespace UI {
         public void ShowSettingsScreen() {
             HideAllScreens();
             _settingsScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void HideAllScreens() {
@@ -133,6 +136,7 @@ namespace UI {
                 _leaderboardScreen.SetActive(false);
             }
             if (_settingsScreen.activeSelf == true) {
+                _musicManager.StopMenuMusic();
                 _settingsScreen.SetActive(false);
             }
         }
