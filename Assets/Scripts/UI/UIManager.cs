@@ -27,6 +27,9 @@ namespace UI {
         [SerializeField]
         private MusicManager _musicManager;
 
+        [SerializeField]
+        private SettingsScreen _save;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -38,7 +41,8 @@ namespace UI {
         }
 
         private void Start() {
-            ShowMenuScreen();
+            _save.LoadFromPlayerPrefs();
+            ShowMenuScreen(_save.getVolume());
         }
 
         public void LoadMenu() {
@@ -55,7 +59,7 @@ namespace UI {
         private void LoadMenuScene() {
             _fader.OnFadeOut -= LoadMenuScene;
             StartCoroutine(LoadSceneCoroutine("Menu"));
-            ShowMenuScreen();
+            ShowMenuScreen(_save.getVolume());
         }
 
         private void LoadGameplayScene() {
@@ -73,10 +77,10 @@ namespace UI {
             _fader.FadeIn();
         }
 
-        public void ShowMenuScreen() {
+        public void ShowMenuScreen(float maxVolume) {
             HideAllScreens();
             _menuScreen.SetActive(true);
-            _musicManager.PlayMenuMusic();
+            _musicManager.PlayMenuMusic(maxVolume);
 
         }
 

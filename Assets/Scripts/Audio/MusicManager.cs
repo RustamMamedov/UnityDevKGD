@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UI;
 
 namespace Audio {
 
@@ -18,7 +19,8 @@ namespace Audio {
 
         private float maxVolume = 0.5f;
 
-        public void PlayMenuMusic() {
+        public void PlayMenuMusic(float volume) {
+            maxVolume = volume;
             _menuMusicPlayer.Play();
             RiseMusicVolume(menuPlayer);
         }

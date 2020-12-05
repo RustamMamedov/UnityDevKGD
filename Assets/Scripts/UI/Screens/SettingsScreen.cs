@@ -10,6 +10,8 @@ namespace UI {
 
     public class SettingsScreen : MonoBehaviour {
 
+        public static SettingsScreen Instance;
+
         [SerializeField]
         private Button _backButton;
 
@@ -41,10 +43,13 @@ namespace UI {
         }
 
         private static SaveData _saveData;
+        public static SaveData SavedData => _saveData;
 
         private const string RECORDS_KEY = "settings";
 
         private void Awake() {
+
+            Instance = this;
             _backButton.onClick.AddListener(OnBackButtonClick);
             _confirmButton.onClick.AddListener(OnConfirmButtonClick);
         }
@@ -54,32 +59,20 @@ namespace UI {
             _soundVolume.value = _saveData.volume;
             _gamemode.isOn = _saveData.gamemode;
             _daytime.isOn = _saveData.daytime;
-        }
-
-        private void SaveForFirstTime() {
-            if (PlayerPrefs.HasKey("settings")) {
-                return;
-            }
-            var SettingsRecord = new SaveData {
-                volume = 0.5f,
-                gamemode = false,
-                daytime = false
-            };
-
-            _saveData = SettingsRecord;
-            SaveDataToPlayerPrefs();
+            AudioListener.volume = _soundVolume.value;
         }
 
         private void OnBackButtonClick() {
             _soundVolume.value = _saveData.volume;
             _gamemode.isOn = _saveData.gamemode;
             _daytime.isOn = _saveData.daytime;
-            UIManager.Instance.ShowMenuScreen();
+            UIManager.Instance.ShowMenuScreen(_saveData.volume);
         }
 
         public void OnConfirmButtonClick() {
+            AudioListener.volume = _soundVolume.value;
             StartSaveProcess(_soundVolume.value, _gamemode.isOn, _daytime.isOn);
-            UIManager.Instance.ShowMenuScreen();
+            UIManager.Instance.ShowMenuScreen(_saveData.volume);
         }
 
         public void StartSaveProcess(float newVolume, bool newGamemode, bool newDaytime) {
@@ -92,7 +85,7 @@ namespace UI {
             SaveDataToPlayerPrefs();
         }
 
-        private void LoadFromPlayerPrefs() {
+        public void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;
             }
@@ -112,6 +105,23 @@ namespace UI {
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
 
+        }
+        public float getVolume() {
+            return _saveData.volume;
+        }
+        public bool getGamemode() {
+            return _saveData.gamemode;
+        }
+        public bool getDayTime() {
+            return _saveData.daytime;
+        }
+
+        public static SettingsScreen GetInstance() {
+            if (Instance == null) {
+                Instance = new SettingsScreen();
+            }
+
+            return Instance;
         }
     }
 }
