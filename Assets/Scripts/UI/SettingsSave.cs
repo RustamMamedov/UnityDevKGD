@@ -1,29 +1,15 @@
 ﻿using Events;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.UI;
+using Game;
 
 namespace UI {
 
-    public class SettingsScreen : MonoBehaviour {
+    public class SettingsSave : MonoBehaviour {
 
-        [SerializeField]
-        private Button _backButton;
-
-        [SerializeField]
-        private Button _confirmButton;
-
-        [SerializeField]
-        private Slider _soundVolume;
-
-        [SerializeField]
-        private Toggle _gamemode;
-
-        [SerializeField]
-        private Toggle _daytime;
+        public static SettingsSave Instance;
 
         [Serializable]
         public class SaveData {
@@ -44,42 +30,34 @@ namespace UI {
 
         private const string RECORDS_KEY = "settings";
 
+
         private void Awake() {
-            _backButton.onClick.AddListener(OnBackButtonClick);
-            _confirmButton.onClick.AddListener(OnConfirmButtonClick);
-        }
-
-        private void OnEnable() {
-            LoadFromPlayerPrefs();
-            _soundVolume.value = _saveData.volume;
-            _gamemode.isOn = _saveData.gamemode;
-            _daytime.isOn = _saveData.daytime;
-        }
-
-        private void SaveForFirstTime() {
-            if (PlayerPrefs.HasKey("settings")) {
-                return;
-            }
-            var SettingsRecord = new SaveData {
+            _saveData = new SaveData { 
                 volume = 0.5f,
                 gamemode = false,
                 daytime = false
             };
 
-            _saveData = SettingsRecord;
-            SaveDataToPlayerPrefs();
+            LoadFromPlayerPrefs();
+            
+            if (Instance != null) {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
         }
 
-        private void OnBackButtonClick() {
-            _soundVolume.value = _saveData.volume;
-            _gamemode.isOn = _saveData.gamemode;
-            _daytime.isOn = _saveData.daytime;
-            UIManager.Instance.ShowMenuScreen();
+        public float getVolume() {
+            return _saveData.volume;
         }
 
-        public void OnConfirmButtonClick() {
-            StartSaveProcess(_soundVolume.value, _gamemode.isOn, _daytime.isOn);
-            UIManager.Instance.ShowMenuScreen();
+        public bool getGamemode() {
+            return _saveData.gamemode;
+        }
+
+        public bool getDayTime() {
+            return _saveData.daytime;
         }
 
         public void StartSaveProcess(float newVolume, bool newGamemode, bool newDaytime) {
@@ -90,12 +68,13 @@ namespace UI {
                 daytime = newDaytime
             };
             SaveDataToPlayerPrefs();
-        }
+        }   
 
         private void LoadFromPlayerPrefs() {
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;
             }
+
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
             _saveData = wrapper.saveData;
         }
@@ -111,7 +90,15 @@ namespace UI {
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
-
         }
+
+        public static SettingsSave GetInstance() {
+            if (Instance == null) {
+                Instance = new SettingsSave();
+            }
+
+            return Instance;
+        }
+
     }
 }

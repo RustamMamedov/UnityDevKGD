@@ -16,6 +16,8 @@ namespace Audio {
         private AudioSource menuPlayer => _menuMusicPlayer.audioSource;
         private AudioSource gamePlayer => _gameMusicPlayer.audioSource;
 
+        private float maxVolume = 0.5f;
+
         public void PlayMenuMusic() {
             _menuMusicPlayer.Play();
             RiseMusicVolume(menuPlayer);
@@ -51,11 +53,11 @@ namespace Audio {
         }
 
         private IEnumerator MusicLowCoroutine(AudioSource player) {
-            yield return StartCoroutine(ChangeMusicVolumeCoroutine(player, 0.07f, 0f));
+            yield return StartCoroutine(ChangeMusicVolumeCoroutine(player, maxVolume, 0f));
         }
 
         private IEnumerator MusicRiseCoroutine(AudioSource player) {
-            yield return StartCoroutine(ChangeMusicVolumeCoroutine(player, 0f, 0.07f));
+            yield return StartCoroutine(ChangeMusicVolumeCoroutine(player, 0f, maxVolume));
         }
 
         private IEnumerator ChangeMusicVolumeCoroutine(AudioSource player , float fromVolume, float toVolume) {
@@ -67,6 +69,10 @@ namespace Audio {
                 player.volume = Mathf.Lerp(player.volume, toVolume, timer / 3f);
                 yield return null;
             }
+        }
+
+        public void setMaxVolume(float newVolume) {
+            maxVolume = newVolume;
         }
     }
 }
