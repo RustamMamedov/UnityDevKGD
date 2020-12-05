@@ -24,13 +24,7 @@ namespace Game {
         [Serializable]
         private class SavedDataWrapper {
 
-            public List<SaveData> saveDatas;
-        }
-
-        private enum SaveType {
-
-            PlayerPrefs,
-            File
+            public SaveData saveData;
         }
 
         [SerializeField]
@@ -42,101 +36,53 @@ namespace Game {
         [SerializeField]
         private Slider _volume;
 
-        [SerializeField]
-        [InfoBox("PlayerPrefs", "IsPlayerPrefs")]
-        [InfoBox("$FilePath", "IsFile")]
-        private SaveType _saveType;
 
-        private bool IsFile() {
-            return _saveType == SaveType.File;
-        }
-        private bool IsPlayerPrefs() {
-            return _saveType == SaveType.PlayerPrefs;
-        }
-
-        private static List<SaveData> _saveDatas;
-        public static List<SaveData> SavedDatas => _saveDatas;
+        private static SaveData _saveData;
+        public static SaveData SavedData => _saveData;
         private const string RECORDS_KEY = "settings";
-        private string _filePath;
-        private string FilePath => Path.Combine(Application.persistentDataPath, "data.txt");
 
         private void Awake() {
-            _saveDatas = new List<SaveData>();
-            _filePath = Path.Combine(Application.persistentDataPath, "data.txt");
-
-            if (_saveType == SaveType.PlayerPrefs) {
-                LoadFromPlayerPrefs();
-            } else {
-                LoadFromFile();
-            }
-
-            if (Instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-
             Instance = this;
+            LoadSave();
+
+
         }
 
-        public void StartSaveProcess() {
-            var newSet = new SaveData {
-                dayornight = _dayOrNight.value,
-                loworhight = _lowOrHight.value,
-                volume = _volume.value
+        public void LoadSave() {
+            LoadFromPlayerPrefs();
+            _volume.value = _saveData.volume;
+            _dayOrNight.value = _saveData.dayornight;
+            _lowOrHight.value = _saveData.loworhight;
+            AudioListener.volume = _volume.value;
+        }
+        public void StartSaveProcess(float newVolume, int day, int low) {
+            _saveData = new SaveData {
+                volume = newVolume,
+                dayornight = day,
+                loworhight = low
             };
-            Debug.Log($"{ _volume.value }");
-            _saveDatas.Add(newSet);
-            if (_saveType == SaveType.PlayerPrefs) {
-                SaveDataToPlayerPrefs();
-            } else {
-                SaveToFile();
-            }
-
+            SaveDataToPlayerPrefs();
         }
         private void LoadFromPlayerPrefs() {
-            Debug.Log("load");
             if (!PlayerPrefs.HasKey(RECORDS_KEY)) {
                 return;
             }
 
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
-            _saveDatas = wrapper.saveDatas;
-            Debug.Log($"{_volume.value}");
+            _saveData = wrapper.saveData;
         }
 
         private SavedDataWrapper GetWrapper() {
             var wrapper = new SavedDataWrapper {
-                saveDatas = _saveDatas
+                saveData = _saveData
             };
             return wrapper;
         }
 
         private void SaveDataToPlayerPrefs() {
-            Debug.Log("save");
             var wrapper = GetWrapper();
             var json = JsonUtility.ToJson(wrapper);
             PlayerPrefs.SetString(RECORDS_KEY, json);
-        }
-
-        private void LoadFromFile() {
-            if (!File.Exists(_filePath)) {
-                return;
-            }
-
-            var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = File.Open(_filePath, FileMode.Open)) {
-                var wrapper = (SavedDataWrapper)binaryFormatter.Deserialize(fileStream);
-                _saveDatas = wrapper.saveDatas;
-            }
-        }
-
-        private void SaveToFile() {
-            var wrapper = GetWrapper();
-
-            var binaryFormatter = new BinaryFormatter();
-            using (FileStream fileStream = File.Open(_filePath, FileMode.OpenOrCreate)) {
-                binaryFormatter.Serialize(fileStream, wrapper);
-            }
         }
 
     }

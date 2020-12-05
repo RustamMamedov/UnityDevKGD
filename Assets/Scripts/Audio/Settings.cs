@@ -33,6 +33,9 @@ namespace UI {
         [SerializeField]
         private Button _gancelButton;
 
+        [SerializeField]
+        private Slider _volume;
+
         private void Awake() {
             _lowButton.onClick.AddListener(OnLowButtonClick);
             _hightButton.onClick.AddListener(OnHightButtonClick);
@@ -60,11 +63,12 @@ namespace UI {
         }
 
         private void OnOkButtonClick() {
-            SaveSettings.Instance.StartSaveProcess();
+            SaveSettings.Instance.StartSaveProcess(_volume.value,_dayOrNight.value,_lowOrHight.value);
             UIManager.Instance.ShowMenuScreen();
         }
 
         private void OnGancelButtonClick() {
+            SaveSettings.Instance.LoadSave();
             UIManager.Instance.ShowMenuScreen();
         }
     }
