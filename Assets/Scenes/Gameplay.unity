@@ -230,6 +230,7 @@ MonoBehaviour:
   _settings: {fileID: 0}
   _light: {fileID: 76971902}
   _constantLenghCar: 0
+  _backLight: {fileID: 0}
   _lightSettings: {fileID: 11400000, guid: cba85c666594bd94fb4ddda12f3009a8, type: 2}
 --- !u!1001 &523909601
 PrefabInstance:
@@ -733,6 +734,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7040023383652349227, guid: 56281d98a4ea7ce448d8231fc6c6951f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288511125319853540, guid: 56281d98a4ea7ce448d8231fc6c6951f,
+        type: 3}
+      propertyPath: _initialRoadNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288511125319853540, guid: 56281d98a4ea7ce448d8231fc6c6951f,
+        type: 3}
+      propertyPath: _roadLength
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7288511125319853542, guid: 56281d98a4ea7ce448d8231fc6c6951f,
         type: 3}
       propertyPath: m_LocalPosition.x
