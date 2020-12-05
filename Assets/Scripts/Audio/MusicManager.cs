@@ -46,6 +46,9 @@ namespace Audio {
             _updateEventListener.OnEventHappened += OnUpdate;
 
             _currentPlayer = _menuMusicPlayer;
+        }
+
+        private void Start() {
             _menuMusicPlayer.Play();
         }
 
