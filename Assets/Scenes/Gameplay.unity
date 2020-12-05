@@ -182,6 +182,7 @@ MonoBehaviour:
   _roadPrefab: {fileID: 489200510171849154, guid: 4fa7824a621d72c419d77f7c478045eb,
     type: 3}
   _initialRoadNumber: 8
+  _initialStackRoadNumber: 5
   _roadLength: 24
 --- !u!1001 &988531736
 PrefabInstance:
@@ -347,6 +348,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarLightLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 6317252624579012894, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6587317575768819769, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
       propertyPath: m_RootOrder
@@ -411,6 +417,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8653013381712800171, guid: 8952388f882d347438563c4e45e6ce50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8758390476335492440, guid: 8952388f882d347438563c4e45e6ce50,
         type: 3}
@@ -660,7 +671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1916129996
 Light:
   m_ObjectHideFlags: 0
