@@ -7,11 +7,6 @@ using Game;
 namespace UI {
     public class Settings : MonoBehaviour {
 
-        [SerializeField]
-        Slider _sliderVolume;
-
-        [SerializeField]
-        private ScriptableFloatValue _volumeMusic;
 
         [SerializeField]
         private Button _lowButton;
@@ -37,14 +32,12 @@ namespace UI {
         [SerializeField]
         private Button _gancelButton;
 
-        private void Update() {
+        private void Awake() {
             _lowButton.onClick.AddListener(OnLowButtonClick);
             _hightButton.onClick.AddListener(OnHightButtonClick);
             _dayButton.onClick.AddListener(OnDayButtonClick);
             _nightButton.onClick.AddListener(OnNightButtonClick);
            
-            _volumeMusic.value= _sliderVolume.value;
-            AudioListener.volume = _volumeMusic.value;
             _okButton.onClick.AddListener(OnOkButtonClick);
             _gancelButton.onClick.AddListener(OnGancelButtonClick);
         }
