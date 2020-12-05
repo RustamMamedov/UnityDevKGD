@@ -10,7 +10,8 @@ namespace UI {
     public class ScoreView: MonoBehaviour {
 
         [SerializeField] private float _scoreCountDelay;
-        private int _currentScore; 
+        [SerializeField]
+        private ScriptableIntValue _currentScore; 
         [SerializeField] ScriptableIntValue _assetScore;
         [SerializeField] EventListener _updateEventListener;
         [SerializeField] Text _scoreLabel;
@@ -20,17 +21,19 @@ namespace UI {
         }
 
         private void UpdateBehaviour() {
-            if (_currentScore < _assetScore.value) {
+            if (_currentScore.value < _assetScore.value) {
+                Debug.Log($"{_assetScore}");
+                Debug.Log($"{_assetScore.value}");
                 StartCoroutine(SetScoreCoroutine(_assetScore.value));
             }
         }
 
         private IEnumerator SetScoreCoroutine(int assetScore) {
-            while (_currentScore != assetScore) {
-                if (_currentScore < assetScore) {
-                    _currentScore++;
+            while (_currentScore.value != assetScore) {
+                if (_currentScore.value < assetScore) {
+                    _currentScore.value++;
                 }
-                _scoreLabel.text = $"{_currentScore}";
+                _scoreLabel.text = $"{_currentScore.value}";
                 yield return new WaitForSeconds(_scoreCountDelay);
             }
         }

@@ -35,6 +35,9 @@ namespace UI {
         private ScriptableIntValue _currentScore;
 
         [SerializeField]
+        private ScriptableIntValue[] _curr;
+
+        [SerializeField]
         private ScriptableIntValue[] _currentScoreCar;
 
         [SerializeField]
@@ -66,6 +69,10 @@ namespace UI {
         }
 
         public void LoadGameplay() {
+            _curr[0].value = 0;
+            _curr[1].value = 0;
+            _curr[2].value = 0;
+            _curr[3].value = 0;
             _currentScore.value = 0;
             _score.text = "0";
             _currentScoreCar[0].value = 0;
