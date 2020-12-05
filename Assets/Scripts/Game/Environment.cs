@@ -2,6 +2,7 @@
 using Events;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UI;
 
 namespace Game {
 

@@ -2,6 +2,7 @@
 using Events;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UI;
 
 namespace Game {
 
@@ -48,6 +49,10 @@ namespace Game {
         private List<int> _carsIndexs = new List<int>();
 
         private void OnEnable() {
+            bool isHard = SettingsScreen.GetInstance().getGamemode();
+            if (isHard) {
+                _spawnCooldown /= 2;
+            }
             SubscribeToEvents();
         }
 
