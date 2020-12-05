@@ -22,8 +22,6 @@ namespace UI {
 
         private void UpdateBehaviour() {
             if (_currentScore.value < _assetScore.value) {
-                Debug.Log($"{_assetScore}");
-                Debug.Log($"{_assetScore.value}");
                 StartCoroutine(SetScoreCoroutine(_assetScore.value));
             }
         }
