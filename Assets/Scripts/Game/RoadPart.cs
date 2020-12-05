@@ -11,10 +11,10 @@ namespace Game {
         [SerializeField]
         private EventDispatcher _roadTriggerEventDispatcher;
 
-        private string tag = "Player";
+        private string _tag = "Player";
 
         private void OnTriggerEnter(Collider other) {
-            if (other.CompareTag(tag)) {
+            if (other.CompareTag(_tag)) {
                 _roadTriggerEventDispatcher.Dispatch();
             }
         }
