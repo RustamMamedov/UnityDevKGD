@@ -15,13 +15,21 @@ namespace Game {
         [SerializeField]
         private Light _light;
 
+        [SerializeField]
+        private ScriptableBoolValue _dayTimeGame;
+
         private void Awake() {
             if (_light == null) {
                 return;
             }
-
             _light.range = _carSettings.CarLight * 10f;
         }
+
+        private void OnEnable() {
+            if (_dayTimeGame.value) {
+                gameObject.SetActive(false);
+            }
+        } 
 
         private void OnDrawGizmosSelected() {
 
