@@ -22,7 +22,7 @@ namespace UI {
         }
 
 
-        private void ChangeTogglePosition(bool isOn) {
+        public void ChangeTogglePosition(bool isOn) {
             if (!isOn) {
                 _leftImage.color = new Color(255, 0, 0, 0);
                 _rightImage.color = new Color(0,255,0,255);

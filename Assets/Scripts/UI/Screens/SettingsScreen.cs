@@ -48,8 +48,6 @@ namespace UI {
         private const string RECORDS_KEY = "settings";
 
         private void Awake() {
-
-            Instance = this;
             _backButton.onClick.AddListener(OnBackButtonClick);
             _confirmButton.onClick.AddListener(OnConfirmButtonClick);
         }
@@ -66,6 +64,7 @@ namespace UI {
             _soundVolume.value = _saveData.volume;
             _gamemode.isOn = _saveData.gamemode;
             _daytime.isOn = _saveData.daytime;
+            AudioListener.volume = _saveData.volume;
             UIManager.Instance.ShowMenuScreen(_saveData.volume);
         }
 
@@ -91,6 +90,7 @@ namespace UI {
             }
             var wrapper = JsonUtility.FromJson<SavedDataWrapper>(PlayerPrefs.GetString(RECORDS_KEY));
             _saveData = wrapper.saveData;
+            AudioListener.volume = _saveData.volume;
         }
 
         private SavedDataWrapper GetWrapper() {
@@ -122,6 +122,10 @@ namespace UI {
             }
 
             return Instance;
+        }
+
+        public void ChangeVolume(float newVolume) {
+            AudioListener.volume = newVolume;
         }
     }
 }
