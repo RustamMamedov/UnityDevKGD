@@ -20,8 +20,22 @@ namespace Game {
         [SerializeField]
         private List<CarSettings> _carSettings = new List<CarSettings>();
 
+        private float _hightSpawnCooldown =3.0f;
+
+        private float _lowSpawnCooldown = 8.0f;
+
+        private enum SpawnCooldown {
+            Low,
+            Hight
+        }
+
         [SerializeField]
+        private SpawnCooldown _spawn;
+
         private float _spawnCooldown;
+
+        [SerializeField]
+        private ScriptableIntValue _lowOrHight;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
@@ -72,6 +86,16 @@ namespace Game {
         private void UpdateBehaviour() {
             HandleCarsBehindPlayer();
 
+            if (_lowOrHight.value == 1) {
+                _spawn =SpawnCooldown.Low;
+            } else {
+                _spawn = SpawnCooldown.Hight;
+            }
+            if (_spawn == SpawnCooldown.Low) {
+                _spawnCooldown = _lowSpawnCooldown;
+            } else {
+                _spawnCooldown = _hightSpawnCooldown;
+            }
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
                 return;

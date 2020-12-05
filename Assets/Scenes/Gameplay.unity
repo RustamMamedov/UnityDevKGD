@@ -222,6 +222,8 @@ MonoBehaviour:
   _lightCar:
   - {fileID: 5736378487310757803}
   - {fileID: 5736378487310757802}
+  - {fileID: 5736378487310757805}
+  - {fileID: 5736378487310757804}
   _lightDir: {fileID: 1339377557}
   _dayOrNight: {fileID: 11400000, guid: 6ee975a8b6c14fa4bb31a37dee5ad778, type: 2}
 --- !u!4 &1079827482
@@ -745,6 +747,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5736378487310757800}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5736378487310757804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3596156814742027967, guid: 8952388f882d347438563c4e45e6ce50,
+    type: 3}
+  m_PrefabInstance: {fileID: 5736378487310757800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5736378487310757805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8945292003724751187, guid: 8952388f882d347438563c4e45e6ce50,
+    type: 3}
+  m_PrefabInstance: {fileID: 5736378487310757800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6939904395120717616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,7 +878,7 @@ PrefabInstance:
     - target: {fileID: 6939904395938316913, guid: a1bfc4669ffd9ab45adf7876d7703b6b,
         type: 3}
       propertyPath: _spawnCooldown
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6939904395938316913, guid: a1bfc4669ffd9ab45adf7876d7703b6b,
         type: 3}
@@ -883,6 +897,22 @@ PrefabInstance:
       propertyPath: _dodgeScores.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 2ebb7dbd3c1a89c4c927eecb8920be05,
+        type: 2}
+    - target: {fileID: 6939904395938316913, guid: a1bfc4669ffd9ab45adf7876d7703b6b,
+        type: 3}
+      propertyPath: _spawnCooldownn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939904395938316913, guid: a1bfc4669ffd9ab45adf7876d7703b6b,
+        type: 3}
+      propertyPath: _spawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939904395938316913, guid: a1bfc4669ffd9ab45adf7876d7703b6b,
+        type: 3}
+      propertyPath: _lowOrHight
+      value: 
+      objectReference: {fileID: 11400000, guid: 33ae1ff1ad6f3ae4782be0e57f7e0b16,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1bfc4669ffd9ab45adf7876d7703b6b, type: 3}
