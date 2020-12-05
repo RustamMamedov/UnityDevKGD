@@ -34,6 +34,9 @@ namespace Game {
 	[SerializeField]
 	private ScriptableFloatValue _roadWidth;
 
+	[SerializeField]
+	private ScriptableBoolValue _hardGameMode;
+
 	private float _currentTimer;
 	private List<GameObject> _cars = new List<GameObject>();
 
@@ -47,6 +50,12 @@ namespace Game {
 		}
 	    }
 	    return isTrue;
+	}
+
+	private void Awake() {
+	    if (_hardGameMode.value) {
+		_spawnCooldown /= 2.5f;
+	    }
 	}
 
 	private void OnEnable() {
@@ -86,6 +95,7 @@ namespace Game {
 
 	private void SpawnCar() {
 	    var randomRoad = Random.Range(-1, 2);
+	    var randomPrefabIndex = UnityEngine.Random.Range(0, _carPrefab.Count);
 	    var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
 
 	    var randomCar = Random.Range(0, 3);
