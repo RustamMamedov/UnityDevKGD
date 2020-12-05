@@ -18,6 +18,9 @@ namespace Game {
         private int _initialRoadNumber = 10;
 
         [SerializeField]
+        private int _initialStackRoadNumber = 5;
+
+        [SerializeField]
         private int _roadLength = 12;
 
         [SerializeField]
@@ -28,6 +31,8 @@ namespace Game {
 
         private List<Transform> _roadTransform;
 
+        private Stack<Transform> _stack;
+
         private void Start() {
             if (_illumination.value == 0) {
                 _light.gameObject.SetActive(true);
@@ -35,31 +40,73 @@ namespace Game {
             else {
                 _light.gameObject.SetActive(false);
             }
+            GeneratePool();
             GenerateRoad();
         }
         protected void OnEnable() {
             _roadCollisionEventListener.OnEventHappened += HandleRoadCollision;
         }
+
         protected void OnDisable() {
             _roadCollisionEventListener.OnEventHappened -= HandleRoadCollision;
         }
+
         private void GenerateRoad() {
             _roadTransform = new List<Transform>();
             for (int i = 0; i < _initialRoadNumber + 1; i++) {
+                var road = GetRoadFromStack();
                 var position = new Vector3(0f, 0f, (i - 1) * _roadLength);
-                var road = Instantiate(_roadPrefab, position, Quaternion.identity);
-                _roadTransform.Add(road.transform);
+                //var road = Instantiate(_roadPrefab, position, Quaternion.identity);
+                //_roadTransform.Add(road.transform);
+                road.position = position;
+                _roadTransform.Add(road);
             }
-           //_roadPrefab.SetActive(false);
         }
+
+        private GameObject CreateRoad() {
+            var road = Instantiate(_roadPrefab, Vector3.zero, Quaternion.identity);
+            road.SetActive(false);
+            return road;
+        }
+
+        private void GeneratePool() {
+            _stack = new Stack<Transform>();
+            for (int i = 0; i < _initialStackRoadNumber; i++) {
+                _stack.Push(CreateRoad().transform);
+            }
+        }
+
+        private Transform GetRoadFromStack() {
+            if (_stack.Count == 0) {
+                _stack.Push(CreateRoad().transform);
+            }
+
+            var road = _stack.Pop();
+            road.gameObject.SetActive(true);
+            return road;
+        }
+
+        private void SetRoadToStack(Transform road) {
+            road.gameObject.SetActive(false);
+            _stack.Push(road);
+        }
+
         private void HandleRoadCollision() {
-            MoveFirstRoadPart();
+            MoveRoadToStack();
+            CreateLastPartOfRoad();
         }
-        private void MoveFirstRoadPart() {
+        private void MoveRoadToStack() {
             var firstRoadPart = _roadTransform[0];
             _roadTransform.RemoveAt(0);
-            firstRoadPart.position = new Vector3(0f, 0f, _roadTransform[_roadTransform.Count - 1].position.z + _roadLength);
-            _roadTransform.Add(firstRoadPart);
+            //firstRoadPart.position = new Vector3(0f, 0f, _roadTransform[_roadTransform.Count - 1].position.z + _roadLength);
+            //_roadTransform.Add(firstRoadPart)
+            SetRoadToStack(firstRoadPart);
+        }
+
+        private void CreateLastPartOfRoad() {
+            var road = GetRoadFromStack();
+            road.position = new Vector3(0f, 0f, _roadTransform[_roadTransform.Count - 1].position.z + _roadLength);
+            _roadTransform.Add(road);
         }
     }
 }
