@@ -37,9 +37,25 @@ namespace Game {
         [SerializeField]
         private ScriptableIntValue _complexity;
 
-        private List<GameObject> _cars = new List<GameObject>();
+        private List<GameObject> _carsActive = new List<GameObject>();
+
+        private List<int> _carsActiveIndexStack = new List<int>();
+
+        private List<Stack<GameObject>> _cars;
 
         private float _currentTime;
+
+        private int canEmptyRoad = -2;
+
+        private int _carsSpawn = 2;
+
+        private void Awake() {
+            GenerateEnemyCarsStecks();
+        }
+
+        private void OnDestroy() {
+            DleteEnemyCarsStacks();
+        }
 
         private bool ValidationCarPrefab(List<GameObject> carPrefabs) {
             for (int i = 0; i < carPrefabs.Count; i++) {
@@ -84,31 +100,55 @@ namespace Game {
         }
 
         private void SpawnCar() {
-            var randomCar = _carPrefabs[Random.Range(0, 3)];
+            var randomCar = Random.Range(0, 3);
+            while (_cars[randomCar].Count == 0) {
+                randomCar = Random.Range(0, 3);
+            }
             var randomRoad = Random.Range(-1, 2);
+            while (canEmptyRoad == randomRoad) {
+                randomRoad = Random.Range(-1, 2);
+            }
+            canEmptyRoad = randomRoad;
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerDistanseZ.value + _distanceToPlaySpawn);
-            var car = Instantiate(randomCar, position, Quaternion.Euler(0f, 180f, 0f));
-            _cars.Add(car);
-            if (_complexity.value == 1) {
-                if (Random.Range(0, 2) % 2 == 0) {
-                    int randomRoad2;
-                    do {
-                        randomRoad2 = Random.Range(-1, 2);
-                    } while (randomRoad == randomRoad2);
-                    var position2 = new Vector3((float)randomRoad2 * _roadWidth.value, 0f, _playerDistanseZ.value + _distanceToPlaySpawn + Random.Range(-_distanceToPlaySpawn * 0.4f, _distanceToPlaySpawn * 0.4f));
-                    var car2 = Instantiate(_carPrefabs[Random.Range(0, _carPrefabs.Count)], position2, Quaternion.Euler(0f, 180f, 0f));
-                    _cars.Add(car2);
+            var car = _cars[randomCar].Pop();
+            car.transform.position = position;
+            car.SetActive(true);
+            _carsActive.Add(car);
+            _carsActiveIndexStack.Add(randomCar);
+        }
+
+        private void HendleCarBehaindPlayer() {
+            for (int i = _carsActive.Count - 1; i > -1; i--) {
+                if (_playerDistanseZ.value - _carsActive[i].transform.position.z > _distanceToPlayDestrou) {
+                    _cars[_carsActiveIndexStack[i]].Push(_carsActive[i]);
+                    _carsActive[i].SetActive(false);
+                    _carsActive.RemoveAt(i);
+                    _carsActiveIndexStack.RemoveAt(i);
                 }
             }
         }
 
-        private void HendleCarBehaindPlayer() {
-            for (int i = _cars.Count - 1; i > -1; i--) {
-                if (_playerDistanseZ.value - _cars[i].transform.position.z > _distanceToPlayDestrou) {
-                    Destroy(_cars[i]);
-                    _cars.RemoveAt(i);
+        private void GenerateEnemyCarsStecks() {
+            _cars = new List<Stack<GameObject>>();
+            for (int i = 0; i < _carPrefabs.Count; i++) {
+                _cars.Add(new Stack<GameObject>());
+                for (int j = 0; j < _carsSpawn; j++) {
+                    var car = Instantiate(_carPrefabs[i], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+                    car.SetActive(false);
+                    _cars[i].Push(car);
                 }
+            }
+        }
+
+        private void DleteEnemyCarsStacks() {
+            for (int i = 0; i < _cars.Count; i++) {
+                for (int j = 0; j < _cars[i].Count; j++) {
+                    var car = _cars[i].Pop();
+                    Destroy(car);
+                }
+                _cars.RemoveAt(i);
             }
         }
     }
 }
+ 

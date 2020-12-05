@@ -34,6 +34,7 @@ namespace Game {
 #region 3
         private void OnEnable() {
             SubscribeToEvent();
+            _dodged = false;
         }
         private void OnDisable() {
             UnsubscribeToEvent();
