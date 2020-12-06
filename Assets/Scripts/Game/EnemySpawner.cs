@@ -68,6 +68,7 @@ namespace Game {
 
 
         private void OnEnable() {
+            GeneratePool();
             SubscribeToEvents();
         }
 
