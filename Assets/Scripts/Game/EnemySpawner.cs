@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using Utils;
 
 namespace Game {
 
@@ -13,7 +14,7 @@ namespace Game {
         private EventListener _carCollisionListener;
 
         [SerializeField]
-        private List<GameObject> _carPrefabs;
+        private List<Car> _carPrefabs;
 
         [SerializeField]
         private float _spawnCooldown;
@@ -31,7 +32,16 @@ namespace Game {
         private ScriptableFloatValue _roadWidth;
 
         private float _currentTimer;
-        private List<GameObject> _cars = new List<GameObject>();
+        private List<Car> _cars = new List<Car>();
+
+        private Dictionary<string, SimpleGenericPool<Car>> _carPools;
+
+        private void Awake() {
+            _carPools = new Dictionary<string, SimpleGenericPool<Car>>();
+            for (int i = 0; i < _carPrefabs.Count; i++) {
+                _carPools[_carPrefabs[i].Name] = new SimpleGenericPool<Car>(_carPrefabs[i]);
+            }
+        }
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -64,20 +74,23 @@ namespace Game {
             }
             _currentTimer = 0f;
 
-            SpawnCar();
+            SpawnRandomCar();
         }
 
-        private void SpawnCar() {
+        private void SpawnRandomCar() {
             var randomRoad = Random.Range(-1, 2);
+            var randomCarInd = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[Random.Range(0, _carPrefabs.Count)], position, Quaternion.Euler(0f, 180f, 0f));
+            var car = _carPools[_carPrefabs[randomCarInd].name].Pop();
+            car.transform.position = position;
+            car.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             _cars.Add(car);
         }
 
         private void HandleCarsBehindPlayer() {
             for (int i = _cars.Count - 1; i > -1; i--) {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    Destroy(_cars[i]);
+                    _carPools[_cars[i].Name].Push(_cars[i]);
                     _cars.RemoveAt(i);
                 }
             }
