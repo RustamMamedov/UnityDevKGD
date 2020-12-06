@@ -365,6 +365,7 @@ Transform:
   - {fileID: 6179187908987037298}
   - {fileID: 5115158878387083269}
   - {fileID: 7511335664535252203}
+  - {fileID: 7318577471496452640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5350,6 +5351,73 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &2909254697122637060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7318577471496452640}
+  - component: {fileID: 310526048106494403}
+  - component: {fileID: 5038667923662793376}
+  m_Layer: 0
+  m_Name: Evaded
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7318577471496452640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909254697122637060}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42087388, y: 0.28132004, z: 3.1518219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4526053454235962}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310526048106494403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909254697122637060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28fd875aeb403245b17f1efea833c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carTriggerEventDispatcher: {fileID: 5038667923662793376}
+  _dodgeScores:
+  - {fileID: 11400000, guid: 2f0e09b9df9b4c04290fd3e1fb4059c7, type: 2}
+  - {fileID: 11400000, guid: c71de5c65e5568a4b9b2ed95e3d0de93, type: 2}
+  - {fileID: 11400000, guid: 2ebb7dbd3c1a89c4c927eecb8920be05, type: 2}
+  _carSettings:
+  - {fileID: 11400000, guid: 80d1433ac9a7ce54c88b6f44303a6298, type: 2}
+  - {fileID: 11400000, guid: ffa333c5396d9d2419d3d0edd4aaa072, type: 2}
+  - {fileID: 11400000, guid: 71a3c554a2761234cb8bcf585e7ff3ab, type: 2}
+  _currentScore: {fileID: 11400000, guid: 5dd6517f7ad111f4ca62cb29aa8a82b8, type: 2}
+--- !u!114 &5038667923662793376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2909254697122637060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 0}
 --- !u!1 &3195895654138093196
 GameObject:
   m_ObjectHideFlags: 0
