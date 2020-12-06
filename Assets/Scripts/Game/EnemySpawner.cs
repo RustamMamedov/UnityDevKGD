@@ -51,7 +51,7 @@ namespace Game {
 
         private List<int> _carsIndexs = new List<int>();
 
-        private Stack<Transform> _stack;
+        private List<Stack<Transform>> _stacks;
 
         private void OnEnable() {
             GeneratePool();
@@ -99,26 +99,27 @@ namespace Game {
             }
         }
 
-        private GameObject CreateCar() {
-            var randomCar = Random.Range(0, 3);
-            var car = Instantiate(_carPrefabs[randomCar], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+        private GameObject CreateCar(int carIndex) {
+            var car = Instantiate(_carPrefabs[carIndex], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
             car.SetActive(false);
             return car;
         }
 
         private void GeneratePool() {
-            _stack = new Stack<Transform>();
-            for (int i = 0; i < _initialStackCarNumber; i++) {
-                _stack.Push(CreateCar().transform);
+            _stacks = new List<Stack<Transform>>();
+            
+            for (int i = 0; i < 3; i++) {
+                Stack<Transform> stack = new Stack<Transform>();
+                _stacks.Add(stack);
+                for (int j = 0; j < _initialStackCarNumber; j++) {
+                    _stacks[i].Push(CreateCar(i).transform);
+                }
             }
         }
 
         private Transform GetCarFromStack() {
-            if (_stack.Count == 0) {
-                _stack.Push(CreateCar().transform);
-            }
-
-            var car = _stack.Pop();
+            var randomCar = Random.Range(0, 3);
+            var car = _stacks[randomCar].Pop();
             var randomRoad = Random.Range(-1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             car.position = position;
@@ -128,7 +129,8 @@ namespace Game {
 
         private void SetCarToStack(Transform car) {
             car.gameObject.SetActive(false);
-            _stack.Push(car);
+            var randomCar = Random.Range(0, 3);
+            _stacks[randomCar].Push(car);
         }
 
         private void MoveCarToStack() {
