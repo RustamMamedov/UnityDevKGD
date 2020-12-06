@@ -129,8 +129,18 @@ namespace Game {
 
         private void SetCarToStack(Transform car) {
             car.gameObject.SetActive(false);
-            var randomCar = Random.Range(0, 3);
-            _stacks[randomCar].Push(car);
+
+            switch (car.gameObject.name) {
+                case "FamilyCar(Clone)":
+                    _stacks[0].Push(car);
+                    break;
+                case "SUV(Clone)":
+                    _stacks[1].Push(car);
+                    break;
+                case "Truck(Clone)":
+                    _stacks[2].Push(car);
+                    break;
+            }
         }
 
         private void MoveCarToStack() {
