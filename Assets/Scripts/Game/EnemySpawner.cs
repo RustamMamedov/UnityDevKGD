@@ -47,6 +47,9 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
+        private int _initialStackCarNumber;
+
+        [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
         [SerializeField]
@@ -57,9 +60,12 @@ namespace Game {
 
         private float _currentTimer;
 
-        private List<GameObject> _cars = new List<GameObject>();
+        private List<Transform> _cars = new List<Transform>();
 
         private List<int> _carsIndexs = new List<int>();
+
+        private List<Stack<Transform>> _stacks;
+
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -106,27 +112,63 @@ namespace Game {
         }
 
         private void SpawnCar() {
-            var randomRoad = Random.Range(-1, 2);
-            int randomEnemy = Random.Range(0, 3);
-
-            _carsIndexs.Add(randomEnemy);
-
-            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
-            var car = Instantiate(_carPrefabs[randomEnemy], position, Quaternion.Euler(0f, 180f, 0f));
-            _cars.Add(car);
+            if (_cars.Count < _initialStackCarNumber) {
+                var car = GetCarFromStack();
+                _cars.Add(car);
+            }
         }
 
-        private void HandleCarsBehindPlayer() {
-            for (int i = _cars.Count - 1; i > -1; i--) {
-                if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
-                    _currentScore.value += _carSettings[_carsIndexs[i]].dodgeScore;
-                    _dodgeScores[_carsIndexs[i]].value++;
-                    Destroy(_cars[i]);
-                    _cars.RemoveAt(i);
-                    _carsIndexs.RemoveAt(i);
+
+        private GameObject CreateCar(int carIndex) {
+            var car = Instantiate(_carPrefabs[carIndex], Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
+            car.SetActive(false);
+            return car;
+        }
+
+        private void GeneratePool() {
+            _stacks = new List<Stack<Transform>>();
+
+            for (int i = 0; i < 3; i++) {
+                Stack<Transform> stack = new Stack<Transform>();
+                _stacks.Add(stack);
+                for (int j = 0; j < _initialStackCarNumber; j++) {
+                    _stacks[i].Push(CreateCar(i).transform);
                 }
             }
         }
+
+        private Transform GetCarFromStack() {
+            var randomCar = Random.Range(0, 3);
+            var car = _stacks[randomCar].Pop();
+            var randomRoad = Random.Range(-1, 2);
+            var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            car.position = position;
+            car.gameObject.SetActive(true);
+            return car;
+        }
+
+        private void SetCarToStack(Transform car) {
+            car.gameObject.SetActive(false);
+            var randomCar = Random.Range(0, 3);
+            _stacks[randomCar].Push(car);
+        }
+
+        private void MoveCarToStack() {
+            if (_cars.Count == 0) {
+                return;
+            }
+            var firstCar = _cars[0];
+            _cars.RemoveAt(0);
+            SetCarToStack(firstCar);
+        }
+
+        private void HandleCarsBehindPlayer() {
+            if (_cars.Count == _initialStackCarNumber && _playerPositionZ.value - _cars[0].position.z > _distanceToPlayerToDestroy) {
+                MoveCarToStack();
+            }
+        }
+
+
 
         private bool ValidateCarPrefs(List<GameObject> prefs) {
 
