@@ -21,6 +21,9 @@ namespace Game {
         [BoxGroup("Render")]
         public GameObject renderCarPrefab;
 
+        [BoxGroup("StarSettings")]
+        public float distanceToStar;
+
         [BoxGroup("Render")]
         public Vector3 renderCameraPos;
 
