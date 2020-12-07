@@ -83,7 +83,7 @@ namespace Game {
         private void SpawnRandomCar() {
             var randomRoad = Random.Range(-1, 2);
             var randomCarInd = Random.Range(0, 3);
-            _spawnPosition = Random.Range(1, 2);
+            _spawnPosition.value = Random.Range(1, 2);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = _carPools[_carPrefabs[randomCarInd].name].Pop();
             car.transform.position = position;

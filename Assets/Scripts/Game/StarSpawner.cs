@@ -17,10 +17,10 @@ namespace Game {
 
 
         private void SetStarSpawnPosition() {
-            if(_spawnPosition == 1) {
+            if(_spawnPosition.value == 1) {
                 _star.transform.position = _car.transform.position;
             }
-            if(_spawnPosition == 2) {
+            if(_spawnPosition.value == 2) {
                 _star.transform.position = _car.transform.position + _car.width();
             }
         }
