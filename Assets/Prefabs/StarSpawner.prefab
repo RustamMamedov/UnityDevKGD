@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1793776368367927305}
   - component: {fileID: 1793776368367927302}
+  - component: {fileID: 4876653628420033509}
   m_Layer: 0
   m_Name: StarSpawner
   m_TagString: Untagged
@@ -43,3 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873d8c45ad8cda9e832d2f8423bd869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _updateEventListener: {fileID: 4876653628420033509}
+  _pools:
+  - tag: Star
+    prefab: {fileID: 4946123191085756883, guid: 32ad593e20cce97b39ec1eae5f1687ac,
+      type: 3}
+    size: 10
+  _distanceToPlayerToSpawn: 10
+--- !u!114 &4876653628420033509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793776368367927303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
