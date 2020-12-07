@@ -1,6 +1,7 @@
 using System.Collections;
 using Events;
 using UnityEngine;
+using Audio;
 
 namespace Game {
 
@@ -22,6 +23,12 @@ namespace Game {
         private ScriptableFloatValue _playerPositionZ;
 
         [SerializeField]
+        private AudioSourcePlayer _starCollisionAudio;
+
+        [SerializeField]
+        private EventListener _onStarCollisionEventListner;
+
+        [SerializeField]
         private Color _gizmosColor;
 
         private int _currentRoad;
@@ -30,11 +37,18 @@ namespace Game {
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
+            _onStarCollisionEventListner.OnEventHappened += OnStarCollision;
+
         }
 
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
+            _onStarCollisionEventListner.OnEventHappened -= OnStarCollision;
+
             _touchEventListener.OnEventHappened -= OnPlayerTouch;
+        }
+        private void OnStarCollision() {
+            _starCollisionAudio.Play();
         }
 
         protected override void Move() {
