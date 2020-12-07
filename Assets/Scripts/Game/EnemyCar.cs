@@ -17,6 +17,9 @@ namespace Game {
         [SerializeField]
         private ScriptableStringValue _dodgedCarName;
 
+        [SerializeField]
+        public GameObject starPrefab;
+
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
                 _carCollisionEventDispatcher.Dispatch();
