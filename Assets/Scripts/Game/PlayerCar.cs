@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Events;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Game {
         private ScriptableIntValue _touchSide;
 
         [SerializeField]
-        private float _dodgeDuration;
+        private float _carDodgeDuration;
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
@@ -55,9 +55,9 @@ namespace Game {
             _inDodge = true;
             var timer = 0f;
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);
-            while (timer <= _dodgeDuration) {
+            while (timer <= _carDodgeDuration) {
                 timer += Time.deltaTime;
-                var posX = Mathf.Lerp(transform.position.x, targetPosX, timer / _dodgeDuration);
+                var posX = Mathf.Lerp(transform.position.x, targetPosX, timer / _carDodgeDuration);
                 transform.position = new Vector3(posX, transform.position.y, transform.position.z);
                 yield return null;
             }
