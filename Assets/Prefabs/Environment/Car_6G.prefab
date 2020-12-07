@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 2837447668571789551}
   - component: {fileID: 9048231808066262335}
   - component: {fileID: 2022597134155693817}
+  - component: {fileID: 1293123408863761626}
   m_Layer: 0
   m_Name: Car_6G
   m_TagString: Player
@@ -442,6 +443,8 @@ MonoBehaviour:
   _carSettings: {fileID: 11400000, guid: b8fd582acc7d74223a050946f5a74556, type: 2}
   _updateEventListener: {fileID: 6029310345182542922}
   _carCollisionEventListener: {fileID: 3661571889826312986}
+  _starCollisionDispatcher: {fileID: 1293123408863761626}
+  _starIndexValue: {fileID: 11400000, guid: 9b59348133393c94480a6108d0b0d0f1, type: 2}
   _touchEventListener: {fileID: 9048231808066262335}
   _touchSide: {fileID: 11400000, guid: bcbaf805640d247188c4c2d9cc65d7f1, type: 2}
   _carDodgeDuration: 0.3
@@ -523,6 +526,19 @@ MonoBehaviour:
   - {fileID: 7044489454447884996}
   _dayMode: {fileID: 11400000, guid: 8a5811aa328a045b2bfd175efea1d899, type: 2}
   _isReverted: 1
+--- !u!114 &1293123408863761626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590206702830092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df64a3f3ccb4e289350db0bd92d37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 292b39d91bd36614890ae02f9b69c579, type: 2}
 --- !u!1 &8532591891969044
 GameObject:
   m_ObjectHideFlags: 0

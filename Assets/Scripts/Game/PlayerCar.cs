@@ -7,6 +7,12 @@ namespace Game {
     public class PlayerCar : Car {
 
         [SerializeField]
+        private EventDispatcher _starCollisionDispatcher;
+
+        [SerializeField]
+        private ScriptableIntValue _starIndexValue;
+
+        [SerializeField]
         private EventListener _touchEventListener;
 
         [SerializeField]
@@ -74,5 +80,13 @@ namespace Game {
             var mesh = GetComponent<MeshFilter>().sharedMesh;
             Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);
         }
+
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Star") && other.TryGetComponent<Star>(out Star star)) {
+                _starIndexValue.value = star.Index;
+                _starCollisionDispatcher.Dispatch();
+            }
+        }
+
     }
 }
