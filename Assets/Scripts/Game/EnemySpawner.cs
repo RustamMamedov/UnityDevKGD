@@ -31,6 +31,12 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _lenghtSpawn;
+
+        [SerializeField]
+        private GameObject _sphere;
+
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
 
@@ -78,12 +84,16 @@ namespace Game {
         }
 
         private void SpawnRandomCar() {
+            var randomPlace = Random.Range(-1, 1);
             var randomRoad = Random.Range(-1, 2);
             var randomCarInd = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            var positionStar = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn + (randomPlace * _lenghtSpawn.value));
             var car = _carPools[_carPrefabs[randomCarInd].name].Pop();
             car.transform.position = position;
             car.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            _sphere.transform.position = positionStar;
+            Instantiate(_sphere);
             _cars.Add(car);
         }
 
