@@ -13,8 +13,8 @@ namespace Game {
         private AudioSourcePlayer _takeAudio;
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                Destroy(_star);
                 _takeAudio.Play();
+                Destroy(_star);
             }
         }
     }
