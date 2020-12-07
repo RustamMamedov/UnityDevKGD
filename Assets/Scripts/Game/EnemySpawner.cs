@@ -31,12 +31,30 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _starSpawnDistanse;
+
+        [SerializeField]
+        private GameObject _starPrefab;
+
+        [SerializeField]
+        private int _initialStackStarNumber = 3;
+
+        private Stack<GameObject> _starPool;
+
+        
+
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
 
         private Dictionary<string, SimpleGenericPool<Car>> _carPools;
 
         private void Awake() {
+            _starPool = new Stack<GameObject>();
+            for (int i = 0; i < _initialStackStarNumber; i++) {
+                _starPool.Push(_starPrefab);
+            }
+
             _carPools = new Dictionary<string, SimpleGenericPool<Car>>();
             for (int i = 0; i < _carPrefabs.Count; i++) {
                 _carPools[_carPrefabs[i].Name] = new SimpleGenericPool<Car>(_carPrefabs[i]);
@@ -83,6 +101,7 @@ namespace Game {
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
             var car = _carPools[_carPrefabs[randomCarInd].name].Pop();
             car.transform.position = position;
+            SpawnStar(car.transform);
             car.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             _cars.Add(car);
         }
@@ -94,6 +113,32 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+        }
+
+        private void SpawnStar(Transform _carTransform) {
+            var star = GetStarFromStack();
+            var multiply = Random.Range(0, 2);
+            switch (multiply){
+                case 0:
+                    multiply = -1;
+                    break;
+                case 1:
+                    multiply = 1;
+                    break;
+            }
+            var _starPosition = new Vector3(_carTransform.position.x,_carTransform.position.y,_carTransform.position.z * multiply);
+            star.transform.position = _starPosition;
+
+        }
+
+        private GameObject GetStarFromStack() {
+            if (_starPool.Count == 0) {
+                _starPool.Push(_starPrefab);
+            }
+
+            var star = _starPool.Pop();
+            star.SetActive(true);
+            return star;
         }
     }
 }
