@@ -21,24 +21,66 @@ namespace Game {
         
 		[SerializeField] 
         private List<Pool> _pools;
-        [SerializeField]
-        private GameObject _star;
 
         [SerializeField]
-        private ScriptableIntValue _spawnPosition;
+        private float _distanceToPlayerToSpawn;
+        
+        private float _currentTimer;
+        private float _spawnCooldown;
+        private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
-        [SerializeField]
-        private GameObject _car;
+		private void OnEnable() {
+           
+        }
 
+        private void Start() {
+            SubscribeToEvents();
+            GeneratePool();
+        }
+        
+        private void OnDisable() {
+            UnsubscribeToEvents();
+        }
 
-        private void SetStarSpawnPosition() {
-            if(_spawnPosition.value == 1) {
-                _star.transform.position = _car.transform.position;
-            }
-            if(_spawnPosition.value == 2) {
-                _star.transform.position = _car.transform.position + _car.width();
+        private void SubscribeToEvents() {
+            _updateEventListener.OnEventHappened += UpdateBehaviour;
+        }
+
+        private void UnsubscribeToEvents() {
+            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+        }
+        
+        public void GeneratePool() {
+            _poolDictionary = new Dictionary<string, Queue<GameObject>>();
+            
+            foreach (var pool in _pools) {
+                Queue<GameObject> objectPool = new Queue<GameObject>();
+                
+                for (int i = 0; i < pool.size; i++) {
+                    var obj = Instantiate(pool.prefab);
+                    obj.SetActive(false);
+                    objectPool.Enqueue(obj);
+                }
+                
+                _poolDictionary.Add(pool.tag, objectPool);
             }
         }
 
+        private GameObject GetFromPool(string tag, Vector3 position, Quaternion rotation) {
+            if (!_poolDictionary.ContainsKey(tag) || _poolDictionary[tag].Peek().activeSelf) {
+                return null;
+            }
+
+            var objectToSpawn = _poolDictionary[tag].Dequeue();
+            objectToSpawn.transform.position = position;
+            objectToSpawn.transform.rotation = rotation;
+            
+            _poolDictionary[tag].Enqueue(objectToSpawn);
+            return objectToSpawn;
+        }
+
+        private void UpdateBehaviour() {
+            
+        }
     }
 }
