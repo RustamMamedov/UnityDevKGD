@@ -58,7 +58,7 @@ namespace Game {
 
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
-            var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
+            var canDodge = !_inDodge && _currentSpeed >= carSettings.maxSpeed && nextRoad != _currentRoad;
             if (!canDodge) {
                 return;
             }

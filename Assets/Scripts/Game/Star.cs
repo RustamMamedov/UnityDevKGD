@@ -18,7 +18,11 @@ namespace Game {
         private float _distanceToDestroy;
 
         private void OnEnable() {
-            _updateEventListner.OnEventHappened += 
+            _updateEventListner.OnEventHappened += UpdateBehaviour;
+        }
+
+        private void OnDisable() {
+            _updateEventListner.OnEventHappened -= UpdateBehaviour;
         }
 
         private void OnTriggerEnter(Collider other) {
@@ -29,7 +33,7 @@ namespace Game {
         }
 
         private void UpdateBehaviour(){
-           if(gameObject.transform.position.z+_distanceToDestroy<_playerPositionZ.value) {
+           if(gameObject.transform.position.z + _distanceToDestroy > _playerPositionZ.value) {
                 Destroy(gameObject);
             }
         }

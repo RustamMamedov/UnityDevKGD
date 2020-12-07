@@ -9,7 +9,7 @@ namespace Game {
 #region  1
         [SerializeField]
         [Required]
-        protected CarSettings _carSettings;
+        public CarSettings carSettings;
 
         [SerializeField]
         private EventListener _updateEventListener;
@@ -19,10 +19,10 @@ namespace Game {
 
 
 
-        public string Name => _carSettings.name;
+        public string Name => carSettings.name;
 
 #if UNITY_EDITOR
-        public CarSettings CarSettings => _carSettings;
+        public CarSettings CarSettings => carSettings;
 #endif
 
         protected float _currentSpeed;
@@ -65,15 +65,15 @@ namespace Game {
 
 #region  4
         protected virtual void Move() {
-            if (_currentSpeed < _carSettings.maxSpeed) {
-                _currentSpeed += _carSettings.acceleration;
+            if (_currentSpeed < carSettings.maxSpeed) {
+                _currentSpeed += carSettings.acceleration;
             }
             transform.Translate(transform.forward * _currentSpeed * Time.deltaTime, Space.World);
         }
 
         [ContextMenu("IncreaseDodgeScore")]
         private void IncreaseDodgeScore() {
-            _carSettings.dodgeScore++;
+            carSettings.dodgeScore++;
         }
 
 #endregion  4
