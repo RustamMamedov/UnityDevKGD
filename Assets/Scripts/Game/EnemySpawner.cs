@@ -31,10 +31,20 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private GameObject _starPrefab;
+
+        [SerializeField]
+        private float _starDistanse;
+
+        [SerializeField]
+        private EventListener _starCollection;
+
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
+        private GameObject _star;
 
-        private Dictionary<string, SimpleGenericPool<Car>> _carPools;
+        private Dictionary<string, SimpleGenericPool<Car>> _carPools; 
 
         private void Awake() {
             _carPools = new Dictionary<string, SimpleGenericPool<Car>>();
@@ -54,11 +64,17 @@ namespace Game {
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
+            _starCollection.OnEventHappened += StarDestroy;
         }
 
         private void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
+            _starCollection.OnEventHappened -= StarDestroy;
+        }
+
+        private void StarDestroy() {
+            Destroy(_star);
         }
 
         private void OnCarCollision() {
@@ -81,6 +97,13 @@ namespace Game {
             var randomRoad = Random.Range(-1, 2);
             var randomCarInd = Random.Range(0, 3);
             var position = new Vector3(1f * randomRoad * _roadWidth.value, 0f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            var randomDerection = Random.Range(1, 3) * 2 - 3;
+            var tmp = new Vector3(0f, 0f, _starDistanse * randomDerection);
+            var positionStar = position + tmp;
+            if (_star != null) {
+                Destroy(_star);
+            }
+            _star = Instantiate(_starPrefab, positionStar, Quaternion.Euler(0f, 0f, 0f));
             var car = _carPools[_carPrefabs[randomCarInd].name].Pop();
             car.transform.position = position;
             car.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
@@ -94,6 +117,9 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
+            if ((_star != null)&& (_playerPositionZ.value - _star.transform.position.z > _distanceToPlayerToDestroy)) {
+                Destroy(_star);
+            }    
         }
     }
 }
