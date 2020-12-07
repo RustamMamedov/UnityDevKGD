@@ -34,6 +34,9 @@ namespace Game {
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
 
+        [SerializeField]
+        private GameObject _starPrefab;
+
         private Dictionary<string, SimpleGenericPool<Car>> _carPools;
 
         private void Awake() {
@@ -42,6 +45,9 @@ namespace Game {
                 _carPools[_carPrefabs[i].Name] = new SimpleGenericPool<Car>(_carPrefabs[i]);
             }
         }
+
+        [SerializeField]
+        private ScriptableFloatValue _distanceToSpawnStar;  
 
         private void OnEnable() {
             SubscribeToEvents();
@@ -85,6 +91,14 @@ namespace Game {
             car.transform.position = position;
             car.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             _cars.Add(car);
+
+            Instantiate(_starPrefab, 
+                new Vector3(car.transform.position.x, car.transform.position.y + 1f, car.transform.position.z + _distanceToSpawnStar.value),
+                Quaternion.identity);
+
+          //  var star = car.GetComponent<EnemyCar>();
+          //  star.transform.position = new Vector3(car.transform.position.x, transform.position.y, transform.position.z + _distanceToSpawnStar.value);
+          //  star.starPrefab.SetActive(true);
         }
 
         private void HandleCarsBehindPlayer() {
