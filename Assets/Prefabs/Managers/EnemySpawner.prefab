@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 295848064049025938}
   - component: {fileID: 295848064049025936}
   - component: {fileID: 295848064049025939}
+  - component: {fileID: 7037356646700217402}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -56,6 +57,10 @@ MonoBehaviour:
   _distanceToPlayerToDestroy: 10
   _playerPositionZ: {fileID: 11400000, guid: e2c332ba7a04a419788e653f6f7c118a, type: 2}
   _roadWidth: {fileID: 11400000, guid: 5993e95e54b174f539cc396f83ceebbf, type: 2}
+  _starPrefab: {fileID: 5335223229729288077, guid: d440a050d986d9549ab667f659ef9447,
+    type: 3}
+  _starDistanse: 5
+  _starCollection: {fileID: 7037356646700217402}
 --- !u!114 &295848064049025936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,3 +87,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 47d1e3cbfb634471089fbfb1766b1cac, type: 2}
+--- !u!114 &7037356646700217402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295848064049025940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 0811f3f468a16844a899df1fca48d48f, type: 2}

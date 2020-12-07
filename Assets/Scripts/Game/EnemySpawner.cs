@@ -117,7 +117,7 @@ namespace Game {
                     _cars.RemoveAt(i);
                 }
             }
-            if (_playerPositionZ.value - _star.transform.position.z > _distanceToPlayerToDestroy) {
+            if ((_star != null)&& (_playerPositionZ.value - _star.transform.position.z > _distanceToPlayerToDestroy)) {
                 Destroy(_star);
             }    
         }
