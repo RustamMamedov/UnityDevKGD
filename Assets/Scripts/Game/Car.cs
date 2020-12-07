@@ -1,6 +1,7 @@
 ﻿using Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Audio;
 
 namespace Game {
 
@@ -16,6 +17,12 @@ namespace Game {
 
         [SerializeField]
         private EventListener _carCollisionEventListener;
+
+        [SerializeField]
+        private AudioSourcePlayer _starCollisionAudio;
+
+        [SerializeField]
+        private EventListener _onStarCollisionEventListner;
 
         public string Name => _carSettings.name;
 
@@ -42,11 +49,18 @@ namespace Game {
         protected virtual void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened += OnCarCollision;
+            _onStarCollisionEventListner.OnEventHappened += OnCarCollision;
         }
 
         protected virtual void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionEventListener.OnEventHappened -= OnCarCollision;
+            _onStarCollisionEventListner.OnEventHappened -= OnCarCollision;
+
+        }
+
+        private void OnStarCollision() {
+            _starCollisionAudio.Play();
         }
 
         private void OnCarCollision() {
