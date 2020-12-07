@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Events;
 using UnityEngine;
+using Audio;
+using Random = UnityEngine.Random;
 
 namespace Game {
 
@@ -19,14 +20,28 @@ namespace Game {
         [SerializeField] 
         private EventListener _updateEventListener;
         
+        [SerializeField] 
+        private EventListener _starGotCollectedEventListener;
+
+        [SerializeField]
+        private AudioSourcePlayer _audioSourcePlayer;
+        
 		[SerializeField] 
         private List<Pool> _pools;
+        
+        [SerializeField]
+        private ScriptableFloatValue _roadWidth;
 
         [SerializeField]
         private float _distanceToPlayerToSpawn;
+
+        [SerializeField]
+        private ScriptableFloatValue _playerPositionZ;
+        
+        [SerializeField]
+        private float _spawnCooldown;
         
         private float _currentTimer;
-        private float _spawnCooldown;
         private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
 		private void OnEnable() {
@@ -44,10 +59,16 @@ namespace Game {
 
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
+            _starGotCollectedEventListener.OnEventHappened += PlaySound;
         }
 
         private void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _starGotCollectedEventListener.OnEventHappened -= PlaySound;
+        }
+
+        private void PlaySound() {
+            _audioSourcePlayer.Play();
         }
         
         public void GeneratePool() {
@@ -78,9 +99,25 @@ namespace Game {
             _poolDictionary[tag].Enqueue(objectToSpawn);
             return objectToSpawn;
         }
+        
+        private void SpawnStar() {
+            var randomRoad = Random.Range(-1, 2);
+            var tag = _pools[0].tag;
+            var position = new Vector3(1f * randomRoad * _roadWidth.value, 1f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            var star = GetFromPool(tag, position, Quaternion.Euler(0f, 180f, 0f));
+            if (star != null) {
+                star.SetActive(true);
+            }
+        }
 
         private void UpdateBehaviour() {
-            
+            _currentTimer += Time.deltaTime;
+            if (_currentTimer < _spawnCooldown) {
+                return;
+            }
+            _currentTimer = 0f;
+
+            SpawnStar();
         }
     }
 }
