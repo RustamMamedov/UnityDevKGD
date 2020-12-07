@@ -2,6 +2,8 @@
 using Events;
 using UnityEngine;
 using Utils;
+using Audio;
+using System.Collections;
 
 namespace Game {
 
@@ -74,7 +76,12 @@ namespace Game {
         }
 
         private void StarDestroy() {
-            Destroy(_star);
+            StartCoroutine(CoroutineStarDestroy());
+        }
+
+        private IEnumerator CoroutineStarDestroy() {
+            yield return new WaitForSeconds(.15f);
+            Destroy(_star);  
         }
 
         private void OnCarCollision() {
