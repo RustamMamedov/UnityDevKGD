@@ -50,10 +50,8 @@ namespace Game {
         private Dictionary<string, SimpleGenericPool<Car>> _carPools;
 
         private void Awake() {
-            _starPool = new Stack<GameObject>();
-            for (int i = 0; i < _initialStackStarNumber; i++) {
-                _starPool.Push(_starPrefab);
-            }
+
+            GeneratePool();
 
             _carPools = new Dictionary<string, SimpleGenericPool<Car>>();
             for (int i = 0; i < _carPrefabs.Count; i++) {
@@ -139,6 +137,18 @@ namespace Game {
             var star = _starPool.Pop();
             star.SetActive(true);
             return star;
+        }
+
+        private void GeneratePool() {
+            _starPool = new Stack<GameObject>();
+            for (int i = 0; i < _initialStackStarNumber; i++) {
+                _starPool.Push(_starPrefab);
+            }
+        }
+
+        private void SetStarToStack(GameObject star) {
+            star.gameObject.SetActive(false);
+            _starPool.Push(star);
         }
     }
 }
