@@ -17,6 +17,8 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionEventListener;
 
+        public string Name => _carSettings.name;
+
 #if UNITY_EDITOR
         public CarSettings CarSettings => _carSettings;
 #endif
