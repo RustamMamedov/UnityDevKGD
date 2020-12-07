@@ -45,11 +45,10 @@ namespace Game {
         private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
 		private void OnEnable() {
-           
+            SubscribeToEvents();
         }
 
         private void Start() {
-            SubscribeToEvents();
             GeneratePool();
         }
         
