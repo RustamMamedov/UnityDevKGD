@@ -15,10 +15,7 @@ namespace Game {
         private ScriptableIntValue _dodgedScore;
 
         [SerializeField]
-        private ScriptableStringValue _dodgedCarName;
-
-        [SerializeField]
-        public GameObject starPrefab;
+        private ScriptableStringValue _dodgedCarName;     
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
