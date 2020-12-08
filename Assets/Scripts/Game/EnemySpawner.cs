@@ -60,11 +60,13 @@ namespace Game {
         private void SubscribeToEvents() {
             _updateEventListener.OnEventHappened += UpdateBehaviour;
             _carCollisionListener.OnEventHappened += OnCarCollision;
+            _updateEventListener.OnEventHappened += DodgedPlayerCar;
         }
 
         private void UnsubscribeToEvents() {
             _updateEventListener.OnEventHappened -= UpdateBehaviour;
             _carCollisionListener.OnEventHappened -= OnCarCollision;
+            _updateEventListener.OnEventHappened -= DodgedPlayerCar;
         }
 
         private void OnCarCollision() {
@@ -107,7 +109,7 @@ namespace Game {
                 if ((_cars[i].gameObject.transform.position.z-_playerPositionZ.value< _distanseDodged.distance)) {
                     var rand = Random.Range(0, 3);
                     if (rand == 1) {
-                        if (_playerCar.gameObject.transform.position.x == _cars[i].gameObject.transform.position.x) {
+                        if ((int)_playerCar.gameObject.transform.position.x == (int)_cars[i].gameObject.transform.position.x) {
                             var posit = (int)_playerCar.gameObject.transform.position.x;
                             switch (posit) {
                                 case -1: {
