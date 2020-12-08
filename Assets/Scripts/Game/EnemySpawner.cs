@@ -13,6 +13,9 @@ namespace Game {
         [SerializeField]
         private EventListener _carCollisionListener;
 
+        [SerializeField] 
+        private EventDispatcher _carGotSpawnedEventDispatcher;
+
         [SerializeField]
         private List<Car> _carPrefabs;
 
@@ -30,6 +33,9 @@ namespace Game {
 
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
+
+		[SerializeField]
+        private ScriptableVectorValue _enemyCarSpawnPosition;
 
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
@@ -85,6 +91,8 @@ namespace Game {
             car.transform.position = position;
             car.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             _cars.Add(car);
+            _enemyCarSpawnPosition.value = position;
+            _carGotSpawnedEventDispatcher.Dispatch();
         }
 
         private void HandleCarsBehindPlayer() {

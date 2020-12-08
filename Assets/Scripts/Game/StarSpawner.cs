@@ -18,10 +18,10 @@ namespace Game {
         }
 
         [SerializeField] 
-        private EventListener _updateEventListener;
+        private EventListener _starGotCollectedEventListener;
         
         [SerializeField] 
-        private EventListener _starGotCollectedEventListener;
+        private EventListener _carGorSpawnedEventListener;
 
         [SerializeField]
         private AudioSourcePlayer _audioSourcePlayer;
@@ -33,15 +33,14 @@ namespace Game {
         private ScriptableFloatValue _roadWidth;
 
         [SerializeField]
-        private float _distanceToPlayerToSpawn;
+        private float _distanceToEnemyToSpawn;
 
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
-        
+       
         [SerializeField]
-        private float _spawnCooldown;
+        private ScriptableVectorValue _enemyCarSpawnPosition;
         
-        private float _currentTimer;
         private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
 		private void OnEnable() {
@@ -57,12 +56,12 @@ namespace Game {
         }
 
         private void SubscribeToEvents() {
-            _updateEventListener.OnEventHappened += UpdateBehaviour;
+            _carGorSpawnedEventListener.OnEventHappened += SpawnStar;
             _starGotCollectedEventListener.OnEventHappened += PlaySound;
         }
 
         private void UnsubscribeToEvents() {
-            _updateEventListener.OnEventHappened -= UpdateBehaviour;
+            _carGorSpawnedEventListener.OnEventHappened -= SpawnStar;
             _starGotCollectedEventListener.OnEventHappened -= PlaySound;
         }
 
@@ -100,23 +99,20 @@ namespace Game {
         }
         
         private void SpawnStar() {
-            var randomRoad = Random.Range(-1, 2);
+            var beforeOrAfter = Random.Range(-1, 1);
             var tag = _pools[0].tag;
-            var position = new Vector3(1f * randomRoad * _roadWidth.value, 1f, _playerPositionZ.value + _distanceToPlayerToSpawn);
+            var position = _enemyCarSpawnPosition.value;
+            position.y = 1;
+            if (beforeOrAfter == 0) {
+                position.z += _distanceToEnemyToSpawn;
+            }
+            else {
+                position.z += -1f * _distanceToEnemyToSpawn;
+            }
             var star = GetFromPool(tag, position, Quaternion.Euler(0f, 180f, 0f));
             if (star != null) {
                 star.SetActive(true);
             }
-        }
-
-        private void UpdateBehaviour() {
-            _currentTimer += Time.deltaTime;
-            if (_currentTimer < _spawnCooldown) {
-                return;
-            }
-            _currentTimer = 0f;
-
-            SpawnStar();
         }
     }
 }

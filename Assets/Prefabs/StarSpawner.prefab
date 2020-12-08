@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1793776368367927305}
   - component: {fileID: 1793776368367927302}
-  - component: {fileID: 4876653628420033509}
   - component: {fileID: 7499868267095151530}
+  - component: {fileID: 623216387739505209}
   m_Layer: 0
   m_Name: StarSpawner
   m_TagString: Untagged
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873d8c45ad8cda9e832d2f8423bd869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _updateEventListener: {fileID: 4876653628420033509}
   _starGotCollectedEventListener: {fileID: 7499868267095151530}
+  _carGorSpawnedEventListener: {fileID: 623216387739505209}
   _audioSourcePlayer: {fileID: 3840532844776395538}
   _pools:
   - tag: Star
@@ -55,22 +55,10 @@ MonoBehaviour:
       type: 3}
     size: 10
   _roadWidth: {fileID: 11400000, guid: 5993e95e54b174f539cc396f83ceebbf, type: 2}
-  _distanceToPlayerToSpawn: 100
+  _distanceToEnemyToSpawn: 20
   _playerPositionZ: {fileID: 11400000, guid: e2c332ba7a04a419788e653f6f7c118a, type: 2}
-  _spawnCooldown: 1
---- !u!114 &4876653628420033509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793776368367927303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _someEvent: {fileID: 11400000, guid: 44bb2a599bf6d4b5388c966005e9268e, type: 2}
+  _enemyCarSpawnPosition: {fileID: 11400000, guid: 9b47db5220833a2fdb68f446f23da5f5,
+    type: 2}
 --- !u!114 &7499868267095151530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +72,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _someEvent: {fileID: 11400000, guid: 53cfa1ff4709d19fb93426486e859fea, type: 2}
+--- !u!114 &623216387739505209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793776368367927303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9accab0aab458a8b115beb6ae68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _someEvent: {fileID: 11400000, guid: 06fd3ede3ea42fb229ea29199d5260fa, type: 2}
 --- !u!1001 &694104874293583755
 PrefabInstance:
   m_ObjectHideFlags: 0
