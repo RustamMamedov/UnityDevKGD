@@ -31,6 +31,9 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private ScriptableFloatValue _carSpawnerPositionZ;
+
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
 
@@ -89,6 +92,7 @@ namespace Game {
 
         private void HandleCarsBehindPlayer() {
             for (int i = _cars.Count - 1; i > -1; i--) {
+                _carSpawnerPositionZ.value = _cars[i].transform.position.z;
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     _carPools[_cars[i].Name].Push(_cars[i]);
                     _cars.RemoveAt(i);
