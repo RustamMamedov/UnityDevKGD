@@ -27,6 +27,8 @@ namespace Game {
         [BoxGroup("Render")]
         public Vector3 renderCameraRot;
 
+        public int distanceForDodge;
+
         private bool ValidateDodgeScore(int score) {
             return score >= 0;
         }
