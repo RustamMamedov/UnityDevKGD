@@ -74,5 +74,13 @@ namespace Game {
             var mesh = GetComponent<MeshFilter>().sharedMesh;
             Gizmos.DrawWireMesh(mesh, 0, transform.position + transform.forward * 5);
         }
+
+        public void MoveToRoad(int road) {
+            StartCoroutine(DodgeCoroutine(road));
+        }
+
+        public int GetCurrentRoad() {
+            return _currentRoad;
+        }
     }
 }
