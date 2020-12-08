@@ -51,7 +51,7 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
-        private IEnumerator DodgeCoroutine(int nextRoad) {
+        public IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
             var targetPosX = transform.position.x + _roadWidth.value * (nextRoad > _currentRoad ? 1 : -1);

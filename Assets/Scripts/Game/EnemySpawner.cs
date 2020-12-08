@@ -36,6 +36,12 @@ namespace Game {
 
         private Dictionary<string, SimpleGenericPool<Car>> _carPools;
 
+        [SerializeField]
+        private AIsettings _aISettings;
+
+        [SerializeField]
+        private PlayerCar _player;
+
         private void Awake() {
             _carPools = new Dictionary<string, SimpleGenericPool<Car>>();
             for (int i = 0; i < _carPrefabs.Count; i++) {
@@ -67,7 +73,7 @@ namespace Game {
 
         private void UpdateBehaviour() {
             HandleCarsBehindPlayer();
-
+            AIDodge();
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
                 return;
@@ -76,6 +82,22 @@ namespace Game {
 
             SpawnRandomCar();
         }
+
+        private void  AIDodge() {
+            Debug.Log("AI");
+            for (int i = _cars.Count - 1; i > -1; i--) { 
+                if (_playerPositionZ.value-_cars[i].transform.position.z  < _aISettings.distance) {
+                    /*if (Random.Range(0, 2) == 0)*/ {
+                        int trans =(int)( (_cars[i].transform.position.x / _roadWidth.value != 0) ? (-1*(_cars[i].transform.position.x / _roadWidth.value)) : Random.Range(1, 3) * 2 - 3);
+                        StartCoroutine(_player.DodgeCoroutine(trans));
+                    }/*
+                    else {
+                        Debug.Log("Pass");
+                    }*/
+                }
+         
+            }
+    }
 
         private void SpawnRandomCar() {
             var randomRoad = Random.Range(-1, 2);
