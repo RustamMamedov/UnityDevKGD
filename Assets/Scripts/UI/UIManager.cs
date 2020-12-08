@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,20 @@ namespace UI {
         [SerializeField]
         private Fader _fader;
 
-        private string _currentSceneName = "Gameplay";
+        [SerializeField]
+        private GameObject _menuScreen;
+
+        [SerializeField]
+        private GameObject _gameScreen;
+
+        [SerializeField]
+        private GameObject _leaderboardScreen;
+
+        [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
+        private MusicManager _musicManager;
 
         private void Awake() {
             if (Instance != null) {
@@ -24,25 +38,31 @@ namespace UI {
         }
 
         private void Start() {
-            _fader.OnFadeIn += OnSceneFadeIn;
-            _fader.FadeIn();
+            ShowMenuScreen();
         }
 
-        private void OnSceneFadeIn() {
-            StartCoroutine(FadeOutAndLoadGameplay());
+        public void LoadMenu() {
+            _musicManager.PlayMenuMusic();
+            _fader.OnFadeOut += LoadMenuScene;
+            _fader.FadeOut();
         }
 
-        private IEnumerator FadeOutAndLoadGameplay() {
-            yield return new WaitForSeconds(3f);
-
+        public void LoadGameplay() {
+            _musicManager.PlayGameMusic();
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
 
+        private void LoadMenuScene() {
+            _fader.OnFadeOut -= LoadMenuScene;
+            StartCoroutine(LoadSceneCoroutine("Menu"));
+            ShowMenuScreen();
+        }
+
         private void LoadGameplayScene() {
             _fader.OnFadeOut -= LoadGameplayScene;
-            StartCoroutine(LoadSceneCoroutine(_currentSceneName));
-            _currentSceneName = _currentSceneName == "Gameplay" ? "Menu" : "Gameplay";
+            StartCoroutine(LoadSceneCoroutine("Gameplay"));
+            ShowGameScreen();
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName) {
@@ -50,11 +70,35 @@ namespace UI {
             while (!asyncOperation.isDone) {
                 yield return null;
             }
-
-            yield return new WaitForSeconds(3f);
-
             _fader.FadeIn();
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
+        public void ShowMenuScreen() {
+            HideAllScreens();
+            _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
+        }
+
+        public void ShowGameScreen() {
+            HideAllScreens();
+            _gameScreen.SetActive(true);
+        }
+
+        public void ShowLeaderboardScreen() {
+            HideAllScreens();
+            _leaderboardScreen.SetActive(true);
+        }
+
+        public void HideAllScreens() {
+            _menuScreen.SetActive(false);
+            _gameScreen.SetActive(false);
+            _leaderboardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
+        }
     }
 }
