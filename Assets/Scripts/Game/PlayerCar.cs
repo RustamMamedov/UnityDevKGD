@@ -65,6 +65,10 @@ namespace Game {
             _currentRoad = nextRoad;
         }
 
+        public void Dodge(int nextRoad) {
+            StartCoroutine(DodgeCoroutine(nextRoad));
+        }
+
         private void OnDrawGizmosSelected() {
             Gizmos.color = _gizmosColor;
 
