@@ -24,10 +24,8 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
-        public GameObject _test;
-
-        //[SerializeField]
-        //private AISettings _aiSettings;
+        [SerializeField]
+        private AISettings _aiSettings;
 
         [SerializeField]
         private Color _gizmosColor;
@@ -58,25 +56,25 @@ namespace Game {
             if (!canDodge) {
                 return;
             }
-            if(Vector3.Distance(transform.position, _test.transform.position) <= 10f) {
                 var randomNum = Random.Range(0, 3);
                 if (randomNum == 0) {
                     StartCoroutine(DodgeCoroutine(nextRoad));
                 }
-            }
         }
 
         private void AIDodge() {
             var sideValue = Random.Range(-1, 2);
-            if(sideValue == 0) {
+            while(sideValue != 0) {
                 sideValue = Random.Range(-1, 2);
             }
             var nextRoad = Mathf.Clamp(_currentRoad + sideValue, -1, 1);
             var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
+        if (transform.position.z <= _aiSettings.distance) {
             if (!canDodge) {
                 return;
             }
             StartCoroutine(DodgeCoroutine(nextRoad));
+            }
         }
 
         private IEnumerator DodgeCoroutine(int nextRoad) {
