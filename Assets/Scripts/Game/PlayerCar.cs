@@ -10,6 +10,9 @@ namespace Game {
         private EventListener _touchEventListener;
 
         [SerializeField]
+        private EventListener _aiDodgeEventListener;
+
+        [SerializeField]
         private ScriptableIntValue _touchSide;
 
         [SerializeField]
@@ -21,6 +24,11 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _playerPositionZ;
 
+        public GameObject _test;
+
+        //[SerializeField]
+        //private AISettings _aiSettings;
+
         [SerializeField]
         private Color _gizmosColor;
 
@@ -30,11 +38,13 @@ namespace Game {
         protected override void SubscribeToEvents() {
             base.SubscribeToEvents();
             _touchEventListener.OnEventHappened += OnPlayerTouch;
+            _updateEventListener.OnEventHappened += AIDodge;
         }
 
         protected override void UnsubscribeToEvents() {
             base.UnsubscribeToEvents();
-            _touchEventListener.OnEventHappened -= OnPlayerTouch;
+            _updateEventListener.OnEventHappened -= AIDodge;
+            _updateEventListener.OnEventHappened -= OnPlayerTouch;
         }
 
         protected override void Move() {
@@ -44,6 +54,24 @@ namespace Game {
 
         private void OnPlayerTouch() {
             var nextRoad = Mathf.Clamp(_currentRoad + _touchSide.value, -1, 1);
+            var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
+            if (!canDodge) {
+                return;
+            }
+            if(Vector3.Distance(transform.position, _test.transform.position) <= 10f) {
+                var randomNum = Random.Range(0, 3);
+                if (randomNum == 0) {
+                    StartCoroutine(DodgeCoroutine(nextRoad));
+                }
+            }
+        }
+
+        private void AIDodge() {
+            var sideValue = Random.Range(-1, 2);
+            if(sideValue == 0) {
+                sideValue = Random.Range(-1, 2);
+            }
+            var nextRoad = Mathf.Clamp(_currentRoad + sideValue, -1, 1);
             var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
             if (!canDodge) {
                 return;
