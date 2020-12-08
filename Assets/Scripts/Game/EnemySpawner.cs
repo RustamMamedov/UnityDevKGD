@@ -39,6 +39,8 @@ namespace Game {
         [SerializeField]
         private AIsettings _aISettings;
 
+        private bool AIlock = false;
+
         [SerializeField]
         private PlayerCar _player;
 
@@ -73,7 +75,8 @@ namespace Game {
 
         private void UpdateBehaviour() {
             HandleCarsBehindPlayer();
-            AIDodge();
+            if(!AIlock)
+                AIDodge();
             _currentTimer += Time.deltaTime;
             if (_currentTimer < _spawnCooldown) {
                 return;
@@ -84,16 +87,17 @@ namespace Game {
         }
 
         private void  AIDodge() {
-            Debug.Log("AI");
             for (int i = _cars.Count - 1; i > -1; i--) { 
                 if (_playerPositionZ.value-_cars[i].transform.position.z  < _aISettings.distance) {
-                    /*if (Random.Range(0, 2) == 0)*/ {
+                    if (Random.Range(0, 2) == 0) {
                         int trans =(int)( (_cars[i].transform.position.x / _roadWidth.value != 0) ? (-1*(_cars[i].transform.position.x / _roadWidth.value)) : Random.Range(1, 3) * 2 - 3);
                         StartCoroutine(_player.DodgeCoroutine(trans));
-                    }/*
+                        AIlock = true;
+                    }
                     else {
                         Debug.Log("Pass");
-                    }*/
+                        AIlock = true;
+                    }
                 }
          
             }
@@ -114,6 +118,7 @@ namespace Game {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     _carPools[_cars[i].Name].Push(_cars[i]);
                     _cars.RemoveAt(i);
+                    AIlock = false;
                 }
             }
         }
