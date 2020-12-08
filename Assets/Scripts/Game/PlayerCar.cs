@@ -76,7 +76,9 @@ namespace Game {
         }
 
         public void MoveToRoad(int road) {
-            StartCoroutine(DodgeCoroutine(road));
+            if (!_inDodge) {
+                StartCoroutine(DodgeCoroutine(road));
+            }
         }
 
         public int GetCurrentRoad() {
