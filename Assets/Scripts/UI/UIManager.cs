@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,12 @@ namespace UI {
         [SerializeField]
         private GameObject _leaderboardScreen;
 
+        [SerializeField]
+        private GameObject _settingsScreen;
+
+        [SerializeField]
+        private MusicManager _musicManager;
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
@@ -30,12 +37,18 @@ namespace UI {
             DontDestroyOnLoad(gameObject);
         }
 
+        private void Start() {
+            ShowMenuScreen();
+        }
+
         public void LoadMenu() {
+            _musicManager.PlayMenuMusic();
             _fader.OnFadeOut += LoadMenuScene;
             _fader.FadeOut();
         }
 
         public void LoadGameplay() {
+            _musicManager.PlayGameMusic();
             _fader.OnFadeOut += LoadGameplayScene;
             _fader.FadeOut();
         }
@@ -60,9 +73,15 @@ namespace UI {
             _fader.FadeIn();
         }
 
+        public void ShowSettingsScreen() {
+            HideAllScreens();
+            _settingsScreen.SetActive(true);
+        }
+
         public void ShowMenuScreen() {
             HideAllScreens();
             _menuScreen.SetActive(true);
+            _musicManager.PlayMenuMusic();
         }
 
         public void ShowGameScreen() {
@@ -79,6 +98,7 @@ namespace UI {
             _menuScreen.SetActive(false);
             _gameScreen.SetActive(false);
             _leaderboardScreen.SetActive(false);
+            _settingsScreen.SetActive(false);
         }
     }
 }
