@@ -31,6 +31,12 @@ namespace Game {
         [SerializeField]
         private ScriptableFloatValue _roadWidth;
 
+        [SerializeField]
+        private AISettings _distanseDodged;
+
+        [SerializeField]
+        private PlayerCar _playerCar;
+
         private float _currentTimer;
         private List<Car> _cars = new List<Car>();
 
@@ -92,6 +98,37 @@ namespace Game {
                 if (_playerPositionZ.value - _cars[i].transform.position.z > _distanceToPlayerToDestroy) {
                     _carPools[_cars[i].Name].Push(_cars[i]);
                     _cars.RemoveAt(i);
+                }
+            }
+        }
+
+        private void DodgedPlayerCar() {
+            for (int i = 0; i < _cars.Count;i++) {
+                if ((_cars[i].gameObject.transform.position.z-_playerPositionZ.value< _distanseDodged.distance)) {
+                    var rand = Random.Range(0, 3);
+                    if (rand == 1) {
+                        if (_playerCar.gameObject.transform.position.x == _cars[i].gameObject.transform.position.x) {
+                            var posit = (int)_playerCar.gameObject.transform.position.x;
+                            switch (posit) {
+                                case -1: {
+                                        posit = 1;
+                                        break;
+                                    }
+                                case 0: {
+                                        posit = 1;
+                                        break;
+                                    }
+                                case 1: {
+                                        posit = -1;
+                                        break;
+                                    }
+                            }
+                            _playerCar.OnPlayerTouch(posit);
+                        }
+                    }
+                    else {
+                        Debug.Log("Pass");
+                    }
                 }
             }
         }

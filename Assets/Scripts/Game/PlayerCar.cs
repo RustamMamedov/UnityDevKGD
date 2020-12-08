@@ -51,6 +51,15 @@ namespace Game {
             StartCoroutine(DodgeCoroutine(nextRoad));
         }
 
+        public void OnPlayerTouch(int touch) {
+            var nextRoad = Mathf.Clamp(_currentRoad + touch, -1, 1);
+            var canDodge = !_inDodge && _currentSpeed >= _carSettings.maxSpeed && nextRoad != _currentRoad;
+            if (!canDodge) {
+                return;
+            }
+            StartCoroutine(DodgeCoroutine(nextRoad));
+        }
+
         private IEnumerator DodgeCoroutine(int nextRoad) {
             _inDodge = true;
             var timer = 0f;
