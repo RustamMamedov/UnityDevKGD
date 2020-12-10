@@ -16,9 +16,9 @@ namespace Game {
         private void OnEnable() {
             var active = false;
             if (_isReverted) {
-                active = _dayMode.value == 0;
-            } else {
                 active = _dayMode.value == 1;
+            } else {
+                active = _dayMode.value == 0;
             }
             for (int i = 0; i < _lights.Length; i++) {
                 _lights[i].SetActive(active);
